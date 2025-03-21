@@ -78,13 +78,33 @@ Develop a conversational agent that enhances the quality and accuracy of its res
 
 \section*{Introduction}
 	
+While Large Language Models (LLMs) have evolved considerably and now produce convincing replies, they have inherent limitations. They rely on training data consisting of documents from the past and may not possess knowledge of current events and developments. Due to differences and properties of training datasets, they may not contain specific domain knowledge, failing to answer certain prompts or outright hallucinating. 
+
 
 %------------------------------------------------
 
 \section*{Methods}
 
+To solve these issues, Retrieval-Augmented Generation (RAG) is used to provide the missing knowledge to the LLM. RAG employs different techniques to retrieve information from external sources based on user’s prompt and through prompt augmentation feed the LLM sufficient information to provide informative and factually correct answer. In the survey \cite{survey}, multiple approaches to RAG are presented, highlighting three architectures: naive RAG, which analyses the user’s prompt, retrieves the required information, and appends it, letting the LLM do the rest; advanced RAG, which employs pre-retrieval and post-retrieval modifications to the prompt to make it more suitable for information retrieval and subsequent interpretation by LLM; lastly, modular RAG combines multiple approaches, using iterative prompt enhancement, ranking, fusion, etc. 
 
 
+To better evaluate RAG performance, \cite{benchmark} presents the CRUD framework, employing metrics such as ROUGE, BLEU, precision and recall. Various operations on text (creative generation from context, usage of information to answer questions, identification and correction of false information, summarization, ...) are measured separately to give a more detailed overview of the model. 
+
+For document summarization, LLMs, statistical models, graph-based models and other approaches are used to extract the most important information from text. \cite{summarization} present multiple solutions, noting that LLMs, while consuming more resources, tend to be more coherent and precise in their summarization if trained correctly. 
+
+Recently, a novel LLM, DeepSeek \cite{deepseek}, has been presented. Because of its positive benchmarking results, and efficiency due to small number of parameters, it provides a promising starting point for experimentation with knowledge injection and prompt engineering. 
+
+
+
+In this paper, we focus on implementing a conversational agent operating on knowledge about different art and media. Specifically, the agent is to suggest and converse about films, music, and other media based on user’s prompts and preferences. In our contributions, we: 
+\begin{itemize}
+\item Develop a conversational wrapper around an existing pretrained LLM, DeepSeek-R1 (https://huggingface.co/deepseek-ai/DeepSeek-R1); 
+\item Analyse and test prompt engineering techniques on LLM inputs for our defined use cases, noting the placement of information in the prompt, structuring of the prompt, and wording that produces best results; 
+\item Implement an advanced and/or modular RAG to transform and enhance user prompts and inject necessary knowledge into the final prompt, using approaches such as summarization, ranking, iterative prompt enhancement, and sentiment analysis, via smaller pretrained LLMs; 
+\item Retrieve data from open databases, such as TheMovieDatabase (TMDB) (https://www.themoviedb.org/), MusicBrainz (https://musicbrainz.org/), and social media platforms, e.g. Letterboxd (https://letterboxd.com/); 
+\item Perform benchmarks of our solution with CRUD framework; 
+\item Compare our solution with advanced commercial LLMs, such as ChatGPT. 
+\end{itemize}
 
 %------------------------------------------------
 
