@@ -6,3 +6,5 @@
 *.blg
 *.cls
 logo.png
+/fig
+/code
