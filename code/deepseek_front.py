@@ -1,40 +1,29 @@
-from typing import Optional
+from typing import Iterator
 import ollama
 
 
-class DeepSeekChatBot:
+class DeepSeekFilmChatBot:
     def __init__(self):
         self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.chat_history = []
         self._download_model_if_missing()
 
-    def prompt(self, prompt: str) -> ollama.GenerateResponse:
+        with open("prompt_template_deepseek.txt", "r") as fd:
+            self.prompt_template = fd.read()
+
+    def prompt_stream(
+        self, prompt: str, data: str = ""
+    ) -> Iterator[ollama.GenerateResponse]:
+        """Feeds the prompt to the model, returning its response as a stream iterator"""
+        final_prompt = self.prompt_template.format(data=data, query=prompt)
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
+
+    def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         """Feeds the prompt to the model, returning its response"""
-        return ollama.generate(model=self.model_label, prompt=prompt)
-
-    def prompt_with_context(
-        self, prompt: str, instructions: Optional[str], context: Optional[str]
-    ) -> ollama.GenerateResponse:
-        """
-        For prompt engineering tasks. The method takes in the user prompt,
-        and optionally instructions and context.
-
-        The final prompt looks like this:
-        ```
-        Instructions: <instructions>
-
-        Context: <context>
-
-        <prompt>
-        ```
-        The method returns the response from the model.
-        """
-        final_prompt = ""
-        if instructions:
-            final_prompt += f"Instructions: {instructions}\n\n"
-        if context:
-            final_prompt += f"Context: {context}\n\n"
-        final_prompt += prompt
-        return ollama.generate(model=self.model_label, prompt=final_prompt)
+        final_prompt = self.prompt_template.format(data=data, query=prompt)
+        return ollama.generate(
+            model=self.model_label, prompt=final_prompt, stream=False
+        )
 
     def _download_model_if_missing(self):
         """Checks if the model is already downloaded, and downloads it otherwise"""
