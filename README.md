@@ -17,3 +17,5 @@ conda activate teammlg-project
 ```
 
 to activate the environment.
+
+Also download and install [Ollama](https://ollama.com/download).
