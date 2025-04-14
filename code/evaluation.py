@@ -46,7 +46,7 @@ class Evaluation:
             json.dump(out, outfile, indent=4)
 
 if __name__ == "__main__":
-    deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "deepseek")
+    deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek")
     models = [deepseek] # add new models here
     e = Evaluation(models, "data/evaluation_questions.txt")
     results = e.evaluate()
