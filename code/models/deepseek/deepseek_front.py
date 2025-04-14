@@ -1,15 +1,24 @@
 from typing import Iterator
+from ..model import Model
 import ollama
 
 
-class DeepSeekFilmChatBot:
-    def __init__(self):
+class DeepSeekFilmChatBot(Model):
+    def __init__(self, name, folder):
+        self.name = name
+        self.folder = folder
         self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
         self._download_model_if_missing()
 
-        with open("prompt_template_deepseek.txt", "r") as fd:
+        with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
+
+    def train(self):
+        pass
+
+    def reply(self, prompt):
+        return self.prompt_nonstream(prompt)
 
     def prompt_stream(
         self, prompt: str, data: str = ""
