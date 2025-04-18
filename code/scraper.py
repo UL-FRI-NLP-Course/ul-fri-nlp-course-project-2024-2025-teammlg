@@ -3,16 +3,28 @@ from bs4 import BeautifulSoup
 import re
 
 class Scraper:
-    def __init__(self, title, sources=["themoviedb.org", "letterboxd.com"]):
+    def __init__(self, title, sources=["themoviedb.org", "letterboxd.com"], n_pages=5):
         self.title = title
         self.sources = sources
-
+        self.data = {source:[] for source in sources}
         urls = []
         for source in sources:
             if source == "letterboxd.com":
-
                 url = "https://letterboxd.com/film/" + self.format_title(self.title) + "/reviews/by/activity"
                 urls.append(url)
+                #n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
+                #if there aren't that many, you simply get all
+                #-1 to get all (not recommended, because very popular movies can have hundreds of thousands)
+                reviews = self.get_reviews(url, n_pages)
+                self.data[source] = reviews
+            elif source == "themoviedb.org":
+                url = "https://api.themoviedb.org/3/search/movie?query="+title+"&include_adult=false&language=en-US&page=1"
+                headers = {
+                    "accept": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
+                }
+                response = requests.get(url, headers=headers)
+                self.data[source] = response.text
             #TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
         self.urls = urls
@@ -24,11 +36,13 @@ class Scraper:
         title = title.replace(" ", "-")
         return title
 
-    def get_reviews(self, n):
+    #for letterboxd
+    def get_reviews(self, url, n):
         reviews = []
-        print(self.urls[0])
+        print(url)
+        #TODO n=-1
         for i in range(1, n+1):
-            r = requests.get(self.urls[0]+"/page/"+str(i)) #TODO generalize this
+            r = requests.get(url+"/page/"+str(i)) #TODO generalize this
             soup = BeautifulSoup(r.content, 'html.parser')
             content = soup.find_all('div', class_='js-review-body')
             for rev in content:
@@ -44,34 +58,20 @@ class Scraper:
                 reviews.append(re.sub('<[^<]+?>', '', total))
 
         return reviews
-
-
-    def scrape(self):
-        scraped_data = []
-
-        for url in self.urls:
-            #specify how many pages of reviews you want - Letterboxd has 12 per page
-            #if there aren't that many, you simply get all
-            #-1 to get all (not recommended, because very popular movies can have hundreds of thousands)
-            scraped_data.append(self.get_reviews(5))
-
-        return scraped_data
     
 if __name__ == "__main__":
     #usage example
     title="Challengers"
-    s = Scraper(title)
-    data = s.scrape()
-    print(len(data[0]))
-    for d in data[0]:
-        print(d, "\n")
-
+    s = Scraper(title, sources=["themoviedb.org"])
+    data = s.data
+    print(data)
 
     #testing a rare movie with very few reviews
     title="Madame is Athletic"
     s = Scraper(title)
-    data = s.scrape()
-    print(len(data[0]))
-    for d in data[0]:
-        print(d, "\n")
+    data = s.data
+    print(data)
+    #print(len(data[0]))
+    #for d in data[0]:
+    #    print(d, "\n")
 
