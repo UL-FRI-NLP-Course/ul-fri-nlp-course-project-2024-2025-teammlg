@@ -1,4 +1,4 @@
-from models import DeepSeekFilmChatBot
+from models import *
 import os
 import datetime
 import json
@@ -13,7 +13,7 @@ class Evaluation:
             #TODO lines in evaluation_questions.txt contain {title} as a placeholder
             #we need to decide whether to replace it with a random movie title each time, or just handpick a few meaningful ones
             #also, while we're at it, maybe handle misspellings, etc. (that is, deliberately put them in and see if the model handles them correctly)
-            self.queries.append(line.strip()) 
+            self.queries.append(line.strip().replace("{title}", "Challengers")) 
 
     def evaluate(self):
         for model in self.models:
@@ -46,7 +46,8 @@ class Evaluation:
             json.dump(out, outfile, indent=4)
 
 if __name__ == "__main__":
-    deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek")
-    models = [deepseek] # add new models here
+    deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
+    deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
+    models = [deepseekbaseline, deepseek] # add new models here
     e = Evaluation(models, "data/evaluation_questions.txt")
     results = e.evaluate()

@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import json
 
 class Scraper:
     def __init__(self, title, sources=["themoviedb.org", "letterboxd.com"], n_pages=5):
@@ -17,6 +18,9 @@ class Scraper:
                 #-1 to get all (not recommended, because very popular movies can have hundreds of thousands)
                 reviews = self.get_reviews(url, n_pages)
                 self.data[source] = reviews
+                out = {'reviews': reviews} 
+                with open("data/scraped_data/letterboxd_out.json", "w") as outfile:
+                    json.dump(out, outfile, indent=4)
             elif source == "themoviedb.org":
                 url = "https://api.themoviedb.org/3/search/movie?query="+title+"&include_adult=false&language=en-US&page=1"
                 headers = {
@@ -25,6 +29,8 @@ class Scraper:
                 }
                 response = requests.get(url, headers=headers)
                 self.data[source] = response.text
+                with open("data/scraped_data/tmdb_out.json", "w") as outfile:
+                    json.dump(response.text, outfile, indent=4)
             #TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
         self.urls = urls
@@ -39,7 +45,6 @@ class Scraper:
     #for letterboxd
     def get_reviews(self, url, n):
         reviews = []
-        print(url)
         #TODO n=-1
         for i in range(1, n+1):
             r = requests.get(url+"/page/"+str(i)) #TODO generalize this
@@ -64,13 +69,11 @@ if __name__ == "__main__":
     title="Challengers"
     s = Scraper(title, sources=["themoviedb.org"])
     data = s.data
-    print(data)
 
     #testing a rare movie with very few reviews
     title="Madame is Athletic"
     s = Scraper(title)
     data = s.data
-    print(data)
     #print(len(data[0]))
     #for d in data[0]:
     #    print(d, "\n")

@@ -1,9 +1,8 @@
 from typing import Iterator
 from ..model import Model
 import ollama
-from scraper import *
 
-class DeepSeekFilmChatBot(Model):
+class DeepSeekBaseline(Model):
     def __init__(self, name, folder, datafolder):
         self.name = name
         self.folder = folder
@@ -14,10 +13,6 @@ class DeepSeekFilmChatBot(Model):
 
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
-
-    def rag(self, title):
-        s = Scraper(title, sources=["themoviedb.org", "letterboxd.com"])
-        return s.data
 
     def train(self):
         pass
@@ -33,14 +28,6 @@ class DeepSeekFilmChatBot(Model):
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
-        #TODO the title should be extracted from prompt
-        self.rag("challengers")
-
-        #TODO we might not always have both
-        context1 = open("data/scraped_data/tmdb_out.json").read()
-        context2 = open("data/scraped_data/letterboxd_out.json").read()
-        data = context1 + context2
-
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(
