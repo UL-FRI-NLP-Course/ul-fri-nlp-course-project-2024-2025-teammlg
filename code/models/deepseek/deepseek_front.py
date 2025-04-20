@@ -4,10 +4,11 @@ import ollama
 from scraper import *
 
 class DeepSeekFilmChatBot(Model):
-    def __init__(self, name, folder, datafolder):
+    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd"]):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
+        self.sources = sources
         self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
         self._download_model_if_missing()
@@ -15,8 +16,13 @@ class DeepSeekFilmChatBot(Model):
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
 
+    def extract_title(self, prompt):
+        #TODO
+        #also, multiple titles? other phrases of interest?
+        return "challengers"
+
     def rag(self, title):
-        s = Scraper(title, sources=["themoviedb.org", "letterboxd.com"])
+        s = Scraper(title, self.sources)
         return s.data
 
     def train(self):
@@ -33,13 +39,15 @@ class DeepSeekFilmChatBot(Model):
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
-        #TODO the title should be extracted from prompt
-        self.rag("challengers")
+        title = self.extract_title(prompt)
+        self.rag(title)
 
         #TODO we might not always have both
-        context1 = open("data/scraped_data/tmdb_out.json").read()
-        context2 = open("data/scraped_data/letterboxd_out.json").read()
-        data = context1 + context2
+        #context1 = open("data/scraped_data/tmdb_out.json").read()
+        #context2 = open("data/scraped_data/letterboxd_out.json").read()
+        for source in self.sources:
+            context = open("data/scraped_data/"+source+"_out.json").read()
+            data += context
 
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)

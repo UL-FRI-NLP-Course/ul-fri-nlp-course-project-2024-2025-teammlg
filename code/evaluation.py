@@ -2,18 +2,26 @@ from models import *
 import os
 import datetime
 import json
+import random
 
 class Evaluation:
-    def __init__(self, models, queryfile):
+    #so the idea is: you can evaluate models on a specific movie you pass as an argument, or the evaluator will pick a random one from this list for each query
+    #i picked these 4 for the following reasons: 
+    #  - challengers has a lot of meme reviews on top pages of letterboxd, I'm interested if the model can get anything useful out of that (twitter data would probably be very similar)
+    #  - snow white, because there are different ones with the same title, would be interesting to know if the model gets confused
+    #  - madame is athletic: some extremely old movie with almost no reviews
+    #  - 28 years later: upcoming movie, if we're gonna be asking about release dates, etc. (it's also a sequel, so there might be some interesting ambiguity)
+    def __init__(self, models, queryfile, moviename=["Challengers", "snow White", "Madame is Athletic", "28 years later"]):
         self.models = models
         self.queryfile = queryfile
         self.queries = []
         f = open(queryfile)
         for line in f:
-            #TODO lines in evaluation_questions.txt contain {title} as a placeholder
-            #we need to decide whether to replace it with a random movie title each time, or just handpick a few meaningful ones
-            #also, while we're at it, maybe handle misspellings, etc. (that is, deliberately put them in and see if the model handles them correctly)
-            self.queries.append(line.strip().replace("{title}", "Challengers")) 
+            #TODO maybe handle misspellings, etc. (that is, deliberately put them in and see if the model handles them correctly)
+            if isinstance(moviename, str):
+                self.queries.append(line.strip().replace("{title}", moviename))
+            else:
+                self.queries.append(line.strip().replace("{title}", moviename[random.randint(0, len(moviename))-1]))
 
     def evaluate(self):
         for model in self.models:

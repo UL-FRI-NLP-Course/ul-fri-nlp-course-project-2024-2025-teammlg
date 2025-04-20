@@ -4,13 +4,13 @@ import re
 import json
 
 class Scraper:
-    def __init__(self, title, sources=["themoviedb.org", "letterboxd.com"], n_pages=5):
+    def __init__(self, title, sources=["tmdb", "letterboxd"], n_pages=5):
         self.title = title
         self.sources = sources
         self.data = {source:[] for source in sources}
         urls = []
         for source in sources:
-            if source == "letterboxd.com":
+            if source == "letterboxd":
                 url = "https://letterboxd.com/film/" + self.format_title(self.title) + "/reviews/by/activity"
                 urls.append(url)
                 #n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
@@ -21,7 +21,7 @@ class Scraper:
                 out = {'reviews': reviews} 
                 with open("data/scraped_data/letterboxd_out.json", "w") as outfile:
                     json.dump(out, outfile, indent=4)
-            elif source == "themoviedb.org":
+            elif source == "tmdb":
                 url = "https://api.themoviedb.org/3/search/movie?query="+title+"&include_adult=false&language=en-US&page=1"
                 headers = {
                     "accept": "application/json",
@@ -67,14 +67,10 @@ class Scraper:
 if __name__ == "__main__":
     #usage example
     title="Challengers"
-    s = Scraper(title, sources=["themoviedb.org"])
+    s = Scraper(title, sources=["tmdb"])
     data = s.data
 
     #testing a rare movie with very few reviews
     title="Madame is Athletic"
     s = Scraper(title)
     data = s.data
-    #print(len(data[0]))
-    #for d in data[0]:
-    #    print(d, "\n")
-
