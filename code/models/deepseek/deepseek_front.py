@@ -41,10 +41,7 @@ class DeepSeekFilmChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         title = self.extract_title(prompt)
         self.rag(title)
-
-        #TODO we might not always have both
-        #context1 = open("data/scraped_data/tmdb_out.json").read()
-        #context2 = open("data/scraped_data/letterboxd_out.json").read()
+        
         for source in self.sources:
             context = open("data/scraped_data/"+source+"_out.json").read()
             data += context

@@ -28,7 +28,7 @@ def conversation():
 
     prompt_indicator = "> "  # Indicates that the user can input text
 
-    deepseek_chatbot = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek")
+    deepseek_chatbot = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
     user_prompt = clean_up_prompt(input(prompt_indicator))
     while user_prompt != "quit":
         # TODO: Extract useful information

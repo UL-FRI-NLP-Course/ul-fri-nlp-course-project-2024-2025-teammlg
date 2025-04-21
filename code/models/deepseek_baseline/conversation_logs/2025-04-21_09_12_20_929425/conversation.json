@@ -1,0 +1,14 @@
+[
+    {
+        "query0": "what's up doc?",
+        "reply0": "\n\nI don\u2019t have access to your specific situation, but feel free to ask for more details or provide additional context if needed."
+    },
+    {
+        "query1": "i'm asking about the movie",
+        "reply1": "\n\nIf you're asking about the movie but haven't specified which one, I'll need more details to provide accurate information. Could you please provide specific details or clarify your request? For example, if you're asking about a film by a certain director or genre, feel free to share that, and I can offer helpful insights!"
+    },
+    {
+        "query2": "i'm asking about the movie called what's up doc?",
+        "reply2": "\n\n*What's Up Doc* (known as \"The Last of the Sillies\") is a 1957 horror film directed by Frank Darabont. It deals with a man obsessed with cleaning his apartment, resulting in the loss of all documents left behind, leaving behind an iconic series.\n\n**Answer:** *What's Up Doc* is a 1957 horror film directed by Frank Darabont."
+    }
+]

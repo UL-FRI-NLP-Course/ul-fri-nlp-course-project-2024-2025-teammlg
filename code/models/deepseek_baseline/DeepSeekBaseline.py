@@ -11,7 +11,8 @@ class DeepSeekBaseline(Model):
         self.chat_history = []
         self._download_model_if_missing()
 
-        with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
+        with open("./models/deepseek_baseline/prompt_template_deepseek.txt", "r") as fd:
+            print(fd.name)
             self.prompt_template = fd.read()
 
     def train(self):
