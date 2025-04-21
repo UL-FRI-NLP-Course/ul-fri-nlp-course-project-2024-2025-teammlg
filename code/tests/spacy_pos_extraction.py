@@ -39,11 +39,14 @@ if __name__ == "__main__":
     extract_names(query)  # Correctly classifies The Amateur
     query = "When does the amateur come to cinemas?"
     extract_names(query)  # Finds nothing
+    query = "Is there any news of the film 'Oh, The Places You'll Go!'? I'm looking forward to it."
+    extract_names(query)  # Finds the film, but only with quotation marks
 
     """OBSERVATIONS:
     - It sometimes helps if the title is spelled and capitalized correctly
     - Additional context helps: preceed the title with 'movie' or similar
     - Context helps (verbs shoot, film, act; phrases 'come to cinema', ...)
+    - It helps to put the title in quotation marks
 
     - Overall better than nltk, but slightly slower
     - Currently problems on Python 3.13, cannot install with pip or conda
