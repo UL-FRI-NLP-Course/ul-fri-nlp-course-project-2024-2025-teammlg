@@ -16,14 +16,11 @@ class DeepSeekFilmChatBot(Model):
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
 
-    def extract_title(self, prompt):
+    # extract titles, people, ...?
+    # return a dict of lists, data will be scraped for each element in each list
+    def extract_keyphrases(self, prompt):
         #TODO
-        #also, multiple titles? other phrases of interest?
-        return "challengers"
-
-    def rag(self, title):
-        s = Scraper(title, self.sources)
-        return s.data
+        return {"movies": ["challengers"], "people": []}
 
     def train(self):
         pass
@@ -39,8 +36,8 @@ class DeepSeekFilmChatBot(Model):
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
-        title = self.extract_title(prompt)
-        self.rag(title)
+        phrases = self.extract_keyphrases(prompt)
+        s = Scraper(phrases, self.sources)
         
         for source in self.sources:
             context = open("data/scraped_data/"+source+"_out.json").read()

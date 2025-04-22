@@ -4,33 +4,46 @@ import re
 import json
 
 class Scraper:
-    def __init__(self, title, sources=["tmdb", "letterboxd"], n_pages=5):
-        self.title = title
+    def __init__(self, phrases, sources=["tmdb", "letterboxd"], n_pages=5):
+        self.phrases = phrases
         self.sources = sources
         self.data = {source:[] for source in sources}
         urls = []
         for source in sources:
             if source == "letterboxd":
-                url = "https://letterboxd.com/film/" + self.format_title(self.title) + "/reviews/by/activity"
-                urls.append(url)
-                #n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
-                #if there aren't that many, you simply get all
-                #-1 to get all (not recommended, because very popular movies can have hundreds of thousands)
-                reviews = self.get_reviews(url, n_pages)
-                self.data[source] = reviews
-                out = {'reviews': reviews} 
+                out = {}
+                for movie in self.phrases["movies"]:
+                    url = "https://letterboxd.com/film/" + self.format_title(movie) + "/reviews/by/activity"
+                    urls.append(url)
+                    #n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
+                    #if there aren't that many, you simply get all
+                    #-1 to get all (not recommended, because very popular movies can have hundreds of thousands)
+                    reviews = self.get_reviews(url, n_pages)
+                    self.data[source].append(reviews)
+                    out[movie] = {'reviews': reviews}
                 with open("data/scraped_data/letterboxd_out.json", "w") as outfile:
                     json.dump(out, outfile, indent=4)
             elif source == "tmdb":
-                url = "https://api.themoviedb.org/3/search/movie?query="+title+"&include_adult=false&language=en-US&page=1"
                 headers = {
-                    "accept": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
-                }
-                response = requests.get(url, headers=headers)
-                self.data[source] = response.text
+                        "accept": "application/json",
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
+                    }
+                out = {}
+                for movie in self.phrases["movies"]:
+                    url = "https://api.themoviedb.org/3/search/movie?query="+movie+"&include_adult=false&language=en-US&page=1"
+                    response = requests.get(url, headers=headers)
+                    self.data[source].append(response.text)
+                    out[movie] = {'tmdb_data': response.text}
+                
+                for person in self.phrases["people"]:
+                    url = "https://api.themoviedb.org/3/search/person?query="+person+"&include_adult=false&language=en-US&page=1"
+                    response = requests.get(url, headers=headers)
+                    self.data[source].append(response.text)
+                    out[person] = {'tmdb_data': response.text}
+
+
                 with open("data/scraped_data/tmdb_out.json", "w") as outfile:
-                    json.dump(response.text, outfile, indent=4)
+                    json.dump(out, outfile, indent=4)
             #TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
         self.urls = urls
@@ -58,7 +71,7 @@ class Scraper:
                 #TODO handle js-collapsible-text ("click for more")
 
                 for found in r:
-                    total += str(found) + " "
+                    total += str(found) + ""
                 #strip html tags (there might be better ways to do it TODO)
                 reviews.append(re.sub('<[^<]+?>', '', total))
 
@@ -66,11 +79,11 @@ class Scraper:
     
 if __name__ == "__main__":
     #usage example
-    title="Challengers"
-    s = Scraper(title, sources=["tmdb"])
-    data = s.data
+    #phrases = {"movies": ["challengers"], "people": []}
+    #s = Scraper(phrases, sources=["tmdb"])
+    #data = s.data
 
     #testing a rare movie with very few reviews
-    title="Madame is Athletic"
-    s = Scraper(title)
+    phrases = {"movies": ["Madame is Athletic", "the godfather"], "people": ["bruce willis", "king kong"]}
+    s = Scraper(phrases)
     data = s.data
