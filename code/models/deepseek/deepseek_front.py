@@ -4,7 +4,7 @@ import ollama
 from scraper import *
 
 class DeepSeekFilmChatBot(Model):
-    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd"]):
+    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"]):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder

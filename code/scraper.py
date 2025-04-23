@@ -4,7 +4,7 @@ import re
 import json
 
 class Scraper:
-    def __init__(self, phrases, sources=["tmdb", "letterboxd"], n_pages=5):
+    def __init__(self, phrases, sources=["tmdb", "letterboxd", "justwatch"], n_pages=5):
         self.phrases = phrases
         self.sources = sources
         self.data = {source:[] for source in sources}
@@ -41,9 +41,21 @@ class Scraper:
                     self.data[source].append(response.text)
                     out[person] = {'tmdb_data': response.text}
 
-
                 with open("data/scraped_data/tmdb_out.json", "w") as outfile:
                     json.dump(out, outfile, indent=4)
+
+            elif source == "justwatch":
+                out = {}
+                for movie in self.phrases["movies"]:
+                    url = "https://www.justwatch.com/in/movie/" + self.format_title(movie)
+                    urls.append(url)
+                    services = self.get_services(url)
+                    self.data[source].append(services)
+                    out[movie] = {'services': services}
+                with open("data/scraped_data/justwatch_out.json", "w") as outfile:
+                    json.dump(out, outfile, indent=4)
+
+
             #TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
         self.urls = urls
@@ -54,6 +66,30 @@ class Scraper:
         #TODO find a better way, this is unreliable
         title = title.replace(" ", "-")
         return title
+
+    #there might be better ways to do it TODO
+    def strip_html_tags(self, text):
+        return re.sub('<[^<]+?>', '', text)
+
+    #for justwatch
+    def get_services(self, url):
+        services = []
+        #ugly hack, might not always work!
+        headers = {'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'}
+        r = requests.get(url, headers=headers)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        content = soup.find_all('div', class_='offer__content')
+
+        for ser in content:
+            pic = ser.find('picture')
+            if pic:
+                txt = pic.find('img')
+                if txt['alt'] not in services:
+                    services.append(txt['alt'])
+
+        print(services)
+
+        return services
 
     #for letterboxd
     def get_reviews(self, url, n):
@@ -71,9 +107,9 @@ class Scraper:
                 #TODO handle js-collapsible-text ("click for more")
 
                 for found in r:
-                    total += str(found) + ""
-                #strip html tags (there might be better ways to do it TODO)
-                reviews.append(re.sub('<[^<]+?>', '', total))
+                    total += str(found)
+                
+                reviews.append(self.strip_html_tags(total))
 
         return reviews
     
@@ -84,6 +120,9 @@ if __name__ == "__main__":
     #data = s.data
 
     #testing a rare movie with very few reviews
-    phrases = {"movies": ["Madame is Athletic", "the godfather"], "people": ["bruce willis", "king kong"]}
-    s = Scraper(phrases)
-    data = s.data
+    #phrases = {"movies": ["Madame is Athletic", "the godfather"], "people": ["bruce willis", "king kong"]}
+    #s = Scraper(phrases)
+    #data = s.data
+
+    phrases = {"movies": ["challengers", "the godfather"], "people": []}
+    s = Scraper(phrases, sources=["justwatch"])
