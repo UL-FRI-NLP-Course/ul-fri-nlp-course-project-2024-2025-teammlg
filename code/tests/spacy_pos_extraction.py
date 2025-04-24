@@ -1,4 +1,5 @@
 import spacy
+#import spacy_transformers
 
 nlp = spacy.load("en_core_web_trf")
 
