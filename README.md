@@ -4,7 +4,7 @@ Develop a conversational agent that enhances the quality and accuracy of its res
 
 
 ## Set-up
-For setting up the environment, [Conda](https://docs.conda.io/projects/conda/en/latest/index.html) is used. In the `code` directory, `conda_environment.yaml` file defines the environment parameters. Execute:
+For setting up the environment, [Conda](https://docs.conda.io/projects/conda/en/latest/index.html) is used. In the `code` directory, `conda_environment.yaml` file defines the environment parameters. Execute (warning: this will also install some models, so it might take some time and requires ~800MB of disk space):
 
 ```bash
 conda env create -f conda_environment.yml
