@@ -1,12 +1,13 @@
 name: teammlg-project
 channels:
   - defaults
+  - conda-forge
   - https://repo.anaconda.com/pkgs/main
   - https://repo.anaconda.com/pkgs/r
 dependencies:
   - pip
   - python=3.10
-  - spacy-model-en_core_web_trf==3.8.0
+  - spacy-model-en_core_web_trf
   - pip:
       - ollama==0.4.7
       - beautifulsoup4==4.13.3
@@ -14,4 +15,3 @@ dependencies:
       - nltk==3.9.1
       - numpy==1.23.5
       - spacy==3.8.0
-      - msvc-runtime==14.42.34433
