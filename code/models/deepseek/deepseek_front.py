@@ -2,6 +2,7 @@ from typing import Iterator
 from ..model import Model
 import ollama
 from scraper import *
+from POStagger import *
 
 class DeepSeekFilmChatBot(Model):
     def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"]):
@@ -20,6 +21,12 @@ class DeepSeekFilmChatBot(Model):
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
         #TODO
+
+        tagger = POStagger()
+        tagged = tagger.tag(prompt)    
+
+        print(tagged)
+
         return {"movies": ["challengers"], "people": []}
 
     def train(self):

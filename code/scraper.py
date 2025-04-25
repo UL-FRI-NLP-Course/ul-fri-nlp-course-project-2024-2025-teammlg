@@ -87,8 +87,6 @@ class Scraper:
                 if txt['alt'] not in services:
                     services.append(txt['alt'])
 
-        print(services)
-
         return services
 
     #for letterboxd

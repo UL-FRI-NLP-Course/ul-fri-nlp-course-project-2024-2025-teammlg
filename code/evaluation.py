@@ -23,14 +23,16 @@ class Evaluation:
             else:
                 self.queries.append(line.strip().replace("{title}", moviename[random.randint(0, len(moviename))-1]))
 
-    def evaluate(self):
+    def evaluate(self, printout=False):
         for model in self.models:
             print("Evaluating", model.name, ":")
             result = []
             for q in self.queries:
-                print("Query:", q, "\n")
+                if printout:
+                    print("Query:", q, "\n")
                 reply = model.reply(q).response
-                print("Reply:", reply, "\n\n")
+                if printout:
+                    print("Reply:", reply, "\n\n")
                 result.append(str(reply))
             self.writeresults(result, model.folder)
 
@@ -56,6 +58,7 @@ class Evaluation:
 if __name__ == "__main__":
     deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
     deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
-    models = [deepseekbaseline, deepseek] # add new models here
+    #models = [deepseekbaseline, deepseek] # add new models here
+    models = [deepseek]
     e = Evaluation(models, "data/evaluation_questions.txt")
     results = e.evaluate()

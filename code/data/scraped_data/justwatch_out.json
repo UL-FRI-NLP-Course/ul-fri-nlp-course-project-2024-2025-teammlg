@@ -5,13 +5,5 @@
             "Amazon Prime Video",
             "Amazon Video"
         ]
-    },
-    "the godfather": {
-        "services": [
-            "Apple TV",
-            "Amazon Prime Video",
-            "Netflix",
-            "Amazon Video"
-        ]
     }
 }
