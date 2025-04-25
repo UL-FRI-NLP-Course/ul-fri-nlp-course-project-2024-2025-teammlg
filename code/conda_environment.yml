@@ -8,6 +8,7 @@ dependencies:
   - pip
   - python=3.10
   - spacy-model-en_core_web_trf
+  - pytextrank
   - pip:
       - ollama==0.4.7
       - beautifulsoup4==4.13.3
