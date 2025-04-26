@@ -14,8 +14,6 @@ class POStagger:
         if self.nlp:
             document = self.nlp(query)
 
-            #for entity in document.ents:
-            #    return f"\t{entity.text} ({entity.label_})"
             out = {}
             for entity in document.ents:
                 out[entity.text] = entity.label_

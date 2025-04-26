@@ -3,15 +3,17 @@ from ..model import Model
 import ollama
 from scraper import *
 from POStagger import *
+from summarizer import *
 
 class DeepSeekFilmChatBot(Model):
-    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"]):
+    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
         self.sources = sources
         self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
+        self.mode = mode
         self._download_model_if_missing()
 
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
@@ -24,8 +26,6 @@ class DeepSeekFilmChatBot(Model):
 
         tagger = POStagger()
         tagged = tagger.tag(prompt)    
-
-        print(tagged)
 
         return {"movies": ["challengers"], "people": []}
 
@@ -45,10 +45,25 @@ class DeepSeekFilmChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.sources)
+        #currently we just have a hardcoded folder for scraped data, I think it should be fine this way, in case we wanna look at the data later
         
-        for source in self.sources:
-            context = open("data/scraped_data/"+source+"_out.json").read()
-            data += context
+        #TODO what should be the shape of data? currently I just concat things together
+        if self.mode == "naive":
+            for source in self.sources:
+                context = open("data/scraped_data/"+source+"_out.json").read()
+                data += context
+        elif self.mode == "advanced":
+            summarizer = Summarizer()
+            for source in self.sources:
+                context = "data/scraped_data/"+source+"_out.json"
+                for key, item in phrases.items():
+                    for i in item:
+                        data += summarizer.summarize(context, i)
+            print(data)
+        elif self.mode == "modular":
+            pass #TODO
+        else: #this should never happen, but better safe than sorry
+            data = ""
 
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
