@@ -5,18 +5,18 @@ from scraper import *
 from POStagger import *
 from summarizer import *
 
-class DeepSeekFilmChatBot(Model):
+class QwenChatBot(Model):
     def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
         self.sources = sources
-        self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.model_label = "qwen:1.8b"
         self.chat_history = []
         self.mode = mode
         self._download_model_if_missing()
 
-        with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
+        with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
             self.prompt_template = fd.read()
 
     # extract titles, people, ...?

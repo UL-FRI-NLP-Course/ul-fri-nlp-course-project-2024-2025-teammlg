@@ -59,7 +59,8 @@ if __name__ == "__main__":
     deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
     deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
     deepseekadvanced = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data", mode="advanced")
+    qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
     #models = [deepseekbaseline, deepseek] # add new models here
-    models = [deepseekadvanced]
+    models = [qwen]
     e = Evaluation(models, "data/evaluation_questions.txt")
     results = e.evaluate()
