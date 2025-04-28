@@ -15,9 +15,7 @@ class ConversationEvaluation:
         prompt = input("> ").strip()
         prompts = [prompt]
         while prompt != "quit":
-            responses: Iterator[ollama.GenerateResponse] = self.model.prompt_stream(
-                prompt, data=""
-            )
+            responses: Iterator[ollama.GenerateResponse] = self.model.prompt_stream(prompt, data="")
             thinking = True
             fullresponse = ""
             for i, response in enumerate(responses):
@@ -33,9 +31,6 @@ class ConversationEvaluation:
                 prompts.append(prompt)
 
         self.writeresults(prompts, replies, self.model.folder)
-        #reply = self.model.prompt_nonstream()
-        #result.append(str(reply))
-        #self.writeresults(result, self.model.folder)
 
     def writeresults(self, prompts, replies, folder):
         now = str(datetime.datetime.now())

@@ -2,19 +2,19 @@ from typing import Iterator
 from ..model import Model
 import ollama
 
-class DeepSeekBaseline(Model):
+class QwenBaseline(Model):
     def __init__(self, name, folder, datafolder):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
-        self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.model_label = "qwen:1.8b"  
         self.chat_history = []
         self.context = None
         self.mode = "baseline"
         self.sources = "/"
         self._download_model_if_missing()
 
-        with open("./models/deepseek_baseline/prompt_template_deepseek.txt", "r") as fd:
+        with open("./models/qwen_baseline/prompt_template_qwen.txt", "r") as fd:
             self.prompt_template = fd.read()
 
     def train(self):
@@ -23,9 +23,7 @@ class DeepSeekBaseline(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(
-        self, prompt: str, data: str = ""
-    ) -> Iterator[ollama.GenerateResponse]:
+    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)

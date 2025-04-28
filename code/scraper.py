@@ -4,11 +4,12 @@ import re
 import json
 
 class Scraper:
-    def __init__(self, phrases, sources=["tmdb", "letterboxd", "justwatch"], n_pages=5):
+    def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch"], n_pages=5):
         self.phrases = phrases
         self.sources = sources
         self.data = {source:[] for source in sources}
         urls = []
+        self.files = {}
         for source in sources:
             if source == "letterboxd":
                 out = {}
@@ -21,8 +22,10 @@ class Scraper:
                     reviews = self.get_reviews(url, n_pages)
                     self.data[source].append(reviews)
                     out[movie] = {'reviews': reviews}
-                with open("data/scraped_data/letterboxd_out.json", "w") as outfile:
+                outf = outfolder+"/letterboxd_out_"+suffix+".json"
+                with open(outf, "w") as outfile:
                     json.dump(out, outfile, indent=4)
+                self.files["letterboxd"] = outf
             elif source == "tmdb":
                 headers = {
                         "accept": "application/json",
@@ -41,8 +44,10 @@ class Scraper:
                     self.data[source].append(response.text)
                     out[person] = {'tmdb_data': response.text}
 
-                with open("data/scraped_data/tmdb_out.json", "w") as outfile:
+                outf = outfolder+"/tmdb_out_"+suffix+".json"
+                with open(outf, "w") as outfile:
                     json.dump(out, outfile, indent=4)
+                self.files["tmdb"] = outf
 
             elif source == "justwatch":
                 out = {}
@@ -52,9 +57,11 @@ class Scraper:
                     services = self.get_services(url)
                     self.data[source].append(services)
                     out[movie] = {'services': services}
-                with open("data/scraped_data/justwatch_out.json", "w") as outfile:
-                    json.dump(out, outfile, indent=4)
 
+                outf = outfolder+"/justwatch_out_"+suffix+".json"
+                with open(outf, "w") as outfile:
+                    json.dump(out, outfile, indent=4)
+                self.files["justwatch"] = outf
 
             #TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
@@ -114,13 +121,13 @@ class Scraper:
 if __name__ == "__main__":
     #usage example
     #phrases = {"movies": ["challengers"], "people": []}
-    #s = Scraper(phrases, sources=["tmdb"])
+    #s = Scraper(phrases, "data/scraped_data", "", sources=["tmdb"])
     #data = s.data
 
     #testing a rare movie with very few reviews
     #phrases = {"movies": ["Madame is Athletic", "the godfather"], "people": ["bruce willis", "king kong"]}
-    #s = Scraper(phrases)
+    #s = Scraper(phrases, "data/scraped_data", "")
     #data = s.data
 
     phrases = {"movies": ["challengers", "the godfather"], "people": []}
-    s = Scraper(phrases, sources=["justwatch"])
+    s = Scraper(phrases, "data/scraped_data", "", sources=["justwatch"])

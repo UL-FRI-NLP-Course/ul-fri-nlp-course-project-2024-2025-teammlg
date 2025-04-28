@@ -34,7 +34,18 @@ class Evaluation:
                 if printout:
                     print("Reply:", reply, "\n\n")
                 result.append(str(reply))
-            self.writeresults(result, model.folder)
+            outf = self.writeresults(result, model.folder)
+            self.writeparams(outf, model)
+
+    def writeparams(self, outfolder, model):
+        outdict = {}
+        outdict["mode"] = model.mode
+        outdict["sources"] = model.sources
+        outdict["context"] = model.context
+
+        with open(outfolder+"/parameters.json", "w") as outfile:
+            json.dump(outdict, outfile, indent=4)
+
 
     def writeresults(self, results, folder):
         now = str(datetime.datetime.now())
@@ -55,12 +66,17 @@ class Evaluation:
         with open(outfolder+"/results.json", "w") as outfile:
             json.dump(out, outfile, indent=4)
 
+        return outfolder
+
 if __name__ == "__main__":
     deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
     deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
     deepseekadvanced = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data", mode="advanced")
-    qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
+    qwenbaseline = QwenBaseline("qwen:1.8b", "models/qwen_baseline", "data/scraped_data")
+    qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data")
+    qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
+
     #models = [deepseekbaseline, deepseek] # add new models here
-    models = [qwen]
+    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
     e = Evaluation(models, "data/evaluation_questions.txt")
     results = e.evaluate()

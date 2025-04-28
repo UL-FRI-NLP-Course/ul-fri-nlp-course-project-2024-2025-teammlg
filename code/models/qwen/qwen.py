@@ -12,8 +12,10 @@ class QwenChatBot(Model):
         self.datafolder = datafolder
         self.sources = sources
         self.model_label = "qwen:1.8b"
+        self.outname = "qwen1_8"
         self.chat_history = []
         self.mode = mode
+        self.context = None
         self._download_model_if_missing()
 
         with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
@@ -35,27 +37,25 @@ class QwenChatBot(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(
-        self, prompt: str, data: str = ""
-    ) -> Iterator[ollama.GenerateResponse]:
+    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         phrases = self.extract_keyphrases(prompt)
-        s = Scraper(phrases, self.sources)
+        s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
         #currently we just have a hardcoded folder for scraped data, I think it should be fine this way, in case we wanna look at the data later
         
         #TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
             for source in self.sources:
-                context = open("data/scraped_data/"+source+"_out.json").read()
+                context = open(s.files[source]).read()
                 data += context
         elif self.mode == "advanced":
             summarizer = Summarizer()
             for source in self.sources:
-                context = "data/scraped_data/"+source+"_out.json"
+                context = s.files[source]
                 for key, item in phrases.items():
                     for i in item:
                         data += summarizer.summarize(context, i)
@@ -64,11 +64,12 @@ class QwenChatBot(Model):
         else: #this should never happen, but better safe than sorry
             data = ""
 
+        # need to save this, so we can see it in the output file
+        self.context = data
+
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(
-            model=self.model_label, prompt=final_prompt, stream=False
-        )
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False)
 
     def _download_model_if_missing(self):
         """Checks if the model is already downloaded, and downloads it otherwise"""
