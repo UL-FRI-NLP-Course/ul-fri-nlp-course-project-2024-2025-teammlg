@@ -24,12 +24,18 @@ class DeepSeekFilmChatBot(Model):
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
-        #TODO
+        out = {"movies": [], "people": []}
 
         tagger = POStagger()
         tagged = tagger.tag(prompt)    
 
-        return {"movies": ["challengers"], "people": []}
+        for key in tagged:
+            #TODO add people, etc., remove dates (it tages 28 years etc.)
+            #also, this doesn't work very well - look for alternatives?
+            out["movies"].append(key)
+
+        return out
+        #return {"movies": ["challengers"], "people": []}
 
     def train(self):
         pass
@@ -39,6 +45,29 @@ class DeepSeekFilmChatBot(Model):
 
     def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
+        phrases = self.extract_keyphrases(prompt)
+        s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
+        
+        #TODO what should be the shape of data? currently I just concat things together
+        if self.mode == "naive":
+            for source in self.sources:
+                context = open(s.files[source]).read()
+                data += context
+        elif self.mode == "advanced":
+            summarizer = Summarizer()
+            for source in self.sources:
+                context = s.files[source]
+                for key, item in phrases.items():
+                    for i in item:
+                        data += summarizer.summarize(context, i)
+        elif self.mode == "modular":
+            pass #TODO
+        else: #this should never happen, but better safe than sorry
+            data = ""
+
+        # need to save this, so we can see it in the output file
+        self.context = data
+
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 

@@ -76,7 +76,8 @@ if __name__ == "__main__":
     qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data")
     qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
 
-    #models = [deepseekbaseline, deepseek] # add new models here
-    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
+    # add new models here
+    #models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
+    models = [deepseek]
     e = Evaluation(models, "data/evaluation_questions.txt")
     results = e.evaluate()

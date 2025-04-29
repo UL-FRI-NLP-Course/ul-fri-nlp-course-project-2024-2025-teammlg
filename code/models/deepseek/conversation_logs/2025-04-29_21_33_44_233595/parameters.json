@@ -1,0 +1,9 @@
+{
+    "mode": "advanced",
+    "sources": [
+        "tmdb",
+        "letterboxd",
+        "justwatch"
+    ],
+    "context": "{\n    \"jurrasic park\": {\n        \"tmdb_data\": \"{\\\"page\\\":1,\\\"results\\\":[],\\\"total_pages\\\":1,\\\"total_results\\\":0}\"\n    }\n}{\n    \"jurrasic park\": {\n        \"reviews\": []\n    }\n}{\n    \"jurrasic park\": {\n        \"services\": []\n    }\n}"
+}
