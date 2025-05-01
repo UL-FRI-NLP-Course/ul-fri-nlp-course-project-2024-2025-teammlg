@@ -163,5 +163,8 @@
         [
             "Can you recommend some similar movies to Drive?"
         ]
+    ],
+    "ground_truth": [
+        
     ]
 }
