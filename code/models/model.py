@@ -9,10 +9,10 @@ class Model(ABC):
     def train(self, data):
         pass
 
-    # return a reply to a query as string
+    # return a reply to a query as string and the context
     @abstractmethod
     def reply(self, query):
-        return []
+        return "", ""
 
     # return your model's name
     def __str__(self):

@@ -30,7 +30,7 @@ class ConversationEvaluation:
             if prompt != "quit":
                 prompts.append(prompt)
 
-        outf = self.writeresults(prompts, replies, self.model.folder)
+        outf = self.writereplies(prompts, replies, self.model.folder)
         self.writeparams(outf)
 
     def writeparams(self, outfolder):
@@ -42,7 +42,7 @@ class ConversationEvaluation:
         with open(outfolder+"/parameters.json", "w") as outfile:
             json.dump(outdict, outfile, indent=4)
 
-    def writeresults(self, prompts, replies, folder):
+    def writereplies(self, prompts, replies, folder):
         now = str(datetime.datetime.now())
         now = now.replace(":", "_")
         now = now.replace(" ", "_")

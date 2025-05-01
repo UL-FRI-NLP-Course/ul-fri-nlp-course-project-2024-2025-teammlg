@@ -31,9 +31,7 @@ class QwenBaseline(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(
-            model=self.model_label, prompt=final_prompt, stream=False
-        )
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), data
 
     def _download_model_if_missing(self):
         """Checks if the model is already downloaded, and downloads it otherwise"""

@@ -23,9 +23,7 @@ class DeepSeekBaseline(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(
-        self, prompt: str, data: str = ""
-    ) -> Iterator[ollama.GenerateResponse]:
+    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
@@ -33,9 +31,7 @@ class DeepSeekBaseline(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(
-            model=self.model_label, prompt=final_prompt, stream=False
-        )
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), data
 
     def _download_model_if_missing(self):
         """Checks if the model is already downloaded, and downloads it otherwise"""
