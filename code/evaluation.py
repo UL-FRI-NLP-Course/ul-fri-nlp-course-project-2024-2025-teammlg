@@ -81,7 +81,7 @@ class Evaluation:
             execution_times = []
             contexts = []
 
-            with open(fileWithGT, mode='r', encoding='latin-1') as fwgt:
+            with open(fileWithGT, mode='r', encoding='UTF-8') as fwgt:
                 data = json.load(fwgt)
 
             queries = []
@@ -113,9 +113,8 @@ class Evaluation:
                 execution_times.append(time.time() - start)
 
                 evaldict = {"query": q, "reply": reply}
-                evaldict = evaldict.update(state)
+                evaldict.update(state)
                 evalout.append(evaldict)
-                print(evalout)
                 
                 if printout:
                     print("Reply:", reply, "\n\n")
@@ -128,7 +127,7 @@ class Evaluation:
             self.write_results(outf, queries, results, contexts, execution_times, gts)
 
             with open(session_folder+"/"+model.outname+"_"+model.mode, "a") as outfile:
-                    json.dump(evalout, outfile, indent=4)
+                json.dump(evalout, outfile, indent=4)
 
     def compute_similarities(self, queries, results, contexts):
         metrics = {}
@@ -213,7 +212,8 @@ if __name__ == "__main__":
 
     # add new models here
     #models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
-    models = [deepseekadvanced, qwen]
+    #models = [deepseekadvanced, qwen]
+    models = [deepseek, qwen]
     e = Evaluation(models, "data/evaluation_questions.txt")
     #results = e.evaluate()
-    gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)
+    gteval = e.evaluateGT("data/evaluation_questions.json")
