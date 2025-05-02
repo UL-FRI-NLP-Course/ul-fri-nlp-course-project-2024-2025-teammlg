@@ -1,8 +1,11 @@
 from typing import Any, Dict, List, Optional
+import nltk
+import numpy
 import requests
 from bs4 import BeautifulSoup
 import re
 import json
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 # TODO: Down the road, use https://api.themoviedb.org/3/genre/movie/list to get list of valid genres
@@ -71,7 +74,6 @@ class Scraper:
                 }
                 out = {}
                 for movie in self.phrases["movies"]:
-                    print(movie)
                     url = (
                         "https://api.themoviedb.org/3/search/movie?query="
                         + movie
@@ -84,7 +86,6 @@ class Scraper:
                     movie_json = self.select_most_appropriate_title(
                         response.json(), self.phrases["key"]
                     )
-                    print(movie_json)
 
                     # TODO: Put this in front of selection of title
                     # The result contains only genre IDs, so we convert them to genres
@@ -136,22 +137,37 @@ class Scraper:
         self.urls = urls
 
     @staticmethod
+    def json_to_plain_text(j, clear_all: bool = False) -> str:
+        j = str(j)
+        j = j.replace("{", "").replace("}", "").replace("[", "").replace("]", "")
+        if clear_all:
+            j = j.replace('"', " ")
+            j = j.replace("'", " ")
+        return j
+
+    @staticmethod
     def select_most_appropriate_title(data: Dict[str, Any], key_phrases: List[str]):
         """A really primitive selection process. Just check how many times some key phrase
         is found in the result and select the one with the most occurances."""
-        final_result = {}
+        documents = data["results"]
+        phrases = " ".join(key_phrases)
+
+        stop_words = list(nltk.corpus.stopwords.words("english"))
+        vectorizer = TfidfVectorizer(stop_words=stop_words)
+        text_documents = [Scraper.json_to_plain_text(doc) for doc in documents]
+        tfidf = vectorizer.fit_transform([phrases, *text_documents])
+
+        phrases_tfidf = tfidf[:, 0]
+
         max_score = 0
-        for result in data["results"]:
-            text = str(result)
-            occurances = [
-                len(re.findall(re.escape(phrase), re.escape(text)))
-                for phrase in key_phrases
-            ]
-            score = sum(occurances)
-            if score > max_score:
-                final_result = result
-                max_score = score
-        return final_result
+        best_document = {}
+        for i, document in enumerate(documents):
+            document_tfidf = tfidf[:, i + 1]
+            comparison = numpy.sum(phrases_tfidf * document_tfidf.T)
+            if comparison > max_score:
+                best_document = document
+                max_score = comparison
+        return best_document
 
     def format_title(self, title):
         title = str.lower(title)
