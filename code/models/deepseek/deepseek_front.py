@@ -1,12 +1,20 @@
-from typing import Iterator
+from typing import Iterator, Tuple
 from ..model import Model
 import ollama
 from scraper import *
 from POStagger import *
 from summarizer import *
 
+
 class DeepSeekFilmChatBot(Model):
-    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
+    def __init__(
+        self,
+        name,
+        folder,
+        datafolder,
+        sources=["tmdb", "letterboxd", "justwatch"],
+        mode="naive",
+    ):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
@@ -27,15 +35,16 @@ class DeepSeekFilmChatBot(Model):
         out = {"movies": [], "people": []}
 
         tagger = POStagger()
-        tagged = tagger.tag(prompt)    
+        tagged = tagger.tag(prompt)
+        print(tagged)
 
         for key in tagged:
-            #TODO add people, etc., remove dates (it tages 28 years etc.)
-            #also, this doesn't work very well - look for alternatives?
+            # TODO add people, etc., remove dates (it tages 28 years etc.)
+            # also, this doesn't work very well - look for alternatives?
             out["movies"].append(key)
 
         return out
-        #return {"movies": ["challengers"], "people": []}
+        # return {"movies": ["challengers"], "people": []}
 
     def train(self):
         pass
@@ -43,12 +52,14 @@ class DeepSeekFilmChatBot(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
+    def prompt_stream(
+        self, prompt: str, data: str = ""
+    ) -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-        
-        #TODO what should be the shape of data? currently I just concat things together
+
+        # TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
             for source in self.sources:
                 context = open(s.files[source]).read()
@@ -60,9 +71,10 @@ class DeepSeekFilmChatBot(Model):
                 for key, item in phrases.items():
                     for i in item:
                         data += summarizer.summarize(context, i)
+            print(data)
         elif self.mode == "modular":
-            pass #TODO
-        else: #this should never happen, but better safe than sorry
+            pass  # TODO
+        else:  # this should never happen, but better safe than sorry
             data = ""
 
         # need to save this, so we can see it in the output file
@@ -71,7 +83,9 @@ class DeepSeekFilmChatBot(Model):
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
-    def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
+    def prompt_nonstream(
+        self, prompt: str, data: str = ""
+    ) -> Tuple[ollama.GenerateResponse, str]:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
 
@@ -93,8 +107,8 @@ class DeepSeekFilmChatBot(Model):
                         data += summary
                         state["summaries"].append(summary)
         elif self.mode == "modular":
-            pass #TODO
-        else: #this should never happen, but better safe than sorry
+            pass  # TODO
+        else:  # this should never happen, but better safe than sorry
             data = ""
 
         # need to save this, so we can see it in the output file
