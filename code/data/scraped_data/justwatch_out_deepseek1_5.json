@@ -1,10 +1,13 @@
 {
-    "The Dark Knight": {
+    "Flow": {
         "services": [
-            "Apple TV",
-            "Amazon Prime Video",
-            "JioHotstar",
-            "Amazon Video"
+            "Plex",
+            "Amazon Prime Video"
+        ]
+    },
+    "the other day": {
+        "services": [
+            "Amazon Prime Video"
         ]
     }
 }

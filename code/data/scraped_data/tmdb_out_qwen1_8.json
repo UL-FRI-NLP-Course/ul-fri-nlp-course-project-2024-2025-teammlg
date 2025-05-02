@@ -2,32 +2,36 @@
     "Flow": {
         "tmdb_data": {
             "adult": false,
-            "original_language": "en",
-            "original_title": "Flow",
-            "overview": "'Flow' deals with the constant physical flow of atmosphere and fluids as related to the flow of electron beams and progression of form and colour in the video image.",
-            "popularity": 0.0143,
-            "release_date": "1977-01-02",
+            "original_language": "lv",
+            "original_title": "Straume",
+            "overview": "A solitary cat, displaced by a great flood, finds refuge on a boat with various species and must navigate the challenges of adapting to a transformed world together.",
+            "popularity": 56.193,
+            "release_date": "2024-08-29",
             "title": "Flow",
             "video": false,
-            "vote_average": 4.0,
-            "vote_count": 1,
-            "genres": []
+            "vote_average": 8.202,
+            "vote_count": 1887,
+            "genres": [
+                "Animation",
+                "Fantasy",
+                "Adventure"
+            ]
         }
     },
     "the other day": {
         "tmdb_data": {
             "adult": false,
-            "original_language": "vi",
-            "original_title": "Và ngày còn lại",
-            "overview": "The moment the children left, the wind still blew across the rice fields, the river still flowed and time still passed. The parents continued their daily lives.",
-            "popularity": 0.0168,
-            "release_date": "2024-10-25",
-            "title": "The Other Days",
+            "original_language": "it",
+            "original_title": "Oggi, domani, dopodomani",
+            "overview": "Italian comedy film in three segments",
+            "popularity": 0.6683,
+            "release_date": "1965-12-28",
+            "title": "Kiss the Other Sheik",
             "video": false,
-            "vote_average": 0.0,
-            "vote_count": 0,
+            "vote_average": 6.6,
+            "vote_count": 25,
             "genres": [
-                "Documentary"
+                "Comedy"
             ]
         }
     }

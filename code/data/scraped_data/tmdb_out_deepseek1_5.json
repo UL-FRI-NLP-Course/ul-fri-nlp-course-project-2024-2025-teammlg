@@ -1,21 +1,37 @@
 {
-    "The Dark Knight": {
+    "Flow": {
         "tmdb_data": {
             "adult": false,
-            "original_language": "en",
-            "original_title": "The Dark Knight",
-            "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
-            "popularity": 28.1579,
-            "release_date": "2008-07-16",
-            "title": "The Dark Knight",
+            "original_language": "lv",
+            "original_title": "Straume",
+            "overview": "A solitary cat, displaced by a great flood, finds refuge on a boat with various species and must navigate the challenges of adapting to a transformed world together.",
+            "popularity": 56.193,
+            "release_date": "2024-08-29",
+            "title": "Flow",
             "video": false,
-            "vote_average": 8.52,
-            "vote_count": 33787,
+            "vote_average": 8.202,
+            "vote_count": 1887,
             "genres": [
-                "Drama",
-                "Action",
-                "Crime",
-                "Thriller"
+                "Animation",
+                "Fantasy",
+                "Adventure"
+            ]
+        }
+    },
+    "the other day": {
+        "tmdb_data": {
+            "adult": false,
+            "original_language": "it",
+            "original_title": "Oggi, domani, dopodomani",
+            "overview": "Italian comedy film in three segments",
+            "popularity": 0.6683,
+            "release_date": "1965-12-28",
+            "title": "Kiss the Other Sheik",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 25,
+            "genres": [
+                "Comedy"
             ]
         }
     }
