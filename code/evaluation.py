@@ -25,8 +25,23 @@ class Evaluation:
             else:
                 self.queries.append(line.strip().replace("{title}", moviename[random.randint(0, len(moviename))-1]))
 
+    def get_session_folder(self):
+        now = str(datetime.datetime.now())
+        now = now.replace(":", "_")
+        now = now.replace(" ", "_")
+        now = now.replace(".", "_")
+        outfolder = "data/evaluation_data/"+str(now)
+        if not os.path.isdir("data/evaluation_data/"):
+            os.makedirs("data/evaluation_data/")
+        os.makedirs(outfolder)
+        return outfolder
+
     #for evaluation_questions.txt
     def evaluate(self, printout=False):
+        # create folder for logging intermediate states (contexts, summarizations, etc.)
+        # entire session will be logged in the same folder (so, each model in separate file)
+        session_folder = self.get_session_folder() 
+
         for model in self.models:
             print("Evaluating", model.name, ":")
             results = []
@@ -37,7 +52,7 @@ class Evaluation:
                     print("Query:", q, "\n")
 
                 start = time.time()
-                reply, context = model.reply(q)
+                reply, state = model.reply(q)
                 reply = reply.response
                 execution_times.append(time.time() - start)
 
@@ -45,21 +60,28 @@ class Evaluation:
                     print("Reply:", reply, "\n\n")
                 
                 results.append(str(reply))
-                contexts.append(str(context))
+                contexts.append(str(state["context"]))
 
             outf = self.write_replies(self.queries, results, model.folder)
             self.write_params(outf, model)
             self.write_results(outf, self.queries, results, contexts, execution_times)
 
+            with open(session_folder+"/"+model.outname+"_"+model.mode, "a") as outfile:
+                json.dump(state, outfile, indent=4)
+
     # for evaluation_questions.json (with ground truths)
     def evaluateGT(self, fileWithGT, printout=False):
+        # create folder for logging intermediate states (contexts, summarizations, etc.)
+        # entire session will be logged in the same folder (so, each model in separate file)
+        session_folder = self.get_session_folder() 
+
         for model in self.models:
             print("Evaluating", model.name, ":")
             results = []
             execution_times = []
             contexts = []
 
-            with open(fileWithGT, mode='r') as fwgt:
+            with open(fileWithGT, mode='r', encoding='latin-1') as fwgt:
                 data = json.load(fwgt)
 
             queries = []
@@ -70,38 +92,43 @@ class Evaluation:
                 queries.append(totalquery.strip())
 
             gts = []
-            #TODO this is temporary, to be removed!
-            if len(data["ground_truth"]) < len(queries):
-                gts = ["placeholder ground truth until we generate the real thing!" for _ in range(len(queries))]
-            else:
-                for gt in data["ground_truth"]:
-                    totalgt = ""
-                    for g in gt:
-                        totalgt += str(g) + " "
-                    gts.append(totalgt.strip())
+            for gt in data["ground_truth"]:
+                totalgt = ""
+                for g in gt:
+                    totalgt += str(g) + " "
+                gts.append(totalgt.strip())
 
             #in case you don't wanna run on entire testset
-            #queries = queries[:5]
-            #gts = gts[:5]
+            queries = queries[:5]
+            gts = gts[:5]
 
+            evalout = []
             for q, gt in zip(queries, gts):
                 if printout:
                     print("Query:", q, "\n")
 
                 start = time.time()
-                reply, context = model.reply(q)
+                reply, state = model.reply(q)
                 reply = reply.response
                 execution_times.append(time.time() - start)
 
+                evaldict = {"query": q, "reply": reply}
+                evaldict = evaldict.update(state)
+                evalout.append(evaldict)
+                print(evalout)
+                
                 if printout:
                     print("Reply:", reply, "\n\n")
                 
                 results.append(str(reply))
-                contexts.append(str(context))
+                contexts.append(state["context"])
 
             outf = self.write_replies(queries, results, model.folder)
             self.write_params(outf, model)
             self.write_results(outf, queries, results, contexts, execution_times, gts)
+
+            with open(session_folder+"/"+model.outname+"_"+model.mode, "a") as outfile:
+                    json.dump(evalout, outfile, indent=4)
 
     def compute_similarities(self, queries, results, contexts):
         metrics = {}
@@ -186,7 +213,7 @@ if __name__ == "__main__":
 
     # add new models here
     #models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
-    models = [deepseek]
+    models = [deepseekadvanced, qwen]
     e = Evaluation(models, "data/evaluation_questions.txt")
     #results = e.evaluate()
     gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)

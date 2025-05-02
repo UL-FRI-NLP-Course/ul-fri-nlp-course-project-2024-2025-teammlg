@@ -24,12 +24,18 @@ class QwenChatBot(Model):
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
-        #TODO
+        out = {"movies": [], "people": []}
 
         tagger = POStagger()
-        tagged = tagger.tag(prompt)    
+        tagged = tagger.tag(prompt)
 
-        return {"movies": ["challengers"], "people": []}
+        for key in tagged:
+            # TODO add people, etc., remove dates (it tages 28 years etc.)
+            # also, this doesn't work very well - look for alternatives?
+            out["movies"].append(key)
+
+        return out
+        # return {"movies": ["challengers"], "people": []}
 
     def train(self):
         pass
@@ -47,6 +53,8 @@ class QwenChatBot(Model):
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
         #currently we just have a hardcoded folder for scraped data, I think it should be fine this way, in case we wanna look at the data later
         
+        state = {}
+
         #TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
             for source in self.sources:
@@ -54,11 +62,14 @@ class QwenChatBot(Model):
                 data += context
         elif self.mode == "advanced":
             summarizer = Summarizer()
+            state["summaries"] = []
             for source in self.sources:
                 context = s.files[source]
                 for key, item in phrases.items():
                     for i in item:
-                        data += summarizer.summarize(context, i)
+                        summary = summarizer.summarize(context, i)
+                        data += summary
+                        state["summaries"].append(summary)
         elif self.mode == "modular":
             pass #TODO
         else: #this should never happen, but better safe than sorry
@@ -66,10 +77,11 @@ class QwenChatBot(Model):
 
         # need to save this, so we can see it in the output file
         self.context = data
+        state["context"] = data
 
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), data
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), state
 
     def _download_model_if_missing(self):
         """Checks if the model is already downloaded, and downloads it otherwise"""
