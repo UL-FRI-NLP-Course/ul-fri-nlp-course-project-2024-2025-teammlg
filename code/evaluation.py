@@ -126,7 +126,7 @@ class Evaluation:
             self.write_params(outf, model)
             self.write_results(outf, queries, results, contexts, execution_times, gts)
 
-            with open(session_folder+"/"+model.outname+"_"+model.mode, "a") as outfile:
+            with open(session_folder+"/"+model.outname+"_"+model.mode+".json", "a") as outfile:
                 json.dump(evalout, outfile, indent=4)
 
     def compute_similarities(self, queries, results, contexts):
