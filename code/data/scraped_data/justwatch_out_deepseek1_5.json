@@ -1,13 +1,11 @@
 {
-    "Flow": {
+    "Total Recall": {
         "services": [
-            "Plex",
-            "Amazon Prime Video"
-        ]
-    },
-    "the other day": {
-        "services": [
-            "Amazon Prime Video"
+            "Apple TV",
+            "Netflix",
+            "MX Player",
+            "Amazon Prime Video",
+            "Amazon Video"
         ]
     }
 }

@@ -3,6 +3,7 @@ import rouge_score.rouge_scorer
 from models.deepseek.deepseek_front import DeepSeekFilmChatBot
 import nltk
 import rouge_score
+import json
 
 
 class FinalScore:
@@ -53,6 +54,11 @@ def test():
     questions = []
     gpt_answers = []
 
+    with open("data/evaluation_questions.json", "r") as f:
+        j = json.loads(f.read())
+        questions = [q[0] for q in j["scenarios"]]
+        gpt_answers = [a[0] for a in j["ground_truth"]]
+
     deepseek = DeepSeekFilmChatBot(
         "deepseek-r1:1.5b", "models/deepseek", "data/scraped_data", mode="advanced"
     )
@@ -63,7 +69,7 @@ def test():
         print(gpt_answer)
         deepseek_response = deepseek.prompt_nonstream(question)
         print(deepseek_response)
-        deepseek_response = clean_up_text(deepseek_response.response)
+        deepseek_response = clean_up_text(deepseek_response[0].response)
         gpt_response = clean_up_text(gpt_answer)
         # TODO: Calculate ROUGE-1/2/5/L score
         rouge = scorer.score(gpt_response, deepseek_response)
