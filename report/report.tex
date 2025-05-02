@@ -143,7 +143,7 @@ For the purpose of identifying film titles or names in user's prompt, we use a R
 
 \section*{Results}
 
-In this section we compare preliminary results of various models on a test set of 5 basic questions. We use the following models:
+In this section we compare the performance of a reasoning deepseek-r1 model and a non-reasoning qwen 1.5 model. For each of these we run experiments on three different sets of parameters: without RAG, with naive RAG - data is scraped and appended to the context, and advanced RAG - data is additionally processed and summarized before being inputed into the model. In total, we are evaluating the following models:
 \begin{itemize}
 	\item deepseek-r1 with 1.5B parameters (baseline)
 	\item deepseek-r1 with 1.5B parameters and naive RAG
@@ -161,12 +161,12 @@ Since we are working with relatively open-ended questions, there is objective gr
 \hline
 % & &\multicolumn{5}{c}{Number of segmented training images}\\
 Model & ROUGE & BLEU   \\ \hline
-deepseek-r1 baseline  & 0.12766 & 0.01859 \\
-deepseek-r1 naive  & 0.13031  & 0.01873   \\
-deepseek-r1 advanced  & 0.11895  & 0.01778   \\
-qwen 1.5 baseline  & 0.16578 & 0.02521    \\
-qwen 1.5 naive  & 0.17362  & 0.03302  \\
-qwen 1.5 advanced  & 0.18738  & 0.03556   \\
+deepseek-r1 baseline  & 0.13079 & 0.00567 \\
+deepseek-r1 naive  & 0.14052  & 0.01068   \\
+deepseek-r1 advanced  & 0.16714  & 0.01866   \\
+qwen 1.5 baseline  & 0.18991 & 0.03687    \\
+qwen 1.5 naive  & 0.19899  & 0.05811  \\
+qwen 1.5 advanced  & 0.17380  & 0.02584   \\
 \hline
 \end{tabular}}
 \caption{Performance comparison against ChatGPT-generated ground truth.}
@@ -177,6 +177,8 @@ qwen 1.5 advanced  & 0.18738  & 0.03556   \\
 %------------------------------------------------
 
 \section*{Discussion}
+
+At the moment, there is a visible improvement in the models' performance when using RAG, however the BLEU and ROUGE evaluation metrics do not emphasize this improvement enough, therefore we intend to devise more representative evaluation methods for our specific domain. Other open problems are how to determine which title/person a query is referring to in certain ambiguous cases and how to enable the model to keep a memory in the conversational context. 
 
 
 
