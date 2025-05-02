@@ -1,7 +1,32 @@
+from typing import Any, Dict, List, Optional
 import requests
 from bs4 import BeautifulSoup
 import re
 import json
+
+
+# TODO: Down the road, use https://api.themoviedb.org/3/genre/movie/list to get list of valid genres
+GENRES = {
+    28: "Action",
+    12: "Adventure",
+    16: "Animation",
+    35: "Comedy",
+    80: "Crime",
+    99: "Documentary",
+    18: "Drama",
+    10751: "Family",
+    14: "Fantasy",
+    36: "History",
+    27: "Horror",
+    10402: "Music",
+    9648: "Mystery",
+    10749: "Romance",
+    878: "Science Fiction",
+    10770: "TV Movie",
+    53: "Thriller",
+    10752: "War",
+    37: "Western",
+}
 
 
 class Scraper:
@@ -18,6 +43,7 @@ class Scraper:
         self.data = {source: [] for source in sources}
         urls = []
         self.files = {}
+        # TODO: We need a way to ensure that the movie/series on Letterboxd is the same as on TMDB and JustWatch
         for source in sources:
             if source == "letterboxd":
                 out = {}
@@ -45,6 +71,7 @@ class Scraper:
                 }
                 out = {}
                 for movie in self.phrases["movies"]:
+                    print(movie)
                     url = (
                         "https://api.themoviedb.org/3/search/movie?query="
                         + movie
@@ -52,7 +79,26 @@ class Scraper:
                     )
                     response = requests.get(url, headers=headers)
                     self.data[source].append(response.text)
-                    out[movie] = {"tmdb_data": response.json()}
+
+                    # Take resulting JSON and select the most appropriate title
+                    movie_json = self.select_most_appropriate_title(
+                        response.json(), self.phrases["key"]
+                    )
+                    print(movie_json)
+
+                    # TODO: Put this in front of selection of title
+                    # The result contains only genre IDs, so we convert them to genres
+                    genre_ids = movie_json.get("genre_ids", [])
+                    genres = [GENRES.get(g, "") for g in genre_ids]
+                    movie_json["genres"] = genres
+
+                    # We delete some unnecessary fields to recude the prompt size
+                    del movie_json["genre_ids"]
+                    del movie_json["id"]
+                    del movie_json["backdrop_path"]
+                    del movie_json["poster_path"]
+
+                    out[movie] = {"tmdb_data": movie_json}
 
                 for person in self.phrases["people"]:
                     url = (
@@ -88,6 +134,24 @@ class Scraper:
             # TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
         self.urls = urls
+
+    @staticmethod
+    def select_most_appropriate_title(data: Dict[str, Any], key_phrases: List[str]):
+        """A really primitive selection process. Just check how many times some key phrase
+        is found in the result and select the one with the most occurances."""
+        final_result = {}
+        max_score = 0
+        for result in data["results"]:
+            text = str(result)
+            occurances = [
+                len(re.findall(re.escape(phrase), re.escape(text)))
+                for phrase in key_phrases
+            ]
+            score = sum(occurances)
+            if score > max_score:
+                final_result = result
+                max_score = score
+        return final_result
 
     def format_title(self, title):
         title = str.lower(title)
