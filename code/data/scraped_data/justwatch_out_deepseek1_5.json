@@ -1,14 +1,13 @@
 {
-    "2024": {
+    "Flow": {
         "services": [
+            "Plex",
             "Amazon Prime Video"
         ]
     },
-    "Challengers": {
+    "the other day": {
         "services": [
-            "Apple TV",
-            "Amazon Prime Video",
-            "Amazon Video"
+            "Amazon Prime Video"
         ]
     }
 }

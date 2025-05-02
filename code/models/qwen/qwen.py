@@ -5,8 +5,16 @@ from scraper import *
 from POStagger import *
 from summarizer import *
 
+
 class QwenChatBot(Model):
-    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
+    def __init__(
+        self,
+        name,
+        folder,
+        datafolder,
+        sources=["tmdb", "letterboxd", "justwatch"],
+        mode="naive",
+    ):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
@@ -24,7 +32,7 @@ class QwenChatBot(Model):
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
-        out = {"movies": [], "people": []}
+        out = {"movies": [], "people": [], "key": []}
 
         tagger = POStagger()
         tagged = tagger.tag(prompt)
@@ -33,6 +41,11 @@ class QwenChatBot(Model):
             # TODO add people, etc., remove dates (it tages 28 years etc.)
             # also, this doesn't work very well - look for alternatives?
             out["movies"].append(key)
+
+        stop_words = set(nltk.corpus.stopwords.words("english"))
+        prompt_tokens = nltk.tokenize.word_tokenize(prompt)
+        output_text = [word for word in prompt_tokens if word not in stop_words]
+        out["key"] = list(set(output_text))
 
         return out
         # return {"movies": ["challengers"], "people": []}
@@ -43,7 +56,9 @@ class QwenChatBot(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
+    def prompt_stream(
+        self, prompt: str, data: str = ""
+    ) -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
@@ -51,11 +66,11 @@ class QwenChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-        #currently we just have a hardcoded folder for scraped data, I think it should be fine this way, in case we wanna look at the data later
-        
+        # currently we just have a hardcoded folder for scraped data, I think it should be fine this way, in case we wanna look at the data later
+
         state = {}
 
-        #TODO what should be the shape of data? currently I just concat things together
+        # TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
             for source in self.sources:
                 context = open(s.files[source], errors="ignore").read()
@@ -71,8 +86,8 @@ class QwenChatBot(Model):
                         data += summary
                         state["summaries"].append(summary)
         elif self.mode == "modular":
-            pass #TODO
-        else: #this should never happen, but better safe than sorry
+            pass  # TODO
+        else:  # this should never happen, but better safe than sorry
             data = ""
 
         # need to save this, so we can see it in the output file
@@ -81,7 +96,10 @@ class QwenChatBot(Model):
 
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), state
+        return (
+            ollama.generate(model=self.model_label, prompt=final_prompt, stream=False),
+            state,
+        )
 
     def _download_model_if_missing(self):
         """Checks if the model is already downloaded, and downloads it otherwise"""
