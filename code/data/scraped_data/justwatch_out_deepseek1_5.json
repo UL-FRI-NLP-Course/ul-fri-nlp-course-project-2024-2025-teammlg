@@ -5,5 +5,10 @@
             "Amazon Prime Video",
             "Amazon Video"
         ]
+    },
+    "2024": {
+        "services": [
+            "Amazon Prime Video"
+        ]
     }
 }
