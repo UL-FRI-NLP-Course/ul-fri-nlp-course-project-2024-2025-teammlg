@@ -35,8 +35,8 @@ class Scraper:
                     self.data[source].append(reviews)
                     out[movie] = {"reviews": reviews}
                 outf = outfolder + "/letterboxd_out_" + suffix + ".json"
-                with open(outf, "w") as outfile:
-                    json.dump(out, outfile, indent=4)
+                with open(outf, "w", encoding="UTF-8") as outfile:
+                    json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["letterboxd"] = outf
             elif source == "tmdb":
                 headers = {
@@ -52,7 +52,7 @@ class Scraper:
                     )
                     response = requests.get(url, headers=headers)
                     self.data[source].append(response.text)
-                    out[movie] = {"tmdb_data": response.text}
+                    out[movie] = {"tmdb_data": response.json()}
 
                 for person in self.phrases["people"]:
                     url = (
@@ -62,11 +62,11 @@ class Scraper:
                     )
                     response = requests.get(url, headers=headers)
                     self.data[source].append(response.text)
-                    out[person] = {"tmdb_data": response.text}
+                    out[person] = {"tmdb_data": response.json()}
 
                 outf = outfolder + "/tmdb_out_" + suffix + ".json"
-                with open(outf, "w") as outfile:
-                    json.dump(out, outfile, indent=4)
+                with open(outf, "w", encoding="UTF-8") as outfile:
+                    json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["tmdb"] = outf
 
             elif source == "justwatch":
@@ -81,8 +81,8 @@ class Scraper:
                     out[movie] = {"services": services}
 
                 outf = outfolder + "/justwatch_out_" + suffix + ".json"
-                with open(outf, "w") as outfile:
-                    json.dump(out, outfile, indent=4)
+                with open(outf, "w", encoding="UTF-8") as outfile:
+                    json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["justwatch"] = outf
 
             # TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
