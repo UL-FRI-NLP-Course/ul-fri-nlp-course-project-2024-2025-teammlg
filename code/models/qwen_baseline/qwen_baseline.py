@@ -8,6 +8,7 @@ class QwenBaseline(Model):
         self.folder = folder
         self.datafolder = datafolder
         self.model_label = "qwen:1.8b"  
+        self.outname = "qwen_1_5_baseline"
         self.chat_history = []
         self.context = None
         self.mode = "baseline"

@@ -9,6 +9,7 @@ class DeepSeekBaseline(Model):
         self.datafolder = datafolder
         self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
+        self.outname = "deepseek1_5_baseline"
         self.context = None
         self.mode = "baseline"
         self.sources = "/"
