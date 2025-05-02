@@ -1,0 +1,9 @@
+{
+    "mode": "naive",
+    "sources": [
+        "tmdb",
+        "letterboxd",
+        "justwatch"
+    ],
+    "context": "{\n    \"Flow\": {\n        \"tmdb_data\": {\n            \"adult\": false,\n            \"original_language\": \"lv\",\n            \"original_title\": \"Straume\",\n            \"overview\": \"A solitary cat, displaced by a great flood, finds refuge on a boat with various species and must navigate the challenges of adapting to a transformed world together.\",\n            \"popularity\": 56.193,\n            \"release_date\": \"2024-08-29\",\n            \"title\": \"Flow\",\n            \"video\": false,\n            \"vote_average\": 8.196,\n            \"vote_count\": 1892,\n            \"genres\": [\n                \"Animation\",\n                \"Fantasy\",\n                \"Adventure\"\n            ]\n        }\n    },\n    \"the other day\": {\n        \"tmdb_data\": {\n            \"adult\": false,\n            \"original_language\": \"it\",\n            \"original_title\": \"Oggi, domani, dopodomani\",\n            \"overview\": \"Italian comedy film in three segments\",\n            \"popularity\": 0.6683,\n            \"release_date\": \"1965-12-28\",\n            \"title\": \"Kiss the Other Sheik\",\n            \"video\": false,\n            \"vote_average\": 6.6,\n            \"vote_count\": 25,\n            \"genres\": [\n                \"Comedy\"\n            ]\n        }\n    }\n}{\n    \"Flow\": {\n        \"reviews\": []\n    },\n    \"the other day\": {\n        \"reviews\": []\n    }\n}{\n    \"Flow\": {\n        \"services\": [\n            \"Plex\",\n            \"Amazon Prime Video\"\n        ]\n    },\n    \"the other day\": {\n        \"services\": [\n            \"Amazon Prime Video\"\n        ]\n    }\n}"
+}

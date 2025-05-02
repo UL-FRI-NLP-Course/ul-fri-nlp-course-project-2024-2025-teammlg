@@ -125,9 +125,7 @@ class Evaluation:
                 reply = reply.response
 
                 # Removes the reasoning part
-                print(reply)
-                reply = re.sub("<think>.*?</think>", "", reply)
-                print(reply)
+                reply = re.sub("<think>(.|\r|\n)*?</think>", "", reply)
 
                 execution_times.append(time.time() - start)
 
