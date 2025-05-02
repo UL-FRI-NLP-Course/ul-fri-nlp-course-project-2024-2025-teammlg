@@ -64,7 +64,7 @@ class Scraper:
                     self.data[source].append(reviews)
                     out[movie] = {"reviews": reviews}
                 outf = outfolder + "/letterboxd_out_" + suffix + ".json"
-                with open(outf, "w", encoding="UTF-8") as outfile:
+                with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["letterboxd"] = outf
             elif source == "tmdb":
@@ -112,7 +112,7 @@ class Scraper:
                     out[person] = {"tmdb_data": response.json()}
 
                 outf = outfolder + "/tmdb_out_" + suffix + ".json"
-                with open(outf, "w", encoding="UTF-8") as outfile:
+                with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["tmdb"] = outf
 
@@ -128,7 +128,7 @@ class Scraper:
                     out[movie] = {"services": services}
 
                 outf = outfolder + "/justwatch_out_" + suffix + ".json"
-                with open(outf, "w", encoding="UTF-8") as outfile:
+                with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["justwatch"] = outf
 
