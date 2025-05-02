@@ -162,8 +162,10 @@ class Scraper:
         max_score = 0
         best_document = {}
         for i, document in enumerate(documents):
+            popularity = document.get("popularity", 0.0)
             document_tfidf = tfidf[:, i + 1]
             comparison = numpy.sum(phrases_tfidf * document_tfidf.T)
+            comparison = 0.5 * comparison + popularity * 0.5
             if comparison > max_score:
                 best_document = document
                 max_score = comparison

@@ -1,3 +1,4 @@
+import re
 from models import *
 import os
 import datetime
@@ -122,6 +123,10 @@ class Evaluation:
                 start = time.time()
                 reply, state = model.reply(q)
                 reply = reply.response
+
+                # Removes the reasoning part
+                reply = re.sub(r"<think>.*?<\/think>", "", reply)
+
                 execution_times.append(time.time() - start)
 
                 evaldict = {"query": q, "reply": reply}
