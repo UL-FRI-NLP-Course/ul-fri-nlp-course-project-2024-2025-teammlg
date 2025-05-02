@@ -1,18 +1,26 @@
 import spacy
 import pytextrank
 import warnings
-warnings.filterwarnings('ignore')
 
-class Summarizer():
+warnings.filterwarnings("ignore")
+
+
+class Summarizer:
     def __init__(self):
         self.nlp = spacy.load("en_core_web_trf")
         # Adding biased text summarization via pytextrank
         self.nlp.add_pipe("biasedtextrank")
 
     def summarize(self, file, entity_of_interest):
-        #TODO fix Token indices sequence length is longer than the specified maximum sequence length for this model (666 > 512).
+        # TODO fix Token indices sequence length is longer than the specified maximum sequence length for this model (666 > 512).
         with open(file, "r") as f:
             document = f.read()
+            document = (
+                document.replace("{", "")
+                .replace("}", "")
+                .replace("[", "")
+                .replace("]", "")
+            )
 
             document = self.nlp(document)
             textrank = document._.textrank
