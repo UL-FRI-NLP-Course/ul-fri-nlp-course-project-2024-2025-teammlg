@@ -25,9 +25,6 @@ class Evaluation:
             else:
                 self.queries.append(line.strip().replace("{title}", moviename[random.randint(0, len(moviename))-1]))
 
-    def evaluation_logger(self, outfile):
-        pass
-
     def get_session_folder(self):
         now = str(datetime.datetime.now())
         now = now.replace(":", "_")
@@ -105,6 +102,7 @@ class Evaluation:
             queries = queries[:5]
             gts = gts[:5]
 
+            evalout = []
             for q, gt in zip(queries, gts):
                 if printout:
                     print("Query:", q, "\n")
@@ -114,6 +112,11 @@ class Evaluation:
                 reply = reply.response
                 execution_times.append(time.time() - start)
 
+                evaldict = {"query": q, "reply": reply}
+                evaldict = evaldict.update(state)
+                evalout.append(evaldict)
+                print(evalout)
+                
                 if printout:
                     print("Reply:", reply, "\n\n")
                 
@@ -125,7 +128,7 @@ class Evaluation:
             self.write_results(outf, queries, results, contexts, execution_times, gts)
 
             with open(session_folder+"/"+model.outname+"_"+model.mode, "a") as outfile:
-                json.dump(state, outfile, indent=4)
+                    json.dump(evalout, outfile, indent=4)
 
     def compute_similarities(self, queries, results, contexts):
         metrics = {}

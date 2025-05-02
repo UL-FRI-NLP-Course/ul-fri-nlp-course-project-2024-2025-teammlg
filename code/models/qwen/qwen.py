@@ -24,12 +24,18 @@ class QwenChatBot(Model):
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
-        #TODO
+        out = {"movies": [], "people": []}
 
         tagger = POStagger()
-        tagged = tagger.tag(prompt)    
+        tagged = tagger.tag(prompt)
 
-        return {"movies": ["challengers"], "people": []}
+        for key in tagged:
+            # TODO add people, etc., remove dates (it tages 28 years etc.)
+            # also, this doesn't work very well - look for alternatives?
+            out["movies"].append(key)
+
+        return out
+        # return {"movies": ["challengers"], "people": []}
 
     def train(self):
         pass

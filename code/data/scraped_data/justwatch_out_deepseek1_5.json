@@ -1,9 +1,13 @@
 {
-    "Challengers": {
+    "Flow": {
         "services": [
-            "Apple TV",
-            "Amazon Prime Video",
-            "Amazon Video"
+            "Plex",
+            "Amazon Prime Video"
+        ]
+    },
+    "the other day": {
+        "services": [
+            "Amazon Prime Video"
         ]
     }
 }

@@ -13,7 +13,7 @@ class Summarizer:
 
     def summarize(self, file, entity_of_interest):
         # TODO fix Token indices sequence length is longer than the specified maximum sequence length for this model (666 > 512).
-        with open(file, "r") as f:
+        with open(file, 'r', encoding='latin-1') as f:
             document = f.read()
             document = (
                 document.replace("{", "")
