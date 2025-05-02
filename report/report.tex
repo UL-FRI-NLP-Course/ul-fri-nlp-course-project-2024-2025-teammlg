@@ -153,7 +153,26 @@ In this section we compare preliminary results of various models on a test set o
 	\item qwen 1.5 with 1.8B parameters and advanced RAG
 \end{itemize}
 
-For evaluation we use the ROUGE metric \footnote{https://huggingface.co/docs/evaluate/index}.
+Since we are working with relatively open-ended questions, there is objective ground truth to evaluate against. Therefore, we construct a set of 51 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth, so we can apply standard metrics such as ROUGE and BLEU \footnote{https://huggingface.co/docs/evaluate/index}. Results are shown in Table \ref{tab:comparison}.
+
+\begin{table}[!htb]
+\centering
+\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| l | c c c |}
+\hline
+% & &\multicolumn{5}{c}{Number of segmented training images}\\
+Model & ROUGE & BLEU & tf-idf  \\ \hline
+deepseek-r1 baseline  & 0.51 & 0.463 & 0.463  \\
+deepseek-r1 naive  & 0.51  & 0.463 & 0.463  \\
+deepseek-r1 advanced  & 0.51  & 0.463 & 0.463  \\
+qwen 1.5 baseline  & 0.51 & 0.463 & 0.463   \\
+qwen 1.5 naive  & 0.51  & 0.463 & 0.463  \\
+qwen 1.5 advanced  & 0.51  & 0.463 & 0.463  \\
+\hline
+\end{tabular}}
+\caption{Performance comparison against ChatGPT-generated ground truth.}
+\label{tab:comparison}
+\end{table}
+
 
 %------------------------------------------------
 

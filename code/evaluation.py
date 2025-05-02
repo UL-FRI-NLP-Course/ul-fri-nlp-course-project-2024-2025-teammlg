@@ -25,6 +25,7 @@ class Evaluation:
             else:
                 self.queries.append(line.strip().replace("{title}", moviename[random.randint(0, len(moviename))-1]))
 
+    #for evaluation_questions.txt
     def evaluate(self, printout=False):
         for model in self.models:
             print("Evaluating", model.name, ":")
@@ -46,22 +47,74 @@ class Evaluation:
                 results.append(str(reply))
                 contexts.append(str(context))
 
-            outf = self.write_replies(results, model.folder)
+            outf = self.write_replies(self.queries, results, model.folder)
             self.write_params(outf, model)
-            self.write_results(outf, results, contexts, execution_times)
+            self.write_results(outf, self.queries, results, contexts, execution_times)
 
-    def compute_metrics(self, results, contexts):
+    # for evaluation_questions.json (with ground truths)
+    def evaluateGT(self, fileWithGT, printout=False):
+        for model in self.models:
+            print("Evaluating", model.name, ":")
+            results = []
+            execution_times = []
+            contexts = []
+
+            with open(fileWithGT, mode='r') as fwgt:
+                data = json.load(fwgt)
+
+            queries = []
+            for query in data["scenarios"]:
+                totalquery = ""
+                for question in query:
+                    totalquery += str(question) + " "
+                queries.append(totalquery.strip())
+
+            gts = []
+            #TODO this is temporary, to be removed!
+            if len(data["ground_truth"]) < len(queries):
+                gts = ["placeholder ground truth until we generate the real thing!" for _ in range(len(queries))]
+            else:
+                for gt in data["ground_truth"]:
+                    totalgt = ""
+                    for g in gt:
+                        totalgt += str(g) + " "
+                    gts.append(totalgt.strip())
+
+            #in case you don't wanna run on entire testset
+            #queries = queries[:5]
+            #gts = gts[:5]
+
+            for q, gt in zip(queries, gts):
+                if printout:
+                    print("Query:", q, "\n")
+
+                start = time.time()
+                reply, context = model.reply(q)
+                reply = reply.response
+                execution_times.append(time.time() - start)
+
+                if printout:
+                    print("Reply:", reply, "\n\n")
+                
+                results.append(str(reply))
+                contexts.append(str(context))
+
+            outf = self.write_replies(queries, results, model.folder)
+            self.write_params(outf, model)
+            self.write_results(outf, queries, results, contexts, execution_times, gts)
+
+    def compute_similarities(self, queries, results, contexts):
         metrics = {}
         metrics["tf-idf_qr"] = []
         metrics["tf-idf_qc"] = []
         metrics["tf-idf_rc"] = []
 
         # comparing replies against queries
-        for q, r in zip(self.queries, results):
+        for q, r in zip(queries, results):
             metrics["tf-idf_qr"].append(tf_idf_qr(q, results))
 
         # comparing contexts (i.e. scraped data) against queries
-        for q, c in zip(self.queries, contexts):
+        for q, c in zip(queries, contexts):
             metrics["tf-idf_qc"].append(tf_idf_qc(q, c))
 
         # comparing replies against contexts
@@ -69,22 +122,31 @@ class Evaluation:
             metrics["tf-idf_rc"].append(tf_idf_rc(r, c))
         
         return metrics
+    
+    def compute_GT_metrics(self, replies, gts):
+        metrics = {}
+        metrics["rougeL"] = rougeL(replies, gts)
+        metrics["bleu"] = bleu(replies, gts)
 
-    def write_results(self, outfolder, results, contexts, times):
+        return metrics
+
+    def write_results(self, outfolder, queries, results, contexts, times, gts=None):
         outdict = {}
         outdict["execution times"] = times
         outdict["avg execution time"] = sum(times) / len(times)
 
-        metrics = self.compute_metrics(results, contexts)
+        metrics = self.compute_similarities(queries, results, contexts)
         for key, val in metrics.items():
             outdict[key] = val
             #outdict["avg "+key] = sum(val) / len(val)
 
-        outdict["rougeL"] = rougeL(results, contexts)
+        # if we have ground truths we can also compute ROUGE, BLEU, etc.
+        if gts:
+            gt_metrics = self.compute_GT_metrics(results, gts)
+            outdict.update(gt_metrics)
 
         with open(outfolder+"/results.json", "w") as outfile:
             json.dump(outdict, outfile, indent=4)
-
 
     def write_params(self, outfolder, model):
         outdict = {}
@@ -95,8 +157,7 @@ class Evaluation:
         with open(outfolder+"/parameters.json", "w") as outfile:
             json.dump(outdict, outfile, indent=4)
 
-
-    def write_replies(self, results, folder):
+    def write_replies(self, queries, results, folder):
         now = str(datetime.datetime.now())
         now = now.replace(":", "_")
         now = now.replace(" ", "_")
@@ -108,7 +169,7 @@ class Evaluation:
 
         out = [{'query': q,
             'reply': r
-            } for q, r in zip(self.queries, results)]
+            } for q, r in zip(queries, results)]
         
         with open(outfolder+"/replies.json", "w") as outfile:
             json.dump(out, outfile, indent=4)
@@ -124,7 +185,8 @@ if __name__ == "__main__":
     qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
 
     # add new models here
-    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
-    #models = [deepseek]
+    #models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
+    models = [deepseek]
     e = Evaluation(models, "data/evaluation_questions.txt")
-    results = e.evaluate()
+    #results = e.evaluate()
+    gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)

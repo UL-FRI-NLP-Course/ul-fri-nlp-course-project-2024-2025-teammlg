@@ -24,6 +24,12 @@ def rougeL(predictions, references):
     score = results['rougeL']
     return score
 
+def bleu(predictions, references):
+    bleu = evaluate.load('bleu')
+    results = bleu.compute(predictions=predictions, references=references)
+    score = results['bleu']
+    return score
+
 if __name__ == "__main__":
     #print(rougeL(["hello"], ["hello"]))
 
@@ -31,4 +37,9 @@ if __name__ == "__main__":
     testreply = ["<think>\nAlright, let's tackle this user query. The user is asking for a summary of the main themes in the film titled \"28 Years Later.\" I'm looking at the data they've provided.\n\nFirst, I see that under 'tmdb_data,' there's information about '28 Years Later.' It mentions that it's 28 years later from the origin and shows some gameplay mechanics between a group on an island connected by a causeway. The overview talks about survivors on the island, their experiences during a mission into the mainland, and discovers various secrets and horrors.\n\nLooking at other entries in the data, there are '28 dienas v\\u0113l\\u0101k' which is about a zombie movie set during an apocalypse. The overview describes a movie where survivors attempt to escape, gaining abilities from watching it.\n\nIn the third entry, \"Red Dwarf: The 28-Years-Later Affair - Series XII,\" it's a documentary on the making of a specific Red Dwarf series. The overview mentions its focus on production details and the series' history up to that point.\n\nThe user wants a summary focusing on themes. I need to extract key elements from each entry. \"28 Years Later\" itself is 28 years later, so that's a main theme. Then there's gameplay mechanics in the first entry. The zombie movie has a focus on survival and overcoming the apocalypse. Lastly, the documentary deals with the production aspects of Red Dwarf.\n\nPutting it together, the themes are: time progression (28 years later), survival through adversity, and the nature of storytelling about media projects.\n</think>\n\nBased on the data provided, \"28 Years Later\" explores themes such as time progression in its narrative, survival experiences during a apocalypse, and the creation of media content about it."
                  "<think>\nOkay, so the user is asking about when the \"28 years later\" film series will be released in their country. Let me look at the data provided.\n\nI see there's a section for \"28 years later,\" which includes several entries. Each entry has details like tmdb_data, popularity, release date, etc. But looking closer, I notice that some of these entries are just lists with no additional information beyond what's given in the data block.\n\nFor example:\n- One entry has an overview but it's cut off after \"It's been almost three decades...\". The rest have titles and release dates.\n- Other entries don't have any reviews or services listed. They only mention tmdb_data, which usually refers to TMDb, a popular video dataset.\n\nThe user is specifically asking about the release date in their country. But looking through the data, I can't find any release dates provided for this series. The last entry under \"28 years later\" has a release date of 2019-01-01 and no reviews or services listed.\n\nHmm, maybe the user expects me to infer based on some default or general knowledge. For instance, if I'm in a country that's not too far from the original release location (like the US), they might expect the series to be released around early 2025 since it's been almost three decades since the last movie in the trilogy. But without specific information, I can't confirm this.\n\nAlso, considering the data block has \"total_pages\" and \"total_results,\" but nothing about release dates or schedules. It seems like the only entry with a release date is one that was cut off, so I don't have any reliable info to go on.\n\nSo, in summary, based solely on the given data, there's no information provided about when \"28 years later\" will be released in the user's country. There might be some assumptions, but without explicit details, it's hard to give an accurate answer.\n</think>\n\nThe release date of \"28 Years Later\" isn't available from the provided data as it either has incomplete entries or no specific information about its release schedule.\n\nAnswer: The release date of \"28 Years Later\" is not available from the provided data."]
 
-    print(tf_idf_qr(testquery, testreply))
+    #print(tf_idf_qr(testquery, testreply))
+
+    testreplies = ["dark knight is about many things", "sorry, can't help you"]
+    testgts = ["The Dark Knight is a pychological...", "I don't know the answer"]
+    print(rougeL(testreplies, testgts))
+    print(bleu(testreplies, testgts))

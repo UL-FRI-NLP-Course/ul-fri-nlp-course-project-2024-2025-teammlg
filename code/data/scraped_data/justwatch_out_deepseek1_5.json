@@ -1,5 +1,13 @@
 {
-    "tonight": {
-        "services": []
+    "Flow": {
+        "services": [
+            "Plex",
+            "Amazon Prime Video"
+        ]
+    },
+    "the other day": {
+        "services": [
+            "Amazon Prime Video"
+        ]
     }
 }
