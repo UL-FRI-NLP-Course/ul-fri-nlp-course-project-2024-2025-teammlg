@@ -9,13 +9,27 @@ class ConversationEvaluation:
     def __init__(self, model):
         self.model = model
 
+    def get_session_folder(self):
+        now = str(datetime.datetime.now())
+        now = now.replace(":", "_")
+        now = now.replace(" ", "_")
+        now = now.replace(".", "_")
+        outfolder = "data/conversation_evaluation_data/" + str(now)
+        if not os.path.isdir("data/conversation_evaluation_data/"):
+            os.makedirs("data/conversation_evaluation_data/")
+        os.makedirs(outfolder)
+        return outfolder
+
     def evaluate(self):
+        session_folder = self.get_session_folder()
         print("Evaluating", self.model.name, ":")
         replies = []
         prompt = input("> ").strip()
         prompts = [prompt]
+        contexts = []
+        evalout = []
         while prompt != "quit":
-            responses: Iterator[ollama.GenerateResponse] = self.model.prompt_stream(prompt, data="")
+            responses, state = self.model.prompt_stream(prompt, data="")
             thinking = True
             fullresponse = ""
             for i, response in enumerate(responses):
@@ -25,13 +39,21 @@ class ConversationEvaluation:
                 if response.response == "</think>":
                     thinking = False
             print()
+
+            evaldict = {"query": prompt, "reply": fullresponse}
+            evaldict.update(state)
+            evalout.append(evaldict)
             replies.append(fullresponse)
+            contexts.append(str(state["context"]))
             prompt = input("> ").strip()
             if prompt != "quit":
                 prompts.append(prompt)
 
         outf = self.writereplies(prompts, replies, self.model.folder)
         self.writeparams(outf)
+
+        with open(session_folder + "/" + self.model.outname + "_" + self.model.mode + ".json", "a") as outfile:
+                json.dump(state, outfile, indent=4)
 
     def writeparams(self, outfolder):
         outdict = {}
@@ -71,7 +93,7 @@ if __name__ == "__main__":
     qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data")
     qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
 
-    e = ConversationEvaluation(deepseekadvanced)
+    e = ConversationEvaluation(qwenadvanced)
     #deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
     #e = ConversationEvaluation(deepseekbaseline)
     results = e.evaluate()

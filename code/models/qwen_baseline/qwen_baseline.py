@@ -27,7 +27,7 @@ class QwenBaseline(Model):
     def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True), {"context":""}
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         """Feeds the prompt to the model, returning its response"""

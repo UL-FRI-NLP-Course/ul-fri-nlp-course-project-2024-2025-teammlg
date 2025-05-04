@@ -1,0 +1,9 @@
+{
+    "mode": "advanced",
+    "sources": [
+        "tmdb",
+        "letterboxd",
+        "justwatch"
+    ],
+    "context": ""
+}

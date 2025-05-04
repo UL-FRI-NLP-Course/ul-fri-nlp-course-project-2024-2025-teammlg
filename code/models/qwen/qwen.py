@@ -59,14 +59,42 @@ class QwenChatBot(Model):
     def prompt_stream(
         self, prompt: str, data: str = ""
     ) -> Iterator[ollama.GenerateResponse]:
+        phrases = self.extract_keyphrases(prompt)
+        s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
+
+        state = {}
+
+        if self.mode == "naive":
+            for source in self.sources:
+                context = open(s.files[source], errors="ignore").read()
+                data += context
+        elif self.mode == "advanced":
+            summarizer = Summarizer()
+            state["summaries"] = []
+            for source in self.sources:
+                context = s.files[source]
+                for key, item in phrases.items():
+                    for i in item:
+                        print(context, i)
+                        summary = summarizer.summarize(context, i)
+                        data += summary
+                        state["summaries"].append(summary)
+        elif self.mode == "modular":
+            pass  # TODO
+        else:  # this should never happen, but better safe than sorry
+            data = ""
+
+        # need to save this, so we can see it in the output file
+        self.context = data
+        state["context"] = data
+
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
+        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True), state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-        # currently we just have a hardcoded folder for scraped data, I think it should be fine this way, in case we wanna look at the data later
 
         state = {}
 

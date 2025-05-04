@@ -78,7 +78,7 @@ class Evaluation:
             self.write_results(outf, self.queries, results, contexts, execution_times)
 
             with open(
-                session_folder + "/" + model.outname + "_" + model.mode, "a"
+                session_folder + "/" + model.outname + "_" + model.mode + ".json", "a"
             ) as outfile:
                 json.dump(state, outfile, indent=4)
 
