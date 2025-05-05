@@ -1,12 +1,10 @@
 from typing import Iterator, Tuple
-
 import nltk
 from ..model import Model
 import ollama
 from scraper import *
 from POStagger import *
 from summarizer import *
-
 
 class DeepSeekFilmChatBot(Model):
     def __init__(
@@ -50,7 +48,6 @@ class DeepSeekFilmChatBot(Model):
         out["key"] = list(set(output_text))
 
         return out
-        # return {"movies": ["challengers"], "people": []}
 
     def train(self):
         pass
@@ -63,7 +60,7 @@ class DeepSeekFilmChatBot(Model):
     ) -> Iterator[ollama.GenerateResponse]:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-
+        data = ""
         state = {}
 
         # TODO what should be the shape of data? currently I just concat things together
@@ -83,8 +80,6 @@ class DeepSeekFilmChatBot(Model):
                         state["summaries"].append(summary)
         elif self.mode == "modular":
             pass  # TODO
-        else:  # this should never happen, but better safe than sorry
-            data = ""
 
         # need to save this, so we can see it in the output file
         self.context = data
@@ -98,7 +93,7 @@ class DeepSeekFilmChatBot(Model):
     ) -> Tuple[ollama.GenerateResponse, str]:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-
+        data = ""
         state = {}
         
         #TODO what should be the shape of data? currently I just concat things together
@@ -118,14 +113,11 @@ class DeepSeekFilmChatBot(Model):
                         state["summaries"].append(summary)
         elif self.mode == "modular":
             pass  # TODO
-        else:  # this should never happen, but better safe than sorry
-            data = ""
 
         # need to save this, so we can see it in the output file
         self.context = data
         state["context"] = data
 
-        """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), state
 

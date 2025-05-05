@@ -7,7 +7,6 @@ import random
 import time
 from metrics import *
 
-
 class Evaluation:
     # so the idea is: you can evaluate models on a specific movie you pass as an argument, or the evaluator will pick a random one from this list for each query
     # i picked these 4 for the following reasons:

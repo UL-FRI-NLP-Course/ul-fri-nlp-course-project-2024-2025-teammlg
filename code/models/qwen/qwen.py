@@ -26,6 +26,7 @@ class QwenChatBot(Model):
         self.context = None
         self._download_model_if_missing()
 
+        #TODO prompt engineer this? it seems to return empty string way too often
         with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
             self.prompt_template = fd.read()
 
@@ -61,7 +62,7 @@ class QwenChatBot(Model):
     ) -> Iterator[ollama.GenerateResponse]:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-
+        data = ""
         state = {}
 
         if self.mode == "naive":
@@ -81,8 +82,6 @@ class QwenChatBot(Model):
                         state["summaries"].append(summary)
         elif self.mode == "modular":
             pass  # TODO
-        else:  # this should never happen, but better safe than sorry
-            data = ""
 
         # need to save this, so we can see it in the output file
         self.context = data
@@ -95,7 +94,7 @@ class QwenChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
         phrases = self.extract_keyphrases(prompt)
         s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-
+        data = ""
         state = {}
 
         # TODO what should be the shape of data? currently I just concat things together
@@ -115,14 +114,11 @@ class QwenChatBot(Model):
                         state["summaries"].append(summary)
         elif self.mode == "modular":
             pass  # TODO
-        else:  # this should never happen, but better safe than sorry
-            data = ""
 
         # need to save this, so we can see it in the output file
         self.context = data
         state["context"] = data
 
-        """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return (
             ollama.generate(model=self.model_label, prompt=final_prompt, stream=False),

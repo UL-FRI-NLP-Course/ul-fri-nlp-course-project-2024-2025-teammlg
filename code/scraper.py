@@ -7,55 +7,27 @@ import re
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-
-# TODO: Down the road, use https://api.themoviedb.org/3/genre/movie/list to get list of valid genres
-GENRES = {
-    28: "Action",
-    12: "Adventure",
-    16: "Animation",
-    35: "Comedy",
-    80: "Crime",
-    99: "Documentary",
-    18: "Drama",
-    10751: "Family",
-    14: "Fantasy",
-    36: "History",
-    27: "Horror",
-    10402: "Music",
-    9648: "Mystery",
-    10749: "Romance",
-    878: "Science Fiction",
-    10770: "TV Movie",
-    53: "Thriller",
-    10752: "War",
-    37: "Western",
-}
-
-
 class Scraper:
-    def __init__(
-        self,
-        phrases,
-        outfolder,
-        suffix,
-        sources=["tmdb", "letterboxd", "justwatch"],
-        n_pages=5,
-    ):
+    def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch"], n_pages=5):
         self.phrases = phrases
         self.sources = sources
         self.data = {source: [] for source in sources}
         urls = []
         self.files = {}
+
+        self.headers = {
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
+        }
+
+        GENRES = self.get_genres()
+
         # TODO: We need a way to ensure that the movie/series on Letterboxd is the same as on TMDB and JustWatch
         for source in sources:
             if source == "letterboxd":
                 out = {}
                 for movie in self.phrases["movies"]:
-                    url = (
-                        "https://letterboxd.com/film/"
-                        + self.format_title(movie)
-                        + "/reviews/by/activity"
-                    )
+                    url = ("https://letterboxd.com/film/" + self.format_title(movie) + "/reviews/by/activity")
                     urls.append(url)
                     # n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
                     # if there aren't that many, you simply get all
@@ -68,30 +40,21 @@ class Scraper:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["letterboxd"] = outf
             elif source == "tmdb":
-                headers = {
-                    "accept": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE",
-                }
                 out = {}
                 for movie in self.phrases["movies"]:
-                    url = (
-                        "https://api.themoviedb.org/3/search/movie?query="
-                        + movie
-                        + "&include_adult=false&language=en-US&page=1"
-                    )
-                    response = requests.get(url, headers=headers)
+                    url = ("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1")
+                    response = requests.get(url, headers=self.headers)
                     self.data[source].append(response.text)
 
                     # Take resulting JSON and select the most appropriate title
-                    movie_json = self.select_most_appropriate_title(
-                        response.json(), self.phrases["key"]
-                    )
+                    movie_json = self.select_most_appropriate_title(response.json(), self.phrases["key"])
 
                     # TODO: Put this in front of selection of title
                     # The result contains only genre IDs, so we convert them to genres
                     genre_ids = movie_json.get("genre_ids", [])
                     genres = [GENRES.get(g, "") for g in genre_ids]
                     movie_json["genres"] = genres
+                    print(genres)
 
                     # We delete some unnecessary fields to recude the prompt size
                     del movie_json["genre_ids"]
@@ -107,7 +70,7 @@ class Scraper:
                         + person
                         + "&include_adult=false&language=en-US&page=1"
                     )
-                    response = requests.get(url, headers=headers)
+                    response = requests.get(url, headers=self.headers)
                     self.data[source].append(response.text)
                     out[person] = {"tmdb_data": response.json()}
 
@@ -135,6 +98,22 @@ class Scraper:
             # TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
 
         self.urls = urls
+
+    # returns dict (id: name)
+    # set tv=True if you also want TV genres
+    def get_genres(self, tv=False):
+        url = "https://api.themoviedb.org/3/genre/movie/list?language=en"
+        response = requests.get(url, headers=self.headers)
+        genres = {}
+        for g in response.json()["genres"]:
+            genres[g["id"]] = g["name"]
+
+        if tv:
+            url = "https://api.themoviedb.org/3/genre/tv/list?language=en"
+            response = requests.get(url, headers=self.headers)
+            for g in response.json()["genres"]:
+                genres[g["id"]] = g["name"]
+        return genres 
 
     @staticmethod
     def json_to_plain_text(j, clear_all: bool = False) -> str:
@@ -186,9 +165,7 @@ class Scraper:
     def get_services(self, url):
         services = []
         # ugly hack, might not always work!
-        headers = {
-            "User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-        }
+        headers = {"User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"}
         r = requests.get(url, headers=headers)
         soup = BeautifulSoup(r.content, "html.parser")
         content = soup.find_all("div", class_="offer__content")
@@ -223,7 +200,6 @@ class Scraper:
                 reviews.append(self.strip_html_tags(total))
 
         return reviews
-
 
 if __name__ == "__main__":
     # usage example
