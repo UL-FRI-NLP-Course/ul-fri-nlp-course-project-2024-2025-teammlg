@@ -4,6 +4,7 @@ import ollama
 from scraper import *
 from POStagger import *
 from summarizer import *
+from rag import *
 
 
 class QwenChatBot(Model):
@@ -60,64 +61,16 @@ class QwenChatBot(Model):
     def prompt_stream(
         self, prompt: str, data: str = ""
     ) -> Iterator[ollama.GenerateResponse]:
-        phrases = self.extract_keyphrases(prompt)
-        s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-        data = ""
-        state = {}
-
-        if self.mode == "naive":
-            for source in self.sources:
-                context = open(s.files[source], errors="ignore").read()
-                data += context
-        elif self.mode == "advanced":
-            summarizer = Summarizer()
-            state["summaries"] = []
-            for source in self.sources:
-                context = s.files[source]
-                for key, item in phrases.items():
-                    for i in item:
-                        print(context, i)
-                        summary = summarizer.summarize(context, i)
-                        data += summary
-                        state["summaries"].append(summary)
-        elif self.mode == "modular":
-            pass  # TODO
-
-        # need to save this, so we can see it in the output file
-        self.context = data
-        state["context"] = data
+        rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
+        self.context, state = rag.get_context()
 
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True), state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> ollama.GenerateResponse:
-        phrases = self.extract_keyphrases(prompt)
-        s = Scraper(phrases, self.datafolder, self.outname, sources=self.sources)
-        data = ""
-        state = {}
-
-        # TODO what should be the shape of data? currently I just concat things together
-        if self.mode == "naive":
-            for source in self.sources:
-                context = open(s.files[source], errors="ignore").read()
-                data += context
-        elif self.mode == "advanced":
-            summarizer = Summarizer()
-            state["summaries"] = []
-            for source in self.sources:
-                context = s.files[source]
-                for key, item in phrases.items():
-                    for i in item:
-                        summary = summarizer.summarize(context, i)
-                        data += summary
-                        state["summaries"].append(summary)
-        elif self.mode == "modular":
-            pass  # TODO
-
-        # need to save this, so we can see it in the output file
-        self.context = data
-        state["context"] = data
+        rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
+        self.context, state = rag.get_context()
 
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         return (

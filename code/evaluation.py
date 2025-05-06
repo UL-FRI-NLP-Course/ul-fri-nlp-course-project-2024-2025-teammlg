@@ -238,16 +238,10 @@ if __name__ == "__main__":
     )
 
     # add new models here
-    models = [
-        deepseekbaseline,
-        deepseek,
-        deepseekadvanced,
-        qwenbaseline,
-        qwen,
-        qwenadvanced,
-    ]
+    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
     # models = [deepseekadvanced, qwen]
     # models = [deepseek, qwen]
+    models = [deepseek]
     e = Evaluation(models, "data/evaluation_questions.txt")
-    # results = e.evaluate()
-    gteval = e.evaluateGT("data/evaluation_questions.json")
+    results = e.evaluate()
+    #gteval = e.evaluateGT("data/evaluation_questions.json")
