@@ -5,10 +5,11 @@ import nltk
 
 class Rag():
     def __init__(self, prompt, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch"], scraper=None):
+        self.phrases = self.extract_keyphrases(prompt)
         if scraper: # probably irrelevant, just in case we ever wanna use a different scraper
             self.scraper = scraper
         else:
-            self.scraper = Scraper(phrases, datafolder, outname, sources=sources)
+            self.scraper = Scraper(self.phrases, datafolder, outname, sources=sources)
 
         self.prompt = prompt
         self.mode = mode
@@ -36,8 +37,6 @@ class Rag():
     
     # returns context that goes into a model and state that goes into logger
     def get_context(self):
-        phrases = self.extract_keyphrases(self.prompt)
-        
         data = ""
         state = {}
         
@@ -51,7 +50,7 @@ class Rag():
             state["summaries"] = []
             for source in self.sources:
                 context = self.scraper.files[source]
-                for key, item in phrases.items():
+                for key, item in self.phrases.items():
                     for i in item:
                         summary = summarizer.summarize(context, i)
                         data += summary

@@ -6,6 +6,7 @@ from scraper import *
 from POStagger import *
 from summarizer import *
 from rag import *
+from memory import *
 
 class DeepSeekFilmChatBot(Model):
     def __init__(
@@ -25,6 +26,7 @@ class DeepSeekFilmChatBot(Model):
         self.chat_history = []
         self.mode = mode
         self.context = None
+        self.session = Memory()
         self._download_model_if_missing()
 
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
@@ -36,17 +38,29 @@ class DeepSeekFilmChatBot(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(
-        self, prompt: str, data: str = ""
-    ) -> Iterator[ollama.GenerateResponse]:
-        rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
+    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
+        rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
-        final_prompt = self.prompt_template.format(data=data, query=prompt)
-        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=True), state
+        #final_prompt = self.prompt_template.format(data=data, query=prompt)
+        final_prompt = self.session.get_template(data, prompt)
+        reply = ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
+
+        thinking = True
+        fullresponse = ""
+        for i, response in enumerate(reply):
+            if not thinking:
+                fullresponse += response.response
+            if response.response == "</think>":
+                thinking = False
+
+        # here we have an option not to remember a potentially bad answer (if we come up with a suitable metric)
+        self.session.add(prompt, str(fullresponse))
+    
+        return fullresponse, state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[ollama.GenerateResponse, str]:
-        rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
+        rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
         final_prompt = self.prompt_template.format(data=data, query=prompt)

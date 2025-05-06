@@ -4,6 +4,7 @@ import datetime
 import json
 import ollama
 from typing import Iterator
+from memory import *
 
 class ConversationEvaluation:
     def __init__(self, model):
@@ -29,16 +30,8 @@ class ConversationEvaluation:
         contexts = []
         evalout = []
         while prompt != "quit":
-            responses, state = self.model.prompt_stream(prompt, data="")
-            thinking = True
-            fullresponse = ""
-            for i, response in enumerate(responses):
-                if not thinking:
-                    print(response.response, end="", flush=True)
-                    fullresponse += response.response
-                if response.response == "</think>":
-                    thinking = False
-            print()
+            fullresponse, state = self.model.prompt_stream(prompt, data="")
+            print(fullresponse)
 
             evaldict = {"query": prompt, "reply": fullresponse}
             evaldict.update(state)
@@ -93,7 +86,6 @@ if __name__ == "__main__":
     qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data")
     qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
 
-    e = ConversationEvaluation(qwenadvanced)
-    #deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
-    #e = ConversationEvaluation(deepseekbaseline)
+    #e = ConversationEvaluation(qwenadvanced)
+    e = ConversationEvaluation(qwen)
     results = e.evaluate()

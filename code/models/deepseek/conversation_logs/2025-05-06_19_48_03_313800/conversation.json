@@ -1,0 +1,10 @@
+[
+    {
+        "query0": "what's up doc?",
+        "reply0": "\n\nHi! I'm DeepSeek-R1, an artificial intelligence assistant created by DeepSeek. For comprehensive details about our models and products, we invite you to consult our official documentation."
+    },
+    {
+        "query1": "hi, i'm luka. can you recommend me a movie?",
+        "reply1": "\n\nIf you'd like recommendations, I suggest looking into some classic movies or recent popular ones across genres."
+    }
+]

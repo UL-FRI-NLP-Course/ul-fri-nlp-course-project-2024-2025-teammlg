@@ -54,13 +54,16 @@ class Scraper:
                     genre_ids = movie_json.get("genre_ids", [])
                     genres = [GENRES.get(g, "") for g in genre_ids]
                     movie_json["genres"] = genres
-                    print(genres)
 
                     # We delete some unnecessary fields to recude the prompt size
-                    del movie_json["genre_ids"]
-                    del movie_json["id"]
-                    del movie_json["backdrop_path"]
-                    del movie_json["poster_path"]
+                    if "genre_ids" in movie_json.keys():
+                        del movie_json["genre_ids"]
+                    if "id" in movie_json.keys():
+                        del movie_json["id"]
+                    if "backdrop_path" in movie_json.keys():
+                        del movie_json["backdrop_path"]
+                    if "poster_path" in movie_json.keys():
+                        del movie_json["poster_path"]
 
                     out[movie] = {"tmdb_data": movie_json}
 
