@@ -18,7 +18,7 @@ class QwenChatBot(Model):
         self.chat_history = []
         self.mode = mode
         self.context = None
-        self.session = Memory(initial_template="You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and conversation history and answer the question. If you cannot infer information from the data, say \"I don't know\".\n\nData: {data}\n\n{history}\nAssistant:")
+        self.session = Memory(initial_template="You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and conversation history and answer the question. \n\nData: {data}\n\n{history}\nAssistant:")
         self._download_model_if_missing()
 
         #TODO prompt engineer this? it seems to return empty string way too often
@@ -55,17 +55,14 @@ class QwenChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
-        #final_prompt = self.prompt_template.format(data=data, query=prompt)
+        print("data ", data)
+
         final_prompt = self.session.get_template(data, prompt)
         reply = ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
-        thinking = True
         fullresponse = ""
         for i, response in enumerate(reply):
-            if not thinking:
-                fullresponse += response.response
-            if response.response == "</think>":
-                thinking = False
+            fullresponse += response.response
 
         # here we have an option not to remember a potentially bad answer (if we come up with a suitable metric)
         self.session.add(prompt, str(fullresponse))

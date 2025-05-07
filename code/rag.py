@@ -6,6 +6,7 @@ import nltk
 class Rag():
     def __init__(self, prompt, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch"], scraper=None):
         self.phrases = self.extract_keyphrases(prompt)
+        print(self.phrases)
         if scraper: # probably irrelevant, just in case we ever wanna use a different scraper
             self.scraper = scraper
         else:
