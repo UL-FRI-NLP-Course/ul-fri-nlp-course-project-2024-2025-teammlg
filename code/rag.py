@@ -12,6 +12,8 @@ class Rag():
         else:
             self.scraper = Scraper(self.phrases, datafolder, outname, sources=sources)
 
+        
+
         self.prompt = prompt
         self.mode = mode
         self.sources = sources

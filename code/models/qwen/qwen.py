@@ -55,9 +55,7 @@ class QwenChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
-        print("data ", data)
-
-        final_prompt = self.session.get_template(data, prompt)
+        final_prompt = self.session.get_template(self.context, prompt)
         reply = ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
         fullresponse = ""
@@ -73,7 +71,7 @@ class QwenChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
-        final_prompt = self.prompt_template.format(data=data, query=prompt)
+        final_prompt = self.prompt_template.format(data=self.context, query=prompt)
         return (
             ollama.generate(model=self.model_label, prompt=final_prompt, stream=False),
             state,
