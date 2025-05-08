@@ -14,10 +14,16 @@ class POStagger:
         if self.nlp:
             document = self.nlp(query)
 
-            out = {}
+            out_separated = {"movies": [], "people": [], "key": []}
             for entity in document.ents:
-                out[entity.text] = entity.label_
-            return out
+
+                if entity.label_ == 'PERSON':
+                    out_separated["people"].append(entity.text)
+                else: #TODO maybe something more intelligent here
+                    #also it's not entirely stupid to also put PERSON in movies - sometimes you get some obscure documentary with some potential info
+                    out_separated["movies"].append(entity.text)
+
+            return out_separated
 
         else:
             return None

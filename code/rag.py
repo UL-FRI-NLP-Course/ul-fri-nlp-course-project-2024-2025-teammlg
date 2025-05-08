@@ -21,22 +21,15 @@ class Rag():
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
-        out = {"movies": [], "people": [], "key": []}
-
         tagger = POStagger()
         tagged = tagger.tag(prompt)
-
-        for key in tagged:
-            # TODO add people, etc., remove dates (it tages 28 years etc.)
-            # also, this doesn't work very well - look for alternatives?
-            out["movies"].append(key)
 
         stop_words = set(nltk.corpus.stopwords.words("english"))
         prompt_tokens = nltk.tokenize.word_tokenize(prompt)
         output_text = [word for word in prompt_tokens if word not in stop_words]
-        out["key"] = list(set(output_text))
+        tagged["key"] = list(set(output_text))
 
-        return out
+        return tagged
     
     # returns context that goes into a model and state that goes into logger
     def get_context(self):

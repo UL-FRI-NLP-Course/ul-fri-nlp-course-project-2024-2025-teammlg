@@ -46,6 +46,9 @@ class Scraper:
                     response = requests.get(url, headers=self.headers)
                     self.data[source].append(response.text)
 
+                    id = response.json()["results"][0]["id"]
+                    cast = self.get_cast(id)
+
                     # Take resulting JSON and select the most appropriate title
                     movie_json = self.select_most_appropriate_title(response.json(), self.phrases["key"])
 
@@ -65,17 +68,27 @@ class Scraper:
                     if "poster_path" in movie_json.keys():
                         del movie_json["poster_path"]
 
-                    out[movie] = {"tmdb_data": movie_json}
+                    out[movie] = {"cast": cast, "info": movie_json}
 
                 for person in self.phrases["people"]:
-                    url = (
-                        "https://api.themoviedb.org/3/search/person?query="
-                        + person
-                        + "&include_adult=false&language=en-US&page=1"
-                    )
+                    url = ("https://api.themoviedb.org/3/search/person?query="+ person+ "&include_adult=false&language=en-US&page=1")
                     response = requests.get(url, headers=self.headers)
+                    
+                    credits={}
+                    # currently we get credits for the most popular person with the name, could be benefitial to get all?
+                    if "results" in response.json().keys():
+                        max_popularity = 0
+                        max_id = -1
+                        for result in response.json()["results"]:
+                            if "id" in result.keys() and "popularity" in result.keys() and result["popularity"] > max_popularity:
+                                # if you want raw data add raw=True, there's a lot of junk in there though
+                                max_id = result["id"]
+                                max_popularity = int(result["popularity"])
+                        
+                        credits[result["id"]] = self.get_credits(max_id)
+
                     self.data[source].append(response.text)
-                    out[person] = {"tmdb_data": response.json()}
+                    out[person] = {"credits":credits, "info": response.json()}
 
                 outf = outfolder + "/tmdb_out_" + suffix + ".json"
                 with open(outf, "w", encoding="utf8") as outfile:
@@ -98,7 +111,7 @@ class Scraper:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["justwatch"] = outf
 
-            # TODO add other sources, figure out how to find correct url for a queried movie, how and which subpages to visit,...
+            # TODO maybe add wiki
 
         self.urls = urls
 
@@ -117,6 +130,99 @@ class Scraper:
             for g in response.json()["genres"]:
                 genres[g["id"]] = g["name"]
         return genres 
+
+    def get_credits(self, id, raw=False):
+        url = "https://api.themoviedb.org/3/person/"+str(id)+"/movie_credits?language=en-US"
+        response = requests.get(url, headers=self.headers)
+        if raw:
+            return str(response.text)
+        
+        out = {"cast":[], "crew":[]}
+        # cleanup
+        response = response.json()
+        if "cast" in response:
+            for r in response["cast"]:
+                cast = r
+                if "adult" in cast:
+                    del cast["adult"]
+                if "backdrop_path" in cast:
+                    del cast["backdrop_path"]
+                if "original_language" in cast:
+                    del cast["original_language"]
+                if "poster_path" in cast:
+                    del cast["poster_path"]
+                if "video" in cast:
+                    del cast["video"]
+                if "vote_average" in cast:
+                    del cast["vote_average"]
+                if "vote_count" in cast:
+                    del cast["vote_count"]
+                if "credit_id" in cast:
+                    del cast["credit_id"]
+                if "order" in cast:
+                    del cast["order"]
+                out["cast"].append(cast)
+        if "crew" in response:
+            for r in response["crew"]:
+                crew = r
+                if "adult" in crew:
+                    del crew["adult"]
+                if "backdrop_path" in crew:
+                    del crew["backdrop_path"]
+                if "original_language" in crew:
+                    del crew["original_language"]
+                if "poster_path" in crew:
+                    del crew["poster_path"]
+                if "video" in crew:
+                    del crew["video"]
+                if "vote_average" in crew:
+                    del crew["vote_average"]
+                if "vote_count" in crew:
+                    del crew["vote_count"]
+                if "credit_id" in crew:
+                    del crew["credit_id"]
+                out["crew"].append(crew)
+        return out
+
+    def get_cast(self, id, raw=False):
+        url = "https://api.themoviedb.org/3/movie/"+str(id)+"/credits?language=en-US"
+        response = requests.get(url, headers=self.headers)
+        
+        if raw:
+            return str(response.text)
+        
+        out = {"cast":[], "crew":[]}
+        # cleanup
+        response = response.json()
+        if "cast" in response:
+            for r in response["cast"]:
+                cast = r
+                if "adult" in cast:
+                    del cast["adult"]
+                if "id" in cast:
+                    del cast["id"]
+                if "profile_path" in cast:
+                    del cast["profile_path"]
+                if "cast_id" in cast:
+                    del cast["cast_id"]
+                if "credit_id" in cast:
+                    del cast["credit_id"]
+                if "order" in cast:
+                    del cast["order"]
+                out["cast"].append(cast)
+        if "crew" in response:
+            for r in response["crew"]:
+                crew = r
+                if "adult" in crew:
+                    del crew["adult"]
+                if "id" in crew:
+                    del crew["id"]
+                if "profile_path" in crew:
+                    del crew["profile_path"]
+                if "credit_id" in crew:
+                    del crew["credit_id"]
+                out["crew"].append(crew)
+        return out
 
     @staticmethod
     def json_to_plain_text(j, clear_all: bool = False) -> str:
@@ -158,6 +264,7 @@ class Scraper:
         title = title.strip()
         # TODO find a better way, this is unreliable
         title = title.replace(" ", "-")
+        title = title.replace("\'", "")
         return title
 
     # there might be better ways to do it TODO
@@ -215,5 +322,5 @@ if __name__ == "__main__":
     # s = Scraper(phrases, "data/scraped_data", "")
     # data = s.data
 
-    phrases = {"movies": ["challengers", "the godfather"], "people": []}
-    s = Scraper(phrases, "data/scraped_data", "", sources=["justwatch"])
+    phrases = {"movies": ["challengers", "the godfather"], "people": ["chuck jones"], "key": ""}
+    s = Scraper(phrases, "data/scraped_data", "")

@@ -87,5 +87,5 @@ if __name__ == "__main__":
     qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
 
     #e = ConversationEvaluation(qwenadvanced)
-    e = ConversationEvaluation(qwen)
+    e = ConversationEvaluation(deepseek)
     results = e.evaluate()
