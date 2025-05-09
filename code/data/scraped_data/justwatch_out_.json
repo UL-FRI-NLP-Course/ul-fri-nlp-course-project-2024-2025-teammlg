@@ -1,4 +1,9 @@
 {
+    "inheritance": {
+        "services": [
+            "Amazon Prime Video"
+        ]
+    },
     "challengers": {
         "services": [
             "Apple TV",

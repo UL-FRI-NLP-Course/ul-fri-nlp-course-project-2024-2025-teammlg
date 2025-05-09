@@ -27,18 +27,27 @@ class Scraper:
             if source == "letterboxd":
                 out = {}
                 for movie in self.phrases["movies"]:
-                    url = ("https://letterboxd.com/film/" + self.format_title(movie) + "/reviews/by/activity")
-                    urls.append(url)
-                    # n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
-                    # if there aren't that many, you simply get all
-                    # -1 to get all (not recommended, because very popular movies can have hundreds of thousands)
-                    reviews = self.get_reviews(url, n_pages)
+                    possible = self.get_possible_urls(movie)
+                    reviews = []
+                    print(possible)
+                    for p in possible:
+                        url = ("https://letterboxd.com/film/" + p + "/reviews/by/activity")
+                        urls.append(url)
+                        # n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
+                        # if there aren't that many, you simply get all
+                        # -1 to get all (not recommended, because very popular movies can have hundreds of thousands)
+                        revs = self.get_reviews(url, n_pages)
+                        print(revs)
+                        if len(revs) > 0:
+                            reviews.append(revs)
+                    #print(reviews)
                     self.data[source].append(reviews)
                     out[movie] = {"reviews": reviews}
                 outf = outfolder + "/letterboxd_out_" + suffix + ".json"
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["letterboxd"] = outf
+
             elif source == "tmdb":
                 out = {}
                 for movie in self.phrases["movies"]:
@@ -46,17 +55,27 @@ class Scraper:
                     response = requests.get(url, headers=self.headers)
                     self.data[source].append(response.text)
 
-                    id = response.json()["results"][0]["id"]
-                    cast = self.get_cast(id)
+                    if "results" in response.json().keys():
+                        res = response.json()["results"]
+                        if len(res) > 0:
+                            id = res[0]["id"]
+                            cast = self.get_cast(id)
+                        else:
+                            cast = ""
+                    else:
+                        cast = ""
 
                     # Take resulting JSON and select the most appropriate title
                     movie_json = self.select_most_appropriate_title(response.json(), self.phrases["key"])
 
                     # TODO: Put this in front of selection of title
                     # The result contains only genre IDs, so we convert them to genres
-                    genre_ids = movie_json.get("genre_ids", [])
-                    genres = [GENRES.get(g, "") for g in genre_ids]
-                    movie_json["genres"] = genres
+                    if "genre_ids" in movie_json.keys():
+                        genre_ids = movie_json.get("genre_ids", [])
+                        genres = [GENRES.get(g, "") for g in genre_ids]
+                        movie_json["genres"] = genres
+                    #else:
+                    #    movie_json["genres"] = None
 
                     # We delete some unnecessary fields to recude the prompt size
                     if "genre_ids" in movie_json.keys():
@@ -114,6 +133,28 @@ class Scraper:
             # TODO maybe add wiki
 
         self.urls = urls
+
+    def get_possible_urls(self, movie, n=5):
+        # first extract the year from tmdb
+        url = ("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1")
+        response = requests.get(url, headers=self.headers)
+        #print(response.json()["results"]["release_date"][:4])
+        results = response.json()["results"]
+        if len(results) == 0:
+            return [movie]
+        base = self.format_title(results[0]["title"]) # hopefully this handles potential misspellings
+        movies = [base]
+        
+        # TODO pick most popular?
+        year = results[0]["release_date"][:4]
+
+        movies.append(base + "-" + year)
+
+        # ultra rare cases of multiple movies in the same year with the same title
+        for i in range(n):
+            movies.append(base + "-" + year + "-" + str(i+1))
+
+        return movies
 
     # returns dict (id: name)
     # set tv=True if you also want TV genres
@@ -238,6 +279,8 @@ class Scraper:
         """A really primitive selection process. Just check how many times some key phrase
         is found in the result and select the one with the most occurances."""
         documents = data["results"]
+        if len(documents) == 0:
+            return {}
         phrases = " ".join(key_phrases)
 
         stop_words = list(nltk.corpus.stopwords.words("english"))
@@ -267,7 +310,6 @@ class Scraper:
         title = title.replace("\'", "")
         return title
 
-    # there might be better ways to do it TODO
     def strip_html_tags(self, text):
         return re.sub("<[^<]+?>", "", text)
 
@@ -294,7 +336,9 @@ class Scraper:
         reviews = []
         # TODO n=-1
         for i in range(1, n + 1):
-            r = requests.get(url + "/page/" + str(i))  # TODO generalize this
+            # ugly hack, but it's the best we have
+            headers = {"User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"}
+            r = requests.get(url + "/page/" + str(i), headers=headers)  # TODO generalize this
             soup = BeautifulSoup(r.content, "html.parser")
             content = soup.find_all("div", class_="js-review-body")
             for rev in content:
@@ -322,5 +366,5 @@ if __name__ == "__main__":
     # s = Scraper(phrases, "data/scraped_data", "")
     # data = s.data
 
-    phrases = {"movies": ["challengers", "the godfather"], "people": ["chuck jones"], "key": ""}
-    s = Scraper(phrases, "data/scraped_data", "")
+    phrases = {"movies": ["inheritance", "challengers", "the godfather", "i'm still here"], "people": ["chuck jones"], "key": ""}
+    s = Scraper(phrases, "data/scraped_data", "", sources=["letterboxd"])
