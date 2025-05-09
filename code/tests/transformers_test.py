@@ -5,7 +5,7 @@ torch.manual_seed(30)
 print(transformers.__version__)
 
 
-model_id = "deepseek-ai/DeepSeek-R1"
+model_id = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
