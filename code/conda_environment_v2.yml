@@ -1,0 +1,19 @@
+name: teammlg-project
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python==3.12
+  - conda-forge::pytextrank
+  - numpy
+  - scikit-learn
+  - cudatoolkit==11.8.0
+  - conda-forge::transformers==4.51
+  - conda-forge::spacy-model-en_core_web_trf
+  - pip:
+    - accelerate==1.6.0
+    - evaluate==0.4.3
+    - beautifulsoup4==4.13.3
+    - requests==2.32.3
+    - spacy
+    - rouge_score

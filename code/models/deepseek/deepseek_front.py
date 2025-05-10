@@ -1,5 +1,4 @@
 from typing import Iterator, Tuple
-import nltk
 from ..model import Model
 import ollama
 from scraper import *
