@@ -22,3 +22,4 @@ dependencies:
       - spacy-transformers
       - rouge_score
       - absl-py
+      - wikipedia

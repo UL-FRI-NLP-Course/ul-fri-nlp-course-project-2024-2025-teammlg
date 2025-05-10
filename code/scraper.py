@@ -5,10 +5,13 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import json
+import wikipedia
+import warnings
 from sklearn.feature_extraction.text import TfidfVectorizer
+warnings.filterwarnings('ignore')
 
 class Scraper:
-    def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch"], n_pages=5):
+    def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch", "wiki"], n_pages=5):
         self.phrases = phrases
         self.sources = sources
         self.data = {source: [] for source in sources}
@@ -35,7 +38,6 @@ class Scraper:
                         urls.append(url)
                         # n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
                         # if there aren't that many, you simply get all
-                        # -1 to get all (not recommended, because very popular movies can have hundreds of thousands)
                         revs = self.get_reviews(url, n_pages)
                         print(revs)
                         if len(revs) > 0:
@@ -130,9 +132,65 @@ class Scraper:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["justwatch"] = outf
 
-            # TODO maybe add wiki
+            elif source == "wiki":
+                out = {}
+                for movie in self.phrases["movies"]:
+                    wiki = self.get_wiki_info(movie)
+                    out[movie] = wiki
+                
+                outf = outfolder + "/wiki_out_" + suffix + ".json"
+                with open(outf, "w", encoding="utf8") as outfile:
+                    json.dump(out, outfile, indent=4, ensure_ascii=False)
+                self.files["letterboxd"] = outf
 
         self.urls = urls
+
+    def get_wiki_info(self, movie):
+        movie = movie.strip()
+        #movie = movie.replace("\'", "%27")
+        #movie = movie.replace("\'", "")
+        out = {}
+        
+        url = ("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1")
+        response = requests.get(url, headers=self.headers)
+        results = response.json()["results"]
+        if len(results) == 0:
+            return {}
+        
+        # TODO pick most popular?
+        year = results[0]["release_date"][:4]
+
+        possible_titles = [movie, movie + " (film)", movie + " (" + year + " film)"]
+        possible_sections = ["Plot", "Synopsis", "Summary", "Plot synopsis", "Plot summary", "Story"]
+        print(possible_titles)
+        for title in possible_titles:
+            success = False
+            plot = ""
+            try:
+                wiki = wikipedia.WikipediaPage(title = title)
+                summary = wiki.summary
+                print(summary)
+
+                for section in possible_sections:
+                    try:
+                        attempt = wiki.section(section)
+                        
+                        if attempt:
+                            plot += attempt
+                            success = True
+                            #break # one found thing should be enough
+                    except:
+                        continue
+            except:
+                continue
+
+            # if we haven't found any variant of plot, we're probably not on the correct movie page, so we should discard the summary as well
+            if not success:
+                out[movie] = {"summary": "", "plot": ""}
+            else:
+                out[movie] = {"summary": summary, "plot": plot}
+
+        return out
 
     def get_possible_urls(self, movie, n=5):
         # first extract the year from tmdb
@@ -305,7 +363,6 @@ class Scraper:
     def format_title(self, title):
         title = str.lower(title)
         title = title.strip()
-        # TODO find a better way, this is unreliable
         title = title.replace(" ", "-")
         title = title.replace("\'", "")
         return title
@@ -334,15 +391,13 @@ class Scraper:
     # for letterboxd
     def get_reviews(self, url, n):
         reviews = []
-        # TODO n=-1
         for i in range(1, n + 1):
             # ugly hack, but it's the best we have
             headers = {"User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"}
-            r = requests.get(url + "/page/" + str(i), headers=headers)  # TODO generalize this
+            r = requests.get(url + "/page/" + str(i), headers=headers) 
             soup = BeautifulSoup(r.content, "html.parser")
             content = soup.find_all("div", class_="js-review-body")
             for rev in content:
-                # a review can consist of multiple paragraphs - if we need this information later, we can keep it
                 r = rev.find_all("p")
                 total = ""
 
@@ -366,5 +421,5 @@ if __name__ == "__main__":
     # s = Scraper(phrases, "data/scraped_data", "")
     # data = s.data
 
-    phrases = {"movies": ["inheritance", "challengers", "the godfather", "i'm still here"], "people": ["chuck jones"], "key": ""}
-    s = Scraper(phrases, "data/scraped_data", "", sources=["letterboxd"])
+    phrases = {"movies": ["inheritance", "challengers", "the godfather", "the hands of orlac", "i'm still here"], "people": ["chuck jones"], "key": ""}
+    s = Scraper(phrases, "data/scraped_data", "", sources=["wiki"])
