@@ -1,33 +1,53 @@
+from typing import Dict, List
+
+
 class Memory():
     def __init__(self, initial_template=None, buffer_len=10):
         self.buffer_len = buffer_len
-        self.queries = []
-        self.replies = []
+        # self.queries = []
+        # self.replies = []
+        self.permanent_messages = []
+        self.chat = []
 
         if initial_template:
             self.template = initial_template
         else:
             self.template = "You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and conversation history and answer the question. If you cannot infer information from the data, do not answer the question.\n\nData: {data}\n\n{history}\nAssistant:"
 
-    # add a new query and reply into the memory
-    def add(self, query, reply):
-        if len(self.queries) == self.buffer_len:
-            self.queries = self.queries[1:] + [query]
-            self.replies = self.replies[1:] + [reply]
+    def add_user_query(self, query: str):
+        if len(self.chat) >= self.buffer_len:
+            n = self.buffer_len - 1
+            self.chat = self.chat[-n:]
+        self.chat.append({
+            "role": "user",
+            "content": query
+        })
+    
+    def add_assistant_response(self, response: str):
+        if len(self.chat) >= self.buffer_len:
+            n = self.buffer_len - 1
+            self.chat = self.chat[-n:]
+        self.chat.append({
+            "role": "assistant",
+            "content": response
+        })
+    
+    def add_system_message(self, message: str, permament: bool = True):
+        if len(self.chat) >= self.buffer_len:
+            n = self.buffer_len - 1
+            self.chat = self.chat[-n:]
+        if permament:
+            self.permanent_messages.append({
+                "role": "system",
+                "content": message
+            })
         else:
-            self.queries.append(query)
-            self.replies.append(reply)
+            self.chat.append({
+                "role": "system",
+                "content": message
+            })
 
-    def get_history(self):
-        if len(self.queries) == 0:
-            return ""
-        history = ""
-        for i, (query, reply) in enumerate(zip(self.queries, self.replies)):
-            # numbering the queries and replies probably doesn't accomplish anything, but we have i if we wanna experiment
-            history += "User: " + query.strip() + "\n"
-            history += "Assistant: " + reply.strip() + "\n"
-        return history
-
-    def get_template(self, context, new_query):
-        history = self.get_history() + "User: " + new_query.strip() + "\n"
-        return self.template.format(data=context, history=history)
+    def get_chat_history(self) -> List[Dict]:
+        #history = self.get_history() + "User: " + new_query.strip() + "\n"
+        chat = self.permanent_messages + self.chat
+        return chat
