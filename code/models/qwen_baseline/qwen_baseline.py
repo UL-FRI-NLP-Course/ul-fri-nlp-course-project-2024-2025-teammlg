@@ -4,12 +4,12 @@ from ..model import Model
 import transformers
 
 class QwenBaseline(Model):
-    def __init__(self, name, folder, datafolder):
+    def __init__(self, name, folder, datafolder, outname):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
-        self.model_label = "qwen:1.8b"  
-        self.outname = "qwen_1_5_baseline"
+        self.model_label = name 
+        self.outname = outname
         self.chat_history = []
         self.context = None
         self.mode = "baseline"

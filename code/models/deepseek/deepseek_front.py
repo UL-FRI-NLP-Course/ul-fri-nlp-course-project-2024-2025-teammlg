@@ -13,6 +13,7 @@ class DeepSeekFilmChatBot(Model):
         name,
         folder,
         datafolder,
+        outname,
         sources=["tmdb", "letterboxd", "justwatch"],
         mode="naive",
     ):
@@ -20,8 +21,8 @@ class DeepSeekFilmChatBot(Model):
         self.folder = folder
         self.datafolder = datafolder
         self.sources = sources
-        self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
-        self.outname = "deepseek1_5"
+        self.model_label = name  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.outname = outname
         self.chat_history = []
         self.mode = mode
         self.context = None

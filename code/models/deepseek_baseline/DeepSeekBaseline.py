@@ -2,15 +2,16 @@ import threading
 from typing import Dict, Tuple
 from ..model import Model
 import transformers
+import accelerate
 
 class DeepSeekBaseline(Model):
-    def __init__(self, name, folder, datafolder):
+    def __init__(self, name, folder, datafolder, outname):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
         self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
-        self.outname = "deepseek1_5_baseline"
+        self.outname = outname
         self.context = None
         self.mode = "baseline"
         self.sources = "/"
