@@ -79,13 +79,15 @@ class ConversationEvaluation:
         return outfolder
 
 if __name__ == "__main__":
-    deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
-    deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
-    deepseekadvanced = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data", mode="advanced")
-    qwenbaseline = QwenBaseline("qwen:1.8b", "models/qwen_baseline", "data/scraped_data")
-    qwen = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data")
-    qwenadvanced = QwenChatBot("qwen:1.8b", "models/qwen", "data/scraped_data", mode="advanced")
+    qwen_name = "Qwen/Qwen3-8B"
+    qwen_outname = "qwen3_8b"
+    #deepseekbaseline = DeepSeekBaseline("deepseek-r1:1.5b-baseline", "models/deepseek_baseline", "data/scraped_data")
+    #deepseek = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data")
+    #deepseekadvanced = DeepSeekFilmChatBot("deepseek-r1:1.5b", "models/deepseek", "data/scraped_data", mode="advanced")
+    #qwenbaseline = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname)
+    qwen = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname)
+    qwenadvanced = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname, mode="advanced")
 
     #e = ConversationEvaluation(qwenadvanced)
-    e = ConversationEvaluation(deepseek)
+    e = ConversationEvaluation(qwen)
     results = e.evaluate()

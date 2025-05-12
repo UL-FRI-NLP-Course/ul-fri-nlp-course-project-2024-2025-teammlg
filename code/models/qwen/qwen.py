@@ -8,13 +8,13 @@ from memory import *
 import transformers
 
 class QwenChatBot(Model):
-    def __init__(self, name, folder, datafolder, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
+    def __init__(self, name, folder, datafolder, outname, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
         self.sources = sources
-        self.model_label = "Qwen/Qwen3-8B"
-        self.outname = "qwen1_8"
+        self.model_label = name
+        self.outname = outname
         self.chat_history = []
         self.mode = mode
         self.context = None
