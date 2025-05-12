@@ -1,4 +1,4 @@
-from typing import Iterator, Tuple
+from typing import Tuple
 from ..model import Model
 from scraper import *
 from POStagger import *
