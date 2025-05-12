@@ -35,7 +35,7 @@ class DeepSeekBaseline(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(self, prompt: str, data: str = "") -> Tuple[transformers.TextIteratorStreamer, str]:
+    def prompt_stream(self, prompt: str, data: str = "") -> Tuple[transformers.TextIteratorStreamer, Dict]:
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
 
@@ -82,7 +82,8 @@ class DeepSeekBaseline(Model):
         outputs = self.model.generate(
             **input_tokens,
             max_new_tokens=512,
-            pad_token_id=self.pad_token_id
+            pad_token_id=self.pad_token_id,
+            temperature=self.temperature
         )
 
         final_output = ""

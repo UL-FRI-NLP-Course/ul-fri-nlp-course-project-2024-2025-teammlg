@@ -36,10 +36,9 @@ def conversation():
         # TODO: Retrieve information from the internet
         # TODO: Process information
         data = ""
-        [response, state] = deepseek_chatbot.prompt_stream(
+        [response, _] = deepseek_chatbot.prompt_stream(
             user_prompt, data=data
         )
-        is_thinking = True
         print("Thinking...")
         print(response)
         print()
