@@ -69,7 +69,7 @@ def test():
         print(gpt_answer)
         deepseek_response = deepseek.prompt_nonstream(question)
         print(deepseek_response)
-        deepseek_response = clean_up_text(deepseek_response[0].response)
+        deepseek_response = clean_up_text(deepseek_response[0])
         gpt_response = clean_up_text(gpt_answer)
         # TODO: Calculate ROUGE-1/2/5/L score
         rouge = scorer.score(gpt_response, deepseek_response)

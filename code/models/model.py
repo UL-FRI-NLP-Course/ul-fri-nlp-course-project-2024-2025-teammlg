@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Dict, Tuple
 
 class Model(ABC):
     name: str
@@ -11,8 +12,8 @@ class Model(ABC):
 
     # return a reply to a query as string and the context
     @abstractmethod
-    def reply(self, query):
-        return "", ""
+    def reply(self, query) -> Tuple[str, Dict]:
+        return "", {}
 
     # return your model's name
     def __str__(self):

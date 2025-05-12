@@ -1,11 +1,11 @@
 from typing import Iterator, Tuple
 from ..model import Model
-import ollama
 from scraper import *
 from POStagger import *
 from summarizer import *
 from rag import *
 from memory import *
+import transformers
 
 class DeepSeekFilmChatBot(Model):
     def __init__(
@@ -20,13 +20,23 @@ class DeepSeekFilmChatBot(Model):
         self.folder = folder
         self.datafolder = datafolder
         self.sources = sources
-        self.model_label = "deepseek-r1:1.5b"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.outname = "deepseek1_5"
         self.chat_history = []
         self.mode = mode
         self.context = None
         self.session = Memory()
-        self._download_model_if_missing()
+
+        self.tokenizer = transformers.AutoTokenizer.from_pretrained(self.model_label)
+        self.temperature = 0.6
+        self.model = transformers.AutoModelForCausalLM.from_pretrained(
+            self.model_label,
+            device_map="auto",
+            torch_dtype="auto"
+        )
+        self.pad_token_id = self.tokenizer.eos_token_id
+
+        self.generation_thread = None  # TODO: In case we ever reimplement streaming, text generation will have to run in separate thread
 
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
@@ -37,40 +47,62 @@ class DeepSeekFilmChatBot(Model):
     def reply(self, prompt):
         return self.prompt_nonstream(prompt)
 
-    def prompt_stream(self, prompt: str, data: str = "") -> Iterator[ollama.GenerateResponse]:
+    def prompt_stream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
+        """Right now does not actually stream the result... Maybe TODO?"""
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
         #final_prompt = self.prompt_template.format(data=data, query=prompt)
         final_prompt = self.session.get_template(self.context, prompt)
-        reply = ollama.generate(model=self.model_label, prompt=final_prompt, stream=True)
 
-        thinking = True
-        fullresponse = ""
-        for i, response in enumerate(reply):
-            if not thinking:
-                fullresponse += response.response
-            if response.response == "</think>":
-                thinking = False
+        input_tokens = self.tokenizer.apply_chat_template(
+            final_prompt,
+            add_generation_prompt=True,
+            return_tensors="pt"
+        ).to('cuda')
+        
+        outputs = self.model.generate(
+            **input_tokens,
+            max_new_tokens=512,
+            pad_token_id=self.pad_token_id,
+            temperature=self.temperature
+        )
+
+        final_output = ""
+        for i in range(len(outputs)):
+            output_text = self.tokenizer.decode(outputs[i])
+            final_output += output_text
+        
+        split_on_think_end = final_output.split("</think>")
+        if len(split_on_think_end) > 1:
+            final_output = split_on_think_end[-1]
 
         # here we have an option not to remember a potentially bad answer (if we come up with a suitable metric)
-        self.session.add(prompt, str(fullresponse))
+        self.session.add(prompt, str(final_output))
     
-        return fullresponse, state
+        return final_output, state
 
-    def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[ollama.GenerateResponse, str]:
+    def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
         final_prompt = self.prompt_template.format(data=self.context, query=prompt)
-        return ollama.generate(model=self.model_label, prompt=final_prompt, stream=False), state
 
-    def _download_model_if_missing(self):
-        """Checks if the model is already downloaded, and downloads it otherwise"""
-        all_local_models = ollama.list()
-        for model in all_local_models.models:
-            if model.model == self.model_label:
-                return  # We found the model - we exit
-        print(f"Could not find local '{self.model_label}' instance, downloading...")
-        response = ollama.pull(self.model_label)
-        print(response.completed)
+        input_tokens = self.tokenizer.apply_chat_template(
+            final_prompt,
+            add_generation_prompt=True,
+            return_tensors="pt"
+        ).to('cuda')
+        
+        outputs = self.model.generate(
+            **input_tokens,
+            max_new_tokens=512,
+            pad_token_id=self.pad_token_id
+        )
+
+        final_output = ""
+        for i in range(len(outputs)):
+            output_text = self.tokenizer.decode(outputs[i])
+            final_output += output_text
+
+        return final_output, state

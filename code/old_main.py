@@ -1,6 +1,5 @@
 from typing import Iterator
 
-import ollama
 from models.deepseek.deepseek_front import DeepSeekFilmChatBot
 
 
@@ -37,16 +36,12 @@ def conversation():
         # TODO: Retrieve information from the internet
         # TODO: Process information
         data = ""
-        responses: Iterator[ollama.GenerateResponse] = deepseek_chatbot.prompt_stream(
+        [response, state] = deepseek_chatbot.prompt_stream(
             user_prompt, data=data
         )
         is_thinking = True
         print("Thinking...")
-        for i, response in enumerate(responses):
-            if not is_thinking:
-                print(response.response, end="", flush=True)
-            if response.response == "</think>":
-                is_thinking = False
+        print(response)
         print()
 
         user_prompt = clean_up_prompt(input(prompt_indicator))  # For next iteration
