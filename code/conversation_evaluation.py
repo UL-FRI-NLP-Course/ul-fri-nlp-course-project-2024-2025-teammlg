@@ -2,8 +2,6 @@ from models import *
 import os
 import datetime
 import json
-import ollama
-from typing import Iterator
 from memory import *
 
 class ConversationEvaluation:
