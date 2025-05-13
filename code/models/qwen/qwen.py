@@ -8,7 +8,7 @@ from memory import *
 import transformers
 
 class QwenChatBot(Model):
-    def __init__(self, name, folder, datafolder, outname, sources=["tmdb", "letterboxd", "justwatch"], mode="naive"):
+    def __init__(self, name, folder, datafolder, outname, sources=["tmdb", "letterboxd", "justwatch", "wiki"], mode="naive"):
         self.name = name
         self.folder = folder
         self.datafolder = datafolder

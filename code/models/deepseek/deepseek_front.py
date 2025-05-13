@@ -14,7 +14,7 @@ class DeepSeekFilmChatBot(Model):
         folder,
         datafolder,
         outname,
-        sources=["tmdb", "letterboxd", "justwatch"],
+        sources=["tmdb", "letterboxd", "justwatch", "wiki"],
         mode="naive",
     ):
         self.name = name
