@@ -1,9 +1,0 @@
-{
-    "mode": "naive",
-    "sources": [
-        "tmdb",
-        "letterboxd",
-        "justwatch"
-    ],
-    "context": "{\n    \"Chuck Jones\": {\n        \"tmdb_data\": {\n            \"adult\": false,\n            \"original_language\": \"en\",\n            \"original_title\": \"Chuck Jones: Extremes and In-Betweens - A Life in Animation\",\n            \"overview\": \"This biography, shown on American television as part of the PBS \\\"Great Performances\\\" series, examines the life works of one of Hollywood's most celebrated animators, Chuck (Charles M.) Jones. He is best known for Warner Brothers cartoons featuring Bugs Bunny, Daffy Duck, Elmer Fudd, Porky Pig, Road Runner, Wile E. Coyote, and Pepe LePew. Included are plenty of behind-the-scenes descriptions of how an animated film is made, and (best of all) many clips from Chuck's cartoons.\",\n            \"popularity\": 0.627,\n            \"release_date\": \"2000-11-08\",\n            \"title\": \"Chuck Jones: Extremes and In-Betweens - A Life in Animation\",\n            \"video\": false,\n            \"vote_average\": 6.8,\n            \"vote_count\": 5,\n            \"genres\": [\n                \"Documentary\"\n            ]\n        }\n    }\n}{\n    \"Chuck Jones\": {\n        \"reviews\": []\n    }\n}{\n    \"Chuck Jones\": {\n        \"services\": []\n    }\n}"
-}

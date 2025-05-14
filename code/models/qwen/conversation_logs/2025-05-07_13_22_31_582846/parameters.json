@@ -1,9 +1,0 @@
-{
-    "mode": "naive",
-    "sources": [
-        "tmdb",
-        "letterboxd",
-        "justwatch"
-    ],
-    "context": "{\n    \"tex avery\": {\n        \"tmdb_data\": {\n            \"adult\": false,\n            \"original_language\": \"en\",\n            \"original_title\": \"Tex Avery: King of Cartoons\",\n            \"overview\": \"A documentary about the life and career of legendary cartoon director Fred \\\"Tex\\\" Avery.\",\n            \"popularity\": 0.6734,\n            \"release_date\": \"1988-09-05\",\n            \"title\": \"Tex Avery: King of Cartoons\",\n            \"video\": false,\n            \"vote_average\": 7.8,\n            \"vote_count\": 15,\n            \"genres\": [\n                \"Documentary\"\n            ]\n        }\n    }\n}{\n    \"tex avery\": {\n        \"reviews\": []\n    }\n}{\n    \"tex avery\": {\n        \"services\": []\n    }\n}"
-}

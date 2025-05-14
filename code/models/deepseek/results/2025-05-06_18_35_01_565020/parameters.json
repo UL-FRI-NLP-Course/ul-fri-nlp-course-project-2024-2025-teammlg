@@ -1,9 +1,0 @@
-{
-    "mode": "naive",
-    "sources": [
-        "tmdb",
-        "letterboxd",
-        "justwatch"
-    ],
-    "context": "{\n    \"tonight\": {\n        \"tmdb_data\": {\n            \"adult\": false,\n            \"original_language\": \"pl\",\n            \"original_title\": \"W lesie dzi\u00c5\u203a nie za\u00c5\u203anie nikt\",\n            \"overview\": \"Addicted to technology, a group of teens attends a rehabilitation camp in the forest, but a sinister force there intends to take them offline forever.\",\n            \"popularity\": 3.4406,\n            \"release_date\": \"2020-03-20\",\n            \"title\": \"Nobody Sleeps in the Woods Tonight\",\n            \"video\": false,\n            \"vote_average\": 5.249,\n            \"vote_count\": 673,\n            \"genres\": [\n                \"Comedy\",\n                \"Horror\"\n            ]\n        }\n    }\n}{\n    \"tonight\": {\n        \"reviews\": []\n    }\n}{\n    \"tonight\": {\n        \"services\": []\n    }\n}"
-}

@@ -25,24 +25,20 @@ class Scraper:
 
         GENRES = self.get_all_genres(self.headers)
 
-        # TODO: We need a way to ensure that the movie/series on Letterboxd is the same as on TMDB and JustWatch
         for source in sources:
             if source == "letterboxd":
                 out = {}
                 for movie in self.phrases["movies"]:
                     possible = self.get_possible_urls(movie, self.headers)
                     reviews = []
-                    print(possible)
                     for p in possible:
                         url = ("https://letterboxd.com/film/" + p + "/reviews/by/activity")
                         urls.append(url)
                         # n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
                         # if there aren't that many, you simply get all
                         revs = self.get_letterboxd_reviews(url, n_pages)
-                        print(revs)
                         if len(revs) > 0:
                             reviews.append(revs)
-                    #print(reviews)
                     self.data[source].append(reviews)
                     out[movie] = {"reviews": reviews}
                 outf = outfolder + "/letterboxd_out_" + suffix + ".json"
@@ -80,13 +76,10 @@ class Scraper:
                     #    movie_json["genres"] = None
 
                     # We delete some unnecessary fields to recude the prompt size
-                    if "genre_ids" in movie_json.keys():
+                    if movie_json.keys():
                         del movie_json["genre_ids"]
-                    if "id" in movie_json.keys():
                         del movie_json["id"]
-                    if "backdrop_path" in movie_json.keys():
                         del movie_json["backdrop_path"]
-                    if "poster_path" in movie_json.keys():
                         del movie_json["poster_path"]
 
                     out[movie] = {"cast": cast, "info": movie_json}
@@ -119,11 +112,15 @@ class Scraper:
             elif source == "justwatch":
                 out = {}
                 for movie in self.phrases["movies"]:
-                    url = "https://www.justwatch.com/in/movie/" + self.format_title(
-                        movie
-                    )
-                    urls.append(url)
-                    services = self.get_services(url)
+                    possible = self.get_possible_urls(movie, self.headers)
+                    services = []
+                    for p in possible:
+                        url = "https://www.justwatch.com/in/movie/" + p
+                        urls.append(url)
+
+                        serv = self.get_streaming_services(url)
+                        if len(serv) > 0:
+                            services.append(serv)
                     self.data[source].append(services)
                     out[movie] = {"services": services}
 
@@ -163,14 +160,13 @@ class Scraper:
 
         possible_titles = [movie, movie + " (film)", movie + " (" + year + " film)"]
         possible_sections = ["Plot", "Synopsis", "Summary", "Plot synopsis", "Plot summary", "Story"]
-        print(possible_titles)
+
         for title in possible_titles:
             success = False
             plot = ""
             try:
                 wiki = wikipedia.WikipediaPage(title = title)
                 summary = wiki.summary
-                print(summary)
 
                 for section in possible_sections:
                     try:
@@ -179,7 +175,7 @@ class Scraper:
                         if attempt:
                             plot += attempt
                             success = True
-                            #break # one found thing should be enough
+                            break # one found thing should be enough
                     except:
                         continue
             except:
@@ -200,12 +196,12 @@ class Scraper:
             title = title.strip()
             title = title.replace(" ", "-")
             title = title.replace("\'", "")
+            title = title.replace("’", "")
             return title
 
         # first extract the year from tmdb
         url = ("https://api.themoviedb.org/3/search/movie?query=" + movie_name + "&include_adult=false&language=en-US&page=1")
         response = requests.get(url, headers=headers)
-        #print(response.json()["results"]["release_date"][:4])
         results = response.json()["results"]
         if len(results) == 0:
             return [movie_name]
@@ -251,43 +247,28 @@ class Scraper:
         if "cast" in response:
             for r in response["cast"]:
                 cast = r
-                if "adult" in cast:
+                if cast:
                     del cast["adult"]
-                if "backdrop_path" in cast:
                     del cast["backdrop_path"]
-                if "original_language" in cast:
                     del cast["original_language"]
-                if "poster_path" in cast:
                     del cast["poster_path"]
-                if "video" in cast:
                     del cast["video"]
-                if "vote_average" in cast:
                     del cast["vote_average"]
-                if "vote_count" in cast:
                     del cast["vote_count"]
-                if "credit_id" in cast:
                     del cast["credit_id"]
-                if "order" in cast:
                     del cast["order"]
                 out["cast"].append(cast)
         if "crew" in response:
             for r in response["crew"]:
                 crew = r
-                if "adult" in crew:
+                if crew:
                     del crew["adult"]
-                if "backdrop_path" in crew:
                     del crew["backdrop_path"]
-                if "original_language" in crew:
                     del crew["original_language"]
-                if "poster_path" in crew:
                     del crew["poster_path"]
-                if "video" in crew:
                     del crew["video"]
-                if "vote_average" in crew:
                     del crew["vote_average"]
-                if "vote_count" in crew:
                     del crew["vote_count"]
-                if "credit_id" in crew:
                     del crew["credit_id"]
                 out["crew"].append(crew)
         return out
@@ -306,29 +287,21 @@ class Scraper:
         if "cast" in response:
             for r in response["cast"]:
                 cast = r
-                if "adult" in cast:
+                if cast:
                     del cast["adult"]
-                if "id" in cast:
                     del cast["id"]
-                if "profile_path" in cast:
                     del cast["profile_path"]
-                if "cast_id" in cast:
                     del cast["cast_id"]
-                if "credit_id" in cast:
                     del cast["credit_id"]
-                if "order" in cast:
                     del cast["order"]
                 out["cast"].append(cast)
         if "crew" in response:
             for r in response["crew"]:
                 crew = r
-                if "adult" in crew:
+                if crew:
                     del crew["adult"]
-                if "id" in crew:
                     del crew["id"]
-                if "profile_path" in crew:
                     del crew["profile_path"]
-                if "credit_id" in crew:
                     del crew["credit_id"]
                 out["crew"].append(crew)
         return out
@@ -399,31 +372,24 @@ class Scraper:
             headers = {"User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"}
             r = requests.get(url + "/page/" + str(i), headers=headers) 
             soup = BeautifulSoup(r.content, "html.parser")
-            content = soup.find_all("div", class_="js-review-body")
+            #content = soup.find_all("div", class_="js-review-body")
+            content = soup.find_all("div", class_="js-review")
             for rev in content:
                 r = rev.find_all("p")
                 total = ""
 
-                # TODO handle js-collapsible-text ("click for more")
-
                 for found in r:
                     total += str(found)
 
-                reviews.append(strip_html_tags(total))
+                total = total.replace("This review may contain spoilers. I can handle the truth.", "")
+                total = strip_html_tags(total).strip()
+
+                reviews.append(total)
 
         return reviews
 
 if __name__ == "__main__":
     # usage example
-    # phrases = {"movies": ["challengers"], "people": []}
-    # s = Scraper(phrases, "data/scraped_data", "", sources=["tmdb"])
-    # data = s.data
-
-    # testing a rare movie with very few reviews
-    # phrases = {"movies": ["Madame is Athletic", "the godfather"], "people": ["bruce willis", "king kong"]}
-    # s = Scraper(phrases, "data/scraped_data", "")
-    # data = s.data
-
     phrases = {"movies": ["inheritance", "challengers", "the godfather", "the hands of orlac", "i'm still here"], "people": ["chuck jones"], "key": ""}
     #s = Scraper(phrases, "data/scraped_data", "", sources=["wiki"])
-    s = Scraper(phrases, "data/scraped_data", "", sources=["letterboxd"])
+    s = Scraper(phrases, "data/scraped_data", "", sources=["letterboxd", "justwatch", "wiki", "tmdb"])

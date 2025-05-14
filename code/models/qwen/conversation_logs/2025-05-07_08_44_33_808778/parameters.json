@@ -1,9 +1,0 @@
-{
-    "mode": "naive",
-    "sources": [
-        "tmdb",
-        "letterboxd",
-        "justwatch"
-    ],
-    "context": "{}{}{}"
-}
