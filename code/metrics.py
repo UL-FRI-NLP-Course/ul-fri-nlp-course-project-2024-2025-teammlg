@@ -9,8 +9,6 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 
 import os
-#os.environ["OPENAI_API_KEY"] = "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"
-os.environ["OPENAI_API_KEY"] = "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"
 
 # conda install ragas
 # pip install bert_score
