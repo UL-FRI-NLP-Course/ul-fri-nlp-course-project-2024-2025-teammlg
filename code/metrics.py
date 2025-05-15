@@ -9,12 +9,15 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 
 import os
+os.environ["OPENAI_API_KEY"] = "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"
 
 # conda install ragas
 # pip install bert_score
 # pip install -U sentence-transformers
 # pip install -U langchain-community
 
+# linux: export OPENAI_API_KEY=api_key
+# windows: set OPENAI_API_KEY=api_key
 class Metrics:
     def __init__(self):
         pass
