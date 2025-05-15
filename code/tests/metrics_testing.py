@@ -34,8 +34,6 @@ response="\n\n\"The Dark Knight\" explores several key themes:\n\n1. **Hero-Visa
 ground_truth = "The Dark Knight (2008), directed by Christopher Nolan, explores several deep and interconnected themes. The main ones include:\n\n\t1. Chaos vs. Order: The Joker represents chaos, anarchy, and unpredictability, while Batman and the authorities strive to maintain order. The film explores how fragile societal structures are when challenged by extreme forces.\n\n\t2. Moral Ambiguity and Duality: The film questions traditional notions of good and evil. Batman must bend ethical lines to fight crime, while Harvey Dent’s transformation into Two-Face shows how easily a hero can fall.\n\n\t3. Justice vs. Vengeance: Batman operates outside the law but seeks justice, whereas characters like Dent blur the line by giving in to vengeance when wronged.\n\n\t4. The Nature of Heroism: The film challenges the idea of what makes someone a hero. Batman chooses to be seen as a villain to protect Gotham's hope, highlighting the theme of self-sacrifice for the greater good.\n\n\t5. Fear and Corruption: Fear is used as both a weapon and a shield, while Gotham's institutions are portrayed as vulnerable to corruption—something both Batman and the Joker exploit in different ways."
 
 import os
-os.environ["OPENAI_API_KEY"] = "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"
-
 import deepeval
 from deepeval.metrics import GEval
 from deepeval.test_case import LLMTestCaseParams, LLMTestCase
