@@ -15,8 +15,6 @@ import os
 # pip install -U sentence-transformers
 # pip install -U langchain-community
 
-# linux: export OPENAI_API_KEY=api_key
-# windows: set OPENAI_API_KEY=api_key
 class Metrics:
     def __init__(self):
         pass
