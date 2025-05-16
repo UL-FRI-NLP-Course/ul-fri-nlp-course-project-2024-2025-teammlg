@@ -5,10 +5,9 @@
 #SBATCH --gres=gpu:2
 #SBATCH --partition=gpu
 #SBATCH --time=00:30:00
-#SBATCH --output=logs/test-%J.out
-#SBATCH --error=logs/test-%J.err
-#SBATCH --job-name="gg6898 test"
+#SBATCH --output=logs/sling-nlp-showcase-%J.out
+#SBATCH --error=logs/sling-nlp-showcase-%J.err
+#SBATCH --job-name="SLING NLP showcase"
 
-srun singularity exec --nv ./containers/nlp.sif python \
-    ul-fri-nlp-course-project-2024-2025-teammlg/code/tests/transformers_rag.py
-
+srun singularity exec --nv ./containers/nlp-v1.sif python \
+    ul-fri-nlp-course-project-2024-2025-teammlg/code/tests/evaluation.py
