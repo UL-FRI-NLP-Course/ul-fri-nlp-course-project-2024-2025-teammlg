@@ -5,7 +5,7 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 
-with open('../data/stopwords-en.txt', "r") as f:
+with open('./data/stopwords-en.txt', "r") as f:
     stop_words = f.readlines()
     stop_words = [word.strip() for word in stop_words]
 

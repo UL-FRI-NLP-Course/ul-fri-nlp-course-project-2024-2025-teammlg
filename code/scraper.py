@@ -1,5 +1,4 @@
 from typing import Any, Dict, List
-import nltk
 import numpy
 import requests
 from bs4 import BeautifulSoup
@@ -9,6 +8,10 @@ import wikipedia
 import warnings
 from sklearn.feature_extraction.text import TfidfVectorizer
 warnings.filterwarnings('ignore')
+
+with open('./data/stopwords-en.txt', "r") as f:
+    stop_words = f.readlines()
+    stop_words = [word.strip() for word in stop_words]
 
 class Scraper:
     def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch", "wiki"], n_pages=5):
@@ -324,7 +327,6 @@ class Scraper:
             return {}
         phrases = " ".join(key_phrases)
 
-        stop_words = list(nltk.corpus.stopwords.words("english"))
         vectorizer = TfidfVectorizer(stop_words=stop_words)
         text_documents = [Scraper.json_to_plain_text(doc) for doc in documents]
         tfidf = vectorizer.fit_transform([phrases, *text_documents])
