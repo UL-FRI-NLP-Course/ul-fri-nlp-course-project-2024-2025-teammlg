@@ -2,13 +2,11 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:1
 #SBATCH --partition=gpu
-#SBATCH --time=00:30:00
+#SBATCH --time=1:00:00
 #SBATCH --output=logs/sling-nlp-showcase-%J.out
 #SBATCH --error=logs/sling-nlp-showcase-%J.err
 #SBATCH --job-name="SLING NLP showcase"
 
-srun singularity exec --nv ./containers/nlp-v1.sif python \
-    onj/ul-fri-nlp-course-project-2024-2025-teammlg/code/conversation_evaluation.py
-
+srun singularity exec --nv ~/containers/nlp-v1.sif python ./evaluation.py

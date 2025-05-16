@@ -1,11 +1,14 @@
 import re
-from models import *
 import os
+os.environ["GIT_PYTHON_REFRESH"] = "quiet"
+import git
+from models import *
 import datetime
 import json
 import random
 import time
 from metrics import *
+print("imports done")
 
 class Evaluation:
     # so the idea is: you can evaluate models on a specific movie you pass as an argument, or the evaluator will pick a random one from this list for each query
@@ -235,7 +238,7 @@ if __name__ == "__main__":
     models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
     # models = [deepseekadvanced, qwen]
     # models = [deepseek, qwen]
-    models = [deepseek]
-    e = Evaluation(models, "data/evaluation_questions.txt")
-    results = e.evaluate()
-    #gteval = e.evaluateGT("data/evaluation_questions.json")
+    #models = [deepseek]
+    #e = Evaluation(models, "data/evaluation_questions.txt")
+    #results = e.evaluate()
+    gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)
