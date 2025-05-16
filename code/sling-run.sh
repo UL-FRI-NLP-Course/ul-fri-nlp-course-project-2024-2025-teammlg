@@ -10,4 +10,5 @@
 #SBATCH --job-name="SLING NLP showcase"
 
 srun singularity exec --nv ./containers/nlp-v1.sif python \
-    ul-fri-nlp-course-project-2024-2025-teammlg/code/tests/evaluation.py
+    onj/ul-fri-nlp-course-project-2024-2025-teammlg/code/conversation_evaluation.py
+
