@@ -35,10 +35,10 @@ import transformers
 import torch
 from transformers import BitsAndBytesConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from deepeval.models import DeepEvalBaseLLM
+#from deepeval.models import DeepEvalBaseLLM
 
 
-class CustomLlama3_8B(DeepEvalBaseLLM):
+class CustomLlama3_8B():
     def __init__(self):
         self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
