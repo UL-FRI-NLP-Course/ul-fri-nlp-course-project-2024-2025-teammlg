@@ -3,14 +3,19 @@ from POStagger import *
 from summarizer import *
 import spacy
 
-nlp = spacy.load("en_core_web_sm")
 
-with open('./data/stopwords-en.txt', "r") as f:
-    stop_words = f.readlines()
-    stop_words = [word.strip() for word in stop_words]
 
 class Rag():
     def __init__(self, prompt, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch"], scraper=None):
+        try:
+            self.nlp = spacy.load("en_core_web_sm")
+        except:
+            print("en_core_web_sm load failed!")
+            self.nlp = None
+
+        with open('./data/stopwords-en.txt', "r") as f:
+            self.stop_words = f.readlines()
+            self.stop_words = [word.strip() for word in self.stop_words]
         self.phrases = self.extract_keyphrases(prompt)
         print(self.phrases)
         if scraper: # probably irrelevant, just in case we ever wanna use a different scraper
@@ -30,8 +35,12 @@ class Rag():
         tagger = POStagger()
         tagged = tagger.tag(prompt)
 
-        tokens = nlp(prompt)
-        tokens = [word.lemma_ for word in tokens if word.lemma_ not in stop_words]
+        if self.nlp:
+            tokens = self.nlp(prompt)
+            tokens = [word.lemma_ for word in tokens if word.lemma_ not in self.stop_words]
+        else:
+            tokens = []
+        
         tagged["key"] = list(set(tokens))
 
         return tagged
