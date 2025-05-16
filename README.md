@@ -4,21 +4,20 @@ Develop a conversational agent that enhances the quality and accuracy of its res
 
 
 ## Set-up
-For setting up the environment, [Conda](https://docs.conda.io/projects/conda/en/latest/index.html) is used. In the `code` directory, `conda_environment.yaml` file defines the environment parameters. Execute (warning: this will also install some models, so it might take some time and requires ~800MB of disk space):
+On HPC clone the repository and then run the following to create the container:
 
 ```bash
-conda env create -f conda_environment.yml
+./ul-fri-nlp-course-project-2024-2025-teammlg/code/sling_setup.sh
 ```
 
-and then:
+Then navigate into <code>code</code> directory and run:
 
 ```bash
-conda activate teammlg-project
+sbatch ./sling-run.sh
 ```
 
-to activate the environment.
+to run the evaluation.
 
-Also download and install [Ollama](https://ollama.com/download).
 
 ## Functionality
 Brief description of main functionality of each script:

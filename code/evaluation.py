@@ -239,6 +239,6 @@ if __name__ == "__main__":
     # models = [deepseekadvanced, qwen]
     # models = [deepseek, qwen]
     #models = [deepseek]
-    #e = Evaluation(models, "data/evaluation_questions.txt")
+    e = Evaluation(models, "data/evaluation_questions.txt")
     #results = e.evaluate()
     gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)
