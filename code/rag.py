@@ -52,8 +52,8 @@ class Rag():
         
         #TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
-            for source in self.sources:
-                context = open(self.scraper.files[source], errors="ignore").read()
+            for key in self.scraper.files.keys():
+                context = open(self.scraper.files[key], errors="ignore").read()
                 data += context
         elif self.mode == "advanced":
             summarizer = Summarizer()

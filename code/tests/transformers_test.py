@@ -8,7 +8,7 @@ start_time = time.perf_counter()
 torch.manual_seed(30)
 print("Transformers version: ", transformers.__version__)
 
-model_id = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+model_id = "HuggingFaceTB/SmolLM-135M"
 
 print("Loading tokenizer....")
 
