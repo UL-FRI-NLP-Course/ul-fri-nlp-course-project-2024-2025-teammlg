@@ -70,8 +70,6 @@ class ConversationEvaluation:
             os.makedirs(folder+"/conversation_logs")
         os.makedirs(outfolder)
 
-        #TODO maybe report some other stats - execution times, etc.
-
         out = [{'query'+str(i): q,
             'reply'+str(i): r
             } for i, (q, r) in enumerate(zip(prompts, replies))]

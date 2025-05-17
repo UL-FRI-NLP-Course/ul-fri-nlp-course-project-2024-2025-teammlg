@@ -30,6 +30,7 @@ class Scraper:
 
         for source in sources:
             if source == "letterboxd":
+                print("Started scraping letterboxd")
                 out = {}
                 for movie in self.phrases["movies"]:
                     possible = self.get_possible_urls(movie, self.headers)
@@ -48,8 +49,9 @@ class Scraper:
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["letterboxd"] = outf
-
+                print("Finished scraping letterboxd")
             elif source == "tmdb":
+                print("Started scraping tmdb")
                 out = {}
                 for movie in self.phrases["movies"]:
                     url = ("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1")
@@ -111,8 +113,10 @@ class Scraper:
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["tmdb"] = outf
+                print("Finished scraping tmdb")
 
             elif source == "justwatch":
+                print("Started scraping justwatch")
                 out = {}
                 for movie in self.phrases["movies"]:
                     possible = self.get_possible_urls(movie, self.headers)
@@ -131,8 +135,10 @@ class Scraper:
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["justwatch"] = outf
+                print("Finished scraping justwatch")
 
             elif source == "wiki":
+                print("Started scraping wiki")
                 out = {}
                 for movie in self.phrases["movies"]:
                     wiki = self.get_wikipedia_data(movie, self.headers)
@@ -142,6 +148,7 @@ class Scraper:
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["wiki"] = outf
+                print("Finished scraping wiki")
 
         self.urls = urls
 

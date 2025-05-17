@@ -56,7 +56,7 @@ class Evaluation:
         session_folder = self.get_session_folder()
 
         for model in self.models:
-            print("Evaluating", model.name, ":")
+            print("Evaluating", model.name, model.mode, ":")
             results = []
             execution_times = []
             contexts = []

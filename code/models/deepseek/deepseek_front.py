@@ -8,15 +8,8 @@ from memory import *
 import transformers
 
 class DeepSeekFilmChatBot(Model):
-    def __init__(
-        self,
-        name,
-        folder,
-        datafolder,
-        outname,
-        sources=["tmdb", "letterboxd", "justwatch", "wiki"],
-        mode="naive",
-    ):
+    def __init__(self, name, folder, datafolder, outname, sources=["tmdb", "letterboxd", "justwatch", "wiki"], mode="naive"):
+        print("Model init start")
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
@@ -27,7 +20,7 @@ class DeepSeekFilmChatBot(Model):
         self.mode = mode
         self.context = None
         self.session = Memory()
-
+        
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(self.model_label)
         self.temperature = 0.6
         self.model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -36,11 +29,12 @@ class DeepSeekFilmChatBot(Model):
             torch_dtype="auto"
         )
         self.pad_token_id = self.tokenizer.eos_token_id
-
-        self.generation_thread = None  # TODO: In case we ever reimplement streaming, text generation will have to run in separate thread
+        
+        self.generation_thread = None 
 
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
+        print("Model init done")
 
     def train(self):
         pass
@@ -49,7 +43,6 @@ class DeepSeekFilmChatBot(Model):
         return self.prompt_nonstream(prompt)
 
     def prompt_stream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
-        """Right now does not actually stream the result... Maybe TODO?"""
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
@@ -95,6 +88,7 @@ class DeepSeekFilmChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
+        print("Tokenizer start")
         chat = self.session.get_chat_history()
         chat.append({
             "role": "system",
@@ -110,8 +104,10 @@ class DeepSeekFilmChatBot(Model):
             add_generation_prompt=True,
             tokenize=False
         )
+        
 
         input_tokens = self.tokenizer(input_tokens, return_tensors="pt").to("cuda")
+        print("Tokenizer done")
         
         outputs = self.model.generate(
             **input_tokens,
@@ -119,8 +115,10 @@ class DeepSeekFilmChatBot(Model):
             pad_token_id=self.pad_token_id,
             temperature=self.temperature
         )
+        
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+        print("Generation done")
         
         self.session.add_user_query(prompt)
         self.session.add_assistant_response(str(final_output))
