@@ -6,7 +6,7 @@ import spacy
 
 
 class Rag():
-    def __init__(self, prompt, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch"], scraper=None):
+    def __init__(self, prompt, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch", "wiki"], scraper=None):
         try:
             self.nlp = spacy.load("en_core_web_sm")
         except:
