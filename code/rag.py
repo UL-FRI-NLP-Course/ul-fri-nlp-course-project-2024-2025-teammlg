@@ -58,8 +58,8 @@ class Rag():
         elif self.mode == "advanced":
             summarizer = Summarizer()
             state["summaries"] = []
-            for source in self.sources:
-                context = self.scraper.files[source]
+            for key in self.scraper.files.keys():
+                context = self.scraper.files[key]
                 for key, item in self.phrases.items():
                     for i in item:
                         summary = summarizer.summarize(context, i)
