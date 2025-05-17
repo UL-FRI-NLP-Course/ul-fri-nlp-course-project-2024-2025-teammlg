@@ -9,6 +9,8 @@ singularity exec ./containers/nlp-v1.sif pip install accelerate
 singularity exec ./containers/nlp-v1.sif pip install deepeval
 singularity exec ./containers/nlp-v1.sif pip install evaluate
 singularity exec ./containers/nlp-v1.sif pip install ollama
+singularity exec ./containers/nlp-v1.sif python -m spacy download en_core_web_sm
+singularity exec ./containers/nlp-v1.sif python -m spacy download en_core_web_trf
 singularity exec ./containers/nlp-v1.sif pip install nltk==3.9.1
 singularity exec ./containers/nlp-v1.sif pip install spacy[cuda12x]
 singularity exec ./containers/nlp-v1.sif pip install fsspec==2025.3.0
