@@ -123,7 +123,6 @@ class Evaluation:
 
                 start = time.time()
                 reply, state = model.reply(q)
-                reply = reply.response
 
                 # Removes the reasoning part
                 reply = re.sub("<think>(.|\r|\n)*?</think>", "", reply)
