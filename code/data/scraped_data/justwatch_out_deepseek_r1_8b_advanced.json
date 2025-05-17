@@ -1,0 +1,18 @@
+{
+    "the Minecraft Movie": {
+        "services": [
+            [
+                "Amazon Video",
+                "Bookmyshow",
+                "Amazon Prime Video"
+            ]
+        ]
+    },
+    "Slovenia": {
+        "services": [
+            [
+                "Amazon Prime Video"
+            ]
+        ]
+    }
+}
