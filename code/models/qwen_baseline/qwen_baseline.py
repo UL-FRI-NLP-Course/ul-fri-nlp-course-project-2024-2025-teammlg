@@ -74,6 +74,14 @@ class QwenBaseline(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
+        final_prompt = [
+            {
+                "role": "system", "content": "You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.",
+            },
+            {
+                "role": "user", "content": prompt
+            }
+        ]
         print("Tokenizer start")
         text = self.tokenizer.apply_chat_template(
             final_prompt,

@@ -86,7 +86,14 @@ class QwenChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
         print("Tokenizer start")
-        messages = [{"role": "user", "content": prompt}]
+        messages = [
+            {
+                "role": "system", "content": "You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.",
+            },
+            {
+                "role": "user", "content": prompt
+            }
+        ]
         
         text = self.tokenizer.apply_chat_template(
             messages,
