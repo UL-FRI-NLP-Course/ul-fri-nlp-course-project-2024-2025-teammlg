@@ -138,7 +138,9 @@ class Evaluation:
                     print("Reply:", reply, "\n\n")
 
                 results.append(str(reply))
+                print("Store result")
                 contexts.append(state["context"])
+                print("Store context")
 
             outf = self.write_replies(queries, results, model.folder)
             self.write_params(outf, model)
