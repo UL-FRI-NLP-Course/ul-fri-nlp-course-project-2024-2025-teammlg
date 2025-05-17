@@ -90,7 +90,8 @@ class DeepSeekBaseline():
             **inputs,
             max_new_tokens=32768,
             pad_token_id=self.pad_token_id,
-            temperature=self.temperature
+            temperature=self.temperature,
+            eos_token_id=self.tokenizer.eos_token_id
         )
 
         """final_output = ""

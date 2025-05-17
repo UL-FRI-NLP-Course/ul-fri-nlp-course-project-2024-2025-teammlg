@@ -88,7 +88,8 @@ class QwenBaseline(Model):
             **input_tokens,
             max_new_tokens=32768,
             pad_token_id=self.pad_token_id,
-            temperature=self.temperature
+            temperature=self.temperature,
+            eos_token_id=self.tokenizer.eos_token_id
         )
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
