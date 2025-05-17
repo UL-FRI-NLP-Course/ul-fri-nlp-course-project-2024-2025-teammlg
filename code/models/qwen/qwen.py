@@ -100,7 +100,7 @@ class QwenChatBot(Model):
             enable_thinking=False
         )
 
-        input_tokens = self.tokenizer([text], return_tensors="pt").to('cuda')
+        input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
 
         outputs = self.model.generate(
             **input_tokens,
@@ -109,10 +109,7 @@ class QwenChatBot(Model):
             temperature=self.temperature
         )
 
-        final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
+        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
         
         self.session.add_user_query(prompt)
         self.session.add_assistant_response(str(final_output))

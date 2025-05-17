@@ -80,7 +80,7 @@ class QwenBaseline(Model):
             enable_thinking=False
         )
 
-        input_tokens = self.tokenizer([text], return_tensors="pt").to('cuda')
+        input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
 
         outputs = self.model.generate(
             **input_tokens,
@@ -89,9 +89,6 @@ class QwenBaseline(Model):
             temperature=self.temperature
         )
 
-        final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
+        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
 
         return final_output, {"context":""}

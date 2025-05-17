@@ -87,7 +87,7 @@ class DeepSeekBaseline():
 
         outputs = self.model.generate(
             **inputs,
-            max_new_tokens=64,
+            max_new_tokens=32768,
             pad_token_id=self.pad_token_id,
             temperature=self.temperature
         )

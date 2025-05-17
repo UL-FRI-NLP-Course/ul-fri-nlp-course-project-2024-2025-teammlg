@@ -66,7 +66,6 @@ class Evaluation:
 
                 start = time.time()
                 reply, state = model.reply(q)
-                reply = reply.response
                 execution_times.append(time.time() - start)
 
                 if printout:

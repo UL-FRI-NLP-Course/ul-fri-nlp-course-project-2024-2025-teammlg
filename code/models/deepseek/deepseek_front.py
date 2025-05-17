@@ -108,19 +108,19 @@ class DeepSeekFilmChatBot(Model):
         input_tokens = self.tokenizer.apply_chat_template(
             chat,
             add_generation_prompt=True,
-            return_tensors="pt"
-        ).to('cuda')
+            tokenize=False
+        )
+
+        input_tokens = self.tokenizer(input_tokens, return_tensors="pt").to("cuda")
         
         outputs = self.model.generate(
             **input_tokens,
-            max_new_tokens=512,
-            pad_token_id=self.pad_token_id
+            max_new_tokens=32768,
+            pad_token_id=self.pad_token_id,
+            temperature=self.temperature
         )
 
-        final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
+        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
         
         self.session.add_user_query(prompt)
         self.session.add_assistant_response(str(final_output))
