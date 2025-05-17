@@ -89,18 +89,10 @@ class DeepSeekFilmChatBot(Model):
         self.context, state = rag.get_context()
 
         print("Tokenizer start")
-        chat = self.session.get_chat_history()
-        chat.append({
-            "role": "system",
-            "content": f"Here is the available data:\n\n{data}\n\nGiven the available data and no other information, answer the user query."
-        })
-        chat.append({
-            "role": "user",
-            "content": prompt
-        })
+        messages = [{"role": "user", "content": prompt}]
 
         input_tokens = self.tokenizer.apply_chat_template(
-            chat,
+            messages,
             add_generation_prompt=True,
             tokenize=False
         )

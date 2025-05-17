@@ -20,4 +20,3 @@ singularity exec ./containers/nlp-v1.sif pip install absl-py
 singularity exec ./containers/nlp-v1.sif pip install beautifulsoup4
 singularity exec ./containers/nlp-v1.sif pip install wikipedia
 mkdir logs
-sbatch ~/ul-fri-nlp-course-project-2024-2025-teammlg/code/sling-run.sh
