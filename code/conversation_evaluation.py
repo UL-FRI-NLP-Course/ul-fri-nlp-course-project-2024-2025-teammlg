@@ -1,8 +1,13 @@
+print("starting")
+import os
+os.environ["GIT_PYTHON_REFRESH"] = "quiet"
+import git
 from models import *
 import os
 import datetime
 import json
 from memory import *
+print("imports done")
 
 class ConversationEvaluation:
     def __init__(self, model):

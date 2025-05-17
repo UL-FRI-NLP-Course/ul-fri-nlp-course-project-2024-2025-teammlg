@@ -7,12 +7,9 @@ channels:
 dependencies:
   - pip<25.1
   - python=3.10
-  - spacy-model-en_core_web_trf
-  - pytextrank
   - scikit-learn
   - evaluate
   - pip:
-      - ollama
       - beautifulsoup4==4.13.3
       - requests==2.32.3
       - nltk==3.9.1
@@ -23,3 +20,4 @@ dependencies:
       - rouge_score
       - absl-py
       - wikipedia
+      - accelerate
