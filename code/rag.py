@@ -38,10 +38,10 @@ class Rag():
         if self.nlp:
             tokens = self.nlp(prompt)
             tokens = [word.lemma_ for word in tokens if word.lemma_ not in self.stop_words]
+            tagged["key"] = list(set(tokens))
         else:
             tokens = []
-        
-        tagged["key"] = list(set(tokens))
+            tagged["key"] = []
 
         return tagged
     
