@@ -141,7 +141,7 @@ class Scraper:
                 outf = outfolder + "/wiki_out_" + suffix + ".json"
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
-                self.files["letterboxd"] = outf
+                self.files["wiki"] = outf
 
         self.urls = urls
 
