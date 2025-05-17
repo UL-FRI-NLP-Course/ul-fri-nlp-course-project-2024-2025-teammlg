@@ -1,0 +1,17 @@
+{
+    "Flow": {
+        "services": [
+            [
+                "Plex",
+                "Amazon Prime Video"
+            ],
+            [
+                "JustWatchTV",
+                "Amazon Prime Video"
+            ]
+        ]
+    },
+    "the other day": {
+        "services": []
+    }
+}
