@@ -86,18 +86,10 @@ class QwenChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
         print("Tokenizer start")
-        chat = self.session.get_chat_history()
-        chat.append({
-            "role": "system",
-            "content": f"Here is the available data:\n\n{data}\n\nGiven the available data and no other information, answer the user query."
-        })
-        chat.append({
-            "role": "user",
-            "content": prompt
-        })
+        messages = [{"role": "user", "content": prompt}]
         
         text = self.tokenizer.apply_chat_template(
-            chat,
+            messages,
             tokenize=False,
             add_generation_prompt=True,
             enable_thinking=False
