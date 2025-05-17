@@ -1,15 +1,14 @@
 import threading
 from typing import Dict, Tuple
-from ..model import Model
 import transformers
 import accelerate
 
-class DeepSeekBaseline(Model):
+class DeepSeekBaseline():
     def __init__(self, name, folder, datafolder, outname):
         self.name = name
-        self.folder = folder
-        self.datafolder = datafolder
-        self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.folder = folder # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+        self.datafolder = datafolder # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+        self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         self.chat_history = []
         self.outname = outname
         self.context = None
@@ -72,24 +71,35 @@ class DeepSeekBaseline(Model):
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         """Feeds the prompt to the model, returning its response"""
-        final_prompt = self.prompt_template.format(data=data, query=prompt)
+        #final_prompt = self.prompt_template.format(data=data, query=prompt)
 
-        input_tokens = self.tokenizer.apply_chat_template(
-            final_prompt,
+        messages = [{"role": "user", "content": prompt}]
+
+        # Apply chat template to get the string-formatted prompt
+        chat_prompt = self.tokenizer.apply_chat_template(
+            messages,
             add_generation_prompt=True,
-            return_tensors="pt"
-        ).to('cuda')
-        
+            tokenize=False
+        )
+
+        # Tokenize to get input_ids and attention_mask
+        inputs = self.tokenizer(chat_prompt, return_tensors="pt").to("cuda")
+
         outputs = self.model.generate(
-            **input_tokens,
-            max_new_tokens=512,
+            **inputs,
+            max_new_tokens=64,
             pad_token_id=self.pad_token_id,
             temperature=self.temperature
         )
 
-        final_output = ""
+        """final_output = ""
         for i in range(len(outputs)):
             output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
-        
+            final_output += output_text"""
+
+        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
         return final_output, {"context":""}
+
+if __name__ == "__main__":
+    llm = DeepSeekBaseline(None, None, None, None)
+    print(llm.reply("What color is a fire truck?"))

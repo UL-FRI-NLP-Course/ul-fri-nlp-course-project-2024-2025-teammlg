@@ -34,10 +34,16 @@ print(score)"""
 # pip install accelerate
 # pip install flash-attn --no-build-isolation
 
+print("start load libraries")
+from time import time
+print("time imported")
+
+start = time()
 import transformers
-#from transformers import BitsAndBytesConfig
-#from transformers import AutoModelForCausalLM, AutoTokenizer
+print(f"transformers loaded: {time() - start}s")
+start = time()
 from deepeval.models import DeepEvalBaseLLM
+print(f"deepeval loaded: {time() - start}s")
 
 class CustomLlama3_8B(DeepEvalBaseLLM):
     def __init__(self):
@@ -52,8 +58,7 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         self.model = transformers.AutoModelForCausalLM.from_pretrained(
             self.model_label,
             device_map="auto",
-            torch_dtype="auto",
-            attn_implementation="sdpa"
+            torch_dtype="auto"
         )
 
         if self.tokenizer.pad_token is None:
@@ -94,10 +99,10 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         return "Llama-3 8B"
 
 
-custom_llm = CustomLlama3_8B()
+#custom_llm = CustomLlama3_8B()
 #print(custom_llm.generate("When was Albert Einstein born?"))
 
-#exit(0)
+exit(0)
 
 
 user_input = "Can you summarize the main themes of The Dark Knight for me?"
