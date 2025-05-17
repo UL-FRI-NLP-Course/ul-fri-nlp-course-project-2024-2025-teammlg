@@ -101,7 +101,7 @@ class QwenChatBot(Model):
             add_generation_prompt=True,
             enable_thinking=False
         )
-
+        
         input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
         print("Tokenizer done")
         outputs = self.model.generate(

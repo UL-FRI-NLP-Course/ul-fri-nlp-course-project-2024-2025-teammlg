@@ -71,6 +71,8 @@ class Rag():
                         state["summaries"].append(summary)
             print("Finished summarizing")
 
+            print(f"Summary: {data}")
+
         state["context"] = data
         return data, state
 
