@@ -45,21 +45,28 @@ start = time()
 from deepeval.models import DeepEvalBaseLLM
 print(f"deepeval loaded: {time() - start}s")
 
-import os
-if not os.path.exists("/d/hpc/projects/onj_fri/teammlg/models"):
-    os.makedirs("/d/hpc/projects/onj_fri/teammlg/models")
-os.environ["HF_HOME"] = "/d/hpc/projects/onj_fri/teammlg/models"
+CACHE_DIR = "/d/hpc/projects/onj_fri/teammlg/models"
 
-class CustomLlama3_8B(DeepEvalBaseLLM):
-    def __init__(self):
-        self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+#import os
+#os.environ["HF_HOME"] = "/d/hpc/projects/onj_fri/teammlg/models"
+
+class CustomLlama3_8B(DeepEvalBaseLLM): 
+    def __init__(self): 
+        # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+        # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+        # meta-llama/Meta-Llama-3-70B-Instruct
+        self.model_label = "meta-llama/Meta-Llama-3-70B-Instruct"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
         
-        self.tokenizer = transformers.AutoTokenizer.from_pretrained(self.model_label)
-        self.temperature = 0.6
+        self.tokenizer = transformers.AutoTokenizer.from_pretrained(
+            self.model_label, 
+            cache_dir=CACHE_DIR
+        )
+        self.temperature = 0.7
         self.model = transformers.AutoModelForCausalLM.from_pretrained(
             self.model_label,
             device_map="auto",
-            torch_dtype="auto"
+            torch_dtype="bfloat16",
+            cache_dir=CACHE_DIR
         )
 
         self.pad_token_id = self.tokenizer.eos_token_id
@@ -82,10 +89,11 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         inputs = self.tokenizer(chat_prompt, return_tensors="pt").to("cuda")
         outputs = self.model.generate(
             **inputs,
-            max_new_tokens=32768,
+            max_new_tokens=32767,
             pad_token_id=self.pad_token_id,
             temperature=self.temperature,
-            eos_token_id=self.tokenizer.eos_token_id
+            eos_token_id=self.tokenizer.eos_token_id,
+            do_sample=True
         )
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
@@ -95,11 +103,11 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         return self.generate(prompt)
 
     def get_model_name(self):
-        return "Llama-3 8B"
+        return "Llama-3 70B"
 
 
 custom_llm = CustomLlama3_8B()
-print(custom_llm.generate("What color is fire truck?"))
+print(custom_llm.generate("Is math invented, or discovered?"))
 
 exit(0)
 
