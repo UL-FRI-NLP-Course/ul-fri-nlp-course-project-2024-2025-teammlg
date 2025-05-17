@@ -45,14 +45,15 @@ start = time()
 from deepeval.models import DeepEvalBaseLLM
 print(f"deepeval loaded: {time() - start}s")
 
+import os
+if not os.path.exists("/d/hpc/projects/onj_fri/teammlg/models"):
+    os.makedirs("/d/hpc/projects/onj_fri/teammlg/models")
+os.environ["HF_HOME"] = "/d/hpc/projects/onj_fri/teammlg/models"
+
 class CustomLlama3_8B(DeepEvalBaseLLM):
     def __init__(self):
         self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
-        self.chat_history = []
-        self.context = None
-        self.mode = "baseline"
-        self.sources = "/"
-
+        
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(self.model_label)
         self.temperature = 0.6
         self.model = transformers.AutoModelForCausalLM.from_pretrained(
@@ -61,36 +62,34 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             torch_dtype="auto"
         )
 
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
-
-
-        self.generation_thread = None
+        self.pad_token_id = self.tokenizer.eos_token_id
 
     def load_model(self):
         return self.model
 
     def generate(self, prompt: str) -> str:
-        """Feeds the prompt to the model, returning its response"""
-        input_tokens = self.tokenizer.apply_chat_template(
-            prompt,
-            add_generation_prompt=True,
-            return_tensors="pt"
-        ).to('cuda')
+        # Feeds the prompt to the model, returning its response
+        messages = [{"role": "user", "content": prompt}]
 
-        outputs = self.model.generate(
-            input_ids=input_tokens,
-            max_new_tokens=512,
-            pad_token_id=self.tokenizer.eos_token_id,
-            temperature=self.temperature
+        # Apply chat template to get the string-formatted prompt
+        chat_prompt = self.tokenizer.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            tokenize=False
         )
 
-        final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
+        # Tokenize to get input_ids and attention_mask
+        inputs = self.tokenizer(chat_prompt, return_tensors="pt").to("cuda")
+        outputs = self.model.generate(
+            **inputs,
+            max_new_tokens=32768,
+            pad_token_id=self.pad_token_id,
+            temperature=self.temperature,
+            eos_token_id=self.tokenizer.eos_token_id
+        )
 
-        return final_output
+        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+        return final_output, {"context":""}
 
     async def a_generate(self, prompt: str) -> str:
         return self.generate(prompt)
@@ -99,8 +98,8 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         return "Llama-3 8B"
 
 
-#custom_llm = CustomLlama3_8B()
-#print(custom_llm.generate("When was Albert Einstein born?"))
+custom_llm = CustomLlama3_8B()
+print(custom_llm.generate("What color is fire truck?"))
 
 exit(0)
 
