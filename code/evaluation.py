@@ -1,5 +1,6 @@
 import re
 import os
+
 os.environ["GIT_PYTHON_REFRESH"] = "quiet"
 import git
 from models import *
@@ -225,15 +226,23 @@ if __name__ == "__main__":
     deepseek_outname = "deepseek_r1_8b"
     qwen_name = "Qwen/Qwen3-8B"
     qwen_outname = "qwen3_8b"
+    mistral_name = "mistralai/Mistral-7B-v0.1"
+    mistral_outname = "mistral_7b"
+
     deepseekbaseline = DeepSeekBaseline(deepseek_name, "models/deepseek_baseline", "data/scraped_data", deepseek_outname+"_baseline")
     deepseek = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_naive")
     deepseekadvanced = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_advanced", mode="advanced")
+    
     qwenbaseline = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline")
     qwen = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive")
     qwenadvanced = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced")
+    
+    mistral_baseline = MistralBaseline(mistral_name, "models/mistral_baseline", "data/scraped_data", mistral_outname+"_baseline")
+    mistral = MistralChatBot(mistral_name, "models/mistral", "data/scraped_data", mistral_outname+"_naive")
+    mistral_advanced = MistralChatBot(mistral_name, "models/mistral", "data/scraped_data", mistral_outname+"_advanced", mode="advanced")
 
     # add new models here
-    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
+    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced, mistral_baseline, mistral, mistral_advanced]
     # models = [deepseekadvanced, qwen]
     # models = [deepseek, qwen]
     #models = [deepseek]
