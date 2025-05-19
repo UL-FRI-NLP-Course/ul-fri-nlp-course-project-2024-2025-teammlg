@@ -20,19 +20,12 @@ class RAGType(enum.Enum):
     AdvancedRAG = enum.auto()
 
 
-class RetrievalSource(enum.Enum):
-    TMDB = "tmdb"
-    Letterboxd = "letterboxd"
-    Wikipedia = "wiki"
-    JustWatch = "justwatch"
-
-
 class PipelineConfig(TypedDict):
     pipeline_name: str
     model_type: ModelType
     output_path: str
     rag_type: RAGType
-    retrieval_sources: List[RetrievalSource]
+    retrieval_sources: List[ScraperSource]
     logging_level: int
     log_to_console: bool
     custom_prompt_template: str
@@ -47,10 +40,10 @@ class Pipeline:
         self.output_path = config.get("output_path", None)
         self.rag_type = config.get("rag_type", RAGType.NoRAG)
         self.retrieval_sources = config.get("retrieval_sources", [
-            RetrievalSource.JustWatch,
-            RetrievalSource.Letterboxd,
-            RetrievalSource.TMDB,
-            RetrievalSource.Wikipedia
+            ScraperSource.JustWatch,
+            ScraperSource.Letterboxd,
+            ScraperSource.TMDB,
+            ScraperSource.Wikipedia
         ])
         self.custom_prompt_template = config.get("custom_prompt_template", None)
         self.sample_response = config.get("sample_response", False)
