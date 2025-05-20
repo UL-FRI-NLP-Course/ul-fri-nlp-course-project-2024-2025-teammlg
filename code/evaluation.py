@@ -238,13 +238,9 @@ if __name__ == "__main__":
     qwenbaseline = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline")
     qwen = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive")
     qwenadvanced = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced")
-    
-    mistral_baseline = MistralBaseline(mistral_name, "models/mistral_baseline", "data/scraped_data", mistral_outname+"_baseline")
-    mistral = MistralChatBot(mistral_name, "models/mistral", "data/scraped_data", mistral_outname+"_naive")
-    mistral_advanced = MistralChatBot(mistral_name, "models/mistral", "data/scraped_data", mistral_outname+"_advanced", mode="advanced")
 
     # add new models here
-    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced, mistral_baseline, mistral, mistral_advanced]
+    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
     # models = [deepseekadvanced, qwen]
     # models = [deepseek, qwen]
     #models = [deepseek]
