@@ -115,8 +115,8 @@ class Evaluation:
                 gts.append(totalgt.strip())
 
             # in case you don't wanna run on entire testset
-            queries = queries[:5]
-            gts = gts[:5]
+            #queries = queries[:5]
+            #gts = gts[:5]
 
             evalout = []
             for q, gt in zip(queries, gts):
