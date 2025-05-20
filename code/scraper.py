@@ -9,7 +9,7 @@ import warnings
 from sklearn.feature_extraction.text import TfidfVectorizer
 warnings.filterwarnings('ignore')
 
-with open('./data/stopwords-en.txt', "r") as f:
+with open('./data/stopwords-en.txt', "r", encoding="utf8") as f:
     stop_words = f.readlines()
     stop_words = [word.strip() for word in stop_words]
 
@@ -63,10 +63,13 @@ class Scraper:
                         if len(res) > 0:
                             id = res[0]["id"]
                             cast = self.get_cast_list(id, self.headers)
+                            similar = self.get_similar_movies(id, self.headers)
                         else:
                             cast = ""
+                            similar = ""
                     else:
                         cast = ""
+                        similar = ""
 
                     # Take resulting JSON and select the most appropriate title
                     movie_json = self.select_most_appropriate_title(response.json(), self.phrases["key"])
@@ -87,7 +90,7 @@ class Scraper:
                         del movie_json["backdrop_path"]
                         del movie_json["poster_path"]
 
-                    out[movie] = {"cast": cast, "info": movie_json}
+                    out[movie] = {"info": movie_json, "similar": similar, "cast": cast}
 
                 for person in self.phrases["people"]:
                     url = ("https://api.themoviedb.org/3/search/person?query="+ person+ "&include_adult=false&language=en-US&page=1")
@@ -198,6 +201,21 @@ class Scraper:
                 out[movie] = {"summary": summary, "plot": plot}
 
         return out
+
+    @staticmethod
+    def get_similar_movies(movie_id: str, headers: str, raw: bool = False) -> List[str]:
+        url = "https://api.themoviedb.org/3/movie/"+str(movie_id)+"/similar?language=en-US&page=1"
+        response = requests.get(url, headers=headers)
+
+        if raw:
+            return response.text
+
+        data = response.json()["results"]
+        movies = []
+        for d in data:
+            movies.append(d["title"])
+
+        return movies
 
     @staticmethod
     def get_possible_urls(movie_name: str, headers: str, expected_number_of_movies_from_same_year: int = 5) -> List[str]:
@@ -401,4 +419,4 @@ if __name__ == "__main__":
     # usage example
     phrases = {"movies": ["inheritance", "challengers", "the godfather", "the hands of orlac", "i'm still here"], "people": ["chuck jones"], "key": ""}
     #s = Scraper(phrases, "data/scraped_data", "", sources=["wiki"])
-    s = Scraper(phrases, "data/scraped_data", "", sources=["letterboxd", "justwatch", "wiki", "tmdb"])
+    s = Scraper(phrases, "data/scraped_data", "", sources=["tmdb"])

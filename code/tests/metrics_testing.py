@@ -32,7 +32,10 @@ print(score)"""
 # pip install chardet
 # pip install accelerate>=0.26.0
 # pip install accelerate
-# pip install flash-attn --no-build-isolation
+
+
+# pip install pydantic
+# pip install lm-format-enforcer
 
 print("start load libraries")
 from time import time
@@ -44,18 +47,34 @@ print(f"transformers loaded: {time() - start}s")
 start = time()
 from deepeval.models import DeepEvalBaseLLM
 print(f"deepeval loaded: {time() - start}s")
+start = time()
+from pydantic import BaseModel
+print(f"deepeval loaded: {time() - start}s")
+
+start = time()
+from lmformatenforcer import JsonSchemaParser
+from lmformatenforcer.integrations.transformers import (
+    build_transformers_prefix_allowed_tokens_fn,
+)
+print(f"lmformatenforcer loaded: {time() - start}s")
+
+start = time()
+import json
+print(f"json loaded: {time() - start}s")
 
 CACHE_DIR = "/d/hpc/projects/onj_fri/teammlg/models"
 
 #import os
 #os.environ["HF_HOME"] = "/d/hpc/projects/onj_fri/teammlg/models"
 
+# https://www.deepeval.com/guides/guides-using-custom-llms
 class CustomLlama3_8B(DeepEvalBaseLLM): 
-    def __init__(self): 
+    def __init__(self):
         # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
         # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
         # meta-llama/Meta-Llama-3-70B-Instruct
-        self.model_label = "meta-llama/Meta-Llama-3-70B-Instruct"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        # meta-llama/Meta-Llama-3-8B-Instruct
+        self.model_label = "meta-llama/Meta-Llama-3-8B-Instruct"
         
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(
             self.model_label, 
@@ -74,7 +93,36 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
     def load_model(self):
         return self.model
 
-    def generate(self, prompt: str) -> str:
+    def generate(self, prompt: str, schema: BaseModel):
+        pipeline = transformers.pipeline(
+            "text-generation",
+            model=self.load_model(),
+            tokenizer=self.tokenizer,
+            use_cache=True,
+            truncation=True,
+            device_map="auto",
+            max_length=2500,
+            do_sample=True,
+            num_return_sequences=1,
+            eos_token_id=self.tokenizer.eos_token_id,
+            pad_token_id=self.tokenizer.eos_token_id,
+        )
+
+        # Create parser required for JSON confinement using lmformatenforcer
+        parser = JsonSchemaParser(schema.model_json_schema())
+        prefix_function = build_transformers_prefix_allowed_tokens_fn(
+            pipeline.tokenizer, parser
+        )
+
+        # Output and load valid JSON
+        output_dict = pipeline(prompt, prefix_allowed_tokens_fn=prefix_function)
+        output = output_dict[0]["generated_text"][len(prompt) :]
+        json_result = json.loads(output)
+
+        # Return valid JSON object according to the schema DeepEval supplied
+        return schema(**json_result)
+
+    """def generate(self, prompt: str, schema: BaseModel):
         # Feeds the prompt to the model, returning its response
         messages = [{"role": "user", "content": prompt}]
 
@@ -95,19 +143,27 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             eos_token_id=self.tokenizer.eos_token_id,
             do_sample=True
         )
-
+        
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
-        return final_output, {"context":""}
+        return final_output"""
 
     async def a_generate(self, prompt: str) -> str:
         return self.generate(prompt)
 
     def get_model_name(self):
-        return "Llama-3 70B"
+        return self.model_label
 
 
+print("starting load model")
+start = time()
 custom_llm = CustomLlama3_8B()
-print(custom_llm.generate("Is math invented, or discovered?"))
+print(f"model loaded: {time() - start}s")
+
+print("starting generate")
+
+start = time()
+print(custom_llm.generate("When was Albert Einstein born?", None))
+print(f"generate finished: {time() - start}s")
 
 exit(0)
 
