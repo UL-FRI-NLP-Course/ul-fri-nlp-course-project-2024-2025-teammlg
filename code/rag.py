@@ -45,9 +45,7 @@ class Rag():
         if scraper: # probably irrelevant, just in case we ever wanna use a different scraper
             self.scraper = scraper
         else:
-            self.scraper = Scraper(self.phrases, datafolder, outname, sources=sources)
-
-        
+            self.scraper = Scraper(self.phrases, datafolder, outname, sources=sources, n_pages=20)
 
         self.prompt = prompt
         self.mode = mode

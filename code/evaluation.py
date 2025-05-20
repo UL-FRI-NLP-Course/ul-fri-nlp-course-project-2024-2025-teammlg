@@ -78,6 +78,7 @@ class Evaluation:
             outf = self.write_replies(self.queries, results, model.folder)
             self.write_params(outf, model)
             self.write_results(outf, self.queries, results, contexts, execution_times)
+            self.write_contexts(self.queries, contexts, outf)
 
             with open(
                 session_folder + "/" + model.outname + "_" + model.mode + ".json", "a"
@@ -145,6 +146,7 @@ class Evaluation:
             outf = self.write_replies(queries, results, model.folder)
             self.write_params(outf, model)
             self.write_results(outf, queries, results, contexts, execution_times, gts)
+            self.write_contexts(self.queries, contexts, outf)
 
             with open(
                 session_folder + "/" + model.outname + "_" + model.mode + ".json", "a"
@@ -200,7 +202,6 @@ class Evaluation:
         outdict = {}
         outdict["mode"] = model.mode
         outdict["sources"] = model.sources
-        outdict["context"] = model.context
 
         with open(outfolder + "/parameters.json", "w") as outfile:
             json.dump(outdict, outfile, indent=4)
@@ -221,6 +222,14 @@ class Evaluation:
             json.dump(out, outfile, indent=4)
 
         return outfolder
+    
+    def write_contexts(self, queries, contexts, outfolder):
+        out = [{"query": q, "context": r} for q, r in zip(queries, contexts)]
+
+        with open(outfolder + "/contexts.json", "w") as outfile:
+            json.dump(out, outfile, indent=4)
+
+        return outfolder
 
 
 if __name__ == "__main__":
@@ -228,8 +237,6 @@ if __name__ == "__main__":
     deepseek_outname = "deepseek_r1_8b"
     qwen_name = "Qwen/Qwen3-8B"
     qwen_outname = "qwen3_8b"
-    mistral_name = "mistralai/Mistral-7B-v0.1"
-    mistral_outname = "mistral_7b"
 
     deepseekbaseline = DeepSeekBaseline(deepseek_name, "models/deepseek_baseline", "data/scraped_data", deepseek_outname+"_baseline")
     deepseek = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_naive")
@@ -238,12 +245,13 @@ if __name__ == "__main__":
     qwenbaseline = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline")
     qwen = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive")
     qwenadvanced = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced")
-
+    
     # add new models here
-    models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
+    #models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
     # models = [deepseekadvanced, qwen]
     # models = [deepseek, qwen]
     #models = [deepseek]
+    models = [deepseekbaseline, deepseek, qwenbaseline, qwen]
     e = Evaluation(models, "data/evaluation_questions.txt")
     #results = e.evaluate()
     gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)
