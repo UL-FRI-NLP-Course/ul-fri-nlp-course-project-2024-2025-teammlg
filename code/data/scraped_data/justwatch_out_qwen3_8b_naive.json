@@ -1,17 +1,17 @@
 {
-    "Flow": {
+    "the Minecraft Movie": {
         "services": [
             [
-                "Plex",
-                "Amazon Prime Video"
-            ],
-            [
-                "JustWatchTV",
+                "Bookmyshow",
                 "Amazon Prime Video"
             ]
         ]
     },
-    "the other day": {
-        "services": []
+    "Slovenia": {
+        "services": [
+            [
+                "Amazon Prime Video"
+            ]
+        ]
     }
 }
