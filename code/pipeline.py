@@ -2,8 +2,10 @@ import enum
 import logging
 import os
 import time
-from typing import List, TypedDict
+from typing import List, Optional, TypedDict
 
+from scraper_v2 import ScraperSource
+from extraction import DocumentExtractionMethod, Extractor
 from model import Model
 
 
@@ -23,12 +25,10 @@ class RAGType(enum.Enum):
 class PipelineConfig(TypedDict):
     pipeline_name: str
     output_path: str
-    model_type: ModelType
-    rag_type: RAGType
-    retrieval_sources: List[ScraperSource]
-    logging_level: int
-    log_to_console: bool
-    custom_prompt_template: str
+    model: Optional[Model]
+    extractor: Optional[Extractor]
+    scraping_sources: Optional[List[ScraperSource]]
+    document_extraction_method: Optional[DocumentExtractionMethod]
     sample_response: bool
 
 
@@ -38,31 +38,25 @@ class Pipeline:
 
         self.pipeline_name = config.get("pipeline_name", f"pipeline_{current_timestamp}")
         self.output_path = config.get("output_path", None)
-        self.rag_type = config.get("rag_type", RAGType.NoRAG)
-        self.retrieval_sources = config.get("retrieval_sources", [
-            ScraperSource.JustWatch,
-            ScraperSource.Letterboxd,
-            ScraperSource.TMDB,
-            ScraperSource.Wikipedia
-        ])
-        self.custom_prompt_template = config.get("custom_prompt_template", None)
-        self.sample_response = config.get("sample_response", False)
 
         if self.output_path is None:
             self.output_path = "pipeline_outputs"
         os.makedirs(self.output_path, exist_ok=True)
 
-        self.logging_level = config.get("logging_level", logging.INFO)
-        self.log_to_console = config.get("log_to_console", True)
+        logging_level = config.get("logging_level", logging.INFO)
+        log_to_console = config.get("log_to_console", True)
+
         self.logger = logging.getLogger(f"pipeline")
-        self.logger.setLevel(self.logging_level)
+        self.logger.setLevel(logging_level)
         self.logger.addHandler(logging.FileHandler(os.path.join(self.output_path, f"{self.pipeline_name}.log")))
-        if self.log_to_console:
+        if log_to_console:
             self.logger.addHandler(logging.StreamHandler())
 
-        self.model = Model(config["model_type"].value)
-        if self.custom_prompt_template:
-            self.model.set_chat_template(self.custom_prompt_template)
+        self.model = config.get("model", None)
+        self.extractor = config.get("extractor", None)
+        self.scraping_sources = config.get("scraping_sources", [])
+        self.document_extraction_method = config.get("document_extraction_method", DocumentExtractionMethod.Null)
+        self.sample_response = config.get("sample_response")
 
         self.logger.info(f"Pipeline {self.pipeline_name} initialized")
 
@@ -77,6 +71,7 @@ class Pipeline:
         }]
 
         # TODO: Extract data from prompt
+
         
         # TODO: Inject data into prompt
 

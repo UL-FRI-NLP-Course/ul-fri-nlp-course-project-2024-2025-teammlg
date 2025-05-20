@@ -19,13 +19,12 @@ class ScraperSource(enum.StrEnum):
 
 
 class Scraper:
-    def __init__(self, sources: List[ScraperSource], n_pages: int = 5, logging_level: int = logging.INFO):
+    def __init__(self, n_pages: int = 5, logging_level: int = logging.INFO):
         self.headers = {
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
         }
         self.genres = self.get_all_genres()
-        self.sources = sources
         self.files = {}
         self.n_pages = n_pages
 
@@ -38,10 +37,10 @@ class Scraper:
         self.logger.addHandler(logging.StreamHandler())
         self.logger.addHandler(logging.FileHandler(out_path))
     
-    def scrape(self, input_data: ExtractedData) -> Dict[ScraperSource, str]:
+    def scrape(self, input_data: ExtractedData, sources: List[ScraperSource]) -> Dict[ScraperSource, str]:
         results = {}
         
-        for source in self.sources:
+        for source in sources:
             if source == ScraperSource.Letterboxd:
                 letterboxd_file_store = {}
                 logging.info("Scraping letterboxd...")
