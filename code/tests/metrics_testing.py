@@ -147,7 +147,7 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
         return final_output"""
 
-    async def a_generate(self, prompt: str) -> str:
+    async def a_generate(self, prompt: str):
         return self.generate(prompt)
 
     def get_model_name(self):
@@ -161,11 +161,11 @@ print(f"model loaded: {time() - start}s")
 
 print("starting generate")
 
-start = time()
-print(custom_llm.generate("When was Albert Einstein born?", None))
-print(f"generate finished: {time() - start}s")
+#start = time()
+#print(custom_llm.generate("When was Albert Einstein born?", None))
+#print(f"generate finished: {time() - start}s")
 
-exit(0)
+#exit(0)
 
 
 user_input = "Can you summarize the main themes of The Dark Knight for me?"
@@ -174,19 +174,54 @@ response="\n\n\"The Dark Knight\" explores several key themes:\n\n1. **Hero-Visa
 ground_truth = "The Dark Knight (2008), directed by Christopher Nolan, explores several deep and interconnected themes. The main ones include:\n\n\t1. Chaos vs. Order: The Joker represents chaos, anarchy, and unpredictability, while Batman and the authorities strive to maintain order. The film explores how fragile societal structures are when challenged by extreme forces.\n\n\t2. Moral Ambiguity and Duality: The film questions traditional notions of good and evil. Batman must bend ethical lines to fight crime, while Harvey Dent’s transformation into Two-Face shows how easily a hero can fall.\n\n\t3. Justice vs. Vengeance: Batman operates outside the law but seeks justice, whereas characters like Dent blur the line by giving in to vengeance when wronged.\n\n\t4. The Nature of Heroism: The film challenges the idea of what makes someone a hero. Batman chooses to be seen as a villain to protect Gotham's hope, highlighting the theme of self-sacrifice for the greater good.\n\n\t5. Fear and Corruption: Fear is used as both a weapon and a shield, while Gotham's institutions are portrayed as vulnerable to corruption—something both Batman and the Joker exploit in different ways."
 
 import deepeval
-from deepeval.metrics import GEval
+from deepeval.metrics import GEval, AnswerRelevancyMetric, FaithfulnessMetric, ContextualPrecisionMetric, ContextualRecallMetric, ContextualRelevancyMetric
 from deepeval.test_case import LLMTestCaseParams, LLMTestCase
 from deepeval import evaluate
 
-# gpt-4.1-mini
-
-correctness_metric = GEval(
+metrics = []
+metric_correctness = GEval(
     name="Correctness",
     criteria="Check whether the facts in 'actual output' contradicts any facts in 'expected output'. If the actual output omits some facts, it's okay as long as it doesn’t contradict or distort the expected facts. If the task is to recommend or suggest items (e.g., movies), do not check for exact matches with expected output, instead check if the recommendations are similar in genre, theme, tone, or relevance.",
     model=custom_llm,
     evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT, LLMTestCaseParams.EXPECTED_OUTPUT],
     verbose_mode=True
 )
+metrics.append(metric_correctness)
+
+metric_answer_relevancy = AnswerRelevancyMetric(
+    threshold=0.5,
+    model=custom_llm,
+    include_reason=True
+)
+metrics.append(metric_answer_relevancy)
+
+metric_faithfulness = FaithfulnessMetric(
+    threshold=0.5,
+    model=custom_llm,
+    include_reason=True
+)
+metrics.append(metric_faithfulness)
+
+metric_contextual_precision = ContextualPrecisionMetric(
+    threshold=0.5,
+    model=custom_llm,
+    include_reason=True
+)
+metrics.append(metric_contextual_precision)
+
+metric_contextual_recall = ContextualRecallMetric(
+    threshold=0.5,
+    model=custom_llm,
+    include_reason=True
+)
+metrics.append(metric_contextual_recall)
+
+metric_contextual_relevancy = ContextualRelevancyMetric(
+    threshold=0.5,
+    model=custom_llm,
+    include_reason=True
+)
+metrics.append(metric_contextual_relevancy)
 
 test_case = LLMTestCase(
     input=user_input,
@@ -195,6 +230,6 @@ test_case = LLMTestCase(
     retrieval_context=contexts
 )
 
-print(evaluate(test_cases=[test_case], metrics=[correctness_metric]))
+print(evaluate(test_cases=[test_case], metrics=metrics))
 
 

@@ -4,7 +4,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:4
 #SBATCH --partition=gpu
-#SBATCH --time=2:00:00
+#SBATCH --time=1:00:00
 #SBATCH --output=logs/sling-nlp-showcase-%J.out
 #SBATCH --error=logs/sling-nlp-showcase-%J.err
 #SBATCH --job-name="SLING NLP showcase"

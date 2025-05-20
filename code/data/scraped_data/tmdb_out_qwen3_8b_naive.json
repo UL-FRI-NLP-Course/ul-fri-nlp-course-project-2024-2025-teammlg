@@ -1,0 +1,35 @@
+{
+    "Marvel": {
+        "cast": {
+            "cast": [],
+            "crew": [
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Arthur Hall",
+                    "original_name": "Arthur Hall",
+                    "popularity": 0.0,
+                    "department": "Directing",
+                    "job": "Director"
+                }
+            ]
+        },
+        "info": {
+            "adult": false,
+            "original_language": "en",
+            "original_title": "The Marvels",
+            "overview": "When her duties send her to an anomalous wormhole linked to a Kree revolutionary, Carol's powers become entangled with that of Jersey City super-fan Kamala Khan, aka Ms. Marvel, and Carol's estranged niece, now S.A.B.E.R. astronaut Captain Monica Rambeau. Together, this unlikely trio must team up and learn to work in concert to save the universe.",
+            "popularity": 11.3747,
+            "release_date": "2023-11-08",
+            "title": "The Marvels",
+            "video": false,
+            "vote_average": 6.0,
+            "vote_count": 2954,
+            "genres": [
+                "Science Fiction",
+                "Adventure",
+                "Action"
+            ]
+        }
+    }
+}
