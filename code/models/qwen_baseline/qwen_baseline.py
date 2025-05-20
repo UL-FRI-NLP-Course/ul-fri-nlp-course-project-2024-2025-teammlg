@@ -38,6 +38,7 @@ class QwenBaseline(Model):
         return self.prompt_nonstream(prompt)
 
     def prompt_stream(self, prompt: str, data: str = "") -> Tuple[transformers.TextIteratorStreamer, Dict]:
+        return self.prompt_nonstream(prompt, data)
         """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
 
