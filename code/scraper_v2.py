@@ -57,7 +57,9 @@ class Scraper:
             elif source == ScraperSource.TMDB:
                 tmdb_file_store = {}
                 logging.info("Scraping TMDB...")
-                # TODO
+                for movie in input_data["movies"]:
+                    tmdb_result = self.scrape_tmdb_movie_info(movie)
+                    tmdb_file_store[movie] = tmdb_result
                 results[ScraperSource.TMDB.value] = tmdb_file_store
                 
                 store_filepath = os.path(self.output_directory, "tmdb.json")
@@ -67,7 +69,9 @@ class Scraper:
             elif source == ScraperSource.JustWatch:
                 justwatch_file_store = {}
                 logging.info("Scraping JustWatch...")
-                # TODO
+                for movie in input_data["movies"]:
+                    justwatch_result = self.scrape_justwatch(movie)
+                    justwatch_file_store[movie] = justwatch_result
                 results[ScraperSource.JustWatch.value] = justwatch_file_store
 
                 store_filepath = os.path(self.output_directory, "justwatch.json")
@@ -77,12 +81,15 @@ class Scraper:
             elif source == ScraperSource.Wikipedia:
                 wikipedia_file_store = {}
                 logging.info("Scraping Wikipedia...")
-                # TODO
+                for movie in input_data["movies"]:
+                    wikipedia_result = self.scrape_wikipedia(movie)
+                    wikipedia_file_store[movie] = wikipedia_result
                 results[ScraperSource.Wikipedia.value] = wikipedia_file_store
 
                 store_filepath = os.path(self.output_directory, "wikipedia.json")
                 with open(store_filepath, "w", encoding="utf-8") as file:
                     json.dump(wikipedia_file_store, file, ensure_ascii=False)
+        return results
 
     def scrape_letterboxd(self, movie: str, n_pages: int) -> List[str]:
         possible = self.get_possible_urls(movie)
@@ -123,6 +130,18 @@ class Scraper:
                 reviews.append(total)
 
         return reviews
+
+    def scrape_tmdb_movie_info(self, movie: str) -> Dict[str, str]:
+        # TODO
+        pass
+
+    def scrape_justwatch(self, movie: str) -> Dict[str, str]:
+        # TODO
+        pass
+
+    def scrape_wikipedia(self, movie: str) -> Dict[str, str]:
+        # TODO
+        pass
 
     def get_all_genres(self, include_tv_genres: bool = False) -> Dict[str, str]:
         url = "https://api.themoviedb.org/3/genre/movie/list?language=en"
