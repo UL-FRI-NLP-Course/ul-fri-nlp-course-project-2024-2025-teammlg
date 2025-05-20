@@ -22,8 +22,8 @@ class RAGType(enum.Enum):
 
 class PipelineConfig(TypedDict):
     pipeline_name: str
-    model_type: ModelType
     output_path: str
+    model_type: ModelType
     rag_type: RAGType
     retrieval_sources: List[ScraperSource]
     logging_level: int
