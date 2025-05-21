@@ -39,7 +39,6 @@ class QwenBaseline(Model):
 
     def prompt_stream(self, prompt: str, data: str = "") -> Tuple[transformers.TextIteratorStreamer, Dict]:
         return self.prompt_nonstream(prompt, data)
-        """Feeds the prompt to the model, returning its response as a stream iterator"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
 
         inputs = self.tokenizer.apply_chat_template(
@@ -73,7 +72,6 @@ class QwenBaseline(Model):
             self.generation_thread.join()
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
-        """Feeds the prompt to the model, returning its response"""
         final_prompt = self.prompt_template.format(data=data, query=prompt)
         final_prompt = [
             {

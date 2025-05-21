@@ -43,6 +43,7 @@ class DeepSeekFilmChatBot(Model):
         return self.prompt_nonstream(prompt)
 
     def prompt_stream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
+        return self.prompt_nonstream(prompt, data)
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
@@ -85,7 +86,6 @@ class DeepSeekFilmChatBot(Model):
         return final_output, state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
-        return self.prompt_nonstream(prompt, data)
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
