@@ -111,17 +111,10 @@ Our approach focuses on the following areas:
 \begin{itemize}
 \item Understanding user prompts:\\
 Natural language queries are often ambiguous or incomplete, making effective information retrieval difficult.
-\textit{Rephrase and Respond} (RaR) \cite{RaR} prompting refines user queries by expanding, rewording or clarifying intent, ensuring more effective retrieval and response generation.
-\item Reducing factually inaccurate output:\\
-One of the primary issues with LLMs is their tendency to generate misleading or incorrect information. 
-To counter this, we apply \textit{Forward Looking Active Retrieval augmented generation} (FLARE) \cite{FLARE}. The method decides when and what to retrieve to improve accuracy and reduce inaccurate output.
 \item Consistency:\\
 Conversational agents must maintain logical coherence and avoid contradictions.
-\textit{Contrastive Chain-of-Thought} (CCoT) \cite{CCoT} prompting helps models identify patterns and avoid mistakes by comparing correct and incorrect examples.
-This step is crucial for conversational agents.
-\item Fine-tuning and optimization:\\
-To maximize efficiency and response quality, we employ
-\textit{Automatic Prompt Engineer} (APE) \cite{APE} analyzes user input, generates candidate instructions and then uses reinforcement learning to choose the optimal prompt. 
+
+
 \end{itemize}
 
 
