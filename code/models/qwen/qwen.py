@@ -9,7 +9,6 @@ import transformers
 
 class QwenChatBot(Model):
     def __init__(self, name, folder, datafolder, outname, sources=["tmdb", "letterboxd", "justwatch", "wiki"], mode="naive"):
-        print("Model init start")
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
@@ -32,8 +31,6 @@ class QwenChatBot(Model):
 
         with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
             self.prompt_template = fd.read()
-
-        print("Model init done")
 
     def train(self):
         pass
@@ -86,7 +83,7 @@ class QwenChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
-        print("Tokenizer start")
+
         messages = [
             {
                 "role": "system", "content": "You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.",
@@ -104,7 +101,7 @@ class QwenChatBot(Model):
         )
         
         input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
-        print("Tokenizer done")
+
         outputs = self.model.generate(
             **input_tokens,
             max_new_tokens=32768,
@@ -114,7 +111,7 @@ class QwenChatBot(Model):
         )
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
-        print("Generation done")      
+
         self.session.add_user_query(prompt)
         self.session.add_assistant_response(str(final_output))
 
