@@ -9,4 +9,4 @@
 #SBATCH --error=logs/sling-nlp-showcase-%J.err
 #SBATCH --job-name="SLING NLP showcase"
 
-srun singularity exec --nv ~/containers/nlp-v1.sif python ./evaluation.py
+srun singularity exec --writable-tmpfs --nv ~/containers/nlp-v1.sif python ./evaluation.py 

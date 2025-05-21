@@ -1,16 +1,10 @@
 {
-    "the Minecraft Movie": {
+    "Black Bag": {
         "services": [
             [
-                "Bookmyshow",
-                "Amazon Prime Video"
-            ]
-        ]
-    },
-    "Slovenia": {
-        "services": [
-            [
-                "Amazon Prime Video"
+                "Apple TV",
+                "Zee5",
+                "Amazon Video"
             ]
         ]
     }
