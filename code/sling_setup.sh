@@ -19,4 +19,6 @@ singularity exec ./containers/nlp-v1.sif pip install rouge_score
 singularity exec ./containers/nlp-v1.sif pip install absl-py
 singularity exec ./containers/nlp-v1.sif pip install beautifulsoup4
 singularity exec ./containers/nlp-v1.sif pip install wikipedia
+singularity exec ./containers/nlp-v1.sif pip install lm-format-enforcer
+singularity exec ./containers/nlp-v1.sif pip install bitsandbytes
 mkdir logs

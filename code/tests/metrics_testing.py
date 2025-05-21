@@ -41,6 +41,12 @@ print("start load libraries")
 from time import time
 print("time imported")
 
+import re
+
+start = time()
+import torch
+print(f"torch loaded: {time() - start}s")
+
 start = time()
 import transformers
 print(f"transformers loaded: {time() - start}s")
@@ -74,8 +80,15 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
         # meta-llama/Meta-Llama-3-70B-Instruct
         # meta-llama/Meta-Llama-3-8B-Instruct
-        self.model_label = "meta-llama/Meta-Llama-3-8B-Instruct"
+        self.model_label = "meta-llama/Llama-3.1-8B-Instruct"
         
+        quantization_config = transformers.BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
+
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(
             self.model_label, 
             cache_dir=CACHE_DIR
@@ -85,7 +98,8 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             self.model_label,
             device_map="auto",
             torch_dtype="bfloat16",
-            cache_dir=CACHE_DIR
+            cache_dir=CACHE_DIR,
+            quantization_config=quantization_config
         )
 
         self.pad_token_id = self.tokenizer.eos_token_id
@@ -101,11 +115,16 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             use_cache=True,
             truncation=True,
             device_map="auto",
-            max_length=2500,
-            do_sample=True,
+            max_length=4096,
+            do_sample=False,
             num_return_sequences=1,
             eos_token_id=self.tokenizer.eos_token_id,
             pad_token_id=self.tokenizer.eos_token_id,
+            temperature=self.temperature,
+            top_k=0,
+            top_p=1.0,
+            repetition_penalty=1.0,
+            no_repeat_ngram_size=3
         )
 
         # Create parser required for JSON confinement using lmformatenforcer
@@ -117,38 +136,19 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
         # Output and load valid JSON
         output_dict = pipeline(prompt, prefix_allowed_tokens_fn=prefix_function)
         output = output_dict[0]["generated_text"][len(prompt) :]
-        json_result = json.loads(output)
+        output = output.replace("\r", "")
+        try:
+            json_result = json.loads(output, strict=False)
+        except json.JSONDecodeError:
+            print("Raw output:", output, flush=True)
+            print("Raw output:", repr(output), flush=True)
+            
 
         # Return valid JSON object according to the schema DeepEval supplied
         return schema(**json_result)
 
-    """def generate(self, prompt: str, schema: BaseModel):
-        # Feeds the prompt to the model, returning its response
-        messages = [{"role": "user", "content": prompt}]
-
-        # Apply chat template to get the string-formatted prompt
-        chat_prompt = self.tokenizer.apply_chat_template(
-            messages,
-            add_generation_prompt=True,
-            tokenize=False
-        )
-
-        # Tokenize to get input_ids and attention_mask
-        inputs = self.tokenizer(chat_prompt, return_tensors="pt").to("cuda")
-        outputs = self.model.generate(
-            **inputs,
-            max_new_tokens=32767,
-            pad_token_id=self.pad_token_id,
-            temperature=self.temperature,
-            eos_token_id=self.tokenizer.eos_token_id,
-            do_sample=True
-        )
-        
-        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
-        return final_output"""
-
-    async def a_generate(self, prompt: str):
-        return self.generate(prompt)
+    async def a_generate(self, prompt: str, schema: BaseModel):
+        return self.generate(prompt, schema)
 
     def get_model_name(self):
         return self.model_label
