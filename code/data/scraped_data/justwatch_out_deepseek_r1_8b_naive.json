@@ -1,17 +1,12 @@
 {
-    "Flow": {
+    "Anora": {
         "services": [
             [
-                "Plex",
-                "Amazon Prime Video"
-            ],
-            [
-                "JustWatchTV",
-                "Amazon Prime Video"
+                "JioHotstar",
+                "VI movies and tv",
+                "Zee5",
+                "Amazon Video"
             ]
         ]
-    },
-    "the other day": {
-        "services": []
     }
 }

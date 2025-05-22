@@ -18,7 +18,6 @@ with suppress_stdout():
     import re
     import datetime
     import json
-    import torch
     from memory import *
 
 class ConversationEvaluation:

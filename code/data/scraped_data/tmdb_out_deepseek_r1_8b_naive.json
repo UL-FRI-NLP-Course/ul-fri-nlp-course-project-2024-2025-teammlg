@@ -1,144 +1,1338 @@
 {
-    "Flow": {
+    "Anora": {
+        "info": {
+            "adult": false,
+            "original_language": "en",
+            "original_title": "Anora",
+            "overview": "A young sex worker from Brooklyn gets her chance at a Cinderella story when she meets and impulsively marries the son of an oligarch. Once the news reaches Russia, her fairytale is threatened as his parents set out to get the marriage annulled.",
+            "popularity": 34.571,
+            "release_date": "2024-10-14",
+            "title": "Anora",
+            "video": false,
+            "vote_average": 7.05,
+            "vote_count": 2176,
+            "genres": [
+                "Drama",
+                "Comedy",
+                "Romance"
+            ]
+        },
+        "similar": [
+            "There Will Be Blood",
+            "London",
+            "Cocktail",
+            "Wedding Daze",
+            "Half Nelson",
+            "Poetic Justice",
+            "Howards End",
+            "Tonight at Noon",
+            "The Taking of Pelham One Two Three",
+            "An Affair to Remember",
+            "Definitely, Maybe",
+            "Summer Things",
+            "The Bank Job",
+            "Alfie",
+            "The Karate Kid Part II",
+            "Lullaby",
+            "Loitering with Intent",
+            "Hard Eight",
+            "The Reader",
+            "21"
+        ],
         "cast": {
             "cast": [
                 {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Mikey Madison",
+                    "original_name": "Mikey Madison",
+                    "popularity": 7.4809,
+                    "character": "Ani"
+                },
+                {
                     "gender": 2,
                     "known_for_department": "Acting",
-                    "name": "Tedd Szeto",
-                    "original_name": "Tedd Szeto",
-                    "popularity": 0.1566,
-                    "character": "Filmmaker"
+                    "name": "Mark Eydelshteyn",
+                    "original_name": "Марк Эйдельштейн",
+                    "popularity": 1.0791,
+                    "character": "Ivan"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Yura Borisov",
+                    "original_name": "Юра Борисов",
+                    "popularity": 2.938,
+                    "character": "Igor"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Karren Karagulian",
+                    "original_name": "Karren Karagulian",
+                    "popularity": 1.4457,
+                    "character": "Toros"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Vache Tovmasyan",
+                    "original_name": "Vache Tovmasyan",
+                    "popularity": 0.3857,
+                    "character": "Garnik"
                 },
                 {
                     "gender": 1,
                     "known_for_department": "Acting",
-                    "name": "Lela Lee",
-                    "original_name": "Lela Lee",
-                    "popularity": 1.0089,
-                    "character": "Yel Fan"
+                    "name": "Luna Sofía Miranda",
+                    "original_name": "Luna Sofía Miranda",
+                    "popularity": 0.3288,
+                    "character": "Lulu"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Lindsey Normington",
+                    "original_name": "Lindsey Normington",
+                    "popularity": 0.6223,
+                    "character": "Diamond"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Darya Ekamasova",
+                    "original_name": "Дарья Екамасова",
+                    "popularity": 1.0397,
+                    "character": "Galina Zakharov"
                 },
                 {
                     "gender": 2,
                     "known_for_department": "Acting",
-                    "name": "Ray Chang",
-                    "original_name": "Ray Chang",
-                    "popularity": 0.6946,
-                    "character": "Sean"
+                    "name": "Aleksey Serebryakov",
+                    "original_name": "Алексей Серебряков",
+                    "popularity": 2.5664,
+                    "character": "Nikolai Zakharov"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Anton Bitter",
+                    "original_name": "Anton Bitter",
+                    "popularity": 0.1315,
+                    "character": "Tom"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Ivy Wolk",
+                    "original_name": "Ivy Wolk",
+                    "popularity": 1.159,
+                    "character": "Crystal"
                 },
                 {
                     "gender": 0,
                     "known_for_department": "Acting",
-                    "name": "Paulino Tamayo",
-                    "original_name": "Paulino Tamayo",
-                    "popularity": 0.152,
-                    "character": "Heroine"
+                    "name": "Vlad Mamai",
+                    "original_name": "Vlad Mamai",
+                    "popularity": 0.0795,
+                    "character": "Aleks"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Maria Tichinskaya",
+                    "original_name": "Maria Tichinskaya",
+                    "popularity": 0.1395,
+                    "character": "Dasha"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Paul Weissman",
+                    "original_name": "Paul Weissman",
+                    "popularity": 0.4077,
+                    "character": "Nick"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Emily Weider",
+                    "original_name": "Emily Weider",
+                    "popularity": 0.1887,
+                    "character": "Nikki"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Vincent Radwinsky",
+                    "original_name": "Vincent Radwinsky",
+                    "popularity": 0.1642,
+                    "character": "Jimmy"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Brittney Rodriguez",
+                    "original_name": "Brittney Rodriguez",
+                    "popularity": 0.713,
+                    "character": "Dawn"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Sophia Carnabuci",
+                    "original_name": "Sophia Carnabuci",
+                    "popularity": 0.0965,
+                    "character": "Jenny"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Ella Rubin",
+                    "original_name": "Ella Rubin",
+                    "popularity": 2.7604,
+                    "character": "Vera"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Ross Brodar",
+                    "original_name": "Ross Brodar",
+                    "popularity": 0.8758,
+                    "character": "Mansion Day Guard"
+                },
+                {
+                    "gender": 3,
+                    "known_for_department": "Acting",
+                    "name": "Zoë Vnak",
+                    "original_name": "Zoë Vnak",
+                    "popularity": 0.1393,
+                    "character": "Rachel"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Morgan Charlton",
+                    "original_name": "Morgan Charlton",
+                    "popularity": 0.0785,
+                    "character": "Sunny"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Nazar Khamis",
+                    "original_name": "Nazar Khamis",
+                    "popularity": 0.1162,
+                    "character": "Vlad"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Charles Jang",
+                    "original_name": "Charles Jang",
+                    "popularity": 0.1647,
+                    "character": "Vegas Hotel Manager"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Lana Svidonovich",
+                    "original_name": "Lana Svidonovich",
+                    "popularity": 0.0937,
+                    "character": "Toros' Wife"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Masha Zhak",
+                    "original_name": "Masha Zhak",
+                    "popularity": 0.4692,
+                    "character": "Tatiana's Hostess"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Sebastian Conelli",
+                    "original_name": "Sebastian Conelli",
+                    "popularity": 0.4896,
+                    "character": "Tow Truck Driver"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Irina Finley",
+                    "original_name": "Irina Finley",
+                    "popularity": 0.083,
+                    "character": "Bartender"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Mariana Orozco Arango",
+                    "original_name": "Mariana Orozco Arango",
+                    "popularity": 0.0994,
+                    "character": "Pearl"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Artyom Trubnikov",
+                    "original_name": "Artyom Trubnikov",
+                    "popularity": 0.1068,
+                    "character": "Michael Sharnov"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Michael Sergio",
+                    "original_name": "Michael Sergio",
+                    "popularity": 0.5052,
+                    "character": "Judge"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Charlton Lamar",
+                    "original_name": "Charlton Lamar",
+                    "popularity": 0.4478,
+                    "character": "Court Guard"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Mickey O'Hagan",
+                    "original_name": "Mickey O'Hagan",
+                    "popularity": 0.7394,
+                    "character": "Divorce Center Clerk"
                 }
             ],
             "crew": [
                 {
                     "gender": 2,
+                    "known_for_department": "Production",
+                    "name": "Alex Coco",
+                    "original_name": "Alex Coco",
+                    "popularity": 1.0992,
+                    "department": "Production",
+                    "job": "Producer"
+                },
+                {
+                    "gender": 2,
                     "known_for_department": "Directing",
-                    "name": "Quentin Lee",
-                    "original_name": "Quentin Lee",
-                    "popularity": 0.7677,
+                    "name": "Sean Baker",
+                    "original_name": "Sean Baker",
+                    "popularity": 3.2528,
+                    "department": "Production",
+                    "job": "Producer"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Camera",
+                    "name": "Drew Daniels",
+                    "original_name": "Drew Daniels",
+                    "popularity": 1.6031,
+                    "department": "Camera",
+                    "job": "Director of Photography"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Samantha Quan",
+                    "original_name": "Samantha Quan",
+                    "popularity": 1.5087,
+                    "department": "Production",
+                    "job": "Producer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Costume & Make-Up",
+                    "name": "Jocelyn Pierce",
+                    "original_name": "Jocelyn Pierce",
+                    "popularity": 0.7359,
+                    "department": "Costume & Make-Up",
+                    "job": "Costume Design"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Costume & Make-Up",
+                    "name": "Annie Johnson",
+                    "original_name": "Annie Johnson",
+                    "popularity": 0.3346,
+                    "department": "Costume & Make-Up",
+                    "job": "Makeup Department Head"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Directing",
+                    "name": "Sean Baker",
+                    "original_name": "Sean Baker",
+                    "popularity": 3.2528,
                     "department": "Directing",
                     "job": "Director"
                 },
                 {
                     "gender": 2,
                     "known_for_department": "Directing",
-                    "name": "Quentin Lee",
-                    "original_name": "Quentin Lee",
-                    "popularity": 0.7677,
+                    "name": "Sean Baker",
+                    "original_name": "Sean Baker",
+                    "popularity": 3.2528,
                     "department": "Writing",
                     "job": "Writer"
                 },
                 {
-                    "gender": 2,
-                    "known_for_department": "Directing",
-                    "name": "Quentin Lee",
-                    "original_name": "Quentin Lee",
-                    "popularity": 0.7677,
-                    "department": "Production",
-                    "job": "Producer"
-                }
-            ]
-        },
-        "info": {
-            "adult": false,
-            "original_language": "en",
-            "original_title": "Flow",
-            "overview": "A filmmaker talks about his work and love life with an unseen friend behind the camera. We also watch four of his short films.",
-            "popularity": 0.739,
-            "release_date": "1996-01-01",
-            "title": "Flow",
-            "video": false,
-            "vote_average": 8.0,
-            "vote_count": 52,
-            "genres": [
-                "Drama",
-                "Comedy",
-                "Horror",
-                "Crime"
-            ]
-        }
-    },
-    "the other day": {
-        "cast": {
-            "cast": [],
-            "crew": [
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "John Warrin",
+                    "original_name": "John Warrin",
+                    "popularity": 0.9833,
+                    "department": "Sound",
+                    "job": "Supervising Sound Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "John Warrin",
+                    "original_name": "John Warrin",
+                    "popularity": 0.9833,
+                    "department": "Sound",
+                    "job": "Sound Re-Recording Mixer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "John Warrin",
+                    "original_name": "John Warrin",
+                    "popularity": 0.9833,
+                    "department": "Sound",
+                    "job": "Sound Designer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Writing",
+                    "name": "Christopher Phelps",
+                    "original_name": "Christopher Phelps",
+                    "popularity": 0.2245,
+                    "department": "Art",
+                    "job": "Set Decoration"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Ryan Scott Fitzgerald",
+                    "original_name": "Ryan Scott Fitzgerald",
+                    "popularity": 0.1924,
+                    "department": "Art",
+                    "job": "Art Direction"
+                },
                 {
                     "gender": 2,
-                    "known_for_department": "Directing",
-                    "name": "Phạm Hà Quang Minh",
-                    "original_name": "Phạm Hà Quang Minh",
-                    "popularity": 0.0071,
-                    "department": "Directing",
-                    "job": "Director"
+                    "known_for_department": "Art",
+                    "name": "Stephen Phelps",
+                    "original_name": "Stephen Phelps",
+                    "popularity": 1.5474,
+                    "department": "Art",
+                    "job": "Production Design"
                 },
                 {
                     "gender": 2,
                     "known_for_department": "Directing",
-                    "name": "Phạm Hà Quang Minh",
-                    "original_name": "Phạm Hà Quang Minh",
-                    "popularity": 0.0071,
+                    "name": "Sean Baker",
+                    "original_name": "Sean Baker",
+                    "popularity": 3.2528,
                     "department": "Editing",
                     "job": "Editor"
                 },
                 {
-                    "gender": 2,
-                    "known_for_department": "Directing",
-                    "name": "Phạm Hà Quang Minh",
-                    "original_name": "Phạm Hà Quang Minh",
-                    "popularity": 0.0071,
-                    "department": "Crew",
-                    "job": "Cinematography"
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Olivia Kavanaugh",
+                    "original_name": "Olivia Kavanaugh",
+                    "popularity": 0.2999,
+                    "department": "Production",
+                    "job": "Line Producer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Costume & Make-Up",
+                    "name": "Justine Sierakowski",
+                    "original_name": "Justine Sierakowski",
+                    "popularity": 0.2842,
+                    "department": "Costume & Make-Up",
+                    "job": "Hair Department Head"
                 },
                 {
                     "gender": 0,
                     "known_for_department": "Directing",
-                    "name": "Truong Quê Chi",
-                    "original_name": "Truong Quê Chi",
-                    "popularity": 0.0143,
+                    "name": "Albert Rudnitsky",
+                    "original_name": "Albert Rudnitsky",
+                    "popularity": 0.2009,
+                    "department": "Directing",
+                    "job": "Script Supervisor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Costume & Make-Up",
+                    "name": "Jonie Bertin",
+                    "original_name": "Jonie Bertin",
+                    "popularity": 0.2348,
+                    "department": "Costume & Make-Up",
+                    "job": "Assistant Costume Designer"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Production",
+                    "name": "Ken Meyer",
+                    "original_name": "Ken Meyer",
+                    "popularity": 1.6387,
+                    "department": "Production",
+                    "job": "Executive Producer"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Sound",
+                    "name": "Andy Hay",
+                    "original_name": "Andy Hay",
+                    "popularity": 1.4331,
+                    "department": "Sound",
+                    "job": "Supervising Sound Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Liza Mann",
+                    "original_name": "Liza Mann",
+                    "popularity": 0.1949,
+                    "department": "Directing",
+                    "job": "First Assistant Director"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Sound",
+                    "name": "Andy Hay",
+                    "original_name": "Andy Hay",
+                    "popularity": 1.4331,
+                    "department": "Sound",
+                    "job": "Sound Re-Recording Mixer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Clay Pecorin",
+                    "original_name": "Clay Pecorin",
+                    "popularity": 0.8135,
+                    "department": "Production",
+                    "job": "Executive Producer"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Production",
+                    "name": "Alison Cohen",
+                    "original_name": "Alison Cohen",
+                    "popularity": 2.014,
+                    "department": "Production",
+                    "job": "Executive Producer"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Production",
+                    "name": "Milan Popelka",
+                    "original_name": "Milan Popelka",
+                    "popularity": 1.8757,
+                    "department": "Production",
+                    "job": "Executive Producer"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Sound",
+                    "name": "Jesse Pomeroy",
+                    "original_name": "Jesse Pomeroy",
+                    "popularity": 1.4075,
+                    "department": "Sound",
+                    "job": "Dialogue Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Eman Akram Nader",
+                    "original_name": "Eman Akram Nader",
+                    "popularity": 0.3574,
+                    "department": "Art",
+                    "job": "Assistant Property Master"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Production",
+                    "name": "Glen Basner",
+                    "original_name": "Glen Basner",
+                    "popularity": 2.1083,
+                    "department": "Production",
+                    "job": "Executive Producer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Stephen Coleman",
+                    "original_name": "Stephen Coleman",
+                    "popularity": 0.3287,
+                    "department": "Directing",
+                    "job": "Second Second Assistant Director"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Brian Kuciak",
+                    "original_name": "Brian Kuciak",
+                    "popularity": 0.1422,
+                    "department": "Sound",
+                    "job": "Boom Operator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Kendra Eaves",
+                    "original_name": "Kendra Eaves",
+                    "popularity": 0.3809,
+                    "department": "Art",
+                    "job": "Property Master"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Sawyer Oubre",
+                    "original_name": "Sawyer Oubre",
+                    "popularity": 0.3532,
+                    "department": "Camera",
+                    "job": "Steadicam Operator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Mika Altskan",
+                    "original_name": "Mika Altskan",
+                    "popularity": 0.3853,
+                    "department": "Camera",
+                    "job": "\"B\" Camera Operator"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Sound",
+                    "name": "Jo Caron",
+                    "original_name": "Jo Caron",
+                    "popularity": 1.6846,
+                    "department": "Sound",
+                    "job": "Foley Mixer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Gabriel W. Armstrong",
+                    "original_name": "Gabriel W. Armstrong",
+                    "popularity": 0.2324,
+                    "department": "Camera",
+                    "job": "Best Boy Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Sofía Blanco",
+                    "original_name": "Sofía Blanco",
+                    "popularity": 0.1785,
+                    "department": "Directing",
+                    "job": "Second Assistant Director"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Adam Kopald",
+                    "original_name": "Adam Kopald",
+                    "popularity": 2.9249,
+                    "department": "Sound",
+                    "job": "Sound Effects Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Nick Pavey",
+                    "original_name": "Nick Pavey",
+                    "popularity": 0.682,
+                    "department": "Sound",
+                    "job": "Dialogue Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Nikita Zarkh",
+                    "original_name": "Nikita Zarkh",
+                    "popularity": 0.07,
+                    "department": "Sound",
+                    "job": "Boom Operator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Matthew Hearon-Smith",
+                    "original_name": "Matthew Hearon-Smith",
+                    "popularity": 0.3398,
+                    "department": "Sound",
+                    "job": "Music Supervisor"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Art",
+                    "name": "Murrie Rosenfeld",
+                    "original_name": "Murrie Rosenfeld",
+                    "popularity": 0.2741,
+                    "department": "Costume & Make-Up",
+                    "job": "Assistant Costume Designer"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Directing",
+                    "name": "Sean Baker",
+                    "original_name": "Sean Baker",
+                    "popularity": 3.2528,
+                    "department": "Production",
+                    "job": "Casting"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Production",
+                    "name": "Emily Fleischer",
+                    "original_name": "Emily Fleischer",
+                    "popularity": 0.8671,
+                    "department": "Production",
+                    "job": "Casting Associate"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Visual Effects",
+                    "name": "Kyle Zemborain",
+                    "original_name": "Kyle Zemborain",
+                    "popularity": 0.6151,
+                    "department": "Visual Effects",
+                    "job": "Visual Effects"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Róbert Pálos",
+                    "original_name": "Róbert Pálos",
+                    "popularity": 0.1189,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Alnazer Mohamad Fawzi",
+                    "original_name": "Alnazer Mohamad Fawzi",
+                    "popularity": 0.0823,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Connor Bewighouse",
+                    "original_name": "Connor Bewighouse",
+                    "popularity": 0.1001,
+                    "department": "Camera",
+                    "job": "Dolly Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Reece Clemmons",
+                    "original_name": "Reece Clemmons",
+                    "popularity": 0.0493,
+                    "department": "Lighting",
+                    "job": "Electrician"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "April Goldberg",
+                    "original_name": "April Goldberg",
+                    "popularity": 0.1707,
+                    "department": "Lighting",
+                    "job": "Best Boy Electric"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Jorge A. Gomez",
+                    "original_name": "Jorge A. Gomez",
+                    "popularity": 0.0688,
+                    "department": "Camera",
+                    "job": "Second Assistant Camera"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Aaron Herschlag",
+                    "original_name": "Aaron Herschlag",
+                    "popularity": 0.2273,
+                    "department": "Lighting",
+                    "job": "Electrician"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Katie Mlinek",
+                    "original_name": "Katie Mlinek",
+                    "popularity": 0.2313,
+                    "department": "Camera",
+                    "job": "Additional Second Assistant Camera"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Rachel Parrella",
+                    "original_name": "Rachel Parrella",
+                    "popularity": 0.1424,
+                    "department": "Camera",
+                    "job": "Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Kyle Petitjean",
+                    "original_name": "Kyle Petitjean",
+                    "popularity": 0.1489,
+                    "department": "Camera",
+                    "job": "First Assistant Camera"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Harrison Rusk",
+                    "original_name": "Harrison Rusk",
+                    "popularity": 0.1,
+                    "department": "Camera",
+                    "job": "Key Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Gabriel Eduardo Solorzano",
+                    "original_name": "Gabriel Eduardo Solorzano",
+                    "popularity": 0.381,
+                    "department": "Camera",
+                    "job": "Additional Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Caiya Sanchez-Strauss",
+                    "original_name": "Caiya Sanchez-Strauss",
+                    "popularity": 0.1608,
+                    "department": "Lighting",
+                    "job": "Additional Lighting Technician"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Autumn Stevens",
+                    "original_name": "Autumn Stevens",
+                    "popularity": 0.1287,
+                    "department": "Lighting",
+                    "job": "Electrician"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Crew",
+                    "name": "Manny Siverio",
+                    "original_name": "Manny Siverio",
+                    "popularity": 3.0888,
+                    "department": "Crew",
+                    "job": "Stunt Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Crew",
+                    "name": "Christopher Colombo",
+                    "original_name": "Christopher Colombo",
+                    "popularity": 0.1649,
+                    "department": "Crew",
+                    "job": "Stunt Coordinator"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Roberto Lopez",
+                    "original_name": "Roberto Lopez",
+                    "popularity": 1.4219,
+                    "department": "Crew",
+                    "job": "Stunt Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Acting",
+                    "name": "Acei Martin",
+                    "original_name": "Acei Martin",
+                    "popularity": 0.4331,
+                    "department": "Crew",
+                    "job": "Stunts"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Crew",
+                    "name": "Michael Viola",
+                    "original_name": "Michael Viola",
+                    "popularity": 1.1949,
+                    "department": "Crew",
+                    "job": "Stunts"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Olivia Kavanaugh",
+                    "original_name": "Olivia Kavanaugh",
+                    "popularity": 0.2999,
+                    "department": "Production",
+                    "job": "Unit Production Manager"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Samantha Quan",
+                    "original_name": "Samantha Quan",
+                    "popularity": 1.5087,
+                    "department": "Production",
+                    "job": "Additional Casting"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Crew",
+                    "name": "Adam Wood",
+                    "original_name": "Adam Wood",
+                    "popularity": 0.6285,
+                    "department": "Crew",
+                    "job": "Stunts"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Elizabeth Siegal",
+                    "original_name": "Elizabeth Siegal",
+                    "popularity": 0.0934,
+                    "department": "Production",
+                    "job": "Co-Producer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Crew",
+                    "name": "Rhyan Elliott",
+                    "original_name": "Rhyan Elliott",
+                    "popularity": 0.4082,
+                    "department": "Production",
+                    "job": "Production Supervisor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Erin Coco",
+                    "original_name": "Erin Coco",
+                    "popularity": 0.0813,
+                    "department": "Production",
+                    "job": "Production Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Adriana Alpizar",
+                    "original_name": "Adriana Alpizar",
+                    "popularity": 0.272,
+                    "department": "Production",
+                    "job": "Assistant Production Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Jared Greenberg",
+                    "original_name": "Jared Greenberg",
+                    "popularity": 0.0702,
+                    "department": "Production",
+                    "job": "Production Secretary"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Patricia Beaury",
+                    "original_name": "Patricia Beaury",
+                    "popularity": 0.0974,
+                    "department": "Production",
+                    "job": "Production Accountant"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Ross Brodar",
+                    "original_name": "Ross Brodar",
+                    "popularity": 0.8758,
+                    "department": "Production",
+                    "job": "Location Manager"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Production",
+                    "name": "Alex Coco",
+                    "original_name": "Alex Coco",
+                    "popularity": 1.0992,
+                    "department": "Crew",
+                    "job": "Post Production Supervisor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Editing",
+                    "name": "Matthew Miller",
+                    "original_name": "Matthew Miller",
+                    "popularity": 0.0814,
                     "department": "Editing",
-                    "job": "Supervising Film Editor"
+                    "job": "Assistant Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Production",
+                    "name": "Ben Wiseman",
+                    "original_name": "Ben Wiseman",
+                    "popularity": 0.1368,
+                    "department": "Production",
+                    "job": "Assistant Location Manager"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Camera",
+                    "name": "Jesse Vielleux",
+                    "original_name": "Jesse Vielleux",
+                    "popularity": 0.294,
+                    "department": "Camera",
+                    "job": "First Assistant Camera"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Stephanie Guzman",
+                    "original_name": "Stephanie Guzman",
+                    "popularity": 0.1292,
+                    "department": "Camera",
+                    "job": "Second Assistant Camera"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Augusta Quirk",
+                    "original_name": "Augusta Quirk",
+                    "popularity": 0.2079,
+                    "department": "Camera",
+                    "job": "Still Photographer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Lighting",
+                    "name": "Chris Hill",
+                    "original_name": "Chris Hill",
+                    "popularity": 0.7381,
+                    "department": "Lighting",
+                    "job": "Chief Lighting Technician"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Leo Pernia",
+                    "original_name": "Leo Pernia",
+                    "popularity": 0.0674,
+                    "department": "Art",
+                    "job": "Leadman"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Maddie Pflug",
+                    "original_name": "Maddie Pflug",
+                    "popularity": 0.0597,
+                    "department": "Art",
+                    "job": "Leadman"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Raph Fineberg",
+                    "original_name": "Raph Fineberg",
+                    "popularity": 0.2609,
+                    "department": "Art",
+                    "job": "Set Dresser"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Colin Phelan",
+                    "original_name": "Colin Phelan",
+                    "popularity": 0.1465,
+                    "department": "Art",
+                    "job": "Construction Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Art",
+                    "name": "Tyler Fiore",
+                    "original_name": "Tyler Fiore",
+                    "popularity": 0.0872,
+                    "department": "Art",
+                    "job": "Key Construction Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Boris Krichevsky",
+                    "original_name": "Boris Krichevsky",
+                    "popularity": 0.1219,
+                    "department": "Sound",
+                    "job": "Production Sound Mixer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Crew",
+                    "name": "Brian Schuley",
+                    "original_name": "Brian Schuley",
+                    "popularity": 0.6046,
+                    "department": "Crew",
+                    "job": "Special Effects Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Crew",
+                    "name": "Russell Chave",
+                    "original_name": "Russell Chave",
+                    "popularity": 0.0727,
+                    "department": "Crew",
+                    "job": "Picture Car Coordinator"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Alex Altman",
+                    "original_name": "Alex Altman",
+                    "popularity": 0.6141,
+                    "department": "Sound",
+                    "job": "Sound Mixer"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Steve Forbes",
+                    "original_name": "Steve Forbes",
+                    "popularity": 0.3754,
+                    "department": "Camera",
+                    "job": "Key Grip"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Béla Klingl",
+                    "original_name": "Béla Klingl",
+                    "popularity": 0.0723,
+                    "department": "Visual Effects",
+                    "job": "Visual Effects Supervisor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Árpád Koós",
+                    "original_name": "Árpád Koós",
+                    "popularity": 0.1945,
+                    "department": "Visual Effects",
+                    "job": "Visual Effects Supervisor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Tibor Sólyom",
+                    "original_name": "Tibor Sólyom",
+                    "popularity": 0.0878,
+                    "department": "Visual Effects",
+                    "job": "Visual Effects Production Manager"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Péter Csintalan",
+                    "original_name": "Péter Csintalan",
+                    "popularity": 0.0806,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Béla Klingl",
+                    "original_name": "Béla Klingl",
+                    "popularity": 0.0723,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Directing",
+                    "name": "Árpád Koós",
+                    "original_name": "Árpád Koós",
+                    "popularity": 0.1945,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "Zsanett Szántó",
+                    "original_name": "Zsanett Szántó",
+                    "popularity": 0.0954,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Visual Effects",
+                    "name": "András Zalavári",
+                    "original_name": "András Zalavári",
+                    "popularity": 0.0754,
+                    "department": "Visual Effects",
+                    "job": "VFX Artist"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Sound",
+                    "name": "D. Chris Smith",
+                    "original_name": "D. Chris Smith",
+                    "popularity": 2.1426,
+                    "department": "Sound",
+                    "job": "Sound Effects Editor"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Oliver Snook",
+                    "original_name": "Oliver Snook",
+                    "popularity": 0.138,
+                    "department": "Sound",
+                    "job": "Foley Artist"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Sound",
+                    "name": "Guy Francoeur",
+                    "original_name": "Guy Francoeur",
+                    "popularity": 1.0349,
+                    "department": "Sound",
+                    "job": "Foley Artist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Zoe Estes",
+                    "original_name": "Zoe Estes",
+                    "popularity": 0.3753,
+                    "department": "Sound",
+                    "job": "ADR Recordist"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Camera",
+                    "name": "Michael Belardi",
+                    "original_name": "Michael Belardi",
+                    "popularity": 0.2457,
+                    "department": "Camera",
+                    "job": "Helicopter Camera"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Directing",
+                    "name": "Ti West",
+                    "original_name": "Ti West",
+                    "popularity": 3.2539,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Peter Vack",
+                    "original_name": "Peter Vack",
+                    "popularity": 2.319,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Simon Rex",
+                    "original_name": "Simon Rex",
+                    "popularity": 3.3761,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Production",
+                    "name": "Adam Kersh",
+                    "original_name": "Adam Kersh",
+                    "popularity": 0.841,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Emily Weider",
+                    "original_name": "Emily Weider",
+                    "popularity": 0.1887,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Acting",
+                    "name": "Fred Berman",
+                    "original_name": "Fred Berman",
+                    "popularity": 0.8308,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 1,
+                    "known_for_department": "Acting",
+                    "name": "Bree Elrod",
+                    "original_name": "Bree Elrod",
+                    "popularity": 0.949,
+                    "department": "Crew",
+                    "job": "Thanks"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Joseph Capalbo",
+                    "original_name": "Joseph Capalbo",
+                    "popularity": 0.0848,
+                    "department": "Sound",
+                    "job": "Songs"
+                },
+                {
+                    "gender": 0,
+                    "known_for_department": "Sound",
+                    "name": "Lyusi Simon",
+                    "original_name": "Lyusi Simon",
+                    "popularity": 0.0486,
+                    "department": "Sound",
+                    "job": "Songs"
+                },
+                {
+                    "gender": 2,
+                    "known_for_department": "Art",
+                    "name": "Mark McGillivray",
+                    "original_name": "Mark McGillivray",
+                    "popularity": 0.539,
+                    "department": "Art",
+                    "job": "Title Designer"
                 }
-            ]
-        },
-        "info": {
-            "adult": false,
-            "original_language": "it",
-            "original_title": "Oggi, domani, dopodomani",
-            "overview": "Italian comedy film in three segments",
-            "popularity": 0.4267,
-            "release_date": "1965-12-28",
-            "title": "Kiss the Other Sheik",
-            "video": false,
-            "vote_average": 6.6,
-            "vote_count": 25,
-            "genres": [
-                "Comedy"
             ]
         }
     }

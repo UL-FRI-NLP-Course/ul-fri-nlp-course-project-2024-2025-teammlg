@@ -1,0 +1,9 @@
+{
+    "mode": "naive",
+    "sources": [
+        "tmdb",
+        "letterboxd",
+        "justwatch",
+        "wiki"
+    ]
+}
