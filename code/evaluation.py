@@ -138,8 +138,8 @@ class Evaluation:
 
                 # Removes the reasoning part
                 reply = re.sub("<think>(.|\r|\n)*?</think>", "", reply)
-                fullresponse = re.sub("<｜User｜>(.|\r|\n)*?<｜Assistant｜>", "", fullresponse)
-                fullresponse.replace("system\nYou are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.\nuser\n", "")
+                reply = re.sub("<｜User｜>(.|\r|\n)*?<｜Assistant｜>", "", reply)
+                reply = reply.replace("system\nYou are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.\nuser\n", "")
 
                 execution_times.append(time.time() - start)
 
