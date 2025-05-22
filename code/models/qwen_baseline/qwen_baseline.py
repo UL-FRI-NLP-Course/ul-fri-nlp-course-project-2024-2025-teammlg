@@ -5,7 +5,6 @@ import transformers
 
 class QwenBaseline(Model):
     def __init__(self, name, folder, datafolder, outname):
-        print("Model init start")
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
@@ -29,7 +28,6 @@ class QwenBaseline(Model):
 
         with open("./models/qwen_baseline/prompt_template_qwen.txt", "r") as fd:
             self.prompt_template = fd.read()
-        print("Model init done")
 
     def train(self):
         pass
@@ -81,7 +79,6 @@ class QwenBaseline(Model):
                 "role": "user", "content": prompt
             }
         ]
-        print("Tokenizer start")
         text = self.tokenizer.apply_chat_template(
             final_prompt,
             tokenize=False,
@@ -90,7 +87,7 @@ class QwenBaseline(Model):
         )
 
         input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
-        print("Tokenizer done")
+
         outputs = self.model.generate(
             **input_tokens,
             max_new_tokens=32768,
@@ -100,6 +97,5 @@ class QwenBaseline(Model):
         )
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
-        print("Generation done")
 
         return final_output, {"context":""}

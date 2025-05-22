@@ -44,5 +44,5 @@ if __name__ == "__main__":
 
     testreplies = ["dark knight is about many things", "sorry, can't help you"]
     testgts = ["The Dark Knight is a pychological...", "I don't know the answer"]
-    print(rougeL(testreplies, testgts))
-    print(bleu(testreplies, testgts))
+    #print(rougeL(testreplies, testgts))
+    #print(bleu(testreplies, testgts))

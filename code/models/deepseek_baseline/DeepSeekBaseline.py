@@ -5,11 +5,10 @@ import accelerate
 
 class DeepSeekBaseline():
     def __init__(self, name, folder, datafolder, outname):
-        print("Model init start")
         self.name = name
-        self.folder = folder # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
-        self.datafolder = datafolder # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
-        self.model_label = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.folder = folder 
+        self.datafolder = datafolder 
+        self.model_label = name
         self.chat_history = []
         self.outname = outname
         self.context = None
@@ -73,7 +72,6 @@ class DeepSeekBaseline():
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         #final_prompt = self.prompt_template.format(data=data, query=prompt)
-        print("Tokenizer start")
         messages = [{"role": "user", "content": prompt}]
 
         # Apply chat template to get the string-formatted prompt
@@ -85,7 +83,6 @@ class DeepSeekBaseline():
 
         # Tokenize to get input_ids and attention_mask
         inputs = self.tokenizer(chat_prompt, return_tensors="pt").to("cuda")
-        print("Tokenizer done")
         outputs = self.model.generate(
             **inputs,
             max_new_tokens=32768,
@@ -95,7 +92,6 @@ class DeepSeekBaseline():
         )
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
-        print("Generation done")
         return final_output, {"context":""}
 
 if __name__ == "__main__":

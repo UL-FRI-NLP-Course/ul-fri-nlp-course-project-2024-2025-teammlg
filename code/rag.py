@@ -35,13 +35,11 @@ class Rag():
             print("en_core_web_sm load failed!")
             self.nlp = None
 
-        print("Started looking for stopwords")
         with open('./data/stopwords-en.txt', "r") as f:
             self.stop_words = f.readlines()
             self.stop_words = [word.strip() for word in self.stop_words]
         self.phrases = self.extract_keyphrases(prompt)
-        print(self.phrases)
-        print("Finished looking for stopwords")
+
         if scraper: # probably irrelevant, just in case we ever wanna use a different scraper
             self.scraper = scraper
         else:
@@ -54,7 +52,6 @@ class Rag():
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
-        print("Started POS tagger")
         tagger = POStagger()
         tagged = tagger.tag(prompt)
 
@@ -64,8 +61,7 @@ class Rag():
             tagged["key"] = list(set(tokens))
         else:
             tokens = []
-            tagged["key"] = []
-        print("Finished POS tagger") 	
+            tagged["key"] = []	
         return tagged
     
     # returns context that goes into a model and state that goes into logger
@@ -79,7 +75,6 @@ class Rag():
                 context = open(self.scraper.files[key], errors="ignore").read()
                 data += context
         elif self.mode == "advanced":
-            print("Started summarizing")
             summarizer = Summarizer()
             state["summaries"] = []
             for key in self.scraper.files.keys():
@@ -89,7 +84,6 @@ class Rag():
                         summary = summarizer.summarize(context, i)
                         data += summary
                         state["summaries"].append(summary)
-            print("Finished summarizing")
 
             print(f"Summary: {data}")
 

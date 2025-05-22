@@ -27,6 +27,3 @@ class POStagger:
 
         else:
             return None
-        
-    #TODO multiple models + voting scheme??
-

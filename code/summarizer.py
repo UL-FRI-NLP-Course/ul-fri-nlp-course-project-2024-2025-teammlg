@@ -12,7 +12,6 @@ class Summarizer:
         self.nlp.add_pipe("biasedtextrank")
 
     def summarize(self, file, entity_of_interest):
-        # TODO fix Token indices sequence length is longer than the specified maximum sequence length for this model (666 > 512).
         with open(file, 'r', encoding='UTF-8') as f:
             document = f.read()
             document = (

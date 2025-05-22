@@ -1,7 +1,9 @@
+print("Loading models (could take up to 30 minutes)...")
 import os
 os.environ["GIT_PYTHON_REFRESH"] = "quiet"
 import git
 import sys
+import argparse
 from contextlib import contextmanager
 @contextmanager
 def suppress_stdout():
@@ -47,6 +49,7 @@ class ConversationEvaluation:
             fullresponse, state = self.model.prompt_stream(prompt, data="")
             fullresponse = re.sub("<think>(.|\r|\n)*?</think>", "", fullresponse)
             fullresponse = re.sub("<｜User｜>(.|\r|\n)*?<｜Assistant｜>", "", fullresponse)
+            fullresponse.replace("system\nYou are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.\nuser\n", "")
             print(fullresponse)
 
             evaldict = {"query": prompt, "reply": fullresponse}
@@ -97,15 +100,25 @@ if __name__ == "__main__":
     deepseek_outname = "deepseek_r1_8b"
     qwen_name = "Qwen/Qwen3-8B"
     qwen_outname = "qwen3_8b"
-    with suppress_stdout():
-        #deepseekbaseline = DeepSeekBaseline(deepseek_name, "models/deepseek_baseline", "data/scraped_data", deepseek_outname+"_baseline")
-        #deepseek = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_naive")
-        deepseekadvanced = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_advanced", mode="advanced")
-        #qwenbaseline = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline")
-        #qwen = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive")
-        #qwenadvanced = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced")
 
-    #e = ConversationEvaluation(qwenadvanced)
-    #e = ConversationEvaluation(qwen)
-    e = ConversationEvaluation(deepseekadvanced)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", help="Specify which model to use. Options: deepseek_baseline, deepseek_naive, deepseek_advanced, qwen_baseline, qwen_naive, qwen_advanced.", required=True, action='store')
+    args = parser.parse_args()
+    with suppress_stdout():
+        if args.model == "deepseek_baseline":
+            chosen_model = DeepSeekBaseline(deepseek_name, "models/deepseek_baseline", "data/scraped_data", deepseek_outname+"_baseline")
+        elif args.model == "deepseek_naive":
+            chosen_model = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_naive")
+        elif args.model == "deepseek_advanced":
+            chosen_model = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_advanced", mode="advanced")
+        elif args.model == "qwen_baseline":
+            chosen_model = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline")
+        elif args.model == "qwen_naive":
+            chosen_model = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive")
+        elif args.model == "qwen_advanced":
+            chosen_model = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced")
+        else:
+            raise "Wrong model name, please try again. Options: deepseek_baseline, deepseek_naive, deepseek_advanced, qwen_baseline, qwen_naive, qwen_advanced."
+
+    e = ConversationEvaluation(chosen_model)
     results = e.evaluate()

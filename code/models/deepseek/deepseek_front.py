@@ -9,12 +9,11 @@ import transformers
 
 class DeepSeekFilmChatBot(Model):
     def __init__(self, name, folder, datafolder, outname, sources=["tmdb", "letterboxd", "justwatch", "wiki"], mode="naive"):
-        print("Model init start")
         self.name = name
         self.folder = folder
         self.datafolder = datafolder
         self.sources = sources
-        self.model_label = name  # The name of the model for Ollama to download (all models here: https://ollama.com/search)
+        self.model_label = name 
         self.outname = outname
         self.chat_history = []
         self.mode = mode
@@ -34,7 +33,6 @@ class DeepSeekFilmChatBot(Model):
 
         with open("./models/deepseek/prompt_template_deepseek.txt", "r") as fd:
             self.prompt_template = fd.read()
-        print("Model init done")
 
     def train(self):
         pass
@@ -89,7 +87,6 @@ class DeepSeekFilmChatBot(Model):
         rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
         self.context, state = rag.get_context()
 
-        print("Tokenizer start")
         messages = [{"role": "user", "content": prompt}]
 
         input_tokens = self.tokenizer.apply_chat_template(
@@ -98,9 +95,7 @@ class DeepSeekFilmChatBot(Model):
             tokenize=False
         )
         
-
         input_tokens = self.tokenizer(input_tokens, return_tensors="pt").to("cuda")
-        print("Tokenizer done")
         
         outputs = self.model.generate(
             **input_tokens,
@@ -109,11 +104,9 @@ class DeepSeekFilmChatBot(Model):
             temperature=self.temperature,
             eos_token_id=self.tokenizer.eos_token_id
         )
-        
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
-        print("Generation done")
-        
+
         self.session.add_user_query(prompt)
         self.session.add_assistant_response(str(final_output))
 

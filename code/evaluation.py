@@ -1,15 +1,25 @@
 import re
 import os
-
+import argparse
 os.environ["GIT_PYTHON_REFRESH"] = "quiet"
 import git
+import sys
+from contextlib import contextmanager
+@contextmanager
+def suppress_stdout():
+    with open(os.devnull, "w") as devnull:
+        old_stdout = sys.stdout
+        sys.stdout = devnull
+        try:  
+            yield
+        finally:
+            sys.stdout = old_stdout
 from models import *
 import datetime
 import json
 import random
 import time
 from metrics import *
-print("imports done")
 
 class Evaluation:
     # so the idea is: you can evaluate models on a specific movie you pass as an argument, or the evaluator will pick a random one from this list for each query
@@ -92,7 +102,7 @@ class Evaluation:
         session_folder = self.get_session_folder()
 
         for model in self.models:
-            print("Evaluating", model.name, ":")
+            print("Evaluating", model.name, model.mode, ":")
             results = []
             execution_times = []
             contexts = []
@@ -128,6 +138,8 @@ class Evaluation:
 
                 # Removes the reasoning part
                 reply = re.sub("<think>(.|\r|\n)*?</think>", "", reply)
+                fullresponse = re.sub("<｜User｜>(.|\r|\n)*?<｜Assistant｜>", "", fullresponse)
+                fullresponse.replace("system\nYou are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.\nuser\n", "")
 
                 execution_times.append(time.time() - start)
 
@@ -139,14 +151,13 @@ class Evaluation:
                     print("Reply:", reply, "\n\n")
 
                 results.append(str(reply))
-                print("Store result")
                 contexts.append(state["context"])
-                print("Store context")
 
             outf = self.write_replies(queries, results, model.folder)
             self.write_params(outf, model)
             self.write_results(outf, queries, results, contexts, execution_times, gts)
-            self.write_contexts(self.queries, contexts, outf)
+            self.write_contexts(queries, contexts, outf)
+            self.write_combined(queries, results, contexts, gts, outf)
 
             with open(
                 session_folder + "/" + model.outname + "_" + model.mode + ".json", "a"
@@ -230,6 +241,14 @@ class Evaluation:
             json.dump(out, outfile, indent=4)
 
         return outfolder
+    
+    def write_combined(self, queries, replies, contexts, gts, outfolder):
+        out = [{"user_input": q, "contexts": c, "response": r, "ground_truth": g} for q, c, r, g in zip(queries, contexts, replies, gts)]
+
+        with open(outfolder + "/combined_data_for_evaluation.json", "w") as outfile:
+            json.dump(out, outfile, indent=4)
+
+        return outfolder
 
 
 if __name__ == "__main__":
@@ -238,20 +257,26 @@ if __name__ == "__main__":
     qwen_name = "Qwen/Qwen3-8B"
     qwen_outname = "qwen3_8b"
 
-    deepseekbaseline = DeepSeekBaseline(deepseek_name, "models/deepseek_baseline", "data/scraped_data", deepseek_outname+"_baseline")
-    deepseek = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_naive")
-    deepseekadvanced = DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_advanced", mode="advanced")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", help="Specify which models to use (comma separated (no space), if you want multiple). Options: deepseek_baseline, deepseek_naive, deepseek_advanced, qwen_baseline, qwen_naive, qwen_advanced.", required=True, action='store')
+    args = parser.parse_args()
+    chosen_models = str(args.model).split(",")
+
+    models = []
+    with suppress_stdout():
+        if "deepseek_baseline" in chosen_models:
+            models.append(DeepSeekBaseline(deepseek_name, "models/deepseek_baseline", "data/scraped_data", deepseek_outname+"_baseline"))
+        if "deepseek_naive" in chosen_models:
+            models.append(DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_naive"))
+        if "deepseek_advanced" in chosen_models:
+            models.append(DeepSeekFilmChatBot(deepseek_name, "models/deepseek", "data/scraped_data", deepseek_outname+"_advanced", mode="advanced"))
+        if "qwen_baseline" in chosen_models:
+            models.append(QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline"))
+        if "qwen_naive" in chosen_models:
+            models.append(QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive"))
+        if "qwen_advanced" in chosen_models:
+            models.append(QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced"))
     
-    qwenbaseline = QwenBaseline(qwen_name, "models/qwen_baseline", "data/scraped_data", qwen_outname+"_baseline")
-    qwen = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_naive")
-    qwenadvanced = QwenChatBot(qwen_name, "models/qwen", "data/scraped_data", qwen_outname+"_advanced", mode="advanced")
-    
-    # add new models here
-    #models = [deepseekbaseline, deepseek, deepseekadvanced, qwenbaseline, qwen, qwenadvanced]
-    # models = [deepseekadvanced, qwen]
-    # models = [deepseek, qwen]
-    #models = [deepseek]
-    models = [deepseekbaseline, deepseek, qwenbaseline, qwen]
     e = Evaluation(models, "data/evaluation_questions.txt")
     #results = e.evaluate()
     gteval = e.evaluateGT("data/evaluation_questions.json", printout=True)

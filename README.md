@@ -25,12 +25,12 @@ Run the following command to create an interactive session:
 srun --job-name "chatbot testing" --cpus-per-task 4 --mem-per-cpu 1500 --time 30:00 --gres=gpu:2 --partition=gpu --pty bash
 ```
 
-Then run:
+Then run the following (you have to specify which model you want to use, options are: deepseek_baseline, deepseek_naive, deepseek_advanced, qwen_baseline, qwen_naive, qwen_advanced):
 ```bash
-singularity exec --nv ../../containers/nlp-v1.sif python ./conversation_evaluation.py
+singularity exec --nv ../../containers/nlp-v1.sif python ./conversation_evaluation.py --model qwen_naive
 ```
 
-The <code>></code> symbol indicates that the system is waiting for your query. Response generation typically takes around 30 seconds. To finish the current session type <code>quit</code>.
+Shard loading can take up to 30 minutes. The <code>></code> symbol indicates that the system is waiting for your query. Response generation typically takes around 30 seconds. To terminate the current session type <code>quit</code>.
 
 
 
