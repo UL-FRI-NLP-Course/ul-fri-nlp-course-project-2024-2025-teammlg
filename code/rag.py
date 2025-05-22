@@ -78,12 +78,15 @@ class Rag():
             summarizer = Summarizer()
             state["summaries"] = []
             for key in self.scraper.files.keys():
-                context = self.scraper.files[key]
-                for key, item in self.phrases.items():
+                context = open(self.scraper.files[key], errors="ignore").read()
+                summary = summarizer.extract_important(context, self.prompt)
+                data += summary
+                state["summaries"].append(summary)
+                """for key, item in self.phrases.items():
                     for i in item:
-                        summary = summarizer.summarize(context, i)
+                        summary = summarizer.extract_important(context, i)
                         data += summary
-                        state["summaries"].append(summary)
+                        state["summaries"].append(summary)"""
 
             print(f"Summary: {data}")
 
