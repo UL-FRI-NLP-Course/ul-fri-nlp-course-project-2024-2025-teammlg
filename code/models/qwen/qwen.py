@@ -92,27 +92,28 @@ class QwenChatBot(Model):
                 "role": "user", "content": prompt
             }
         ]
-        
-        text = self.tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-            enable_thinking=False
-        )
-        
-        input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
 
-        outputs = self.model.generate(
-            **input_tokens,
+        pipeline = transformers.pipeline(
+            "text-generation",
+            model=self.model,
+            tokenizer=self.tokenizer,
+            use_cache=False,
+            truncation=True,
+            device_map="auto",
             max_new_tokens=32768,
-            pad_token_id=self.pad_token_id,
-            temperature=self.temperature,
-            eos_token_id=self.tokenizer.eos_token_id
+            do_sample=True,
+            num_return_sequences=1,
+            eos_token_id=self.tokenizer.eos_token_id,
+            pad_token_id=self.tokenizer.eos_token_id,
+            temperature=0.6
         )
 
-        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+        with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
+            template = fd.read()
 
-        self.session.add_user_query(prompt)
-        self.session.add_assistant_response(str(final_output))
+        template = template.format(data=self.context, query=prompt)
+
+        output_dict = pipeline(template)
+        final_output = output_dict[0]["generated_text"][len(template) :]
 
         return final_output, state
