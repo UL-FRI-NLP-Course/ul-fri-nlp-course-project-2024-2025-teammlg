@@ -16,7 +16,22 @@ Then navigate into <code>code</code> directory and run:
 sbatch ./sling-run.sh
 ```
 
-to run the evaluation.
+to run the evaluation (you have to be in code directory for relative imports to work).
+
+
+## Chatbot usage
+Run the following command to create an interactive session:
+```bash
+srun --job-name "chatbot testing" --cpus-per-task 4 --mem-per-cpu 1500 --time 30:00 --gres=gpu:2 --partition=gpu --pty bash
+```
+
+Then run:
+```bash
+singularity exec --nv ../../containers/nlp-v1.sif python ./conversation_evaluation.py
+```
+
+The <code>></code> symbol indicates that the system is waiting for your query. Response generation typically takes around 30 seconds. To finish the current session type <code>quit</code>.
+
 
 
 ## Functionality

@@ -72,7 +72,6 @@ class DeepSeekBaseline():
             self.generation_thread.join()
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
-        """Feeds the prompt to the model, returning its response"""
         #final_prompt = self.prompt_template.format(data=data, query=prompt)
         print("Tokenizer start")
         messages = [{"role": "user", "content": prompt}]
@@ -94,11 +93,6 @@ class DeepSeekBaseline():
             temperature=self.temperature,
             eos_token_id=self.tokenizer.eos_token_id
         )
-
-        """final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text"""
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
         print("Generation done")
