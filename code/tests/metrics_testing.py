@@ -36,6 +36,7 @@ print(score)"""
 
 # pip install pydantic
 # pip install lm-format-enforcer
+# pip install json-repair
 
 print("start load libraries")
 from time import time
@@ -46,6 +47,10 @@ import re
 start = time()
 import torch
 print(f"torch loaded: {time() - start}s")
+
+start = time()
+import json_repair
+print(f"json_repair loaded: {time() - start}s")
 
 start = time()
 import transformers
@@ -74,23 +79,24 @@ CACHE_DIR = "/d/hpc/projects/onj_fri/teammlg/models"
 #os.environ["HF_HOME"] = "/d/hpc/projects/onj_fri/teammlg/models"
 
 # https://www.deepeval.com/guides/guides-using-custom-llms
-class CustomLlama3_8B(DeepEvalBaseLLM): 
+class CustomLlama3_8B(DeepEvalBaseLLM):
     def __init__(self):
         # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
         # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
         # meta-llama/Meta-Llama-3-70B-Instruct
         # meta-llama/Meta-Llama-3-8B-Instruct
-        self.model_label = "meta-llama/Llama-3.1-8B-Instruct"
-        
+        # meta-llama/Meta-Llama-3.1-8B-Instruct
+        self.model_label = "meta-llama/Meta-Llama-3.1-8B-Instruct"
+
         quantization_config = transformers.BitsAndBytesConfig(
             load_in_4bit=True,
             bnb_4bit_compute_dtype=torch.float16,
             bnb_4bit_quant_type="nf4",
-            bnb_4bit_use_double_quant=True,
+            bnb_4bit_use_double_quant=True
         )
 
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(
-            self.model_label, 
+            self.model_label,
             cache_dir=CACHE_DIR
         )
         self.temperature = 0.7
@@ -98,8 +104,8 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             self.model_label,
             device_map="auto",
             torch_dtype="bfloat16",
-            cache_dir=CACHE_DIR,
-            quantization_config=quantization_config
+            cache_dir=CACHE_DIR
+            #quantization_config=quantization_config
         )
 
         self.pad_token_id = self.tokenizer.eos_token_id
@@ -115,17 +121,16 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             use_cache=True,
             truncation=True,
             device_map="auto",
-            max_length=4096,
+            max_new_tokens=4096,
             do_sample=False,
-            num_return_sequences=1,
             eos_token_id=self.tokenizer.eos_token_id,
-            pad_token_id=self.tokenizer.eos_token_id,
-            temperature=self.temperature,
-            top_k=0,
-            top_p=1.0,
-            repetition_penalty=1.0,
-            no_repeat_ngram_size=3
+            pad_token_id=self.tokenizer.eos_token_id
         )
+        """,
+        temperature=self.temperature,
+        top_k=0,
+        top_p=0.9,
+        repetition_penalty=1.1"""
 
         # Create parser required for JSON confinement using lmformatenforcer
         parser = JsonSchemaParser(schema.model_json_schema())
@@ -133,16 +138,21 @@ class CustomLlama3_8B(DeepEvalBaseLLM):
             pipeline.tokenizer, parser
         )
 
+        prompt = prompt[:-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than 2 sentences.\nJSON:"
+
+        #print("schema.model_json_schema():", schema.model_json_schema())
+
         # Output and load valid JSON
         output_dict = pipeline(prompt, prefix_allowed_tokens_fn=prefix_function)
         output = output_dict[0]["generated_text"][len(prompt) :]
-        output = output.replace("\r", "")
+        print("Prompt:", prompt)
+        print("Raw output:", output, flush=True)
+
         try:
-            json_result = json.loads(output, strict=False)
+            json_result = json_repair.loads(output)
         except json.JSONDecodeError:
-            print("Raw output:", output, flush=True)
-            print("Raw output:", repr(output), flush=True)
-            
+            print("Error output:", repr(output), flush=True)
+
 
         # Return valid JSON object according to the schema DeepEval supplied
         return schema(**json_result)
@@ -173,53 +183,54 @@ contexts = ["The Dark Knight from the year 2008 (Christopher Nolan). Batman rais
 response="\n\n\"The Dark Knight\" explores several key themes:\n\n1. **Hero-Visa Duality**: Jack Nicholson, as the Dark Knight, seeks to protect others but ends up being harmed by a criminal gang that resembles the \"Kingsmen of the Dead.\"\n\n2. **Identity and Manipulation**: The film delves into how Jack sees himself\u2014both hero and villain\u2014and his actions sometimes seem manipulative.\n\n3. **Family Dynamics**: There's a tension between Jack and Harold Hurwitz, where Jack tries to protect others but may exploit their strength.\n\n4. **Power and Control**: The Gang's influence is both a threat and a source of strength for Jack, highlighting power dynamics within the narrative.\n\n5. **Social Commentary**: Despite its humor, \"The Dark Knight\" also touches on broader social issues, offering a critical look at the corrupting effects of certain behaviors.\n\nThese themes together create a complex exploration of Jack's multifaceted journey and his place in a world that feels both familiar and familiarized with his past."
 ground_truth = "The Dark Knight (2008), directed by Christopher Nolan, explores several deep and interconnected themes. The main ones include:\n\n\t1. Chaos vs. Order: The Joker represents chaos, anarchy, and unpredictability, while Batman and the authorities strive to maintain order. The film explores how fragile societal structures are when challenged by extreme forces.\n\n\t2. Moral Ambiguity and Duality: The film questions traditional notions of good and evil. Batman must bend ethical lines to fight crime, while Harvey Dent’s transformation into Two-Face shows how easily a hero can fall.\n\n\t3. Justice vs. Vengeance: Batman operates outside the law but seeks justice, whereas characters like Dent blur the line by giving in to vengeance when wronged.\n\n\t4. The Nature of Heroism: The film challenges the idea of what makes someone a hero. Batman chooses to be seen as a villain to protect Gotham's hope, highlighting the theme of self-sacrifice for the greater good.\n\n\t5. Fear and Corruption: Fear is used as both a weapon and a shield, while Gotham's institutions are portrayed as vulnerable to corruption—something both Batman and the Joker exploit in different ways."
 
-import deepeval
 from deepeval.metrics import GEval, AnswerRelevancyMetric, FaithfulnessMetric, ContextualPrecisionMetric, ContextualRecallMetric, ContextualRelevancyMetric
 from deepeval.test_case import LLMTestCaseParams, LLMTestCase
 from deepeval import evaluate
 
+include_reason = False
+
 metrics = []
-metric_correctness = GEval(
+"""metric_correctness = GEval(
     name="Correctness",
     criteria="Check whether the facts in 'actual output' contradicts any facts in 'expected output'. If the actual output omits some facts, it's okay as long as it doesn’t contradict or distort the expected facts. If the task is to recommend or suggest items (e.g., movies), do not check for exact matches with expected output, instead check if the recommendations are similar in genre, theme, tone, or relevance.",
     model=custom_llm,
     evaluation_params=[LLMTestCaseParams.INPUT, LLMTestCaseParams.ACTUAL_OUTPUT, LLMTestCaseParams.EXPECTED_OUTPUT],
     verbose_mode=True
 )
-metrics.append(metric_correctness)
+metrics.append(metric_correctness)"""
 
 metric_answer_relevancy = AnswerRelevancyMetric(
     threshold=0.5,
     model=custom_llm,
-    include_reason=True
+    include_reason=include_reason
 )
 metrics.append(metric_answer_relevancy)
 
 metric_faithfulness = FaithfulnessMetric(
     threshold=0.5,
     model=custom_llm,
-    include_reason=True
+    include_reason=include_reason
 )
 metrics.append(metric_faithfulness)
 
 metric_contextual_precision = ContextualPrecisionMetric(
     threshold=0.5,
     model=custom_llm,
-    include_reason=True
+    include_reason=include_reason
 )
 metrics.append(metric_contextual_precision)
 
 metric_contextual_recall = ContextualRecallMetric(
     threshold=0.5,
     model=custom_llm,
-    include_reason=True
+    include_reason=include_reason
 )
 metrics.append(metric_contextual_recall)
 
 metric_contextual_relevancy = ContextualRelevancyMetric(
     threshold=0.5,
     model=custom_llm,
-    include_reason=True
+    include_reason=include_reason
 )
 metrics.append(metric_contextual_relevancy)
 

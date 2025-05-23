@@ -21,4 +21,5 @@ singularity exec ./containers/nlp-v1.sif pip install beautifulsoup4
 singularity exec ./containers/nlp-v1.sif pip install wikipedia
 singularity exec ./containers/nlp-v1.sif pip install lm-format-enforcer
 singularity exec ./containers/nlp-v1.sif pip install bitsandbytes
+singularity exec ./containers/nlp-v1.sif pip install json-repair
 mkdir logs
