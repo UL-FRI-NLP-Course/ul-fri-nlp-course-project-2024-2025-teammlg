@@ -93,7 +93,9 @@ class QwenBaseline(Model):
             max_new_tokens=32768,
             pad_token_id=self.pad_token_id,
             temperature=self.temperature,
-            eos_token_id=self.tokenizer.eos_token_id
+            eos_token_id=self.tokenizer.eos_token_id,
+            repetition_penalty=1.2,
+            length_penalty=0.9
         )
 
         final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]

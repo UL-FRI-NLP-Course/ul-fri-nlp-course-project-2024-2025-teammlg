@@ -1,11 +1,8 @@
 {
-    "Anora": {
+    "Drive": {
         "services": [
             [
-                "JioHotstar",
-                "VI movies and tv",
-                "Zee5",
-                "Amazon Video"
+                "Amazon Prime Video"
             ]
         ]
     }

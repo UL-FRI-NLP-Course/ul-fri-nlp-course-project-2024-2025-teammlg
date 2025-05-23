@@ -92,8 +92,34 @@ class QwenChatBot(Model):
                 "role": "user", "content": prompt
             }
         ]
+        
+        text = self.tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=False
+        )
+        
+        input_tokens = self.tokenizer(text, return_tensors="pt").to('cuda')
 
-        pipeline = transformers.pipeline(
+        outputs = self.model.generate(
+            **input_tokens,
+            max_new_tokens=32768,
+            pad_token_id=self.pad_token_id,
+            temperature=self.temperature,
+            eos_token_id=self.tokenizer.eos_token_id,
+            repetition_penalty=1.2,
+            length_penalty=0.9
+        )
+
+        final_output = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
+
+        self.session.add_user_query(prompt)
+        self.session.add_assistant_response(str(final_output))
+
+        return final_output, state
+
+        """pipeline = transformers.pipeline(
             "text-generation",
             model=self.model,
             tokenizer=self.tokenizer,
@@ -116,4 +142,4 @@ class QwenChatBot(Model):
         output_dict = pipeline(template)
         final_output = output_dict[0]["generated_text"][len(template) :]
 
-        return final_output, state
+        return final_output, state"""
