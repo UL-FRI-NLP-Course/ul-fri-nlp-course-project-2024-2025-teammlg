@@ -25,12 +25,14 @@ print(f"json_repair loaded: {time() - start}s")
 start = time()
 import transformers
 print(f"transformers loaded: {time() - start}s")
+
 start = time()
 from deepeval.models import DeepEvalBaseLLM
 print(f"deepeval loaded: {time() - start}s")
+
 start = time()
 from pydantic import BaseModel
-print(f"deepeval loaded: {time() - start}s")
+print(f"pydantic loaded: {time() - start}s")
 
 start = time()
 from lmformatenforcer import JsonSchemaParser
@@ -247,7 +249,7 @@ for metric_name, metric_scores in scores.items():
     print(f"\tMedian: {score_median}")
     print(f"\tMaximum: {score_max}")
     print(f"\tMinimum: {score_min}")
-    print(f"\tStd. Deviation: {score_deviation}:")
+    print(f"\tStd. Deviation: {score_deviation}")
 
 
 
