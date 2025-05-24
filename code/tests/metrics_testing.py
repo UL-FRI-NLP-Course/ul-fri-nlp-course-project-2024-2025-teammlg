@@ -29,6 +29,10 @@ from deepeval import evaluate
 print(f"deepeval loaded: {time() - start}s")
 
 start = time()
+from accelerate import Accelerator
+print(f"accelerate loaded: {time() - start}s")
+
+start = time()
 from pydantic import BaseModel
 print(f"pydantic loaded: {time() - start}s")
 
@@ -72,18 +76,22 @@ class EvaluationModel(DeepEvalBaseLLM):
             bnb_4bit_use_double_quant=True
         )
 
+        self.accelerator = Accelerator()
+
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_label,
             cache_dir=cache_dir,
             token=hugging_face_token
         )
+
         self.model = AutoModelForCausalLM.from_pretrained(
             self.model_label,
-            device_map="auto",
             torch_dtype="bfloat16",
             cache_dir=cache_dir,
             token=hugging_face_token
         )
+        self.model = self.accelerator.prepare(self.model)
+
         super().__init__(model_name=model_name, *args, **kwargs)
 
         self.pad_token_id = self.tokenizer.eos_token_id
@@ -92,7 +100,7 @@ class EvaluationModel(DeepEvalBaseLLM):
         return self.model
 
     def generate(self, prompt: str, schema: BaseModel):
-        generator = pipeline(
+        """generator = pipeline(
             "text-generation",
             model=self.load_model(),
             tokenizer=self.tokenizer,
@@ -100,35 +108,50 @@ class EvaluationModel(DeepEvalBaseLLM):
             truncation=True,
             device_map="auto",
             max_new_tokens=4096,
-            do_sample=False,
+            do_sample=True,
             eos_token_id=self.tokenizer.eos_token_id,
             pad_token_id=self.tokenizer.eos_token_id
+        )"""
+
+        prompt = prompt[:-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than few sentences.\nJSON:"
+
+        # Create parser required for JSON confinement using lmformatenforcer
+        parser = JsonSchemaParser(schema.model_json_schema())
+        prefix_function = build_transformers_prefix_allowed_tokens_fn(
+            self.tokenizer, parser
         )
+
+        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.accelerator.device)
+
+        output_ids = self.model.generate(
+            **inputs,
+            max_new_tokens=4096,
+            do_sample=True,
+            eos_token_id=self.tokenizer.eos_token_id,
+            pad_token_id=self.tokenizer.eos_token_id,
+            prefix_allowed_tokens_fn=prefix_function
+        )
+
+        decoded = self.tokenizer.decode(output_ids[0], skip_special_tokens=True)
+        output = decoded[len(prompt):]
+
         # Additional parameters to consider:
         # temperature
         # top_k
         # top_p
         # repetition_penalty
 
-        # Create parser required for JSON confinement using lmformatenforcer
-        parser = JsonSchemaParser(schema.model_json_schema())
-        prefix_function = build_transformers_prefix_allowed_tokens_fn(
-            generator.tokenizer, parser
-        )
-
-        prompt = prompt[:-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than few sentences.\nJSON:"
-
         # Output and load valid JSON
-        output_dict = generator(prompt, prefix_allowed_tokens_fn=prefix_function)
-        output = output_dict[0]["generated_text"][len(prompt) :]
-        print("Prompt:", prompt)
-        print("Raw output:", output, flush=True)
+        #output_dict = generator(prompt, prefix_allowed_tokens_fn=prefix_function)
+        #output = output_dict[0]["generated_text"][len(prompt) :]
+        #print("Prompt:", prompt)
+        #print("Raw output:", output, flush=True)
 
         try:
             json_result = json_repair.loads(output)
         except json.JSONDecodeError as e:
-            print("Error output:", repr(output), flush=True)
-            print("Error message:", e)
+            #print("Error output:", repr(output), flush=True)
+            #print("Error message:", e)
             pass
 
         # Return valid JSON object according to the schema DeepEval supplied
@@ -146,25 +169,34 @@ class EvaluationWithLLM:
         self.verbose_mode = verbose_mode
         self.model_name = model_name_for_evaluation
 
+        self.print(f"Cuda devices:")
+        if torch.cuda.is_available():
+            for i in range(torch.cuda.device_count()):
+                self.print(f"Device {i}: {torch.cuda.get_device_name(i)}")
+        else:
+            self.print("CUDA is not available!")
+
         self.print(f"Initializing model {self.model_name}")
         start = time()
         self.evaluation_model = EvaluationModel(self.model_name, hugging_face_token=hugging_face_token)
         self.print(f"Model loaded: {time() - start}s")
 
         if metrics is None:
-            self.metrics = self.get_default_metrics(self.evaluation_model, include_reason=include_reason)
+            self.metrics = self.get_default_metrics(include_reason=include_reason)
         else:
             self.metrics = metrics
+
+        for metric in self.metrics:
+            metric.model = self.evaluation_model
 
     def print(self, message):
         if self.verbose_mode:
             print(message)
 
-    def get_default_metrics(self, evaluation_model, include_reason=False):
+    def get_default_metrics(self, include_reason=False):
         return [
             GEval(
                 name="Correctness",
-                model=evaluation_model,
                 evaluation_steps=[
                     "Check whether the facts in 'actual output' contradict any facts in 'expected output'",
                     "Ommited details are acceptable, as long as they are not too frequent"
@@ -173,7 +205,6 @@ class EvaluationWithLLM:
             ),
             GEval(
                 name="Clarity",
-                model=evaluation_model,
                 evaluation_steps=[
                     "Evaluate whether the response uses clear and direct language.",
                     "Identify any vague or confusing parts that reduce understanding.",
@@ -183,27 +214,22 @@ class EvaluationWithLLM:
             ),
             AnswerRelevancyMetric(
                 threshold=0.5,
-                model=evaluation_model,
                 include_reason=include_reason
             ),
             FaithfulnessMetric(
                 threshold=0.5,
-                model=evaluation_model,
                 include_reason=include_reason
             ),
             ContextualPrecisionMetric(
                 threshold=0.5,
-                model=evaluation_model,
                 include_reason=include_reason
             ),
             ContextualRecallMetric(
                 threshold=0.5,
-                model=evaluation_model,
                 include_reason=include_reason
             ),
             ContextualRelevancyMetric(
                 threshold=0.5,
-                model=evaluation_model,
                 include_reason=include_reason
             )
         ]
@@ -212,7 +238,6 @@ class EvaluationWithLLM:
         test_cases = []
 
         for line in json_data:
-            print(line)
             test_cases.append(
                 LLMTestCase(
                     input=line["user_input"],
@@ -316,16 +341,20 @@ class EvaluationWithLLM:
 
 if __name__ == "__main__":
     # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
-    # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
-    # meta-llama/Meta-Llama-3-70B-Instruct
-    # meta-llama/Meta-Llama-3-8B-Instruct
-    # meta-llama/Meta-Llama-3.1-8B-Instruct
+    # deepseek-ai/DeepSeek-R1-Distill-Qwen-32B
 
-    results_path = os.path.join("..", "final_results_for_evaluation", "deepseek_baseline.json")
-    evaluation_results_path = os.path.join("..", "final_results_for_evaluation", "deepseek_baseline_evaluation.json")
+    # meta-llama/Llama-3.1-8B-Instruct
+    # meta-llama/Llama-3.1-70B-Instruct
+
+    # meta-llama/Llama-3.3-70B-Instruct
+
+    model_to_evaluate = "deepseek_naive"
+
+    results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}.json")
+    evaluation_results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}_evaluation.json")
     verbose_mode = True
-    model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
-    evaluate_first_n = 1
+    model_name = "meta-llama/Llama-3.1-8B-Instruct"
+    #evaluate_first_n = 1
 
-    evaluation = EvaluationWithLLM(model_name, verbose_mode=verbose_mode)
-    evaluation.evaluate_results(results_path, evaluation_results_path, evaluate_first_n)
+    evaluation = EvaluationWithLLM(model_name, verbose_mode=verbose_mode, hugging_face_token=hf_key)
+    evaluation.evaluate_results(results_path, evaluation_results_path)
