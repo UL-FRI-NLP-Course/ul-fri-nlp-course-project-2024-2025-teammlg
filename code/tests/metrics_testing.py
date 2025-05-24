@@ -165,7 +165,7 @@ class EvaluationModel(DeepEvalBaseLLM):
 
 
 class EvaluationWithLLM:
-    def __init__(self, model_name_for_evaluation, metrics=None, include_reason=False, verbose_mode=False, hugging_face_token=None):
+    def __init__(self, model_name_for_evaluation, include_reason=False, verbose_mode=False, hugging_face_token=None):
         self.verbose_mode = verbose_mode
         self.model_name = model_name_for_evaluation
 
@@ -181,22 +181,17 @@ class EvaluationWithLLM:
         self.evaluation_model = EvaluationModel(self.model_name, hugging_face_token=hugging_face_token)
         self.print(f"Model loaded: {time() - start}s")
 
-        if metrics is None:
-            self.metrics = self.get_default_metrics(include_reason=include_reason)
-        else:
-            self.metrics = metrics
-
-        for metric in self.metrics:
-            metric.model = self.evaluation_model
+        self.metrics = self.get_default_metrics(self.evaluation_model, include_reason=include_reason)
 
     def print(self, message):
         if self.verbose_mode:
             print(message)
 
-    def get_default_metrics(self, include_reason=False):
+    def get_default_metrics(self, evaluation_model, include_reason=False):
         return [
             GEval(
                 name="Correctness",
+                model=evaluation_model,
                 evaluation_steps=[
                     "Check whether the facts in 'actual output' contradict any facts in 'expected output'",
                     "Ommited details are acceptable, as long as they are not too frequent"
@@ -205,6 +200,7 @@ class EvaluationWithLLM:
             ),
             GEval(
                 name="Clarity",
+                model=evaluation_model,
                 evaluation_steps=[
                     "Evaluate whether the response uses clear and direct language.",
                     "Identify any vague or confusing parts that reduce understanding.",
@@ -214,22 +210,27 @@ class EvaluationWithLLM:
             ),
             AnswerRelevancyMetric(
                 threshold=0.5,
+                model=evaluation_model,
                 include_reason=include_reason
             ),
             FaithfulnessMetric(
                 threshold=0.5,
+                model=evaluation_model,
                 include_reason=include_reason
             ),
             ContextualPrecisionMetric(
                 threshold=0.5,
+                model=evaluation_model,
                 include_reason=include_reason
             ),
             ContextualRecallMetric(
                 threshold=0.5,
+                model=evaluation_model,
                 include_reason=include_reason
             ),
             ContextualRelevancyMetric(
                 threshold=0.5,
+                model=evaluation_model,
                 include_reason=include_reason
             )
         ]
@@ -285,7 +286,10 @@ class EvaluationWithLLM:
         if not self.verbose_mode:
             return
 
-        json_dict = dict()
+        json_dict = {
+            "model_for_evaluation": self.evaluation_model.get_model_name(),
+            "evaluation_time_seconds": time_taken
+        }
 
         scores = defaultdict(list)
         reasons = defaultdict(list)
@@ -348,12 +352,12 @@ if __name__ == "__main__":
 
     # meta-llama/Llama-3.3-70B-Instruct
 
-    model_to_evaluate = "deepseek_naive"
+    model_to_evaluate = "qwen_naive"
 
     results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}.json")
     evaluation_results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}_evaluation.json")
     verbose_mode = True
-    model_name = "meta-llama/Llama-3.1-8B-Instruct"
+    model_name = "meta-llama/Llama-3.3-70B-Instruct"
     #evaluate_first_n = 1
 
     evaluation = EvaluationWithLLM(model_name, verbose_mode=verbose_mode, hugging_face_token=hf_key)
