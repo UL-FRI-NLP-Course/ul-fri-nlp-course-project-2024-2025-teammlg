@@ -28,6 +28,8 @@ class DeepSeekFilmChatBot(Model):
             torch_dtype="auto"
         )
         self.pad_token_id = self.tokenizer.eos_token_id
+
+        self.rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
         
         self.generation_thread = None 
 
@@ -84,8 +86,7 @@ class DeepSeekFilmChatBot(Model):
         return final_output, state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
-        rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
-        self.context, state = rag.get_context()
+        self.context, state = self.rag.get_context(prompt)
 
         messages = [{"role": "user", "content": prompt}]
 

@@ -25,24 +25,30 @@ def sublist(list1: List[str], list2: List[List[str]]):
 
 
 class Scraper:
-    def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch", "wiki"], n_pages=5):
-        self.phrases = phrases
+    def __init__(self, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch", "wiki"]):
+        #self.phrases = phrases
         self.sources = sources
         self.data = {source: [] for source in sources}
-        urls = []
-        self.files = {}
+        #self.files = {}
+        self.outfolder = outfolder
+        self.suffix = suffix
 
         self.headers = {
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
         }
 
-        GENRES = self.get_all_genres(self.headers)
+        self.genres = self.get_all_genres(self.headers)
 
-        for source in sources:
+
+    def run(self, phrases: Dict[str, Any], n_pages=5):
+        urls = []
+        files = {}
+
+        for source in self.sources:
             if source == "letterboxd":
                 out = {}
-                for movie in self.phrases["movies"]:
+                for movie in phrases["movies"]:
                     possible = self.get_possible_urls(movie, self.headers)
                     reviews = []
                     for p in possible:
@@ -57,13 +63,13 @@ class Scraper:
                             reviews.append(revs)
                     self.data[source].append(reviews)
                     out[movie] = {"reviews": reviews}
-                outf = outfolder + "/letterboxd_out_" + suffix + ".json"
+                outf = self.outfolder + "/letterboxd_out_" + self.suffix + ".json"
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
-                self.files["letterboxd"] = outf
+                files["letterboxd"] = outf
             elif source == "tmdb":
                 out = {}
-                for movie in self.phrases["movies"]:
+                for movie in phrases["movies"]:
                     url = ("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1")
                     response = requests.get(url, headers=self.headers)
                     self.data[source].append(response.text)
@@ -82,13 +88,13 @@ class Scraper:
                         similar = ""
 
                     # Take resulting JSON and select the most appropriate title
-                    movie_json = self.select_most_appropriate_title(response.json(), self.phrases["key"])
+                    movie_json = self.select_most_appropriate_title(response.json(), phrases["key"])
 
                     # TODO: Put this in front of selection of title
                     # The result contains only genre IDs, so we convert them to genres
                     if "genre_ids" in movie_json.keys():
                         genre_ids = movie_json.get("genre_ids", [])
-                        genres = [GENRES.get(g, "") for g in genre_ids]
+                        genres = [self.genres.get(g, "") for g in genre_ids]
                         movie_json["genres"] = genres
                     #else:
                     #    movie_json["genres"] = None
@@ -102,7 +108,7 @@ class Scraper:
 
                     out[movie] = {"info": movie_json, "similar": similar, "cast": cast}
 
-                for person in self.phrases["people"]:
+                for person in phrases["people"]:
                     url = ("https://api.themoviedb.org/3/search/person?query="+ person+ "&include_adult=false&language=en-US&page=1")
                     response = requests.get(url, headers=self.headers)
                     
@@ -122,15 +128,15 @@ class Scraper:
                     self.data[source].append(response.text)
                     out[person] = {"credits":credits, "info": response.json()}
 
-                outf = outfolder + "/tmdb_out_" + suffix + ".json"
+                outf = self.outfolder + "/tmdb_out_" + self.suffix + ".json"
                 # TODO: If there is no folder (outf), this panics
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
-                self.files["tmdb"] = outf
+                files["tmdb"] = outf
 
             elif source == "justwatch":
                 out = {}
-                for movie in self.phrases["movies"]:
+                for movie in phrases["movies"]:
                     possible = self.get_possible_urls(movie, self.headers)
                     services = []
                     for p in possible:
@@ -143,23 +149,25 @@ class Scraper:
                     self.data[source].append(services)
                     out[movie] = {"services": services}
 
-                outf = outfolder + "/justwatch_out_" + suffix + ".json"
+                outf = self.outfolder + "/justwatch_out_" + self.suffix + ".json"
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
-                self.files["justwatch"] = outf
+                files["justwatch"] = outf
 
             elif source == "wiki":
                 out = {}
-                for movie in self.phrases["movies"]:
+                for movie in phrases["movies"]:
                     wiki = self.get_wikipedia_data(movie, self.headers)
                     out[movie] = wiki
                 
-                outf = outfolder + "/wiki_out_" + suffix + ".json"
+                outf = self.outfolder + "/wiki_out_" + self.suffix + ".json"
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
-                self.files["wiki"] = outf
+                files["wiki"] = outf
 
-        self.urls = urls
+        #self.urls = urls
+        return files
+
 
     @staticmethod
     def get_wikipedia_data(movie: str, headers: str) -> Dict[str, str]:

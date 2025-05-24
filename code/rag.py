@@ -29,7 +29,7 @@ class SimpleRAG:
 
 
 class Rag():
-    def __init__(self, prompt, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch", "wiki"], scraper=None):
+    def __init__(self, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch", "wiki"], scraper=None):
         try:
             self.nlp = spacy.load("en_core_web_sm")
         except:
@@ -39,16 +39,15 @@ class Rag():
         with open('./data/stopwords-en.txt', "r") as f:
             self.stop_words = f.readlines()
             self.stop_words = [word.strip() for word in self.stop_words]
-        self.phrases = self.extract_keyphrases(prompt)
 
         if scraper: # probably irrelevant, just in case we ever wanna use a different scraper
             self.scraper = scraper
         else:
-            self.scraper = Scraper(self.phrases, datafolder, outname, sources=sources, n_pages=20)
+            self.scraper = Scraper(datafolder, outname, sources=sources)
 
-        self.prompt = prompt
         self.mode = mode
         self.sources = sources
+        self.summarizer = Summarizer()
 
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
@@ -66,36 +65,26 @@ class Rag():
         return tagged
     
     # returns context that goes into a model and state that goes into logger
-    def get_context(self):
+    def get_context(self, prompt: str):
         data = ""
         state = {}
-
-        llm_lingua = PromptCompressor()
+        
+        phrases = self.extract_keyphrases(prompt)
+        files = self.scraper.run(phrases)
         
         #TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
-            for key in self.scraper.files.keys():
-                context = open(self.scraper.files[key], errors="ignore").read()
+            for key in files.keys():
+                context = open(files[key], errors="ignore").read()
                 data += context
         elif self.mode == "advanced":
-            #summarizer = Summarizer()
             state["summaries"] = []
-            for key in self.scraper.files.keys():
-                context = open(self.scraper.files[key], errors="ignore").read()
-                #summary = summarizer.extract_important(context, self.prompt)
-                print(f"Doing {key}...")
-                summary = llm_lingua.compress_prompt(context, instruction="", question=self.prompt, target_token=200)["compressed_prompt"]
+            for key in files.keys():
+                context = open(files[key], errors="ignore").read()
+                summary = self.summarizer.extract_important(context, prompt)
                 data += summary
                 data += "\n"
                 state["summaries"].append(summary)
-                """for key, item in self.phrases.items():
-                    for i in item:
-                        summary = summarizer.extract_important(context, i)
-                        data += summary
-                        state["summaries"].append(summary)"""
-                print("Done!")
-
-            # print(f"Summary: {data}")
 
         state["context"] = data
         return data, state
@@ -103,10 +92,10 @@ class Rag():
 
 if __name__ == "__main__":
     prompt = input("> ")
+    rag = Rag(mode="advanced", datafolder="test_rag_data", outname="test_rag")
 
     while prompt != "quit":
-        rag = Rag(prompt, mode="advanced", datafolder="test_rag_data", outname="test_rag")
-        data, state = rag.get_context()
+        data, state = rag.get_context(prompt)
         print(data)
         print()
         prompt = input("> ")
