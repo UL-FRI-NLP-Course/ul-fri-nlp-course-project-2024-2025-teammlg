@@ -1,32 +1,7 @@
-from abc import ABC, abstractmethod
-import logging
 from scraper import *
 from POStagger import *
 from summarizer import *
 import spacy
-from llmlingua import PromptCompressor
-
-
-class SimpleRAG:
-    def __init__(self, label: str = "SimpleRAG", accurate: bool = False, logging_level: int = logging.INFO, log_to_console: bool = False):
-        self.logger = logging.getLogger(label)
-        self.logger.setLevel(logging_level)
-        self.logger.addHandler(logging.StreamHandler())
-        if not accurate:
-            try:
-                self.nlp = spacy.load("en_core_web_sm")
-                self.logger.info("Loaded spacy model (en_core_web_sm)")
-            except Exception as e:
-                self.logger.error(f"Could not load spacy model ('en_core_web_sm'): {e}")
-                self.nlp = None
-        else:
-            try:
-                self.nlp = spacy.load("en_core_web_trf")
-                self.logger.info("Loaded spacy model ('en_core_web_trf')")
-            except Exception as e:
-                self.logger.error(f"Could not load spacy model ('en_core_web_trf'): {e}")
-                self.nlp = None
-
 
 class Rag():
     def __init__(self, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch", "wiki"], scraper=None):
