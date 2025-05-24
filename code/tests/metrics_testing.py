@@ -88,9 +88,10 @@ class EvaluationModel(DeepEvalBaseLLM):
             self.model_label,
             torch_dtype="bfloat16",
             cache_dir=cache_dir,
+            device_map="auto",
             token=hugging_face_token
         )
-        self.model = self.accelerator.prepare(self.model)
+        #self.model = self.accelerator.prepare(self.model)
 
         super().__init__(model_name=model_name, *args, **kwargs)
 
@@ -100,20 +101,8 @@ class EvaluationModel(DeepEvalBaseLLM):
         return self.model
 
     def generate(self, prompt: str, schema: BaseModel):
-        """generator = pipeline(
-            "text-generation",
-            model=self.load_model(),
-            tokenizer=self.tokenizer,
-            use_cache=True,
-            truncation=True,
-            device_map="auto",
-            max_new_tokens=4096,
-            do_sample=True,
-            eos_token_id=self.tokenizer.eos_token_id,
-            pad_token_id=self.tokenizer.eos_token_id
-        )"""
-
         prompt = prompt[:-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than few sentences.\nJSON:"
+        max_new_tokens = 256
 
         # Create parser required for JSON confinement using lmformatenforcer
         parser = JsonSchemaParser(schema.model_json_schema())
@@ -121,7 +110,22 @@ class EvaluationModel(DeepEvalBaseLLM):
             self.tokenizer, parser
         )
 
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.accelerator.device)
+        generator = pipeline(
+            "text-generation",
+            model=self.load_model(),
+            tokenizer=self.tokenizer,
+            use_cache=True,
+            truncation=True,
+            device_map="auto",
+            max_new_tokens=max_new_tokens,
+            do_sample=True,
+            eos_token_id=self.tokenizer.eos_token_id,
+            pad_token_id=self.tokenizer.eos_token_id
+        )
+
+        """inputs = self.tokenizer(prompt, return_tensors="pt").to(
+            self.model.device
+        )
 
         output_ids = self.model.generate(
             **inputs,
@@ -133,7 +137,7 @@ class EvaluationModel(DeepEvalBaseLLM):
         )
 
         decoded = self.tokenizer.decode(output_ids[0], skip_special_tokens=True)
-        output = decoded[len(prompt):]
+        output = decoded[len(prompt):]"""
 
         # Additional parameters to consider:
         # temperature
@@ -258,7 +262,7 @@ class EvaluationWithLLM:
 
         return data
 
-    def evaluate_results(self, results_file_path, evaluation_output_path, evaluate_first_n=None):
+    def evaluate_results(self, results_file_path, evaluation_output_path, evaluate_range=None):
         start = time()
 
         with open(results_file_path) as file:
@@ -266,8 +270,8 @@ class EvaluationWithLLM:
 
         test_cases = self.get_test_cases(json_data)
 
-        if evaluate_first_n is not None:
-            test_cases = test_cases[:evaluate_first_n]
+        if evaluate_range is not None:
+            test_cases = test_cases[evaluate_range[0] : evaluate_range[1] + 1]
 
         self.print(f"Test cases loaded: {time() - start}s")
 
@@ -354,11 +358,14 @@ if __name__ == "__main__":
 
     model_to_evaluate = "qwen_naive"
 
+    evaluate_range = (10, 19)
+
     results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}.json")
-    evaluation_results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}_evaluation.json")
+    evaluation_results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}_evaluation{evaluate_range}.json")
     verbose_mode = True
-    model_name = "meta-llama/Llama-3.3-70B-Instruct"
-    #evaluate_first_n = 1
+    model_name = "meta-llama/Llama-3.1-8B-Instruct"
+    
+    hf_key = "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"
 
     evaluation = EvaluationWithLLM(model_name, verbose_mode=verbose_mode, hugging_face_token=hf_key)
-    evaluation.evaluate_results(results_path, evaluation_results_path)
+    evaluation.evaluate_results(results_path, evaluation_results_path, evaluate_range=evaluate_range)
