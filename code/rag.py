@@ -4,6 +4,7 @@ from scraper import *
 from POStagger import *
 from summarizer import *
 import spacy
+from llmlingua import PromptCompressor
 
 
 class SimpleRAG:
@@ -68,6 +69,8 @@ class Rag():
     def get_context(self):
         data = ""
         state = {}
+
+        llm_lingua = PromptCompressor()
         
         #TODO what should be the shape of data? currently I just concat things together
         if self.mode == "naive":
@@ -75,21 +78,35 @@ class Rag():
                 context = open(self.scraper.files[key], errors="ignore").read()
                 data += context
         elif self.mode == "advanced":
-            summarizer = Summarizer()
+            #summarizer = Summarizer()
             state["summaries"] = []
             for key in self.scraper.files.keys():
                 context = open(self.scraper.files[key], errors="ignore").read()
-                summary = summarizer.extract_important(context, self.prompt)
+                #summary = summarizer.extract_important(context, self.prompt)
+                print(f"Doing {key}...")
+                summary = llm_lingua.compress_prompt(context, instruction="", question=self.prompt, target_token=200)["compressed_prompt"]
                 data += summary
+                data += "\n"
                 state["summaries"].append(summary)
                 """for key, item in self.phrases.items():
                     for i in item:
                         summary = summarizer.extract_important(context, i)
                         data += summary
                         state["summaries"].append(summary)"""
+                print("Done!")
 
-            print(f"Summary: {data}")
+            # print(f"Summary: {data}")
 
         state["context"] = data
         return data, state
 
+
+if __name__ == "__main__":
+    prompt = input("> ")
+
+    while prompt != "quit":
+        rag = Rag(prompt, mode="advanced", datafolder="test_rag_data", outname="test_rag")
+        data, state = rag.get_context()
+        print(data)
+        print()
+        prompt = input("> ")

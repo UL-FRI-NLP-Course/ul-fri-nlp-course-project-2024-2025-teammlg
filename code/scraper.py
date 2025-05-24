@@ -13,6 +13,17 @@ with open('./data/stopwords-en.txt', "r", encoding="utf8") as f:
     stop_words = f.readlines()
     stop_words = [word.strip() for word in stop_words]
 
+
+def sublist(list1: List[str], list2: List[List[str]]):
+    if not list1 or not list2:
+        return False
+    for subl in list2:
+        if not subl:
+            continue
+        el = subl[0]
+    return el in list2
+
+
 class Scraper:
     def __init__(self, phrases, outfolder, suffix, sources=["tmdb", "letterboxd", "justwatch", "wiki"], n_pages=5):
         self.phrases = phrases
@@ -40,6 +51,8 @@ class Scraper:
                         # n_pages specifies how many pages of reviews you want - Letterboxd has 12 per page
                         # if there aren't that many, you simply get all
                         revs = self.get_letterboxd_reviews(url, n_pages)
+                        if sublist(revs, reviews):
+                            continue
                         if len(revs) > 0:
                             reviews.append(revs)
                     self.data[source].append(reviews)
@@ -110,6 +123,7 @@ class Scraper:
                     out[person] = {"credits":credits, "info": response.json()}
 
                 outf = outfolder + "/tmdb_out_" + suffix + ".json"
+                # TODO: If there is no folder (outf), this panics
                 with open(outf, "w", encoding="utf8") as outfile:
                     json.dump(out, outfile, indent=4, ensure_ascii=False)
                 self.files["tmdb"] = outf
