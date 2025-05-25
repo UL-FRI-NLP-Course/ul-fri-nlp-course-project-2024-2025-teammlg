@@ -85,12 +85,15 @@ class QwenChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         self.context, state = self.rag.get_context(prompt)
 
+        enhanced_prompt = f"{prompt}\n<data>{self.context}</data>"
+        system_prompt = "You are an AI chatbot, assisting user with anything related to movies. You may only use information provided to you inside the <data> tags."
+
         messages = [
             {
-                "role": "system", "content": "You are an AI assistant tasked with helping the user on film or series-related questions. Read the following data and answer the question. If you cannot infer information from the data, do not answer the question.",
+                "role": "system", "content": system_prompt,
             },
             {
-                "role": "user", "content": prompt
+                "role": "user", "content": enhanced_prompt
             }
         ]
         

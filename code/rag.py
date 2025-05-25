@@ -1,3 +1,4 @@
+from rag_v2 import RagV2
 from scraper import *
 from POStagger import *
 from summarizer import *
@@ -35,6 +36,8 @@ class Rag():
         self.tokenizer = transformers.AutoTokenizer.from_pretrained("facebook/contriever")
         self.model = transformers.AutoModel.from_pretrained('facebook/contriever')
 
+        self.rag_v2 = RagV2()
+
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
     def extract_keyphrases(self, prompt):
@@ -64,7 +67,7 @@ class Rag():
                 context = open(files[key], errors="ignore").read()
                 data += context
         elif self.mode == "advanced":
-            state["summaries"] = []
+            """state["summaries"] = []
             for key in files.keys():
                 context = open(files[key], errors="ignore").read()
                 #summary = self.summarizer.extract_important(context, prompt)
@@ -78,7 +81,8 @@ class Rag():
 
                 data += summary
                 data += "\n"
-                state["summaries"].append(summary)
+                state["summaries"].append(summary)"""
+            data = self.rag_v2.get_context(prompt)
 
         state["context"] = data
         return data, state

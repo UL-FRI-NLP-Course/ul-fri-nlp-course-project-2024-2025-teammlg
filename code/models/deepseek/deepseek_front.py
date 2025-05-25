@@ -88,7 +88,13 @@ class DeepSeekFilmChatBot(Model):
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         self.context, state = self.rag.get_context(prompt)
 
-        messages = [{"role": "user", "content": prompt}]
+        system_prompt = "You are an AI chatbot, assisting user with anything related to movies. You may only use information provided to you inside the <data> tags."
+        enhanced_prompt = f"{prompt}\n<data>{self.context}</data>"
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": enhanced_prompt}
+        ]
 
         input_tokens = self.tokenizer.apply_chat_template(
             messages,
