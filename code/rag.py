@@ -2,6 +2,14 @@ from scraper import *
 from POStagger import *
 from summarizer import *
 import spacy
+import transformers
+
+
+def mean_pooling(token_embeddings, mask):
+    token_embeddings = token_embeddings.masked_fill(~mask[..., None].bool(), 0.)
+    sentence_embeddings = token_embeddings.sum(dim=1) / mask.sum(dim=1)[..., None]
+    return sentence_embeddings
+
 
 class Rag():
     def __init__(self, mode, datafolder, outname, sources = ["tmdb", "letterboxd", "justwatch", "wiki"], scraper=None):
@@ -22,7 +30,10 @@ class Rag():
 
         self.mode = mode
         self.sources = sources
-        self.summarizer = Summarizer()
+        #self.summarizer = Summarizer()
+
+        self.tokenizer = transformers.AutoTokenizer.from_pretrained("facebook/contriever")
+        self.model = transformers.AutoModel.from_pretrained('facebook/contriever')
 
     # extract titles, people, ...?
     # return a dict of lists, data will be scraped for each element in each list
@@ -56,7 +67,15 @@ class Rag():
             state["summaries"] = []
             for key in files.keys():
                 context = open(files[key], errors="ignore").read()
-                summary = self.summarizer.extract_important(context, prompt)
+                #summary = self.summarizer.extract_important(context, prompt)
+                print("running...")
+                inputs = self.tokenizer([prompt, context], padding=True, truncation=True, return_tensors='pt')
+                outputs = self.model(**inputs)
+                print(outputs)
+                embeddings = mean_pooling(outputs[0], inputs['attention_mask'])
+                print(embeddings)
+                summary = self.tokenizer.batch_decode(embeddings[0], skip_special_tokens=True)[0]
+
                 data += summary
                 data += "\n"
                 state["summaries"].append(summary)
@@ -66,7 +85,8 @@ class Rag():
 
 
 if __name__ == "__main__":
-    prompt = input("> ")
+    #prompt = input("> ")
+    prompt = "Who is the lead actor in Batman Begins?"
     rag = Rag(mode="advanced", datafolder="test_rag_data", outname="test_rag")
 
     while prompt != "quit":
