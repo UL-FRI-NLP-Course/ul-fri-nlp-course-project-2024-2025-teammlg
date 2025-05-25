@@ -132,6 +132,11 @@ Crucial step in the RAG pipeline is the gathering of data (that the model has no
 For the purpose of identifying film titles or names in user's prompt, we use a Roberta-like spacy model en\_core\_web\_trf \footnote{https://huggingface.co/spacy/en\_core\_web\_trf}. We use the same model to summarize retrieved data for advanced RAG.  
 
 
+\subsection*{Conversational chatbot}
+
+
+
+
 %------------------------------------------------
 
 \section*{Results}
@@ -146,7 +151,7 @@ In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Ll
 	\item Qwen3-8B with advanced RAG
 \end{itemize}
 
-Since we are working with relatively open-ended questions, there is objective ground truth to evaluate against. Therefore, we construct a set of 51 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth, so we can apply standard metrics such as ROUGE and BLEU \footnote{https://huggingface.co/docs/evaluate/index}. Results are shown in Table \ref{tab:comparison}.
+Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth, so we can apply standard metrics such as ROUGE and BLEU \footnote{https://huggingface.co/docs/evaluate/index}. To avoid overfitting a model to a specific set of questions, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. Results are shown in Table \ref{tab:comparison}.
 
 \begin{table}[!htb]
 \centering
@@ -165,6 +170,28 @@ qwen-advanced  & 0.17380  & 0.02584   \\
 \caption{Performance comparison against ChatGPT-generated ground truth.}
 \label{tab:comparison}
 \end{table}
+
+
+\subsection*{LLM-based evaluation}
+
+Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response. Results are shown in Table \ref{tab:llm_metrics}.
+
+\begin{table*}[!htb]
+%\centering
+\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| c | c c c c c c c |}
+\hline
+model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
+deepseek-baseline  & 0.13 & 0.05 & 0.13 & 0.05 & / & / & / \\
+deepseek-naive  & 0.13 & 0.05 & 0.13 & 0.05 & 0.13 & 0.05 & 0.05   \\
+deepseek-advanced  & 0.13 & \textbf{0.13} & 0.13 & \textbf{0.13} & 0.13 & \textbf{0.13} & 0.05   \\
+qwen-baseline  & 0.13 & 0.05 & 0.13 & 0.05 & / & / & /    \\
+qwen-naive  & 0.13 & 0.05 & 0.13 & 0.05 & 0.13 & 0.05 & 0.05  \\
+qwen-advanced  & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13}   \\
+\hline
+\end{tabular}}
+\caption{Comparison of all models with LLM metrics.}
+\label{tab:llm_metrics}
+\end{table*}
 
 
 %------------------------------------------------
