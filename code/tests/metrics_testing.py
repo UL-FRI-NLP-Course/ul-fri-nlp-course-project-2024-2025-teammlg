@@ -103,6 +103,7 @@ class EvaluationModel(DeepEvalBaseLLM):
     def generate(self, prompt: str, schema: BaseModel):
         prompt = prompt[:-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than few sentences.\nJSON:"
         max_new_tokens = 256
+        #print(prompt)
 
         # Create parser required for JSON confinement using lmformatenforcer
         parser = JsonSchemaParser(schema.model_json_schema())
@@ -146,9 +147,8 @@ class EvaluationModel(DeepEvalBaseLLM):
         # repetition_penalty
 
         # Output and load valid JSON
-        #output_dict = generator(prompt, prefix_allowed_tokens_fn=prefix_function)
-        #output = output_dict[0]["generated_text"][len(prompt) :]
-        #print("Prompt:", prompt)
+        output_dict = generator(prompt, prefix_allowed_tokens_fn=prefix_function)
+        output = output_dict[0]["generated_text"][len(prompt) :]
         #print("Raw output:", output, flush=True)
 
         try:
@@ -169,7 +169,7 @@ class EvaluationModel(DeepEvalBaseLLM):
 
 
 class EvaluationWithLLM:
-    def __init__(self, model_name_for_evaluation, include_reason=False, verbose_mode=False, hugging_face_token=None):
+    def __init__(self, model_name_for_evaluation=None, include_reason=False, verbose_mode=False, hugging_face_token=None):
         self.verbose_mode = verbose_mode
         self.model_name = model_name_for_evaluation
 
@@ -180,10 +180,15 @@ class EvaluationWithLLM:
         else:
             self.print("CUDA is not available!")
 
-        self.print(f"Initializing model {self.model_name}")
-        start = time()
-        self.evaluation_model = EvaluationModel(self.model_name, hugging_face_token=hugging_face_token)
-        self.print(f"Model loaded: {time() - start}s")
+        if model_name_for_evaluation is not None:
+            self.print(f"Initializing model {self.model_name}")
+            start = time()
+            self.evaluation_model = EvaluationModel(self.model_name, hugging_face_token=hugging_face_token)
+            self.print(f"Model loaded: {time() - start}s")
+            self.evaluation_model_name = self.evaluation_model.get_model_name()
+        else:
+            self.evaluation_model = "gpt-4.1-mini"
+            self.evaluation_model_name = self.evaluation_model
 
         self.metrics = self.get_default_metrics(self.evaluation_model, include_reason=include_reason)
 
@@ -242,9 +247,10 @@ class EvaluationWithLLM:
     def get_test_cases(self, json_data):
         test_cases = []
 
-        for line in json_data:
+        for i, line in enumerate(json_data):
             test_cases.append(
                 LLMTestCase(
+                    name=f"test_case_{i}",
                     input=line["user_input"],
                     actual_output=line["response"],
                     expected_output=line["ground_truth"],
@@ -273,10 +279,15 @@ class EvaluationWithLLM:
         if evaluate_range is not None:
             test_cases = test_cases[evaluate_range[0] : evaluate_range[1] + 1]
 
-        self.print(f"Test cases loaded: {time() - start}s")
+        self.print(f"{len(test_cases)} test cases loaded: {time() - start}s")
 
         start = time()
-        results, _ = evaluate(test_cases=test_cases, metrics=self.metrics)
+        results = []
+        for test_case in test_cases:
+            result, _ = evaluate(test_cases=[test_case], metrics=self.metrics)
+            results.extend(result[1])
+            self.print(f"Evaluating test case {len(results)}/{len(test_cases)}")
+
         end = time()
 
         evaluation_results = self.get_evaluation_results(results, end - start)
@@ -287,20 +298,18 @@ class EvaluationWithLLM:
         self.print(f"Results saved to {evaluation_output_path}")
 
     def get_evaluation_results(self, results, time_taken):
-        if not self.verbose_mode:
-            return
-
         json_dict = {
-            "model_for_evaluation": self.evaluation_model.get_model_name(),
+            "model_for_evaluation": self.evaluation_model_name,
             "evaluation_time_seconds": time_taken
         }
 
         scores = defaultdict(list)
-        reasons = defaultdict(list)
+        test_reasons = defaultdict()
 
         # example results: ('test_results', [TestResult(name='test_case_0', success=True, metrics_data=[MetricData(name='Answer Relevancy', threshold=0.5, success=True, score=0.6, reason=None, strict_mode=False, evaluation_model='deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B', error=None, evaluation_cost=None, verbose_logs='Statements:\n[\n    "...",\n    "...",\n    "...",\n    "...",\n    "..."\n] \n \nVerdicts:\n[\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "no",\n        "reason": null\n    },\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "no",\n        "reason": null\n    },\n    {\n        "verdict": "yes",\n        "reason": null\n    }\n]'), MetricData(name='Faithfulness', threshold=0.5, success=True, score=0.5, reason=None, strict_mode=False, evaluation_model='deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B', error=None, evaluation_cost=None, verbose_logs='Truths (limit=None):\n[\n    "...",\n    "..."\n] \n \nClaims:\n[\n    "Jack Nicholson\'s \'The Dark Knight\' delves into themes of hero-visibility duality, identity manipulation, family tension, power dynamics, and social commentary. These themes collectively explore Jack\'s multifaceted journey and his place within society.\n"\n] \n \nVerdicts:\n[\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "no",\n        "reason": null\n    }\n]')], conversational=False, multimodal=False, input='Can you summarize the main themes of The Dark Knight for me?', actual_output='\n\n"The Dark Knight" explores several key themes:\n\n1. **Hero-Visa Duality**: Jack Nicholson, as the Dark Knight, seeks to protect others but ends up being harmed by a criminal gang that resembles the "Kingsmen of the Dead."\n\n2. **Identity and Manipulation**: The film delves into how Jack sees himself—both hero and villain—and his actions sometimes seem manipulative.\n\n3. **Family Dynamics**: There\'s a tension between Jack and Harold Hurwitz, where Jack tries to protect others but may exploit their strength.\n\n4. **Power and Control**: The Gang\'s influence is both a threat and a source of strength for Jack, highlighting power dynamics within the narrative.\n\n5. **Social Commentary**: Despite its humor, "The Dark Knight" also touches on broader social issues, offering a critical look at the corrupting effects of certain behaviors.\n\nThese themes together create a complex exploration of Jack\'s multifaceted journey and his place in a world that feels both familiar and familiarized with his past.', expected_output="The Dark Knight (2008), directed by Christopher Nolan, explores several deep and interconnected themes. The main ones include:\n\n\t1. Chaos vs. Order: The Joker represents chaos, anarchy, and unpredictability, while Batman and the authorities strive to maintain order. The film explores how fragile societal structures are when challenged by extreme forces.\n\n\t2. Moral Ambiguity and Duality: The film questions traditional notions of good and evil. Batman must bend ethical lines to fight crime, while Harvey Dent’s transformation into Two-Face shows how easily a hero can fall.\n\n\t3. Justice vs. Vengeance: Batman operates outside the law but seeks justice, whereas characters like Dent blur the line by giving in to vengeance when wronged.\n\n\t4. The Nature of Heroism: The film challenges the idea of what makes someone a hero. Batman chooses to be seen as a villain to protect Gotham's hope, highlighting the theme of self-sacrifice for the greater good.\n\n\t5. Fear and Corruption: Fear is used as both a weapon and a shield, while Gotham's institutions are portrayed as vulnerable to corruption—something both Batman and the Joker exploit in different ways.", context=None, retrieval_context=['The Dark Knight from the year 2008 (Christopher Nolan). Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker. A gang of masked criminals rob a mafia-owned bank in Gotham City, betraying and killing each other until the sole survivor, the Joker, reveals himself as the mastermind and escapes with the money. The vigilante Batman, district attorney Harvey Dent, and police lieutenant Jim Gordon ally to eliminate Gotham\'s organized crime. Batman\'s true identity, the billionaire Bruce Wayne, publicly supports Dent as Gotham\'s legitimate protector, believing Dent\'s success will allow him to retire as Batman and romantically pursue his childhood friend Rachel Dawes—despite her being with Dent. Gotham\'s mafia bosses gather to discuss protecting their organizations from the Joker, the police, and Batman. The Joker interrupts the meeting and offers to kill Batman for half of the fortune their accountant, Lau, concealed before fleeing to Hong Kong to avoid extradition. With the help of Wayne Enterprises CEO Lucius Fox, Batman finds Lau in Hong Kong and returns him to the custody of Gotham police. His testimony enables Dent to apprehend the crime families. The bosses accept the Joker\'s offer, and he kills high-profile targets involved in the trial, including the judge and police commissioner. Although Gordon saves the mayor, the Joker threatens that his attacks will continue until Batman reveals his identity. He targets Dent at a fundraising dinner and throws Rachel out of a window, but Batman rescues her. Wayne struggles to understand the Joker\'s motives, to which his butler Alfred Pennyworth says "some men just want to watch the world burn." Dent claims he is Batman to lure out the Joker, who attacks the police convoy transporting him. Batman and Gordon apprehend the Joker, and Gordon is promoted to commissioner. At the police station, Batman interrogates the Joker, who says he finds Batman entertaining and has no intention of killing him. Having deduced Batman\'s feelings for Rachel, the Joker reveals she and Dent are being held separately in buildings rigged to explode. Batman races to rescue Rachel while Gordon and the other officers go after Dent, but they discover the Joker gave their positions in reverse. The explosives detonate, killing Rachel and severely burning Dent\'s face on one side. The Joker escapes custody, extracts the fortune\'s location from Lau, and burns it, killing Lau in the process. Coleman Reese, a consultant for Wayne Enterprises, deduces and tries to expose Batman\'s identity, but the Joker threatens to blow up a hospital unless Reese is killed. While the police evacuate hospitals and Gordon struggles to keep Reese alive, the Joker meets with a disillusioned Dent, persuading him to take the law into his own hands and avenge Rachel. Dent defers his decision-making to his now half-scarred, two-headed coin, killing the corrupt officers and the mafia involved in Rachel\'s death. As panic grips the city, the Joker reveals two evacuation ferries, one carrying civilians and the other prisoners, are rigged to explode at midnight unless one group sacrifices the other. To the Joker\'s disbelief, the passengers refuse to kill one another. Batman subdues the Joker but refuses to kill him. Before the police arrest the Joker, he says although Batman proved incorruptible, his plan to corrupt Dent has succeeded. Dent takes Gordon\'s family hostage, blaming his negligence for Rachel\'s death. He flips his coin to decide their fates, but Batman tackles him to save Gordon\'s son, and Dent falls to his death. Believing Dent is the hero the city needs and the truth of his corruption will harm Gotham, Batman takes the blame for his death and actions and persuades Gordon to conceal the truth. Pennyworth burns an undelivered letter from Rachel to Wayne that says she chose Dent, and Fox destroys the invasive surveillance network that helped Batman find the Joker. The city mourns Dent as a hero, and the police launch a manhunt for Batman.'], additional_metadata=None)])
-        for test_result in results[1]:
+        for test_result in results:
             # example test_result: TestResult(name='test_case_0', success=False, metrics_data=[MetricData(name='Answer Relevancy', threshold=0.5, success=True, score=1.0, reason=None, strict_mode=False, evaluation_model='deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B', error=None, evaluation_cost=None, verbose_logs='Statements:\n[\n    "statement 1",\n    "statement 2",\n    "statement 3",\n    "statement 4",\n    "statement 5"\n] \n \nVerdicts:\n[\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "yes",\n        "reason": null\n    },\n    {\n        "verdict": "yes",\n        "reason": null\n    }\n]'), MetricData(name='Faithfulness', threshold=0.5, success=False, score=0.0, reason=None, strict_mode=False, evaluation_model='deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B', error=None, evaluation_cost=None, verbose_logs='Truths (limit=None):\n[\n    "Truth about Dark Knight\'s appearance",\n    "Truth about Batman\'s mission",\n    "Truth about Joker\'s plan",\n    "Truth about Dark Knight\'s role",\n    "Truth about Batman\'s name",\n    "Truth about Joker\'s motivation",\n    "Truth about Dark Knight\'s goal",\n    "Truth about Batman\'s background",\n    "Truth about Joker\'s involvement",\n    "Truth about Dark Knight\'s emotional state",\n    "Truth about Batman\'s ultimate purpose"\n] \n \nClaims:\n[\n    "Jack seeks to protect others but ends up being harmed by a criminal gang resembling the Kingsmen of the Dead."\n] \n \nVerdicts:\n[\n    {\n        "verdict": "no",\n        "reason": "The actual output claims Jack seeks to protect others but ends up being harmed by a criminal gang resembling the Kingsmen of the Dead. This statement does not contradict any facts in the Retrieval Contexts because there are no related details about Jack or criminals resembling Kingsmen of the Dead."\n    }\n]')], conversational=False, multimodal=False, input='Can you summarize the main themes of The Dark Knight for me?', actual_output='\n\n"The Dark Knight" explores several key themes:\n\n1. **Hero-Visa Duality**: Jack Nicholson, as the Dark Knight, seeks to protect others but ends up being harmed by a criminal gang that resembles the "Kingsmen of the Dead."\n\n2. **Identity and Manipulation**: The film delves into how Jack sees himself—both hero and villain—and his actions sometimes seem manipulative.\n\n3. **Family Dynamics**: There\'s a tension between Jack and Harold Hurwitz, where Jack tries to protect others but may exploit their strength.\n\n4. **Power and Control**: The Gang\'s influence is both a threat and a source of strength for Jack, highlighting power dynamics within the narrative.\n\n5. **Social Commentary**: Despite its humor, "The Dark Knight" also touches on broader social issues, offering a critical look at the corrupting effects of certain behaviors.\n\nThese themes together create a complex exploration of Jack\'s multifaceted journey and his place in a world that feels both familiar and familiarized with his past.', expected_output="The Dark Knight (2008), directed by Christopher Nolan, explores several deep and interconnected themes. The main ones include:\n\n\t1. Chaos vs. Order: The Joker represents chaos, anarchy, and unpredictability, while Batman and the authorities strive to maintain order. The film explores how fragile societal structures are when challenged by extreme forces.\n\n\t2. Moral Ambiguity and Duality: The film questions traditional notions of good and evil. Batman must bend ethical lines to fight crime, while Harvey Dent’s transformation into Two-Face shows how easily a hero can fall.\n\n\t3. Justice vs. Vengeance: Batman operates outside the law but seeks justice, whereas characters like Dent blur the line by giving in to vengeance when wronged.\n\n\t4. The Nature of Heroism: The film challenges the idea of what makes someone a hero. Batman chooses to be seen as a villain to protect Gotham's hope, highlighting the theme of self-sacrifice for the greater good.\n\n\t5. Fear and Corruption: Fear is used as both a weapon and a shield, while Gotham's institutions are portrayed as vulnerable to corruption—something both Batman and the Joker exploit in different ways.", context=None, retrieval_context=['The Dark Knight from the year 2008 (Christopher Nolan). Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker. A gang of masked criminals rob a mafia-owned bank in Gotham City, betraying and killing each other until the sole survivor, the Joker, reveals himself as the mastermind and escapes with the money. The vigilante Batman, district attorney Harvey Dent, and police lieutenant Jim Gordon ally to eliminate Gotham\'s organized crime. Batman\'s true identity, the billionaire Bruce Wayne, publicly supports Dent as Gotham\'s legitimate protector, believing Dent\'s success will allow him to retire as Batman and romantically pursue his childhood friend Rachel Dawes—despite her being with Dent. Gotham\'s mafia bosses gather to discuss protecting their organizations from the Joker, the police, and Batman. The Joker interrupts the meeting and offers to kill Batman for half of the fortune their accountant, Lau, concealed before fleeing to Hong Kong to avoid extradition. With the help of Wayne Enterprises CEO Lucius Fox, Batman finds Lau in Hong Kong and returns him to the custody of Gotham police. His testimony enables Dent to apprehend the crime families. The bosses accept the Joker\'s offer, and he kills high-profile targets involved in the trial, including the judge and police commissioner. Although Gordon saves the mayor, the Joker threatens that his attacks will continue until Batman reveals his identity. He targets Dent at a fundraising dinner and throws Rachel out of a window, but Batman rescues her. Wayne struggles to understand the Joker\'s motives, to which his butler Alfred Pennyworth says "some men just want to watch the world burn." Dent claims he is Batman to lure out the Joker, who attacks the police convoy transporting him. Batman and Gordon apprehend the Joker, and Gordon is promoted to commissioner. At the police station, Batman interrogates the Joker, who says he finds Batman entertaining and has no intention of killing him. Having deduced Batman\'s feelings for Rachel, the Joker reveals she and Dent are being held separately in buildings rigged to explode. Batman races to rescue Rachel while Gordon and the other officers go after Dent, but they discover the Joker gave their positions in reverse. The explosives detonate, killing Rachel and severely burning Dent\'s face on one side. The Joker escapes custody, extracts the fortune\'s location from Lau, and burns it, killing Lau in the process. Coleman Reese, a consultant for Wayne Enterprises, deduces and tries to expose Batman\'s identity, but the Joker threatens to blow up a hospital unless Reese is killed. While the police evacuate hospitals and Gordon struggles to keep Reese alive, the Joker meets with a disillusioned Dent, persuading him to take the law into his own hands and avenge Rachel. Dent defers his decision-making to his now half-scarred, two-headed coin, killing the corrupt officers and the mafia involved in Rachel\'s death. As panic grips the city, the Joker reveals two evacuation ferries, one carrying civilians and the other prisoners, are rigged to explode at midnight unless one group sacrifices the other. To the Joker\'s disbelief, the passengers refuse to kill one another. Batman subdues the Joker but refuses to kill him. Before the police arrest the Joker, he says although Batman proved incorruptible, his plan to corrupt Dent has succeeded. Dent takes Gordon\'s family hostage, blaming his negligence for Rachel\'s death. He flips his coin to decide their fates, but Batman tackles him to save Gordon\'s son, and Dent falls to his death. Believing Dent is the hero the city needs and the truth of his corruption will harm Gotham, Batman takes the blame for his death and actions and persuades Gordon to conceal the truth. Pennyworth burns an undelivered letter from Rachel to Wayne that says she chose Dent, and Fox destroys the invasive surveillance network that helped Batman find the Joker. The city mourns Dent as a hero, and the police launch a manhunt for Batman.'], additional_metadata=None)
+            reasons = defaultdict(list)
             for metric_data in test_result.metrics_data:
                 # example metric_data: name='Answer Relevancy' threshold=0.5 success=True score=1.0 reason=None strict_mode=False evaluation_model='deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B' error=None evaluation_cost=None verbose_logs='Statements:\n[\n    "...",\n    "..."\n] \n \nVerdicts:\n[\n    {\n        "verdict": "yes",\n        "reason": "This statement is unrelated to summarizing themes. Themes are subjective and depend on interpretation."\n    }\n]'
                 metric_name = metric_data.name
@@ -311,11 +320,12 @@ class EvaluationWithLLM:
                 metric_reason = metric_data.reason
 
                 scores[metric_name].append(metric_score)
-                reasons[metric_name].append(metric_data)
+                reasons[metric_name].append(metric_reason)
 
                 metric_error = metric_data.error
                 if metric_error is not None:
                     warnings.warn(f"Error in metric {metric_name}: {metric_error}")
+            test_reasons[test_result.name] = reasons
 
         self.print(f"Evaluation time: {time_taken}s")
         self.print("Final results:")
@@ -343,9 +353,9 @@ class EvaluationWithLLM:
             json_dict[metric_name]["minimum"] = score_min
             json_dict[metric_name]["maximum"] = score_max
             json_dict[metric_name]["standard_deviation"] = score_deviation
+        json_dict["reasons"] = test_reasons
 
         return json_dict
-
 
 if __name__ == "__main__":
     # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
@@ -358,14 +368,14 @@ if __name__ == "__main__":
 
     model_to_evaluate = "qwen_naive"
 
-    evaluate_range = (10, 19)
+    evaluate_range = (0, 1)
 
     results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}.json")
     evaluation_results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}_evaluation{evaluate_range}.json")
     verbose_mode = True
-    model_name = "meta-llama/Llama-3.1-8B-Instruct"
-    
-    hf_key = "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"
+    model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    #model_name = None
+    include_reason = True
 
-    evaluation = EvaluationWithLLM(model_name, verbose_mode=verbose_mode, hugging_face_token=hf_key)
+    evaluation = EvaluationWithLLM(model_name_for_evaluation=model_name, include_reason=include_reason, verbose_mode=verbose_mode, hugging_face_token=hf_key)
     evaluation.evaluate_results(results_path, evaluation_results_path, evaluate_range=evaluate_range)
