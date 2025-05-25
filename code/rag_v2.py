@@ -72,3 +72,9 @@ class RagV2:
         )
         data = self._handle_tool_calls(tool_response)
         return data
+
+
+if __name__ == "__main__":
+    hermes = RagV2()
+    prompt = "When did the movie Challengers release and what are its genres?"
+    hermes.get_context(prompt)
