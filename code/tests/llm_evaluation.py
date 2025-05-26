@@ -318,7 +318,7 @@ class EvaluationWithLLM:
         self.print(f"{len(test_cases)} test cases loaded: {time() - start}s")
 
         if evaluate_range is not None:
-            test_cases = test_cases[evaluate_range[0]: evaluate_range[1] + 1]
+            test_cases = test_cases[evaluate_range[0] - 1: evaluate_range[1]]
             self.print(f"Continuing to evaluate from test {evaluate_range[0]} to {evaluate_range[1] + 1}")
 
         display_config = DisplayConfig(show_indicator=False, print_results=False, verbose_mode=False)
@@ -427,8 +427,6 @@ if __name__ == "__main__":
 
     # model_name = None
     include_reason = True
-
-    hf_key = "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"
 
     evaluation = EvaluationWithLLM(model_name_for_evaluation=model_name, include_reason=include_reason,
                                    verbose_mode=verbose_mode, hugging_face_token=hf_key)
