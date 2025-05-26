@@ -1,39 +1,70 @@
-# pip install bitsandbytes
-# pip install chardet
-# pip install accelerate>=0.26.0
-# pip install accelerate
-# pip install lm-format-enforcer
-# pip install json-repair
+# meta-llama/Llama-3.1-8B-Instruct
+# meta-llama/Llama-3.1-70B-Instruct
+
+# meta-llama/Llama-3.3-70B-Instruct
+
+# 01-ai/Yi-34B-Chat
+# Qwen/Qwen3-14B
+
+# Arguments:
+# 1. model to evaluate (without json)
+# 2. model used to evaluate (from huggingface)
+# 3. [OPTIONAL] evaluate start test
+# 4. [OPTIONAL] evaluate end test (inclusive [start, end])
+
+import sys
+
+if len(sys.argv) - 1 == 4:
+    model_to_evaluate = sys.argv[1]
+    model_name = sys.argv[2]
+    start = int(sys.argv[3])
+    end = int(sys.argv[4])
+    evaluate_range = (start, end)
+elif len(sys.argv) - 1 == 2:
+    model_to_evaluate = sys.argv[1]
+    model_name = sys.argv[2]
+    evaluate_range = None
+else:
+    raise Exception("Not enough arguments")
 
 print("start load libraries")
 from time import time
+
 print("time imported")
 
 start = time()
 import torch
+
 print(f"torch loaded: {time() - start}s")
 
 start = time()
 import json_repair
+
 print(f"json_repair loaded: {time() - start}s")
 
 start = time()
 from transformers import BitsAndBytesConfig, AutoTokenizer, AutoModelForCausalLM, pipeline
+
 print(f"transformers loaded: {time() - start}s")
 
 start = time()
 from deepeval.models import DeepEvalBaseLLM
-from deepeval.metrics import GEval, AnswerRelevancyMetric, FaithfulnessMetric, ContextualPrecisionMetric, ContextualRecallMetric, ContextualRelevancyMetric
+from deepeval.metrics import GEval, AnswerRelevancyMetric, FaithfulnessMetric, ContextualPrecisionMetric, \
+    ContextualRecallMetric, ContextualRelevancyMetric
 from deepeval.test_case import LLMTestCaseParams, LLMTestCase
 from deepeval import evaluate
+from deepeval.evaluate import DisplayConfig
+
 print(f"deepeval loaded: {time() - start}s")
 
 start = time()
 from accelerate import Accelerator
+
 print(f"accelerate loaded: {time() - start}s")
 
 start = time()
 from pydantic import BaseModel
+
 print(f"pydantic loaded: {time() - start}s")
 
 start = time()
@@ -41,26 +72,31 @@ from lmformatenforcer import JsonSchemaParser
 from lmformatenforcer.integrations.transformers import (
     build_transformers_prefix_allowed_tokens_fn,
 )
+
 print(f"lmformatenforcer loaded: {time() - start}s")
 
 start = time()
 import json
+
 print(f"json loaded: {time() - start}s")
 
 start = time()
 import os
+
 print(f"os loaded: {time() - start}s")
 
 start = time()
 from collections import defaultdict
 import numpy as np
 import warnings
-import sys
+
 print(f"other loaded: {time() - start}s")
+
 
 # https://www.deepeval.com/guides/guides-using-custom-llms
 class EvaluationModel(DeepEvalBaseLLM):
-    def __init__(self, model_name, hugging_face_token, cache_dir="/d/hpc/projects/onj_fri/teammlg/models", *args, **kwargs):
+    def __init__(self, model_name, hugging_face_token, cache_dir="/d/hpc/projects/onj_fri/teammlg/models", *args,
+                 **kwargs):
         # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
         # deepseek-ai/DeepSeek-R1-Distill-Llama-8B
         # meta-llama/Meta-Llama-3-70B-Instruct
@@ -89,9 +125,10 @@ class EvaluationModel(DeepEvalBaseLLM):
             torch_dtype="bfloat16",
             cache_dir=cache_dir,
             device_map="auto",
-            token=hugging_face_token
+            token=hugging_face_token,
+            # quantization_config=quantization_config
         )
-        #self.model = self.accelerator.prepare(self.model)
+        # self.model = self.accelerator.prepare(self.model)
 
         super().__init__(model_name=model_name, *args, **kwargs)
 
@@ -101,9 +138,10 @@ class EvaluationModel(DeepEvalBaseLLM):
         return self.model
 
     def generate(self, prompt: str, schema: BaseModel):
-        prompt = prompt[:-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than few sentences.\nJSON:"
-        max_new_tokens = 256
-        #print(prompt)
+        prompt = prompt[
+                 :-6] + "Provide your `statements` and `reason` in a concise and straightforward manner, no longer than few sentences.\nJSON:"
+        max_new_tokens = 4096
+        # print(prompt)
 
         # Create parser required for JSON confinement using lmformatenforcer
         parser = JsonSchemaParser(schema.model_json_schema())
@@ -148,14 +186,14 @@ class EvaluationModel(DeepEvalBaseLLM):
 
         # Output and load valid JSON
         output_dict = generator(prompt, prefix_allowed_tokens_fn=prefix_function)
-        output = output_dict[0]["generated_text"][len(prompt) :]
-        #print("Raw output:", output, flush=True)
+        output = output_dict[0]["generated_text"][len(prompt):]
+        # print("Raw output:", output, flush=True)
 
         try:
             json_result = json_repair.loads(output)
         except json.JSONDecodeError as e:
-            #print("Error output:", repr(output), flush=True)
-            #print("Error message:", e)
+            # print("Error output:", repr(output), flush=True)
+            # print("Error message:", e)
             pass
 
         # Return valid JSON object according to the schema DeepEval supplied
@@ -169,7 +207,8 @@ class EvaluationModel(DeepEvalBaseLLM):
 
 
 class EvaluationWithLLM:
-    def __init__(self, model_name_for_evaluation=None, include_reason=False, verbose_mode=False, hugging_face_token=None):
+    def __init__(self, model_name_for_evaluation=None, include_reason=False, verbose_mode=False,
+                 hugging_face_token=None):
         self.verbose_mode = verbose_mode
         self.model_name = model_name_for_evaluation
 
@@ -247,7 +286,7 @@ class EvaluationWithLLM:
     def get_test_cases(self, json_data):
         test_cases = []
 
-        for i, line in enumerate(json_data):
+        for i, line in enumerate(json_data, start=1):
             test_cases.append(
                 LLMTestCase(
                     name=f"test_case_{i}",
@@ -276,17 +315,19 @@ class EvaluationWithLLM:
 
         test_cases = self.get_test_cases(json_data)
 
-        if evaluate_range is not None:
-            test_cases = test_cases[evaluate_range[0] : evaluate_range[1] + 1]
-
         self.print(f"{len(test_cases)} test cases loaded: {time() - start}s")
 
+        if evaluate_range is not None:
+            test_cases = test_cases[evaluate_range[0]: evaluate_range[1] + 1]
+            self.print(f"Continuing to evaluate from test {evaluate_range[0]} to {evaluate_range[1] + 1}")
+
+        display_config = DisplayConfig(show_indicator=False, print_results=False, verbose_mode=False)
         start = time()
         results = []
-        for test_case in test_cases:
-            result, _ = evaluate(test_cases=[test_case], metrics=self.metrics)
+        for i, test_case in enumerate(test_cases, start=1):
+            self.print(f"Evaluating test case {i}/{len(test_cases)}")
+            result, _ = evaluate(test_cases=[test_case], metrics=self.metrics, display_config=display_config)
             results.extend(result[1])
-            self.print(f"Evaluating test case {len(results)}/{len(test_cases)}")
 
         end = time()
 
@@ -357,6 +398,7 @@ class EvaluationWithLLM:
 
         return json_dict
 
+
 if __name__ == "__main__":
     # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
     # deepseek-ai/DeepSeek-R1-Distill-Qwen-32B
@@ -366,16 +408,28 @@ if __name__ == "__main__":
 
     # meta-llama/Llama-3.3-70B-Instruct
 
-    model_to_evaluate = "qwen_naive"
+    # 01-ai/Yi-34B-Chat
+    # Qwen/Qwen3-14B
 
-    evaluate_range = (0, 1)
+    # Arguments:
+    # 1. model to evaluate (without json)
+    # 2. model used to evaluate (from huggingface)
+    # 3. [OPTIONAL] evaluate start test
+    # 4. [OPTIONAL] evaluate end test (inclusive [start, end])
+
+    # model_to_evaluate = "qwen_naive"
+    # model_name = "Qwen/Qwen3-14B"
 
     results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}.json")
-    evaluation_results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}_evaluation{evaluate_range}.json")
+    evaluation_results_path = os.path.join("..", "final_results_for_evaluation",
+                                           f"{model_to_evaluate}_evaluation{evaluate_range}.json")
     verbose_mode = True
-    model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
-    #model_name = None
+
+    # model_name = None
     include_reason = True
 
-    evaluation = EvaluationWithLLM(model_name_for_evaluation=model_name, include_reason=include_reason, verbose_mode=verbose_mode, hugging_face_token=hf_key)
+    hf_key = "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"
+
+    evaluation = EvaluationWithLLM(model_name_for_evaluation=model_name, include_reason=include_reason,
+                                   verbose_mode=verbose_mode, hugging_face_token=hf_key)
     evaluation.evaluate_results(results_path, evaluation_results_path, evaluate_range=evaluate_range)

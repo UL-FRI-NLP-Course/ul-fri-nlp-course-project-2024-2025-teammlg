@@ -8,6 +8,5 @@
 #SBATCH --output=logs/test-%J.out
 #SBATCH --error=logs/test-%J.err
 #SBATCH --job-name="Evaluation LLM - Custom"
-#SBATCH --exclude=wn208
 
-srun singularity exec --writable-tmpfs --nv ~/containers/nlp-v1.sif python ./metrics_testing.py
+srun singularity exec --writable-tmpfs --nv ~/containers/nlp-v1.sif python ./llm_evaluation.py $1 $2 $3 $4
