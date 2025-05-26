@@ -428,6 +428,8 @@ if __name__ == "__main__":
     # model_name = None
     include_reason = True
 
+    hf_key = None
+
     evaluation = EvaluationWithLLM(model_name_for_evaluation=model_name, include_reason=include_reason,
                                    verbose_mode=verbose_mode, hugging_face_token=hf_key)
     evaluation.evaluate_results(results_path, evaluation_results_path, evaluate_range=evaluate_range)
