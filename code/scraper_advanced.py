@@ -284,7 +284,7 @@ def get_person_credits(name: str) -> Dict[str, Dict[str, List[Dict]]]:
     Get the list of credits for a person and additional information about each credit.
 
     Args:
-        title: The title of the movie.
+        name: The name and surname of the person.
 
     Returns:
         The credits for the person with name, as a dict of lists of dicts.
