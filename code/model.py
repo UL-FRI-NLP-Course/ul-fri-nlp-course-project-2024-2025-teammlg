@@ -1,4 +1,4 @@
-from enum import StrEnum
+from enum import Enum
 import logging
 import os
 import time
@@ -7,7 +7,7 @@ from typing import List, TypedDict
 import transformers
 
 
-class Role(StrEnum):
+class Role(Enum):
     User = "user"
     System = "system"
     Assistant = "assistant"

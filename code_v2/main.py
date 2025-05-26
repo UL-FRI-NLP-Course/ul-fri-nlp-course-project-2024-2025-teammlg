@@ -31,7 +31,7 @@ if __name__ == "__main__":
     parser.add_argument("--operation", type=Operation, required=True, help="Whether to have an interactive session or do an automatic evaluation", choices=[opt.value for opt in list(Operation)])
     parser.add_argument("--output_directory", type=str, default=None, help="The directory to output conversations")
     parser.add_argument("--evaluation_directory", type=str, default="evaluation", help="The directory to output evaluation results")
-    parser.add_argument("--uses_memory", type=bool, default=True, help="Whether the LLM should use chat history (important for chatting functionality)")
+    parser.add_argument("--uses_memory", action='store_true', help="Whether the LLM should use chat history (important for chatting functionality)")
     parser.add_argument("--memory_capacity", type=int, default=5, help="How much of chat history to keep in memory")
     parser.parse_args(namespace=arguments)
 

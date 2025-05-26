@@ -62,11 +62,11 @@ class ChatbotPipeline:
 
         self.logger.info(f"Is baseline: {is_baseline}")
 
-        if RAGType.Simple:
+        if self.rag_type == RAGType.Simple:
             self.logger.info("Performing simple retrieval...")
             documents = self.rag.get_simple_context(user_prompt)
             data = self.rag.data_to_str(documents)
-        elif RAGType.Advanced:
+        elif self.rag_type == RAGType.Advanced:
             self.logger.info("Performing advanced retrieval...")
             retrieval_tools = self.rag.get_retrieval_tools()
             instructions = self.model.answer_function_calling(user_prompt, retrieval_tools)

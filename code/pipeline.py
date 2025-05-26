@@ -9,7 +9,7 @@ from extraction import DocumentExtractionMethod, Extractor
 from model import Model
 
 
-class ModelType(enum.StrEnum):
+class ModelType(enum.Enum):
     DeepSeekSmall = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
     DeepSeekBig = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
     QwenSmall = "Qwen/Qwen3-4B"

@@ -11,7 +11,7 @@ import requests
 from extraction import ExtractedData
 
 
-class ScraperSource(enum.StrEnum):
+class ScraperSource(enum.Enum):
     TMDB = "tmdb"
     Letterboxd = "letterboxd"
     Wikipedia = "wiki"

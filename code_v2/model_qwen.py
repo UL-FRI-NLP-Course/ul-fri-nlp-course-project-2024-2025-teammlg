@@ -66,7 +66,7 @@ class QwenModel(Model):
             temperature=self.answer_temperature,
             eos_token_id=self.tokenizer.eos_token_id,
             repetition_penalty=1.2,
-            length_penalty=0.9
+            # length_penalty=0.9
         )
         
         self.logger.info("Decoding...")
