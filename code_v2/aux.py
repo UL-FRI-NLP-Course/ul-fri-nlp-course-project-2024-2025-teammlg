@@ -1,14 +1,14 @@
-from enum import StrEnum
+from enum import Enum
 from typing import Optional, TypedDict
 
 
-class RAGType(StrEnum):
+class RAGType(Enum):
     Baseline = "baseline"
     Simple = "simple"
     Advanced = "advanced"
 
 
-class ModelType(StrEnum):
+class ModelType(Enum):
     DeepSeek = "deepseek"
     Qwen = "qwen"
 

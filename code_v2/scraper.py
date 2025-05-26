@@ -5,6 +5,49 @@ import requests
 import wikipedia
 
 
+HEADERS = {
+    "accept": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
+}
+
+GENRES = {}
+
+def get_all_genres(include_tv_genres: bool = False):
+    url = "https://api.themoviedb.org/3/genre/movie/list?language=en"
+    response = requests.get(url, headers=HEADERS)
+    for g in response.json()["genres"]:
+        GENRES[g["id"]] = g["name"]
+
+    if include_tv_genres:
+        url = "https://api.themoviedb.org/3/genre/tv/list?language=en"
+        response = requests.get(url, headers=HEADERS)
+        for g in response.json()["genres"]:
+            GENRES[g["id"]] = g["name"]
+
+get_all_genres()
+
+
+def get_random_movies_based_on_language(language: str) -> List:
+    """
+    Finds some random movies based on spoken language.
+
+    Args:
+        language (str): The language in the movie. American English is 'en-US', etc.
+
+    Returns:
+        List: A list of movie titles, their release dates, and premises
+    """
+    url = f"https://api.themoviedb.org/3/discover/movie?language={language}"
+    response = requests.get(url, headers=HEADERS)
+    results = response.json()["results"]
+    return [{
+        "title": result["title"],
+        "release_date": result["release_date"],
+        "genres": [GENRES[genre_id] for genre_id in result["genres"]]
+    } for result in results]
+
+
+
 def get_movie_release_date(title: str) -> Dict[str, str]:
     """
     Get the release date for a movie.
@@ -16,13 +59,8 @@ def get_movie_release_date(title: str) -> Dict[str, str]:
         The release dates of all movies with that or similar title, in format 'YYYY-mm-dd'.
     """
 
-    headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
-        }
-
     url = ("https://api.themoviedb.org/3/search/movie?query=" + title + "&include_adult=false&language=en-US&page=1")
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     results = response.json()["results"]
     release_date = results[0]["release_date"]
     results = {
@@ -41,33 +79,13 @@ def get_movie_genres(title: str) -> Dict[str, List[str]]:
         The genres of all movies with that or similar title, as a list of strings.
     """
 
-    def get_all_genres(headers: str, include_tv_genres: bool = False) -> Dict[str, str]:
-        url = "https://api.themoviedb.org/3/genre/movie/list?language=en"
-        response = requests.get(url, headers=headers)
-        genres = {}
-        for g in response.json()["genres"]:
-            genres[g["id"]] = g["name"]
-
-        if include_tv_genres:
-            url = "https://api.themoviedb.org/3/genre/tv/list?language=en"
-            response = requests.get(url, headers=headers)
-            for g in response.json()["genres"]:
-                genres[g["id"]] = g["name"]
-        return genres
-
-    headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
-        }
-
     url = ("https://api.themoviedb.org/3/search/movie?query=" + title + "&include_adult=false&language=en-US&page=1")
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     results = response.json()["results"]
     if not results:
         return {title: []}
     genre_ids = results[0]["genre_ids"]
-    all_genres = get_all_genres(headers)
-    genres = [all_genres[g] for g in genre_ids]                
+    genres = [GENRES[g] for g in genre_ids]            
 
     return {
         title: genres
@@ -84,20 +102,15 @@ def get_movie_cast_list(title: str) -> Dict[str, List[Dict]]:
         The cast lists of all movies with that or similar title, as a list of dicts.
     """
 
-    headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
-        }
-
     url = ("https://api.themoviedb.org/3/search/movie?query=" + title + "&include_adult=false&language=en-US&page=1")
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     results = response.json()["results"]
     if not results:
         return {"cast": [{}]}
     movie_id = results[0]["id"]
 
     url = "https://api.themoviedb.org/3/movie/"+str(movie_id)+"/credits?language=en-US"
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     
     out = {"cast":[], "crew":[]}
     # cleanup
@@ -134,12 +147,6 @@ def get_movie_streaming_services(title: str) -> Dict[str, List[str]]:
     Returns:
         The streaming services of all movies with that or similar title, as a list of strings.
     """
-
-    headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
-        }
-
     def get_possible_urls(movie_name: str, headers: str, expected_number_of_movies_from_same_year: int = 5) -> List[str]:
         def format_title(title: str) -> str:
             title = str.lower(title)
@@ -171,7 +178,7 @@ def get_movie_streaming_services(title: str) -> Dict[str, List[str]]:
     services = []
     # ugly hack, might not always work!
     header = {"User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"}
-    possible = get_possible_urls(title, headers)
+    possible = get_possible_urls(title, HEADERS)
     for p in possible:
         url = "https://www.justwatch.com/in/movie/" + p
         r = requests.get(url, headers=header)
@@ -198,12 +205,6 @@ def get_movie_reviews(title: str, n: int = 5) -> Dict[str, List[List[str]]]:
     Returns:
         The reviews of all movies with that or similar title, as a list of lists.
     """
-
-    headers = {
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzA3OTdmMTNkOGEyYjE2ODZhM2MxZTI0MzBmYmI1NCIsIm5iZiI6MTc0NDk4ODE2NC4yMjU5OTk4LCJzdWIiOiI2ODAyNjgwNDJjODVlNzk2NjM5OWJkYTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.prH_dcerfMwd_oxlbU6qBIaH5tqkBO3yu-z09XirBAE"
-        }
-
     def get_possible_urls(movie_name: str, headers: str, expected_number_of_movies_from_same_year: int = 5) -> List[str]:
         def format_title(title: str) -> str:
             title = str.lower(title)
@@ -267,7 +268,7 @@ def get_movie_reviews(title: str, n: int = 5) -> Dict[str, List[List[str]]]:
 
             return reviews
 
-    possible = get_possible_urls(title, headers)
+    possible = get_possible_urls(title, HEADERS)
     reviews = []
     for p in possible:
         url = ("https://letterboxd.com/film/" + p + "/reviews/by/activity")
@@ -281,13 +282,13 @@ def get_movie_reviews(title: str, n: int = 5) -> Dict[str, List[List[str]]]:
 
 def get_person_credits(name: str) -> Dict[str, Dict[str, List[Dict]]]:
     """
-    Get the list of credits for a person and additional information about each credit.
+    Get the list of movies the person has worked on and additional information about each movie.
 
     Args:
         name: The name and surname of the person.
 
     Returns:
-        The credits for the person with name, as a dict of lists of dicts.
+        The movies for each person with this name.
     """
 
     def get_credits_for_person(person_id, headers):
