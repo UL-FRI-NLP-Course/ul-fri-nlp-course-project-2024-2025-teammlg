@@ -1,9 +1,6 @@
-from enum import StrEnum
-from typing import Optional, TypedDict
-
 from rag import Rag
-from qwen import QwenModel
-from deepseek import DeepSeekModel
+from model_qwen import QwenModel
+from model_deepseek import DeepSeekModel
 
 from aux import RAGType, ModelType, PipelineConfig, PipelineOutput
 
