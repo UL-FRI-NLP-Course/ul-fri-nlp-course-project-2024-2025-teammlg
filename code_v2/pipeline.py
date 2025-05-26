@@ -1,3 +1,7 @@
+import datetime
+import logging
+import os
+import uuid
 from rag import Rag
 from model_qwen import QwenModel
 from model_deepseek import DeepSeekModel
@@ -32,9 +36,17 @@ class ChatbotPipeline:
                 uses_memory=uses_memory,
                 memory_capacity=memory_capacity
             )
+        
+        os.makedirs(output_directory, exist_ok=True)
+        self.file = f"{output_directory}/{uuid.uuid4().hex}_pipeline.log"
+        current_time = datetime.datetime.now()
+        self.logger = logging.getLogger("Pipeline")
+        self.logger.setLevel(logging.INFO)
+        self.logger.addHandler(logging.FileHandler(self.file, encoding="utf-8"))
+        self.logger.info(f"Pipeline started at {current_time}")
     
     def run(self, user_prompt: str) -> PipelineOutput:
-        """Runs a single query through
+        """Runs a single query through the pipeline
 
         Args:
             user_prompt (str): The prompt from user
@@ -42,19 +54,31 @@ class ChatbotPipeline:
         Returns:
             PipelineOutput: The PipelineOutput object, containing response (see PipelineOutput docs)
         """
+        self.logger.info("============ PIPELINE RUN ==============")
+        self.logger.info(f"User prompt: {user_prompt}")
+
         is_baseline = self.rag_type == RAGType.Baseline
         data = ""
 
+        self.logger.info(f"Is baseline: {is_baseline}")
+
         if RAGType.Simple:
+            self.logger.info("Performing simple retrieval...")
             documents = self.rag.get_simple_context(user_prompt)
             data = self.rag.data_to_str(documents)
         elif RAGType.Advanced:
+            self.logger.info("Performing advanced retrieval...")
             retrieval_tools = self.rag.get_retrieval_tools()
             instructions = self.model.answer_function_calling(user_prompt, retrieval_tools)
             documents = self.rag.get_context_from_tools(instructions)
             data = self.rag.data_to_str(documents)
+        
+        self.logger.info("Data:")
+        self.logger.info(data)
 
         answer = self.model.answer_prompt(user_prompt, baseline=is_baseline, data=data)
+
+        self.logger.info(f"LLM response: {answer['assistant_response']}")
 
         return {
             "user_prompt": user_prompt,

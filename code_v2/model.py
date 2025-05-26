@@ -26,7 +26,7 @@ class Model(ABC):
         self.output_directory = output_directory
 
         os.makedirs(self.output_directory, exist_ok=True)
-        self.file = f"{uuid.uuid4().hex}.log"
+        self.file = f"{self.output_directory}/{uuid.uuid4().hex}_model.log"
         
         current_time = datetime.datetime.now()
         self.logger = logging.getLogger("LLM")
