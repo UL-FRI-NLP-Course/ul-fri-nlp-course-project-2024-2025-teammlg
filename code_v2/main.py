@@ -1,11 +1,8 @@
 import argparse
 from enum import StrEnum
-import sys
 from typing import Optional
 
-from pipeline import ChatbotPipeline, ModelType, PipelineConfig, RAGType
-import interactive_session
-import auto_evaluation
+from aux import ModelType, PipelineConfig, RAGType
 
 
 class Operation(StrEnum):
@@ -25,10 +22,26 @@ class CmdArguments(argparse.Namespace):
 
 if __name__ == "__main__":
     arguments = CmdArguments()
-    parser = argparse.ArgumentParser()
-    parser.parse_args(sys.argv, namespace=arguments)
+    parser = argparse.ArgumentParser(
+        prog="TeamMLG Movie Chatbot",
+        description="A simple chatbot for everything about films"
+    )
+    parser.add_argument("--rag_type", type=RAGType, required=True)
+    parser.add_argument("--model_type", type=ModelType, required=True)
+    parser.add_argument("--operation", type=Operation, required=True)
+    parser.add_argument("--output_directory", type=Optional[str], default=None)
+    parser.add_argument("--evaluation_directory", type=str, default="evaluation")
+    parser.add_argument("--uses_memory", type=bool, default=True)
+    parser.add_argument("--memory_capacity", type=int, default=5)
+    parser.parse_args(namespace=arguments)
 
     print("======== TeamMLG Movie Chatbot ========")
+
+    # This is to avoid waiting 10 minutes only to find out
+    # you messed up the initial parameters of the program
+    from pipeline import ChatbotPipeline
+    import interactive_session
+    import auto_evaluation
 
     config: PipelineConfig = {
         "rag_type": arguments.rag_type,
