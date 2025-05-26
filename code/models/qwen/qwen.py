@@ -29,8 +29,10 @@ class QwenChatBot(Model):
         )
         self.pad_token_id = self.tokenizer.eos_token_id
 
-        self.rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
-
+        if mode == "advanced":
+            self.rag = RagV2(self.tokenizer, self.model)
+        else:
+            self.rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
         with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
             self.prompt_template = fd.read()
 
@@ -42,45 +44,6 @@ class QwenChatBot(Model):
 
     def prompt_stream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         return self.prompt_nonstream(prompt, data)
-        rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
-        self.context, state = rag.get_context()
-
-        chat = self.session.get_chat_history()
-        chat.append({
-            "role": "system",
-            "content": f"Here is the available data:\n\n{data}\n\nGiven the available data and no other information, answer the user query."
-        })
-        chat.append({
-            "role": "user",
-            "content": prompt
-        })
-        
-        text = self.tokenizer.apply_chat_template(
-            chat,
-            tokenize=False,
-            add_generation_prompt=True,
-            enable_thinking=False
-        )
-
-        input_tokens = self.tokenizer([text], return_tensors="pt").to('cuda')
-
-        outputs = self.model.generate(
-            **input_tokens,
-            max_new_tokens=32768,
-            pad_token_id=self.pad_token_id,
-            temperature=self.temperature
-        )
-
-        final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
-
-        # here we have an option not to remember a potentially bad answer (if we come up with a suitable metric)
-        self.session.add_user_query(prompt)
-        self.session.add_assistant_response(str(final_output))
-    
-        return final_output, state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         self.context, state = self.rag.get_context(prompt)
@@ -122,28 +85,3 @@ class QwenChatBot(Model):
         self.session.add_assistant_response(str(final_output))
 
         return final_output, state
-
-        """pipeline = transformers.pipeline(
-            "text-generation",
-            model=self.model,
-            tokenizer=self.tokenizer,
-            use_cache=False,
-            truncation=True,
-            device_map="auto",
-            max_new_tokens=32768,
-            do_sample=True,
-            num_return_sequences=1,
-            eos_token_id=self.tokenizer.eos_token_id,
-            pad_token_id=self.tokenizer.eos_token_id,
-            temperature=0.6
-        )
-
-        with open("./models/qwen/prompt_template_qwen.txt", "r") as fd:
-            template = fd.read()
-
-        template = template.format(data=self.context, query=prompt)
-
-        output_dict = pipeline(template)
-        final_output = output_dict[0]["generated_text"][len(template) :]
-
-        return final_output, state"""

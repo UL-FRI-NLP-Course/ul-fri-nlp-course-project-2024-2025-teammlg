@@ -1,4 +1,4 @@
-from typing import Iterator, Tuple
+from typing import Tuple
 from ..model import Model
 from scraper import *
 from POStagger import *
@@ -29,7 +29,10 @@ class DeepSeekFilmChatBot(Model):
         )
         self.pad_token_id = self.tokenizer.eos_token_id
 
-        self.rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
+        if mode == "advanced":
+            self.rag = RagV2(self.tokenizer, self.model)
+        else:
+            self.rag = Rag(self.mode, self.datafolder, self.outname, self.sources)
         
         self.generation_thread = None 
 
@@ -44,46 +47,6 @@ class DeepSeekFilmChatBot(Model):
 
     def prompt_stream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         return self.prompt_nonstream(prompt, data)
-        rag = Rag(prompt, self.mode, self.datafolder, self.outname, self.sources)
-        self.context, state = rag.get_context()
-
-        chat = self.session.get_chat_history()
-        chat.append({
-            "role": "system",
-            "content": f"Here is the available data:\n\n{data}\n\nGiven the available data and no other information, answer the user query."
-        })
-        chat.append({
-            "role": "user",
-            "content": prompt
-        })
-
-        input_tokens = self.tokenizer.apply_chat_template(
-            chat,
-            add_generation_prompt=True,
-            return_tensors="pt"
-        ).to('cuda')
-        
-        outputs = self.model.generate(
-            **input_tokens,
-            max_new_tokens=512,
-            pad_token_id=self.pad_token_id,
-            temperature=self.temperature
-        )
-
-        final_output = ""
-        for i in range(len(outputs)):
-            output_text = self.tokenizer.decode(outputs[i])
-            final_output += output_text
-        
-        split_on_think_end = final_output.split("</think>")
-        if len(split_on_think_end) > 1:
-            final_output = split_on_think_end[-1]
-
-        # here we have an option not to remember a potentially bad answer (if we come up with a suitable metric)
-        self.session.add_user_query(prompt)
-        self.session.add_assistant_response(str(final_output))
-    
-        return final_output, state
 
     def prompt_nonstream(self, prompt: str, data: str = "") -> Tuple[str, Dict]:
         self.context, state = self.rag.get_context(prompt)

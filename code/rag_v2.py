@@ -1,21 +1,13 @@
 import json
 import re
 from typing import Any, List
-import transformers
 import scraper_advanced
 
 
 class RagV2:
-    def __init__(self):
-        self.tokenizer = transformers.AutoTokenizer.from_pretrained(
-            "Qwen/Qwen3-8B",
-            trust_remote_code=True
-        )
-        self.model = transformers.AutoModelForCausalLM.from_pretrained(
-            "Qwen/Qwen3-8B",
-            torch_dtype="auto",
-            device_map="auto"
-        )
+    def __init__(self, tokenizer, model):
+        self.tokenizer = tokenizer
+        self.model = model
         self.tools = [
             scraper_advanced.get_movie_release_date,
             scraper_advanced.get_movie_genres,
