@@ -1,5 +1,10 @@
 from abc import ABC, abstractmethod
+import logging
+import os
+import sys
 from typing import Any, Callable, List, TypedDict
+import uuid
+import datetime
 
 
 class ChatElement(TypedDict):
@@ -8,25 +13,33 @@ class ChatElement(TypedDict):
 
 
 class ModelAnswer(TypedDict):
-    system_prompt: str
-    """The system prompt that instructed the model how it should handle the query"""
-    final_prompt: str
-    """Final prompt, a combination of user prompt and retrieved data. This was provided as an input to the LLM"""
-    assistant_response: str
-    """The response that the LLM gave"""
+    system_prompt: str  # The system prompt that instructed the model how it should handle the query
+    final_prompt: str  # Final prompt, a combination of user prompt and retrieved data. This was provided as an input to the LLM
+    assistant_response: str  # The response that the LLM gave
 
 
 class Model(ABC):
-    def __init__(self, uses_memory: bool = False, memory_capacity: int = 5):
+    def __init__(self, output_directory: str, uses_memory: bool = False, memory_capacity: int = 5):
         self.uses_memory = uses_memory
         self.memory: List[ChatElement] = []
         self.memory_capacity = memory_capacity
+        self.output_directory = output_directory
+
+        os.makedirs(self.output_directory, exist_ok=True)
+        self.file = f"{uuid.uuid4().hex}.log"
+        
+        current_time = datetime.datetime.now()
+        self.logger = logging.getLogger("LLM")
+        self.logger.setLevel(logging.INFO)
+        self.logger.addHandler(logging.FileHandler(self.file, encoding="utf-8"))
+        self.logger.info(f"Model started at {current_time}")
 
     def save_to_memory(self, content: str, role: str):
         element = { "role": role, "content": content }
         self.memory.append(element)
         if len(self.memory) > self.memory_capacity:
             self.memory.pop(0)
+        self.logger.debug(f"Memory updated: {len(self.memory)} items")
     
     def form_chat(self, system_prompt: str, final_user_prompt: str) -> List[ChatElement]:
         chat = self.memory.copy()
