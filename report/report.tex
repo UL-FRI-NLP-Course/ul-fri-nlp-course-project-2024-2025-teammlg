@@ -20,7 +20,7 @@
 %----------------------------------------------------------------------------------------
 \documentclass[fleqn,moreauthors,10pt]{ds_report}
 \usepackage[english]{babel}
-
+\usepackage{listings}
 \graphicspath{{fig/}}
 
 
@@ -132,11 +132,6 @@ Crucial step in the RAG pipeline is the gathering of data (that the model has no
 For the purpose of identifying film titles or names in user's prompt, we use a Roberta-like spacy model en\_core\_web\_trf \footnote{https://huggingface.co/spacy/en\_core\_web\_trf}. We use the same model to summarize retrieved data for advanced RAG.  
 
 
-\subsection*{Conversational chatbot}
-
-
-
-
 %------------------------------------------------
 
 \section*{Results}
@@ -194,6 +189,11 @@ qwen-advanced  & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13} & 0
 \end{table*}
 
 
+\subsection*{Conversational chatbot}
+
+Extending a working model into a conversational chatbot is straightforward: the data retrieval pipeline remains the same, we only need to implement a mechanism for memorization of previous questions and responses. Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
+
+
 %------------------------------------------------
 
 \section*{Discussion}
@@ -208,7 +208,7 @@ We conclude that it is possible to improve the responses of 8B parameter large l
 \bibliographystyle{unsrt}
 \bibliography{report}
 
-
+\newpage
 \begin{appendix}
 
 \section*{Appendix}
@@ -216,10 +216,37 @@ We conclude that it is possible to improve the responses of 8B parameter large l
 
 \subsection*{DeepSeek}
 
-\fbox{\begin{minipage}{23em}
- "query": "Can you summarize the main themes of dark knight for me?",
-        "reply": "The Dark Knight is a superhero film directed by Christopher Nolan. The primary themes of the film include:1. Justice and morality: Batman's fight against crime is seen as a struggle for justice, morality, and order in Gotham City.2. Power and corruption: Batman's battle against corruption is seen as a fight between power and corruption, as well as between good and evil.3. Individuality and heroism: The film also explores the idea of individuality and heroism, as Batman himself is not just a symbol of justice but also an individual with unique qualities and experiences that make him a true hero.", 
-\end{minipage}}
+\begin{figure*}
+\begin{lstlisting}
+User: How many films did Chuck Jones make?
+
+Qwen: Based on the data provided:
+
+	**Total Number of Films:**  
+	Chuck Jones directed **over 100 films**, spanning multiple genres and formats.
+
+	### Breakdown:
+	- **Feature-Length Films**: 
+    		- *The Bugs Bunny/Road Runner Movie* (1979)
+	    - *The Phantom Tollbooth* (1970)
+	    - *The Grinch Stole Christmas!* (1966)
+
+	- **Shorts and Documentaries**:
+	    - Approximately **100+ short cartoons**
+	        - Many of these are Looney Tunes/Merry Melodies cartoons.
+	        - Includes iconic titles such as *What's Opera, Doc?*, *Duck Amuck*, etc.
+    
+	    - **Documentaries**: Around **dozens**, e.g.,
+	    	    - *The Magical World of Chuck Jones*
+	        - *Chuck Jones: Memories of Childhood*
+
+	### Summary:
+	Chuck Jones made approximately **more than 100 films**, primarily consisting of **animated short cartoons**, a handful of **feature-length compilations**, and several **documentaries**.
+\end{lstlisting}
+\caption{Conversation with Qwen}
+\label{qwenconvo}
+\end{figure*}
+
 
 
  
