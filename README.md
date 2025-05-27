@@ -32,6 +32,11 @@ singularity exec --nv ../../containers/nlp-v1.sif python ./conversation_evaluati
 
 Shard loading can take up to 30 minutes. The <code>></code> symbol indicates that the system is waiting for your query. Response generation typically takes around 30 seconds. To terminate the current session type <code>quit</code>.
 
+If you get SSL-related errors, run:
+
+```bash
+unset SSL_CERT_FILE
+```
 
 
 ## Functionality

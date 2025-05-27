@@ -159,12 +159,12 @@ Since we are working with relatively open-ended questions, there is a lack of ob
 \hline
 % & &\multicolumn{5}{c}{Number of segmented training images}\\
 Model & ROUGE & BLEU   \\ \hline
-deepseek-baseline  & 0.13079 & 0.00567 \\
-deepseek-naive  & 0.14052  & 0.01068   \\
+deepseek-baseline  & 0.171003 & 0.049453 \\
+deepseek-naive     & 0.165164 & 0.043081   \\
 deepseek-advanced  & 0.16714  & 0.01866   \\
-qwen-baseline  & 0.18991 & 0.03687    \\
-qwen-naive  & 0.19899  & 0.05811  \\
-qwen-advanced  & 0.17380  & 0.02584   \\
+qwen-baseline      & 0.192379 & 0.031395    \\
+qwen-naive         & 0.194950 & 0.034025  \\
+qwen-advanced      & 0.17380  & 0.02584   \\
 \hline
 \end{tabular}}
 \caption{Performance comparison against ChatGPT-generated ground truth.}
@@ -174,7 +174,7 @@ qwen-advanced  & 0.17380  & 0.02584   \\
 
 \subsection*{LLM-based evaluation}
 
-Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response. Results are shown in Table \ref{tab:llm_metrics}.
+Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response. Results are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because they do not receive any context. 
 
 \begin{table*}[!htb]
 %\centering
@@ -189,7 +189,7 @@ qwen-naive  & 0.13 & 0.05 & 0.13 & 0.05 & 0.13 & 0.05 & 0.05  \\
 qwen-advanced  & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13}   \\
 \hline
 \end{tabular}}
-\caption{Comparison of all models with LLM metrics.}
+\caption{Performance comparison as evaluated by a 14B parameter Qwen model with GEval framework.}
 \label{tab:llm_metrics}
 \end{table*}
 
@@ -198,7 +198,7 @@ qwen-advanced  & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13} & 0
 
 \section*{Discussion}
 
-At the moment, there is a visible improvement in the models' performance when using RAG, however the BLEU and ROUGE evaluation metrics do not emphasize this improvement enough, therefore we intend to devise more representative evaluation methods for our specific domain. Other open problems are how to determine which title/person a query is referring to in certain ambiguous cases and how to enable the model to keep a memory in the conversational context. 
+We conclude that it is possible to improve the responses of 8B parameter large language models on queries from a specific domain by employing on-the-fly information retrieval via web scraping.  
 
 
 
