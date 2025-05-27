@@ -24,7 +24,10 @@
 \usepackage{natbib}
 \usepackage{acro}
 \graphicspath{{fig/}}
+\usepackage{xcolor}
 
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
 
 
 
@@ -193,7 +196,6 @@ Since we are working with relatively open-ended questions, there is a lack of ob
 \centering
 \resizebox{1.0 \linewidth}{!}{\begin{tabular}{| l | c c |}
 \hline
-% & &\multicolumn{5}{c}{Number of segmented training images}\\
 Model & ROUGE & BLEU   \\ \hline
 deepseek-baseline  & 0.171003 & 0.049453 \\
 deepseek-naive     & 0.165164 & 0.043081   \\
@@ -255,10 +257,10 @@ We conclude that it is possible to improve the responses of 8B parameter large l
 \section*{Appendix}
 \label{append}
 
-\subsection*{DeepSeek}
+\subsection*{Qwen conversation example}
 
 \begin{figure*}
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=\%]
 User: How many films did Chuck Jones make?
 
 Qwen: Based on the data provided:
@@ -282,12 +284,11 @@ Qwen: Based on the data provided:
 	        - *Chuck Jones: Memories of Childhood*
 
 	### Summary:
-	Chuck Jones made approximately **more than 100 films**, primarily consisting of **animated short cartoons**, a handful of **feature-length compilations**, and several **documentaries**.
+	Chuck Jones made approximately **more than 100 films**, primarily consisting of **%\green{animated short cartoons}%**, a handful of **%\green{feature-length compilations}%**, and several **%\red{documentaries}%**.
 \end{lstlisting}
 \caption{Conversation with Qwen}
 \label{qwenconvo}
 \end{figure*}
-
 
 
  
