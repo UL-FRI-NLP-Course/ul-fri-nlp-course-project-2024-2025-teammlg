@@ -6,6 +6,8 @@
 # 01-ai/Yi-34B-Chat
 # Qwen/Qwen3-14B
 
+# sbatch llm_evaluation.sh deepseek_baseline Qwen/Qwen3-14B 1 10
+
 # Arguments:
 # 1. model to evaluate (without json)
 # 2. model used to evaluate (from huggingface)
@@ -89,6 +91,8 @@ start = time()
 from collections import defaultdict
 import numpy as np
 import warnings
+import io
+from contextlib import redirect_stdout
 
 print(f"other loaded: {time() - start}s")
 
@@ -322,11 +326,11 @@ class EvaluationWithLLM:
             self.print(f"Continuing to evaluate from test {evaluate_range[0]} to {evaluate_range[1] + 1}")
 
         display_config = DisplayConfig(show_indicator=False, print_results=False, verbose_mode=False)
-        start = time()
         results = []
         for i, test_case in enumerate(test_cases, start=1):
             self.print(f"Evaluating test case {i}/{len(test_cases)}")
-            result, _ = evaluate(test_cases=[test_case], metrics=self.metrics, display_config=display_config)
+            with redirect_stdout(io.StringIO()):
+                result, _ = evaluate(test_cases=[test_case], metrics=self.metrics, display_config=display_config)
             results.extend(result[1])
 
         end = time()
