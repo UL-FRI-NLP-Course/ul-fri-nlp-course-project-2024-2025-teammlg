@@ -6,7 +6,7 @@ from rag import Rag
 from model_qwen import QwenModel
 from model_deepseek import DeepSeekModel
 
-from aux import RAGType, ModelType, PipelineConfig, PipelineOutput
+from dataclasses import RAGType, ModelType, PipelineConfig, PipelineOutput
 
 
 class ChatbotPipeline:

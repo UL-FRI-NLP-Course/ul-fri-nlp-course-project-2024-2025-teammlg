@@ -2,7 +2,7 @@ import argparse
 from enum import Enum
 from typing import Optional
 
-from aux import ModelType, PipelineConfig, RAGType
+from dataclasses import ModelType, PipelineConfig, RAGType
 
 
 class Operation(Enum):
