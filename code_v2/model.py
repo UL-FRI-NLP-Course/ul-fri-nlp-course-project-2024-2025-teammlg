@@ -35,7 +35,7 @@ class Model(ABC):
         self.logger.info(f"Model started at {current_time}")
 
     def save_to_memory(self, content: str, role: str):
-        element = { "role": role, "content": content }
+        element = ChatElement(role=role, content=content)
         self.memory.append(element)
         if len(self.memory) > self.memory_capacity:
             self.memory.pop(0)

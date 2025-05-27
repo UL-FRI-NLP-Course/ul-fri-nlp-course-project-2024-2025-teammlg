@@ -47,7 +47,7 @@ class Rag:
                 tool_call_json = json.loads(tool_call)
                 name = tool_call_json.get("name", None)
                 if name is None:
-                    return ""
+                    return []
                 arguments = tool_call_json.get("arguments", {})
                 f = getattr(scraper, name)
                 data = f(**arguments)

@@ -6,7 +6,7 @@ from rag import Rag
 from model_qwen import QwenModel
 from model_deepseek import DeepSeekModel
 
-from dataclasses import RAGType, ModelType, PipelineConfig, PipelineOutput
+from data_classes import RAGType, ModelType, PipelineConfig, PipelineOutput
 
 
 class ChatbotPipeline:
@@ -15,17 +15,25 @@ class ChatbotPipeline:
         rag_type = config["rag_type"]
         uses_memory = config.get("uses_memory", False)
         memory_capacity = config.get("memory_capacity", 5)
-        output_directory = config.get("output_directory", None)
+        output_directory = config.get("output_directory")
+        if output_directory is None:
+            output_directory = "output"
         
         self.rag_type = rag_type
         self.rag = Rag("rag_outputs")
 
+        self.model_type = model_type
         if model_type == ModelType.DeepSeek:
             if not output_directory:
                 output_directory = "deepseek_model_outputs"
             self.model = DeepSeekModel(
                 output_directory,
                 uses_memory=uses_memory,
+                memory_capacity=memory_capacity
+            )
+            self.retrieval_model = QwenModel(
+                "retrieval_model",
+                uses_memory=False,
                 memory_capacity=memory_capacity
             )
         elif model_type == ModelType.Qwen:
@@ -69,7 +77,10 @@ class ChatbotPipeline:
         elif self.rag_type == RAGType.Advanced:
             self.logger.info("Performing advanced retrieval...")
             retrieval_tools = self.rag.get_retrieval_tools()
-            instructions = self.model.answer_function_calling(user_prompt, retrieval_tools)
+            if self.model_type == ModelType.DeepSeek:
+                instructions = self.retrieval_model.answer_function_calling(user_prompt, retrieval_tools)
+            else:
+                instructions = self.model.answer_function_calling(user_prompt, retrieval_tools)
             documents = self.rag.get_context_from_tools(instructions)
             data = self.rag.data_to_str(documents)
         

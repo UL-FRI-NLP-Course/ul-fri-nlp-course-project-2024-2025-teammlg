@@ -1,8 +1,15 @@
 import json
 import os
 import sys
+from typing import List, TypedDict
 import uuid
-from pipeline import ChatbotPipeline
+from pipeline import ChatbotPipeline, PipelineOutput
+
+
+class Result(TypedDict):
+    model: str
+    rag_type: str
+    results: List[PipelineOutput]
 
 
 def evaluate(pipeline: ChatbotPipeline, output_directory: str):
@@ -13,11 +20,7 @@ def evaluate(pipeline: ChatbotPipeline, output_directory: str):
     
     os.makedirs(output_directory, exist_ok=True)
     results_file = f"{output_directory}/{uuid.uuid4().hex}.json"
-    results = {
-        "model": pipeline.model.model_label,
-        "rag_type": str(pipeline.rag_type),
-        "results": []
-    }
+    results = Result(model=pipeline.model.model_label, rag_type=str(pipeline.rag_type), results=[])
     
     with open(results_file, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False)
