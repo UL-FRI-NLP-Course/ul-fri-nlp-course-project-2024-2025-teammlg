@@ -20,7 +20,7 @@
 %----------------------------------------------------------------------------------------
 \documentclass[fleqn,moreauthors,10pt]{ds_report}
 \usepackage[english]{babel}
-
+\usepackage{listings}
 \graphicspath{{fig/}}
 
 
@@ -132,11 +132,6 @@ Crucial step in the RAG pipeline is the gathering of data (that the model has no
 For the purpose of identifying film titles or names in user's prompt, we use a Roberta-like spacy model en\_core\_web\_trf \footnote{https://huggingface.co/spacy/en\_core\_web\_trf}. We use the same model to summarize retrieved data for advanced RAG.  
 
 
-\subsection*{Conversational chatbot}
-
-
-
-
 %------------------------------------------------
 
 \section*{Results}
@@ -159,12 +154,12 @@ Since we are working with relatively open-ended questions, there is a lack of ob
 \hline
 % & &\multicolumn{5}{c}{Number of segmented training images}\\
 Model & ROUGE & BLEU   \\ \hline
-deepseek-baseline  & 0.13079 & 0.00567 \\
-deepseek-naive  & 0.14052  & 0.01068   \\
+deepseek-baseline  & 0.171003 & 0.049453 \\
+deepseek-naive     & 0.165164 & 0.043081   \\
 deepseek-advanced  & 0.16714  & 0.01866   \\
-qwen-baseline  & 0.18991 & 0.03687    \\
-qwen-naive  & 0.19899  & 0.05811  \\
-qwen-advanced  & 0.17380  & 0.02584   \\
+qwen-baseline      & 0.192379 & 0.031395    \\
+qwen-naive         & 0.194950 & 0.034025  \\
+qwen-advanced      & 0.17380  & 0.02584   \\
 \hline
 \end{tabular}}
 \caption{Performance comparison against ChatGPT-generated ground truth.}
@@ -174,7 +169,7 @@ qwen-advanced  & 0.17380  & 0.02584   \\
 
 \subsection*{LLM-based evaluation}
 
-Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response. Results are shown in Table \ref{tab:llm_metrics}.
+Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response. Results are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because they do not receive any context. 
 
 \begin{table*}[!htb]
 %\centering
@@ -189,16 +184,21 @@ qwen-naive  & 0.13 & 0.05 & 0.13 & 0.05 & 0.13 & 0.05 & 0.05  \\
 qwen-advanced  & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13}   \\
 \hline
 \end{tabular}}
-\caption{Comparison of all models with LLM metrics.}
+\caption{Performance comparison as evaluated by a 14B parameter Qwen model with GEval framework.}
 \label{tab:llm_metrics}
 \end{table*}
+
+
+\subsection*{Conversational chatbot}
+
+Extending a working model into a conversational chatbot is straightforward: the data retrieval pipeline remains the same, we only need to implement a mechanism for memorization of previous questions and responses. Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
 
 
 %------------------------------------------------
 
 \section*{Discussion}
 
-At the moment, there is a visible improvement in the models' performance when using RAG, however the BLEU and ROUGE evaluation metrics do not emphasize this improvement enough, therefore we intend to devise more representative evaluation methods for our specific domain. Other open problems are how to determine which title/person a query is referring to in certain ambiguous cases and how to enable the model to keep a memory in the conversational context. 
+We conclude that it is possible to improve the responses of 8B parameter large language models on queries from a specific domain by employing on-the-fly information retrieval via web scraping.  
 
 
 
@@ -208,7 +208,7 @@ At the moment, there is a visible improvement in the models' performance when us
 \bibliographystyle{unsrt}
 \bibliography{report}
 
-
+\newpage
 \begin{appendix}
 
 \section*{Appendix}
@@ -216,10 +216,37 @@ At the moment, there is a visible improvement in the models' performance when us
 
 \subsection*{DeepSeek}
 
-\fbox{\begin{minipage}{23em}
- "query": "Can you summarize the main themes of dark knight for me?",
-        "reply": "The Dark Knight is a superhero film directed by Christopher Nolan. The primary themes of the film include:1. Justice and morality: Batman's fight against crime is seen as a struggle for justice, morality, and order in Gotham City.2. Power and corruption: Batman's battle against corruption is seen as a fight between power and corruption, as well as between good and evil.3. Individuality and heroism: The film also explores the idea of individuality and heroism, as Batman himself is not just a symbol of justice but also an individual with unique qualities and experiences that make him a true hero.", 
-\end{minipage}}
+\begin{figure*}
+\begin{lstlisting}
+User: How many films did Chuck Jones make?
+
+Qwen: Based on the data provided:
+
+	**Total Number of Films:**  
+	Chuck Jones directed **over 100 films**, spanning multiple genres and formats.
+
+	### Breakdown:
+	- **Feature-Length Films**: 
+    		- *The Bugs Bunny/Road Runner Movie* (1979)
+	    - *The Phantom Tollbooth* (1970)
+	    - *The Grinch Stole Christmas!* (1966)
+
+	- **Shorts and Documentaries**:
+	    - Approximately **100+ short cartoons**
+	        - Many of these are Looney Tunes/Merry Melodies cartoons.
+	        - Includes iconic titles such as *What's Opera, Doc?*, *Duck Amuck*, etc.
+    
+	    - **Documentaries**: Around **dozens**, e.g.,
+	    	    - *The Magical World of Chuck Jones*
+	        - *Chuck Jones: Memories of Childhood*
+
+	### Summary:
+	Chuck Jones made approximately **more than 100 films**, primarily consisting of **animated short cartoons**, a handful of **feature-length compilations**, and several **documentaries**.
+\end{lstlisting}
+\caption{Conversation with Qwen}
+\label{qwenconvo}
+\end{figure*}
+
 
 
  

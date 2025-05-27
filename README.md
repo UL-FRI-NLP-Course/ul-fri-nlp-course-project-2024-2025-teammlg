@@ -25,13 +25,18 @@ Run the following command to create an interactive session:
 srun --job-name "chatbot testing" --cpus-per-task 4 --mem-per-cpu 1500 --time 30:00 --gres=gpu:2 --partition=gpu --pty bash
 ```
 
-Then run the following (you have to specify which model you want to use, options are: deepseek_baseline, deepseek_naive, deepseek_advanced, qwen_baseline, qwen_naive, qwen_advanced):
+Then run the following (model options are: deepseek_baseline, deepseek_naive, deepseek_advanced, qwen_baseline, qwen_naive, qwen_advanced):
 ```bash
 singularity exec --nv ../../containers/nlp-v1.sif python ./conversation_evaluation.py --model qwen_naive
 ```
 
 Shard loading can take up to 30 minutes. The <code>></code> symbol indicates that the system is waiting for your query. Response generation typically takes around 30 seconds. To terminate the current session type <code>quit</code>.
 
+If you get SSL-related errors, run:
+
+```bash
+unset SSL_CERT_FILE
+```
 
 
 ## Functionality
@@ -39,6 +44,7 @@ Brief description of main functionality of each script:
 - <code>evaluation.py</code>: simultaneously evaluate multiple models on a list of questions, either <code>data/evaluation_questions.txt</code> (no ground truth) or <code>data/evaluation_questions.json</code> (ground truth).
 - <code>converstaion_evaluation.py</code>: evaluate one model at a time, by having a real-time conversation with it.
 - <code>scraper.py</code>: obtain structured data from websites TMDB, Letterboxd, JustWatch.
+- <code>scraper_v2.py</code>: modified scraper, such that Qwen model can choose which functions to call based on user query.
 - <code>POStagger.py</code>: finds titles and names of interest in user's prompt
 - <code>rag.py</code>: inserts scraped data (based on POS tagger) into the model's context.
 - <code>summarizer.py</code>: summarizes scraped data for advanced RAG.
