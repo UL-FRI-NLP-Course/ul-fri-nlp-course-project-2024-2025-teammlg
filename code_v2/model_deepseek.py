@@ -1,3 +1,4 @@
+import datetime
 from typing import Any, Callable, List
 import transformers
 from model import Model, ModelAnswer
@@ -31,7 +32,8 @@ class DeepSeekModel(Model):
     def answer_prompt(self, prompt: str, data: Any = None, baseline: bool = True) -> ModelAnswer:
         self.logger.info("=========== PROMPT ANSWERING ============")
         
-        system_prompt = "You are an AI chatbot, assisting user with anything related to movies."
+        date = datetime.date.today()
+        system_prompt = f"You are an AI chatbot, assisting user with anything related to movies. Today's date is {date}."
         if baseline:
             system_prompt += " You may only use information provided to you inside the <data> tags."
         

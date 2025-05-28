@@ -16,9 +16,9 @@ class ModelType(Enum):
 class PipelineConfig(TypedDict):
     model_type: ModelType  # Type of model (deepseek / qwen)
     rag_type: RAGType  # Type of RAG (baseline / simple / advanced)
-    uses_memory: bool = False  # Should the model use memory (necessary for chatting)
-    memory_capacity: int = 5  # How many prompts and replies should model keep in memory
-    output_directory: Optional[str] = None  # Where should data be output
+    uses_memory: bool  # Should the model use memory (necessary for chatting)
+    memory_capacity: int # How many prompts and replies should model keep in memory
+    output_directory: Optional[str] # Where should data be output
 
 
 class PipelineOutput(TypedDict):
