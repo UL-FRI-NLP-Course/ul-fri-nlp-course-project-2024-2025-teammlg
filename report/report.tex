@@ -220,12 +220,12 @@ Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we em
 \resizebox{1.0 \linewidth}{!}{\begin{tabular}{| c | c c c c c c c |}
 \hline
 model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
-deepseek-baseline  & 0.13 & 0.05 & 0.13 & 0.05 & / & / & / \\
-deepseek-naive  & 0.13 & 0.05 & 0.13 & 0.05 & 0.13 & 0.05 & 0.05   \\
-deepseek-advanced  & 0.13 & \textbf{0.13} & 0.13 & \textbf{0.13} & 0.13 & \textbf{0.13} & 0.05   \\
-qwen-baseline  & 0.13 & 0.05 & 0.13 & 0.05 & / & / & /    \\
-qwen-naive  & 0.13 & 0.05 & 0.13 & 0.05 & 0.13 & 0.05 & 0.05  \\
-qwen-advanced  & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13} & 0.05 & \textbf{0.13}   \\
+deepseek-baseline  & 0.19 & 0.7725 & 0.76846 & \textbf{0.98615} & / & / & / \\
+deepseek-naive  & 0.152 & 0.82800 & 0.78138 & 0.93233 & 0.24000 & 0.61771 & \textbf{0.40468}   \\
+deepseek-advanced  & & & & & & &   \\
+qwen-baseline  & \textbf{0.30962} & \textbf{0.86888} & 0.74805 & 0.94456 & / & / & /  \\
+qwen-naive  & 0.23111 & 0.65888 & \textbf{0.84670} & 0.88345 & \textbf{0.88345} & \textbf{0.76333} & 0.37029  \\
+qwen-advanced  &  & & &  &  & &    \\
 \hline
 \end{tabular}}
 \caption{Performance comparison as evaluated by a 14B parameter Qwen model with GEval framework.}

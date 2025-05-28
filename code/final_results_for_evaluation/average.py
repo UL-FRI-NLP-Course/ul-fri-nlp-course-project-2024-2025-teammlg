@@ -24,7 +24,7 @@ def average(name, metrics, dbfolder = "final_results_for_evaluation"):
 
 if __name__ == "__main__":
     metrics = ["Correctness (GEval)", "Clarity (GEval)", "Answer Relevancy", "Faithfulness", "Contextual Precision", "Contextual Recall", "Contextual Relevancy"]
-    names = ["qwen_naive_evaluation", "qwen_baseline_evaluation"]
+    names = ["qwen_naive_evaluation", "qwen_baseline_evaluation", "deepseek_baseline_evaluation", "deepseek_naive_evaluation"]
     for name in names:
         print(name, average(name, metrics))
         
