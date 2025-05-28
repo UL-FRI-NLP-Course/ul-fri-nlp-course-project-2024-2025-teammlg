@@ -14,7 +14,7 @@ class Result(TypedDict):
 
 def evaluate(pipeline: ChatbotPipeline, output_directory: str):
     print("Start evaluation...")
-    with open("data/evaluation_questions.json", "r") as f:
+    with open("../code/data/evaluation_questions.json", "r") as f:
         content = f.read()
         json_content = json.loads(content)
     
