@@ -26,9 +26,9 @@ if __name__ == "__main__":
         prog="TeamMLG Movie Chatbot",
         description="A simple chatbot for everything about films"
     )
-    parser.add_argument("--rag_type", type=RAGType, required=True, help="What kind of RAG to perform", choices=[opt.value for opt in list(RAGType)])
-    parser.add_argument("--model_type", type=ModelType, required=True, help="What LLM model to use", choices=[opt.value for opt in list(ModelType)])
-    parser.add_argument("--operation", type=Operation, required=True, help="Whether to have an interactive session or do an automatic evaluation", choices=[opt.value for opt in list(Operation)])
+    parser.add_argument("--rag_type", type=RAGType, required=True, help="What kind of RAG to perform", choices=[opt for opt in list(RAGType)])
+    parser.add_argument("--model_type", type=ModelType, required=True, help="What LLM model to use", choices=[opt for opt in list(ModelType)])
+    parser.add_argument("--operation", type=Operation, required=True, help="Whether to have an interactive session or do an automatic evaluation", choices=[opt for opt in list(Operation)])
     parser.add_argument("--output_directory", type=str, default=None, help="The directory to output conversations")
     parser.add_argument("--evaluation_directory", type=str, default="evaluation", help="The directory to output evaluation results")
     parser.add_argument("--uses_memory", action='store_true', help="Whether the LLM should use chat history (important for chatting functionality)")

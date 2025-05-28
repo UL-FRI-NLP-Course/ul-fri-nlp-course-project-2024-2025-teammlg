@@ -25,6 +25,7 @@
 \usepackage{acro}
 \graphicspath{{fig/}}
 \usepackage{xcolor}
+\usepackage{tcolorbox}
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
@@ -259,8 +260,8 @@ We conclude that it is possible to improve the responses of 8B parameter large l
 
 \subsection*{Qwen conversation example}
 
-\begin{figure*}
-\begin{lstlisting}[escapechar=\%]
+\begin{figure}
+\begin{tcolorbox}
 User: How many films did Chuck Jones make?
 
 Qwen: Based on the data provided:
@@ -268,7 +269,7 @@ Qwen: Based on the data provided:
 	**Total Number of Films:**  
 	Chuck Jones directed **over 100 films**, spanning multiple genres and formats.
 
-	### Breakdown:
+	\#\#\# Breakdown:
 	- **Feature-Length Films**: 
     		- *The Bugs Bunny/Road Runner Movie* (1979)
 	    - *The Phantom Tollbooth* (1970)
@@ -283,12 +284,12 @@ Qwen: Based on the data provided:
 	    	    - *The Magical World of Chuck Jones*
 	        - *Chuck Jones: Memories of Childhood*
 
-	### Summary:
-	Chuck Jones made approximately **more than 100 films**, primarily consisting of **%\green{animated short cartoons}%**, a handful of **%\green{feature-length compilations}%**, and several **%\red{documentaries}%**.
-\end{lstlisting}
+	\#\#\# Summary:
+	Chuck Jones made approximately \textbf{more than 100 films}, primarily consisting of **\green{animated short cartoons}**, a handful of **\green{feature-length compilations}**, and several **\red{documentaries}**.
+\end{tcolorbox}
 \caption{Conversation with Qwen}
 \label{qwenconvo}
-\end{figure*}
+\end{figure}
 
 
  
