@@ -1,0 +1,170 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 2155.37309718132,
+    "Correctness (GEval)": {
+        "average": 0.45999999999999996,
+        "median": 0.6,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.39799497484264795
+    },
+    "Clarity (GEval)": {
+        "average": 0.7,
+        "median": 0.8,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.35777087639996635
+    },
+    "Answer Relevancy": {
+        "average": 0.8047619047619048,
+        "median": 1.0,
+        "minimum": 0.16666666666666666,
+        "maximum": 1.0,
+        "standard_deviation": 0.32380952380952377
+    },
+    "Faithfulness": {
+        "average": 0.7666666666666667,
+        "median": 1.0,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.38873012632302
+    },
+    "Contextual Precision": {
+        "average": 0.6,
+        "median": 1.0,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.48989794855663565
+    },
+    "Contextual Recall": {
+        "average": 0.54,
+        "median": 0.7,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.4543126676640219
+    },
+    "Contextual Relevancy": {
+        "average": 0.5034188034188034,
+        "median": 0.5,
+        "minimum": 0.2,
+        "maximum": 0.8,
+        "standard_deviation": 0.19209751097285607
+    },
+    "reasons": {
+        "test_case_41": {
+            "Correctness (GEval)": [
+                "The actual output correctly identifies the film as a live-action/animation hybrid without contradicting the expected output. It mentions the blend of live-action and animation, and the presence of both real actors and animated characters, aligning with the expected output's description of a hybrid film with animated characters coexisting with humans. Omitted details are acceptable and not overly frequent"
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, with no vague or confusing parts. It avoids unnecessary repetition, providing a concise explanation of the film's hybrid nature."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.17 because the response included irrelevant details such as the release year, director, box office success, themes, and sequel information, which do not address whether the film is a cartoon or live-action."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect faithfulness."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because all nodes in the retrieval contexts are correctly ranked with relevant information about the film being a live-action/animated hybrid, as seen in the first node's reason mentioning the hybrid nature and integration of animated characters with live-action footage, and subsequent nodes consistently supporting this with detailed plot summaries and descriptions. There are no irrelevant nodes to rank lower, resulting in perfect contextual precision."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because all sentences in the expected output are fully supported by the retrieval context, with each sentence aligning precisely with the details provided in the corresponding nodes (e.g., node 1 confirms the film's release year and hybrid nature, node 2 supports the blend of live-action and animation, node 3 matches the plot involving Roger Rabbit and Eddie Valiant, and node 4 highlights the seamless integration of both mediums)."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.56 because the retrieval context contains both relevant and irrelevant information. The relevant statements, such as 'Combining live-action and animation...' and 'the film is set in an alternate history Hollywood...', directly address the input's question about the film's format. However, the context also includes irrelevant details like the novel it is based on, which do not answer the question about whether it is a cartoon or live-action film. This mix of relevant and irrelevant information results in a moderate relevancy score of 0.56, indicating that while some key information is present, not all content is pertinent to the query, requiring the user to sift through less relevant details to find the answer. The score is not as high as it could be due to the presence of extraneous information that does not contribute to answering the question about the film's format directly, as noted by the reason for irrelevancy: 'The retrieval context contained the information 'The film is loosely based on the 1981 novel Who Censored Roger Rabbit? by Gary K. Wolf' when it has nothing to do with whether the film is a cartoon or a live-action film.'"
+            ]
+        },
+        "test_case_42": {
+            "Correctness (GEval)": [
+                "The actual output recommends films and series that do not include 'Hot Fuzz' as specified in the expected output. Additionally, 'Terry Taoist' and 'Chevy Chase's Three Amigos!' are not recognized British action-comedy works, contradicting the expected output's focus on accurate recommendations."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but contains the vague entry 'Terry Taoist' which may not be a real or well-known series, potentially confusing readers."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.86 because the response correctly identified a British action comedy but included an irrelevant detail about the film being American despite British direction and humor style."
+            ],
+            "Faithfulness": [
+                "The score is 0.83 because the actual output incorrectly recommended 'Terry Taoist', which is not mentioned in the retrieval context."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in the retrieval contexts is irrelevant to the input, as it describes a romantic comedy with no action elements, different cast, and distinct plot from the expected 'Hot Fuzz' recommendation. This node ranks first but fails to provide relevant information, resulting in a complete lack of contextual precision since no relevant nodes are ranked higher than irrelevant ones, which is required for a higher score. The reason provided in the retrieval context explicitly states the mismatch in genres, title, cast, and plot, confirming its irrelevance to the input query about a British action comedy."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context contains no relevant information about 'Hot Fuzz' (2007), its director Edgar Wright, cast, plot, genre, or related films like the Cornetto Trilogy. The only node mentions a different film, 'A Very British Christmas' (2019), with unrelated details, while the others are empty or irrelevant, making it impossible to attribute any part of the expected output to the retrieval context nodes in the retrieval context. The 1st node in the retrieval context is the only one with content but is entirely unrelated to Hot Fuzz, and the rest provide no useful information for the expected output sentences, leading to a complete lack of contextual recall match, resulting in a score of 0.00"
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.80 because the retrieval context includes relevant information about a British film, such as its title, genre, release year, and plot, which directly addresses the input's request for a British action comedy. However, some parts of the context, like the mention of 'no notable previous works or recognition,' are not supported and are therefore irrelevant."
+            ]
+        },
+        "test_case_43": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output but omits key details such as the title 'Mission: Impossible \u2013 The Final Reckoning' and the specific release date of May 23, 2025. It provides speculative information about release timing and potential spin-offs instead of the confirmed details in the expected output. The omission of the title and date is frequent enough to impact accuracy, though no contradictions exist"
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but contains some repetition about release dates and mentions a possible spin-off, which is somewhat vague."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because the answer directly addresses the question about the release date of the next Mission Impossible movie without any irrelevant information."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect faithfulness and alignment with the provided information"
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (rank 1) directly answers the input with the release date of 'Mission: Impossible - The Final Reckoning', and there are no irrelevant nodes to compare against, ensuring all relevant information is prioritized at the top of the ranking."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context lists a different release date (May 15, 2025) in the first node, conflicting with the expected output's May 23, 2025."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.20 because the retrieval context contains one relevant statement about the release date of the next Mission Impossible movie, but the rest of the context is not provided, leading to limited overall relevance."
+            ]
+        },
+        "test_case_44": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly identifies the director as Alfred Hitchcock and the murderer as Charles La Trobe, contradicting the expected output which states the murderer is Ransom Drysdale."
+            ],
+            "Clarity (GEval)": [
+                "The text incorrectly identifies the director and murderer of 'Knives Out.' The film was directed by Rian Johnson, not Alfred Hitchcock, and the murderer is Harlan Thrombey's son, not the butler Charles La Trobe."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because the response correctly identified the murderer in 'Knives Out' as Harlan Thrombey and provided a concise explanation without any irrelevant information."
+            ],
+            "Faithfulness": [
+                "The score is 0.00 because the actual output incorrectly states that 'Knives Out' is directed by Alfred Hitchcock and features Charles La Trobe as the murderer portrayed by Joseph Cotten, which are not mentioned in the retrieval context. The context provided is unrelated to the film 'Knives Out'."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (rank 1) provides the correct answer by explicitly mentioning Chris Evans as Ransom Drysdale, the murderer, while the irrelevant nodes (ranks 2-4) do not state the murderer and instead discuss plot summaries, similar movies, and reviews without directly identifying the killer as per the'reason' fields quoted above."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because the retrieval context includes the necessary information about Chris Evans playing Ransom Drysdale, which directly supports the statement in the expected output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.50 because the retrieval context contains some relevant information about the film Knives Out, such as its release year and the main cast, but lacks specific details about the murderer in the film. Additionally, the context includes irrelevant details about the franchise and plot elements that do not directly address the question about the murderer. The relevant statements mention the film's success and main characters, but do not answer the question directly, leading to a moderate score of 0.50 due to partial relevance and some irrelevant information."
+            ]
+        },
+        "test_case_45": {
+            "Correctness (GEval)": [
+                "Actual output lists RoboCop: Last Knight (2014) and RoboCop: Rebooted (2019) which are not in the expected output. Expected output includes RoboCop 2 (1990), RoboCop 3 (1993), and the 2014 reboot, but lacks the 2019 reboot. Actual output omits directors, release dates, and plot details present in the expected output."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, with a structured list of release dates. However, 'RoboCop: Rebooted' is not an official title, which may cause confusion, and'sporadic releases' is slightly vague regarding the exact pattern of gaps between releases"
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly and accurately answered the question about the release dates of the RoboCop sequels without any irrelevant information."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because none of the retrieval contexts (nodes ranked 1, 2, and 3) provide relevant information about the release years of RoboCop sequels, as each node's reason states they do not mention the sequel titles or release years, making it impossible to determine the answer from the provided contexts."
+            ],
+            "Contextual Recall": [
+                "The score is 0.70 because the retrieval context provides partial support for the expected output. Specifically, the 2014 RoboCop reboot's details like the director (Jos\u00e9 Padilha) and title are supported by the context (node 3), but information about release dates and plot elements is missing, which affects the overall recall score."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.46 because the retrieval context provides some relevant information about the 2014 RoboCop film, such as its release date, director, and setting, but does not mention the sequels. However, the input specifically asks about the release dates of the RoboCop sequels, which are not addressed in the retrieval context."
+            ]
+        }
+    }
+}
