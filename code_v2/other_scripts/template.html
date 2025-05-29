@@ -70,15 +70,16 @@
         {% for question, answers in questions_answers.items() %}
 
         <div class="q">
-            <p><b>{{ question }}</b></p>
+            <p>{{ loop.index }}<b>{{ question }}</b></p>
             
             <div class="grid">
                 {% for source, answer in answers.items() | sort(attribute='0') %}
-                {% if source == 'ground_truth' %}
+                {% if source == 'ground_truth' or source == 'gpt' %}
                     <div class="{% if answer.gt_error %}err{% endif %} a">
                         <p class="head"><b>{{ source }}</b></p>
                         <p style="padding: 10px">{{ answer }}</p>
                     </div>
+                {% elif source == "i" %}
                 {% else %}
                     <div class="{% if answer.gt_error %}err{% endif %} a">
                         <p class="head"><b>{{ source }}</b></p>
@@ -86,6 +87,13 @@
                         <button style="margin: 10px;" onclick="toggleVisibility(this)">Show context</button>
                         <div class="hidden">
                             <p>{{ answer.contexts }}</p>
+                        </div>
+                        <div>
+                            {% if answer.gpt %}
+                            {% for k, v in answer.gpt.items() %}
+                            <p><b>{{ k }}:</b> <i>{{ v }}</i></p>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 {% endif %}

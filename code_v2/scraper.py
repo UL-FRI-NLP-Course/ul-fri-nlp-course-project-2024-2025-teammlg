@@ -280,7 +280,7 @@ def get_movie_reviews(title: str, n: int = 5) -> Dict[str, List[List[str]]]:
 
     return {title: reviews}
 
-def get_person_credits(name: str) -> Dict[str, Dict[str, List[Dict]]]:
+def get_persons_movie_credits(name: str) -> Dict[str, Dict[str, List[Dict]]]:
     """
     Get the list of movies the person has worked on and additional information about each movie.
 
@@ -442,3 +442,21 @@ def get_similar_movies(title: str) -> Dict[str, List[str]]:
         movies.append(d["title"])
 
     return {title: movies}
+
+
+def get_movie_general_info(title: str) -> List:
+    """
+    Retrieves general movie information. If you don't know what to call, call this to get the best overview.
+
+    Args:
+        title (str): The title of the movie
+
+    Returns:
+        Dict[str, str]: Information of the movie
+    """
+    url = ("https://api.themoviedb.org/3/search/movie?query=" + title + "&include_adult=false&language=en-US&page=1")
+    response = requests.get(url, headers=HEADERS)
+    results = response.json()["results"]
+    summary = get_movie_summary(title)
+    return [results, summary]
+
