@@ -11,16 +11,21 @@ import markdown
 def get_gpt_metrics() -> List[List[str]]:
     metrics_name = ["Correctness", "Clarity", "AnswerRelevancy", "Faithfulness", "ContextualPrecision", "ContextualRecall", "ContextualRelevancy"]
     metrics = ["Correctness (GEval)", "Clarity (GEval)", "Answer Relevancy", "Faithfulness", "Contextual Precision", "Contextual Recall", "Contextual Relevancy"]
-    folders = ["deepseek_advanced", "qwen_naive", "qwen_baseline", "deepseek_baseline", "deepseek_naive"]
-    names = ["deepseek_advanced_evaluation", "qwen_naive_evaluation", "qwen_baseline_evaluation", "deepseek_baseline_evaluation", "deepseek_naive_evaluation"]
+    folders = ["deepseek_advanced", "qwen_naive", "qwen_baseline", "qwen_advanced", "deepseek_baseline", "deepseek_naive"]
+    names = ["deepseek_advanced_evaluation", "qwen_naive_evaluation", "qwen_baseline_evaluation", "qwen_advanced_evaluation", "deepseek_baseline_evaluation", "deepseek_naive_evaluation"]
     base_dir = f"{os.getcwd()}/../../code/final_results_for_evaluation/GPT-evaluations"
 
     reasons = [None] * 50
     for name, folder in zip(names, folders):
         folder = f"{base_dir}/{folder}"
+        #print(folder)
         for metric, met in zip(metrics, metrics_name):
             for file in os.scandir(folder):
+                print(file)
+                print(file.name, met in file.name, name in file.name)
+                print(file.name, name)
                 if name in file.name and met in file.name:
+                    print(name)
                     f = open(folder+"/"+file.name)
                     data = json.load(f)
                     for i in range(1, 51):
@@ -41,7 +46,9 @@ def get_gpt_metrics() -> List[List[str]]:
                                 }
                             break
                         except Exception as e:
+                            #print(e)
                             pass
+    #print(json.dumps(reasons))
     return reasons
 
 
@@ -89,7 +96,6 @@ def load_results(inputs: List[str]):
         response = gpt_responses[i]
         if response is not None:
             for key, v in response.items():
-                print(key)
                 try:
                     value[key]["gpt"] = v
                 except Exception as e:
