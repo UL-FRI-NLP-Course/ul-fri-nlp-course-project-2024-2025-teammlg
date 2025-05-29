@@ -26,6 +26,8 @@
 \graphicspath{{fig/}}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{cleveref}
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
@@ -129,29 +131,53 @@ In this paper, we focus on \ac{rag} methods and their use in chatbots. To that e
 
 \section*{Methods}
 
-% TODO: A schematic of our pipeline
+We designed two \ac{rag} pipelines, as presented in~\cref{fig:pipeline}. The simple RAG pipeline used \ac{nlp} methods to extract the important feature information from prompt via lemmatization, stop-word removal, and entity detection. Prompt information was used to determine movie titles and names of people to query for in our selected databases. That information was then appended to the prompt and fed into an \ac{llm}.
+
+A more advanced version of our \ac{rag} system utilized various components, but we ultimately chose to employ function-calling functionality that is present in some \acp{llm}. Based on the prompt, the \ac{llm} decides on the most appropriate information retrieval function to call and informs the \ac{rag} system, which then retrieves that information. The information is then inserted into the prompt, which is fed into the \ac{llm}.
+
+\begin{figure*}
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\textwidth]{./figures/simple_rag.pdf}
+		\caption{A simple \ac{rag} system.}
+	\end{subfigure}
+	\hspace{20pt}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width=\linewidth]{./figures/advanced_rag.pdf}
+		\caption{An advanced \ac{rag} system.}
+	\end{subfigure}
+	\caption{Our proposed \ac{rag} pipelines for evaluation. The simple \ac{rag} variant preprocesses the prompt, extracts meaningful information from it, retrieves the data based on that, and enhances the prompt with that raw data. The advanced variant employs \ac{llm} function-calling capabilities to decide what data to scrape and enhances the prompt only with necessary data.}
+	\label{fig:pipeline}
+\end{figure*}
 
 \subsection*{Models}
 
-% TODO: Deepseek \footnote{https://huggingface.co/deepseek-ai/DeepSeek-R1}
+To better analyze the impact and viability of \ac{rag} on different \acp{llm}, we decided to use two models: one with reasoning capabilities and one without.
 
-Recently, a novel LLM, DeepSeek \cite{deepseek3}, has been presented. Because of its positive benchmarking results and efficiency due to the small number of parameters, it provides a promising starting point for experimentation with knowledge injection and prompt engineering.
+Since we were limited by hardware capabilities during our research, we focused on models with quantizied or distilled variants. We ultimatelly decided on a Qwen3~\footnote{https://huggingface.co/Qwen/Qwen3-8B} model as our non-reasoning \ac{llm}, and a distilled Llama variant of DeepSeek R1~\footnote{https://huggingface.co/deepseek-ai/DeepSeek-R1} as our reasoning \ac{llm}. Both models were 8-billion-parameters versions. We chose DeepSeek as it is a novel set of models with positive benchmarking results~\cite{deepseek3}.
 
-% TODO: Qwen
+Both models were loaded from HuggingFace and were run through the \texttt{transformers} API.
+
+\subsubsection{Function Calling}
+
+In some cases, we leveraged the function calling capabilities of our models. While DeepSeek hints at possibility of using this feature~\cite{deepseekFunctionCalling}, their proposed prompt templates do not support it. We instead turned to Qwen's function calling capabilities, which proved to be sufficient.
+
+In function calling, the model is presented with the user prompt and structured information about programmatic functions it may call to fullfil the user's request. The \ac{llm} is tought to return a similarly structured set of instructions on which functions to call, and with what parameters.
 
 \subsection*{Information Retrieval}
 
-% TODO: Sources: TMDB, JustWatch, Letterboxd, Wikipedia
+To provide a sufficient level of information related to movies and similar media, we selected the following sources:
 
-% TODO: Which data, how much, what format
-
-Crucial step in the RAG pipeline is the gathering of data (that the model has not been trained on) from external sources, in our case this is achieved via web scraping. Based on the user prompt, our models can access the following data:
 \begin{itemize}
-	\item Basic information about a film or a person, obtained from TMDB.
-	\item A specified number of film reviews, obtained from social media platform Letterboxd, sorted by popularity.
-	\item A list of streaming services a specific film is available on.
-	\item Summaries and plot descriptions from Wikipedia pages.
+	\item \textbf{\ac{tmdb}.} This is an open database of movies, TV-shows, and people associated with them. They provide a free-to-use API for various types of requests -- release dates, cast, crew, similar films ...
+	\item \textbf{Letterboxd.} This is a movie-themed social network to log watched films, provide reviews, and engage in movie-related discussions. We chose to include it to give the model a better understanding of how people percieve certain media.
+	\item \textbf{JustWatch.} This website tracks the availability of media on digital and streaming platforms.
+	\item \textbf{Wikipedia.} We used it to retrieve information such as film plots, summaries, etc.
 \end{itemize}
+
+In our simple \ac{rag} implementation, we retrieved data from all four sources. This would amount to over 250,000 characters of context.
+
+For our advanced version, we prepared nine custom scraping functions that would equip the model with essential information about movie titles and film-related people. These functions had to be specifically annotated and various versions of descriptions were used to elicit a proper function-calling response from the model.
 
 \subsection*{\ac{rag}}
 
@@ -164,20 +190,26 @@ Crucial step in the RAG pipeline is the gathering of data (that the model has no
 % 		- POS tagging
 %		- prompt injection
 
-For the purpose of identifying film titles or names in user's prompt and form summarization of retrieved data later on, we use a Roberta-like spacy model~\footnote{https://huggingface.co/spacy/en\_core\_web\_trf}.
+For the simple \ac{rag} system, we first analyzed the user prompt and gathered all relevant entities, consisting of film titles and names of people. We used a Roberta-like \texttt{spacy} model~\footnote{https://huggingface.co/spacy/en\_core\_web\_sm}. We performed unfiltered knowledge injection, gathering all relevant documents based on prompt entities, structured them in JSON format, and passed them allong with user query to the \ac{llm}.
 
-% TODO: Advanced RAG v1
-%		- POS tagging
-% 		- info extraction
-%		- summarization
-%		- performance - disadvantages
+For advanced \ac{rag} system, we tried several versions before basing it on function calling. Our earlier attempts performed the entity extraction from prompt, retrieval of documents from all sources based on those entities, and content curation based on statistical methods and user prompt. For example, we treated all sentences in the retrieved data as documents, performing TF-IDF sorting and using only top $N$ most relevant sentences. Unfortunatelly, results of these extractions accounted only for literal appearance of words from the prompt in documents, instead of accounting for larger context, synonyms, etc.
 
-% TODO: Advanced RAG v2
-%		- let LLM decide what to retrieve
-%		- function calling
-%		- prompt construction
+To address these shortcomings, we turned to function calling, letting the \ac{llm} decide what information to retrieve. In the system prompt, we also appended additional information about current date for better context formulation.
 
-%------------------------------------------------
+\subsection*{Prompt formulation}
+
+We structured our prompts to consist of three roles: system, user, and assistant. We put system prompt first, followed by the user prompt, and finally by assistant tag to signal the \ac{llm} to generate the answer, not to continue the user prompt.
+
+Our system prompt was:
+
+\begin{figure}[h!]
+	\begin{tcolorbox}
+		You are an AI chatbot, assisting user with anything related to movies. [Today's date is \verb|{date}|.] You may only use information provided to you inside the \verb|<data>| tags.
+	\end{tcolorbox}
+	\caption{Out prompt for \ac{rag} usage. The text in square brackets was only used in advanced \ac{rag}.}
+\end{figure}
+
+Our user prompt first presented the user's initial query, followed by the retrieved information enclosed in \verb|<data>| tags.
 
 \section*{Results}
 
