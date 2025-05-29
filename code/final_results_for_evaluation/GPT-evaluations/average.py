@@ -30,8 +30,8 @@ def average(name, folder, metrics, metrics_n):
 if __name__ == "__main__":
     metrics_name = ["Correctness", "Clarity", "AnswerRelevancy", "Faithfulness", "ContextualPrecision", "ContextualRecall", "ContextualRelevancy"]
     metrics = ["Correctness (GEval)", "Clarity (GEval)", "Answer Relevancy", "Faithfulness", "Contextual Precision", "Contextual Recall", "Contextual Relevancy"]
-    folders = ["deepseek_advanced", "qwen_naive", "qwen_baseline", "deepseek_baseline", "deepseek_naive"]
-    names = ["deepseek_advanced_evaluation", "qwen_naive_evaluation", "qwen_baseline_evaluation", "deepseek_baseline_evaluation", "deepseek_naive_evaluation"]
+    folders = ["qwen_advanced", "deepseek_advanced", "qwen_naive", "qwen_baseline", "deepseek_baseline", "deepseek_naive"]
+    names = ["qwen_advanced_evaluation", "deepseek_advanced_evaluation", "qwen_naive_evaluation", "qwen_baseline_evaluation", "deepseek_baseline_evaluation", "deepseek_naive_evaluation"]
     for name, folder in zip(names, folders):
         print(name, average(name, folder, metrics, metrics_name))
         

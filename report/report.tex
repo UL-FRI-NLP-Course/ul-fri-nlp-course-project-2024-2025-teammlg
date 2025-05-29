@@ -241,12 +241,12 @@ qwen-advanced  &  & & &  &  & &    \\
 \resizebox{1.0 \linewidth}{!}{\begin{tabular}{| c | c c c c c c c |}
 \hline
 model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
-deepseek-baseline  & 0.31845 & 0.74923 & 0.61720 & 0.94965 & / & / & / \\
-deepseek-naive  & 0.33410 & \textbf{0.81443} & 0.720714 & 0.75611 & 0.34 & 0.32014 & 0.43623   \\
-deepseek-advanced & 0.33412 & 0.78414 & 0.80973 & 0.93095 & \textbf{1.0} & \textbf{0.60937} & \textbf{0.56813}   \\
-qwen-baseline  & \textbf{0.45205} & 0.81023 & \textbf{0.87944} & \textbf{0.98666} & / & / & /  \\
+deepseek-baseline  & 0.31845 & 0.74923 & 0.61720 & / & / & / & / \\
+deepseek-naive  & 0.33410 & 0.81443 & 0.720714 & 0.75611 & 0.34 & 0.32014 & 0.43623   \\
+deepseek-advanced & 0.33412 & 0.78414 & 0.80973 & 0.93095 & \textbf{1.0} & 0.60937 & 0.56813   \\
+qwen-baseline  & 0.45205 & 0.81023 & \textbf{0.87944} & / & / & / & /  \\
 qwen-naive  & 0.45116 & 0.77992 & 0.80013 & 0.83234 & 0.34 & 0.264401 & 0.51643  \\
-qwen-advanced  &  & & &  &  & &    \\
+qwen-advanced  & \textbf{0.52336} & \textbf{0.83382} & 0.68042 & \textbf{0.97935} & \textbf{1.0} & \textbf{0.61096} & \textbf{0.68355}   \\
 \hline
 \end{tabular}}
 \caption{Performance comparison as evaluated by GPT-mini-4.1 model with GEval framework.}
