@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.333999872207642,
+    "Contextual Recall": {
+        "average": 0.14285714285714285,
+        "median": 0.14285714285714285,
+        "minimum": 0.14285714285714285,
+        "maximum": 0.14285714285714285,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Recall": [
+                "The score is 0.14 because only the first sentence about the director and lead actor is supported by node 1 in the retrieval context, while all detailed critical and audience reception data in sentences 1-6 lack support from any nodes, resulting in a low overall contextual recall."
+            ]
+        }
+    }
+}

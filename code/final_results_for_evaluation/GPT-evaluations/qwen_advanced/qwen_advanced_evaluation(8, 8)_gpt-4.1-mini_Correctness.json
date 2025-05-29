@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.471998691558838,
+    "Correctness (GEval)": {
+        "average": 0.6880797079542409,
+        "median": 0.6880797079542409,
+        "minimum": 0.6880797079542409,
+        "maximum": 0.6880797079542409,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Correctness (GEval)": [
+                "The actual output correctly states the existence of the Serenity movie and its continuation of the Firefly story without contradicting the expected output. However, it omits key details such as the director Joss Whedon, the full main cast, the specific plot about River Tam's psychic abilities, the tone, and the reception, which are all present in the expected output."
+            ]
+        }
+    }
+}

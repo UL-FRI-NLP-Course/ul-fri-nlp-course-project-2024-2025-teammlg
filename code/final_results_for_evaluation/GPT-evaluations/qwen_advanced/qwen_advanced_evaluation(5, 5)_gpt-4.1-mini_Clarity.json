@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.7430002689361572,
+    "Clarity (GEval)": {
+        "average": 0.8851952798209366,
+        "median": 0.8851952798209366,
+        "minimum": 0.8851952798209366,
+        "maximum": 0.8851952798209366,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured film recommendations. There is no unnecessary repetition, and the descriptions are concise. The only minor issue is the slight vagueness in the opening parenthetical about the film 'Flow,' which could confuse some readers."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 23.086000204086304,
+    "Contextual Relevancy": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Relevancy": [
+                "The score is 0.90 because while the retrieval context includes extensive information about Arnold Schwarzenegger's filmography and recent films such as Terminator Genisys (2015), The Last Stand (2013), and The Expendables series, it also contains irrelevant bodybuilding-related content like 'after an absence of five years, six times Mr Olympia winner Arnold Schwarzenegger makes a comeback,' which does not pertain to his recent film work. This mix of relevant and irrelevant information justifies the high but not perfect relevancy score."
+            ]
+        }
+    }
+}

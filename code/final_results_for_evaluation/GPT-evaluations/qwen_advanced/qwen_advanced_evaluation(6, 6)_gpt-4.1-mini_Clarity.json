@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.342999219894409,
+    "Clarity (GEval)": {
+        "average": 0.7982013788623237,
+        "median": 0.7982013788623237,
+        "minimum": 0.7982013788623237,
+        "maximum": 0.7982013788623237,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with well-structured points. However, phrases like 'romantic and horny' and 'goofy but relevant' may be slightly vague or informal, potentially reducing clarity. There is minor repetition in describing the film's tone and style, but it does not significantly hinder understanding."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.476998805999756,
+    "Correctness (GEval)": {
+        "average": 0.700633913078535,
+        "median": 0.700633913078535,
+        "minimum": 0.700633913078535,
+        "maximum": 0.700633913078535,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Correctness (GEval)": [
+                "The actual output includes mostly accurate live-action Superman films from the 1950s to 2025 without contradicting facts but omits notable entries like 'Superman and the Mole Men (1951)', 'Superman III', 'Superman IV', and the animated films listed in the expected output. It also incorrectly states no 'Batman vs. Superman' film existed before 2016, missing the 2016 film's correct title and details. The upcoming 2025 film is named 'Superman: Legacy' in actual output, while expected output lists it as 'Superman' starring David Corenswet."
+            ]
+        }
+    }
+}

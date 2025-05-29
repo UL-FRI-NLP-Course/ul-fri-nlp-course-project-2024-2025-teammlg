@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 17.430000066757202,
+    "Contextual Relevancy": {
+        "average": 0.2222222222222222,
+        "median": 0.2222222222222222,
+        "minimum": 0.2222222222222222,
+        "maximum": 0.2222222222222222,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Relevancy": [
+                "The score is 0.22 because most statements focus on casting, production, release, and reception, which do not address the film's originality. However, the relevant statements clarify that 'Until Dawn... is derived from the 2015 video game... featuring an original standalone story,' indicating partial relevance to the question."
+            ]
+        }
+    }
+}

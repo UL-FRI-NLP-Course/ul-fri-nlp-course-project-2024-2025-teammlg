@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.629999876022339,
+    "Correctness (GEval)": {
+        "average": 0.6410686650005344,
+        "median": 0.6410686650005344,
+        "minimum": 0.6410686650005344,
+        "maximum": 0.6410686650005344,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Correctness (GEval)": [
+                "The actual output provides many film recommendations with artistic and emotional themes similar to Flow, but it includes many titles not mentioned in the expected output and lacks emphasis on Flow's key traits like being dialogue-free and nature-focused. There are no direct contradictions, but the actual output diverges significantly in style and specificity."
+            ]
+        }
+    }
+}

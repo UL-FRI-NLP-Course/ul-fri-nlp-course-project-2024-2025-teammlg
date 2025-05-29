@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.844999551773071,
+    "Clarity (GEval)": {
+        "average": 0.85,
+        "median": 0.85,
+        "minimum": 0.85,
+        "maximum": 0.85,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with specific box office figures, but the closing sentence and emojis add slight informality and unnecessary elements. There is no repetition, and the information is mostly concise."
+            ]
+        }
+    }
+}

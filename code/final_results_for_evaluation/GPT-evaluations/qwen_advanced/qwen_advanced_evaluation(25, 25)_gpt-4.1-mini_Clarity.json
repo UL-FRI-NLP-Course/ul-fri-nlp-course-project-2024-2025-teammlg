@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.936000108718872,
+    "Clarity (GEval)": {
+        "average": 0.673105859034899,
+        "median": 0.673105859034899,
+        "minimum": 0.673105859034899,
+        "maximum": 0.673105859034899,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language and a structured format, but contains vague or confusing elements such as listing TV series and non-MCU films (e.g., 'Inhumans', 'Falcon and the Winter Soldier', 'Ms. Marvel', 'Deadpool & Wolverine') within a film list, and has minor repetition in mentioning TV series twice."
+            ]
+        }
+    }
+}

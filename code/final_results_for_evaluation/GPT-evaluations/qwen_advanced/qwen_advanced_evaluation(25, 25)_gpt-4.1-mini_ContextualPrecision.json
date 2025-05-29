@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.725999593734741,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts, ranked 1, is irrelevant as it contains an empty list '[]' providing no information about Marvel films. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ]
+        }
+    }
+}

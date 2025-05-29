@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6929996013641357,
+    "Correctness (GEval)": {
+        "average": 0.09525741242979906,
+        "median": 0.09525741242979906,
+        "minimum": 0.09525741242979906,
+        "maximum": 0.09525741242979906,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Correctness (GEval)": [
+                "The actual output about Ben Affleck's recent film does not address or relate to the detailed Marvel Studios filmography expected, showing a complete topic mismatch without any overlapping facts."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.48799991607666,
+    "Correctness (GEval)": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Correctness (GEval)": [
+                "The actual output aligns well with the expected output, confirming significant gore and blood in vampire transformations and battles. It adds more detail about specific violent acts without contradicting the expected facts. Minor omission of the R rating and sexual content mention is acceptable."
+            ]
+        }
+    }
+}

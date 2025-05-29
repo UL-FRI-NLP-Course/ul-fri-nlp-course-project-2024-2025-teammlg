@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.857999563217163,
+    "Correctness (GEval)": {
+        "average": 0.3038640708325973,
+        "median": 0.3038640708325973,
+        "minimum": 0.3038640708325973,
+        "maximum": 0.3038640708325973,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "Actual Output contradicts Expected Output by overstating worldwide gross as $368 million versus $109.6 million and domestic gross as $137 million, while Expected Output states it was a box office disappointment with a $140 million budget."
+            ]
+        }
+    }
+}

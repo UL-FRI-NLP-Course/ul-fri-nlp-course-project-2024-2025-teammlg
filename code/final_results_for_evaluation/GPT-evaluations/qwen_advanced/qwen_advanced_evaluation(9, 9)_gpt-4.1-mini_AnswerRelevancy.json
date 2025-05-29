@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 20.591999053955078,
+    "Answer Relevancy": {
+        "average": 0.7083333333333334,
+        "median": 0.7083333333333334,
+        "minimum": 0.7083333333333334,
+        "maximum": 0.7083333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Answer Relevancy": [
+                "The score is 0.71 because the response includes several films that blend fantasy, horror, and supernatural elements but do not strictly fit the spooky sci-fi genre requested. However, it still provides relevant suggestions that partially align with the user's interest in spooky themes, justifying the moderate score rather than a lower one."
+            ]
+        }
+    }
+}

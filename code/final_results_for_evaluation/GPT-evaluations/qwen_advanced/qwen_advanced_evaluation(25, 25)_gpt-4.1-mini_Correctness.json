@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3769993782043457,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Correctness (GEval)": [
+                "The actual output lists Marvel Studios films and details about the MCU, which contradicts the expected output about the Minecraft Movie's suitability and rating."
+            ]
+        }
+    }
+}

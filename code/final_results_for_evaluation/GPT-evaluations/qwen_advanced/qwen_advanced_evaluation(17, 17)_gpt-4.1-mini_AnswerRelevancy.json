@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 36.160998582839966,
+    "Answer Relevancy": {
+        "average": 0.3541666666666667,
+        "median": 0.3541666666666667,
+        "minimum": 0.3541666666666667,
+        "maximum": 0.3541666666666667,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Answer Relevancy": [
+                "The score is 0.35 because the response includes many irrelevant details about directors and thematic elements unrelated to the question about which films Hans Zimmer wrote the soundtrack for. However, it still mentions several films associated with Zimmer's work, providing some relevant information."
+            ]
+        }
+    }
+}

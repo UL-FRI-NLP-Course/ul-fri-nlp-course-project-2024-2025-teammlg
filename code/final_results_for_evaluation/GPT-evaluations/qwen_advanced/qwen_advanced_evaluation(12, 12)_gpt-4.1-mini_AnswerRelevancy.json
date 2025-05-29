@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 23.76400065422058,
+    "Answer Relevancy": {
+        "average": 0.8857142857142857,
+        "median": 0.8857142857142857,
+        "minimum": 0.8857142857142857,
+        "maximum": 0.8857142857142857,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Answer Relevancy": [
+                "The score is 0.89 because the response provides relevant examples of movies based on video games, addressing the question well. However, it cannot be higher due to several factually incorrect and irrelevant statements, such as miscasting actors and mentioning non-movie titles, which detract from the overall accuracy and relevance."
+            ]
+        }
+    }
+}

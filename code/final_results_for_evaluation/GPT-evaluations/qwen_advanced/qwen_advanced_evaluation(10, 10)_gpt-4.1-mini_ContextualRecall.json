@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.394001007080078,
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Contextual Recall": [
+                "The score is 1.00 because the expected output accurately reflects the information in node 1 of the retrieval context, which clearly states that Ashton Kutcher played Steve Jobs in the 2013 film Jobs. There are no discrepancies or unsupported statements, making the recall perfect and reliable."
+            ]
+        }
+    }
+}
