@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.075000047683716,
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Precision": [
+                "The score is 1.00 because the first node in retrieval contexts clearly supports the input by describing 'Sinners' as containing 'graphic detail' of violent scenes and an R rating for 'strong bloody violence,' which directly aligns with the query about gore and blood. There are no irrelevant nodes ranked higher, ensuring perfect contextual precision."
+            ]
+        }
+    }
+}

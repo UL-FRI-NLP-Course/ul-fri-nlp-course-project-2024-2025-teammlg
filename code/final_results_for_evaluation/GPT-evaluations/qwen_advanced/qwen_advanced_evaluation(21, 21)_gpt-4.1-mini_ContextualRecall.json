@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.7410008907318115,
+    "Contextual Recall": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Recall": [
+                "The score is 0.50 because the explanation about the film drawing inspiration from real-life tennis events is supported by node 1 in the retrieval context, which mentions training with Brad Gilbert and the tennis-centric plot. However, the retrieval context does not confirm whether 'Challengers' is based on a true story, leading to partial support for the expected output."
+            ]
+        }
+    }
+}

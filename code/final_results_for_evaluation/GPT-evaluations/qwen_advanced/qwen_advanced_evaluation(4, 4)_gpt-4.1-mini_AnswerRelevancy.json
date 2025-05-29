@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.396000623703003,
+    "Answer Relevancy": {
+        "average": 0.2857142857142857,
+        "median": 0.2857142857142857,
+        "minimum": 0.2857142857142857,
+        "maximum": 0.2857142857142857,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Answer Relevancy": [
+                "The score is 0.29 because the response includes multiple irrelevant details about release dates of various Marvel films, which do not directly answer the question about the title of the next Marvel film after Captain America 3. However, it is not lower because it does mention relevant films related to the timeline, providing some context."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.365999698638916,
+    "Clarity (GEval)": {
+        "average": 0.8182425523806357,
+        "median": 0.8182425523806357,
+        "minimum": 0.8182425523806357,
+        "maximum": 0.8182425523806357,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language overall, but some phrases like 'dramatic exploration of human emotions' are slightly vague. There is minor repetition about the film being fictional and not based on real events."
+            ]
+        }
+    }
+}

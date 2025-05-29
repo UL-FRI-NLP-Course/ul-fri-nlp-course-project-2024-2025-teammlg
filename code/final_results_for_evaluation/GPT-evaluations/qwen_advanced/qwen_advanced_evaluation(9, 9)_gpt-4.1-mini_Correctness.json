@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.5840003490448,
+    "Correctness (GEval)": {
+        "average": 0.5684137564079063,
+        "median": 0.5684137564079063,
+        "minimum": 0.5684137564079063,
+        "maximum": 0.5684137564079063,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Correctness (GEval)": [
+                "The actual output lists many sci-fi horror films without contradictions but omits key details like directors, years, and reasons to watch present in the expected output. It also includes some titles not in the expected list and lacks the structured categories and explanations."
+            ]
+        }
+    }
+}

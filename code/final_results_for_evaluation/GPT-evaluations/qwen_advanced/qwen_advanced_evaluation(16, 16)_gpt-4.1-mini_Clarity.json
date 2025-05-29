@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.534999370574951,
+    "Clarity (GEval)": {
+        "average": 0.8731058578630005,
+        "median": 0.8731058578630005,
+        "minimum": 0.8731058578630005,
+        "maximum": 0.8731058578630005,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured descriptions for each film. There is minor confusion with the director name 'Peter\u517cRosenberg' and slight inconsistency in genre labeling, but no unnecessary repetition is present."
+            ]
+        }
+    }
+}

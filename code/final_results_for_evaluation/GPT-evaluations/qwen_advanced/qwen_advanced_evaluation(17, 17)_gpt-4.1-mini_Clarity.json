@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.43700098991394,
+    "Clarity (GEval)": {
+        "average": 0.7437823499114202,
+        "median": 0.7437823499114202,
+        "minimum": 0.7437823499114202,
+        "maximum": 0.7437823499114202,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but contains some vague or confusing information, such as contradictory statements about Hans Zimmer's involvement in The Lion King remake. There is minor repetition in listing collaborations with Benjamin Wallfisch twice. Overall, the list is informative but could be more concise and precise."
+            ]
+        }
+    }
+}

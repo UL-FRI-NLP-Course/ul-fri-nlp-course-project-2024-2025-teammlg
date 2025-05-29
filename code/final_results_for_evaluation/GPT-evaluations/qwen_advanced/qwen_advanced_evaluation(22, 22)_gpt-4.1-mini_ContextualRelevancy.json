@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 39.468995571136475,
+    "Contextual Relevancy": {
+        "average": 0.37777777777777777,
+        "median": 0.37777777777777777,
+        "minimum": 0.37777777777777777,
+        "maximum": 0.37777777777777777,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Relevancy": [
+                "The score is 0.38 because while the retrieval context includes detailed plot points involving vampires, blood drinking, and violent confrontations (e.g., 'she seduces and kills Stack by drinking his blood', 'Smoke fights and defeats Stack'), it lacks explicit information about the overall level of gore and blood in the film. Additionally, many statements are irrelevant to gore or blood content, such as casting and production details, which lowers the relevancy score."
+            ]
+        }
+    }
+}

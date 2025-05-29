@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.496998071670532,
+    "Contextual Recall": {
+        "average": 0.04,
+        "median": 0.04,
+        "minimum": 0.04,
+        "maximum": 0.04,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Contextual Recall": [
+                "The score is 0.04 because only sentence 3 in the expected output, mentioning 'The Thing', is supported by node 1 in the retrieval context. However, the vast majority of sentences, including all film titles, descriptions, and genre categorizations, have no corresponding information in the retrieval context, leading to a very low contextual recall."
+            ]
+        }
+    }
+}

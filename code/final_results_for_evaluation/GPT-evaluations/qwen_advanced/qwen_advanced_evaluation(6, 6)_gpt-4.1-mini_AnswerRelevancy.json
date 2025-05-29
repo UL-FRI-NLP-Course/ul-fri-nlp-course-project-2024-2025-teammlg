@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.706999063491821,
+    "Answer Relevancy": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 0.90 because the response generally addresses public opinions about Mickey 17, providing relevant information. However, it cannot be higher due to the incorrect and irrelevant association of the film with Bong Joon-ho's signature style, which misleads and detracts from the overall accuracy."
+            ]
+        }
+    }
+}

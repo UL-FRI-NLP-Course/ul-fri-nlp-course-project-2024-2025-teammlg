@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.042999267578125,
+    "Answer Relevancy": {
+        "average": 0.8333333333333334,
+        "median": 0.8333333333333334,
+        "minimum": 0.8333333333333334,
+        "maximum": 0.8333333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Answer Relevancy": [
+                "The score is 0.83 because the response provides relevant information about popular movies this week, but includes a general offer to assist that does not directly address the specific question, slightly reducing its focus."
+            ]
+        }
+    }
+}

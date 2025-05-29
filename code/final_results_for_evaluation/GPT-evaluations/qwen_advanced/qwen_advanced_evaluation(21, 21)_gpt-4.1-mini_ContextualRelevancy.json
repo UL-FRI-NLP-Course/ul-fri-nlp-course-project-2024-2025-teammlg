@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 67.50100040435791,
+    "Contextual Relevancy": {
+        "average": 0.8666666666666667,
+        "median": 0.8666666666666667,
+        "minimum": 0.8666666666666667,
+        "maximum": 0.8666666666666667,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Relevancy": [
+                "The score is 0.87 because while many details such as screenplay acquisition, filming dates, and box office performance are irrelevant to whether 'Challengers' is based on real events, the retrieval context provides a detailed plot summary describing fictional characters and events, indicating the film's narrative rather than a real-life basis. This partial relevance justifies a high but not perfect relevancy score."
+            ]
+        }
+    }
+}

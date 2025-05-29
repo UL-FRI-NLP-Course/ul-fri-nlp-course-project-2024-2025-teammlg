@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 40.67300057411194,
+    "Answer Relevancy": {
+        "average": 0.9538461538461539,
+        "median": 0.9538461538461539,
+        "minimum": 0.9538461538461539,
+        "maximum": 0.9538461538461539,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Answer Relevancy": [
+                "The score is 0.95 because the response correctly lists Marvel films, showing strong relevance to the question. However, it includes mentions of TV series like Inhumans, Falcon and the Winter Soldier, and Ms. Marvel, which are not films, slightly reducing the score."
+            ]
+        }
+    }
+}
