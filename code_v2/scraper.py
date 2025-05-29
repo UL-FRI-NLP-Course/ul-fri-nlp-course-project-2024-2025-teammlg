@@ -449,10 +449,10 @@ def get_movie_general_info(title: str) -> List:
     Retrieves general movie information. If you don't know what to call, call this to get the best overview.
 
     Args:
-        title (str): The title of the movie
+        title: The title of the movie
 
     Returns:
-        Dict[str, str]: Information of the movie
+        Information of the movie
     """
     url = ("https://api.themoviedb.org/3/search/movie?query=" + title + "&include_adult=false&language=en-US&page=1")
     response = requests.get(url, headers=HEADERS)
