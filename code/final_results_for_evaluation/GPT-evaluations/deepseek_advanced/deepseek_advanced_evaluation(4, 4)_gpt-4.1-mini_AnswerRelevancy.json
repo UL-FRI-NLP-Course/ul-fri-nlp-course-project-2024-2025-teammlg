@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.050576448440552,
+    "Answer Relevancy": {
+        "average": 0.875,
+        "median": 0.875,
+        "minimum": 0.875,
+        "maximum": 0.875,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Answer Relevancy": [
+                "The score is 0.88 because the answer mostly addresses the question about the next Marvel film after Captain America 3, but it includes an incorrect ordering of Marvel movies, which detracts from its accuracy and relevance."
+            ]
+        }
+    }
+}

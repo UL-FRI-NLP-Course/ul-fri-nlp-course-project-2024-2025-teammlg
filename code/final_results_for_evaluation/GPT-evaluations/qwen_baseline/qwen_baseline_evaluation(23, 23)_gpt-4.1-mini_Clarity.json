@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.431012392044067,
+    "Clarity (GEval)": {
+        "average": 0.4003628326637408,
+        "median": 0.4003628326637408,
+        "minimum": 0.4003628326637408,
+        "maximum": 0.4003628326637408,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Clarity (GEval)": [
+                "The response contains unclear and confusing information, such as calling Until Dawn both an original film and an adaptation of a game, which contradicts itself. There is also unnecessary repetition about the relationship between the game and the film."
+            ]
+        }
+    }
+}

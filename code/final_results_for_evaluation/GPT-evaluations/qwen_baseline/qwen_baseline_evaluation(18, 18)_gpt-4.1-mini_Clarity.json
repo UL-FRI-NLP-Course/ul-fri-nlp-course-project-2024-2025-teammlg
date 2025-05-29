@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.453517198562622,
+    "Clarity (GEval)": {
+        "average": 0.7320821300824607,
+        "median": 0.7320821300824607,
+        "minimum": 0.7320821300824607,
+        "maximum": 0.7320821300824607,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but includes a vague phrase 'audience opinions' without specifying sources. There is no unnecessary repetition, but the initial questions are repeated in the output, which could confuse the reader."
+            ]
+        }
+    }
+}

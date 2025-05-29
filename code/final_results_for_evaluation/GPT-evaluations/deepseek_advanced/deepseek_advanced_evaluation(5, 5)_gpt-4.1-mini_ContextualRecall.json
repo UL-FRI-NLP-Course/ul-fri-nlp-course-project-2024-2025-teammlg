@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.389000415802002,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output are supported by the retrieval context, which only contains a list of titles under 'Flow' without any descriptions or additional information. Therefore, the expected output cannot be attributed to any node(s) in the retrieval context."
+            ]
+        }
+    }
+}

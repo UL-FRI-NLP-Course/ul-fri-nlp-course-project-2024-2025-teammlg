@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.541998863220215,
+    "Clarity (GEval)": {
+        "average": 0.8268941421369996,
+        "median": 0.8268941421369996,
+        "minimum": 0.8268941421369996,
+        "maximum": 0.8268941421369996,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with well-structured descriptions for each movie. However, some phrases like 'hoping to reignite nostalgia' and 'although reception varies' are slightly vague. There is minor repetition in mentioning actors and film themes, but it does not significantly reduce clarity."
+            ]
+        }
+    }
+}

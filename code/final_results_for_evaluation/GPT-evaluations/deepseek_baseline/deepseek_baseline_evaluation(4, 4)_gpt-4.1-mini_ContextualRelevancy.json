@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.841998338699341,
+    "Contextual Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Contextual Relevancy": [
+                "The score is 1.00 because the relevant statements 'Captain America 3 is a Marvel film.' and 'There is a next Marvel film after Captain America 3.' directly address the input question about the next Marvel film after Captain America 3, with no reasons for irrelevancy present."
+            ]
+        }
+    }
+}

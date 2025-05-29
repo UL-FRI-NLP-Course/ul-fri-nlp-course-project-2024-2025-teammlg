@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.9457857608795166,
+    "Correctness (GEval)": {
+        "average": 0.10722206214047228,
+        "median": 0.10722206214047228,
+        "minimum": 0.10722206214047228,
+        "maximum": 0.10722206214047228,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by naming 'Oppenheimer' (2023) as the most recent film instead of 'The Accountant 2' (2025), which is a significant factual discrepancy."
+            ]
+        }
+    }
+}

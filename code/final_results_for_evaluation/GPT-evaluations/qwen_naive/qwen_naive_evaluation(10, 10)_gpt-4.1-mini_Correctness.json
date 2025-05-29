@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.0859999656677246,
+    "Correctness (GEval)": {
+        "average": 0.19176381229722222,
+        "median": 0.19176381229722222,
+        "minimum": 0.19176381229722222,
+        "maximum": 0.19176381229722222,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by naming Michael Fassbender and Seth Rogen instead of Ashton Kutcher and Josh Gad as the actors playing Steve Jobs and Steve Wozniak."
+            ]
+        }
+    }
+}

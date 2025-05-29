@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.325999736785889,
+    "Answer Relevancy": {
+        "average": 0.3333333333333333,
+        "median": 0.3333333333333333,
+        "minimum": 0.3333333333333333,
+        "maximum": 0.3333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Answer Relevancy": [
+                "The score is 0.33 because the output includes some relevant information about Ben Affleck's films, but it mainly focuses on the style, content, and reception of a film rather than directly naming his most recent film. Additionally, it references earlier films instead of the latest one, which reduces its relevancy."
+            ]
+        }
+    }
+}

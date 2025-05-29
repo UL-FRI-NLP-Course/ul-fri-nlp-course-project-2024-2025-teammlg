@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.113999843597412,
+    "Correctness (GEval)": {
+        "average": 0.32227001439842334,
+        "median": 0.32227001439842334,
+        "minimum": 0.32227001439842334,
+        "maximum": 0.32227001439842334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Correctness (GEval)": [
+                "The actual output lists only one film for Hans Zimmer (The Lion King) and three for John Williams, omitting most of the extensive filmographies and detailed descriptions present in the expected output. There are no contradictions, but the actual output is overly brief and lacks the depth and examples given."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.453398942947388,
+    "Correctness (GEval)": {
+        "average": 0.43932032841781093,
+        "median": 0.43932032841781093,
+        "minimum": 0.43932032841781093,
+        "maximum": 0.43932032841781093,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Correctness (GEval)": [
+                "The actual output includes many non-MCU titles like 'Wonder Woman', 'Suicide Squad', and 'Ferris Bueller's Day Off' which contradict the expected focus on Marvel Studios MCU and related Marvel properties. It also mislabels some entries (e.g., 'Planet of the Apes') and mixes TV series with films without clear distinction. However, it does list many correct MCU films, though with omissions and inaccuracies."
+            ]
+        }
+    }
+}

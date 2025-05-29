@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.793998956680298,
+    "Clarity (GEval)": {
+        "average": 0.5197040892232596,
+        "median": 0.5197040892232596,
+        "minimum": 0.5197040892232596,
+        "maximum": 0.5197040892232596,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Clarity (GEval)": [
+                "The language is mostly clear and direct, but the description contains factual inaccuracies (e.g., 'Mickey 7' is not a 1998 Disney film starring Jim Carrey) that cause confusion. There is some repetition in emphasizing the film's emotional and humorous balance."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.165999174118042,
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Contextual Recall": [
+                "The score is 1.00 because every theme in the expected output is directly supported by detailed information from node 1 in the retrieval context, which thoroughly covers the film's themes, characters, and plot elements without any contradictions or missing links."
+            ]
+        }
+    }
+}

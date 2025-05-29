@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.30299973487854,
+    "Correctness (GEval)": {
+        "average": 0.3019633293457978,
+        "median": 0.3019633293457978,
+        "minimum": 0.3019633293457978,
+        "maximum": 0.3019633293457978,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output but fails to confirm the presence of significant gore and blood as stated in the expected output; it instead discusses factors influencing gore without specifying the film's content."
+            ]
+        }
+    }
+}

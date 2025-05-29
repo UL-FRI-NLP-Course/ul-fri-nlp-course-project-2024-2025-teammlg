@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.0550005435943604,
+    "Clarity (GEval)": {
+        "average": 0.8437823499114202,
+        "median": 0.8437823499114202,
+        "minimum": 0.8437823499114202,
+        "maximum": 0.8437823499114202,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language and avoids unnecessary repetition, but the formatting with asterisks and extra spacing may cause slight confusion."
+            ]
+        }
+    }
+}

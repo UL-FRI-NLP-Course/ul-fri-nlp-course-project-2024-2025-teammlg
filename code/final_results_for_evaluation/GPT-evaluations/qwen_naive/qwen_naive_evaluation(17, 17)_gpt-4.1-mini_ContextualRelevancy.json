@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 30.45099925994873,
+    "Contextual Relevancy": {
+        "average": 0.7142857142857143,
+        "median": 0.7142857142857143,
+        "minimum": 0.7142857142857143,
+        "maximum": 0.7142857142857143,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Contextual Relevancy": [
+                "The score is 0.71 because while the retrieval context includes extensive relevant information about Hans Zimmer's and John Williams' filmography and soundtrack credits, it also contains irrelevant details about acting roles and appearances in documentaries, which do not directly answer the question about films they wrote soundtracks for."
+            ]
+        }
+    }
+}

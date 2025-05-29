@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.608999729156494,
+    "Clarity (GEval)": {
+        "average": 0.8022977367526554,
+        "median": 0.8022977367526554,
+        "minimum": 0.8022977367526554,
+        "maximum": 0.8022977367526554,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language and provides specific information about the movie Uncharted and its lead actor. However, the phrase 'If you're referring to another specific \"first\" movie' introduces slight vagueness, and the initial question is repeated unnecessarily."
+            ]
+        }
+    }
+}

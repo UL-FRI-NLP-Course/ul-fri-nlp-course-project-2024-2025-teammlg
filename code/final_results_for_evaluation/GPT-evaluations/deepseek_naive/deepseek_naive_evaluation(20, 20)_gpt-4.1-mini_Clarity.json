@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3640007972717285,
+    "Clarity (GEval)": {
+        "average": 0.881757448286101,
+        "median": 0.881757448286101,
+        "minimum": 0.881757448286101,
+        "maximum": 0.881757448286101,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts. There is a minor formatting issue with an extra asterisk line, but no unnecessary repetition."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 43.73900055885315,
+    "Contextual Relevancy": {
+        "average": 0.9777777777777777,
+        "median": 0.9777777777777777,
+        "minimum": 0.9777777777777777,
+        "maximum": 0.9777777777777777,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Relevancy": [
+                "The score is 0.98 because while the input asks about general opinions on Mickey 17, the retrieval context includes detailed plot summaries and critical reception such as 'The film received generally positive reviews from critics,' which is relevant. However, some parts like 'Apple TV and Amazon Video availability' are irrelevant as they address where to watch, not opinions, justifying the slight deduction from a perfect score."
+            ]
+        }
+    }
+}

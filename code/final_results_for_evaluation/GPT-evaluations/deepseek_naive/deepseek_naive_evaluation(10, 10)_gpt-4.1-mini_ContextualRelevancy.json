@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 12.874999523162842,
+    "Contextual Relevancy": {
+        "average": 0.625,
+        "median": 0.625,
+        "minimum": 0.625,
+        "maximum": 0.625,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Contextual Relevancy": [
+                "The score is 0.62 because while the retrieval context includes relevant statements such as 'Steve Jobs is portrayed by Ashton Kutcher, with Josh Gad as Apple Computer's co-founder Steve Wozniak' and 'In the movie Jobs, Ashton Kutcher played Steve Jobs,' much of the context is irrelevant, focusing on the director, writer, producers, release date, genre, and plot, which do not answer the input question about the actors."
+            ]
+        }
+    }
+}

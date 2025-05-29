@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.855999946594238,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response fully addresses the question by providing information about the film soundtracks composed by Hans Zimmer and John Williams, with no irrelevant content present."
+            ]
+        }
+    }
+}

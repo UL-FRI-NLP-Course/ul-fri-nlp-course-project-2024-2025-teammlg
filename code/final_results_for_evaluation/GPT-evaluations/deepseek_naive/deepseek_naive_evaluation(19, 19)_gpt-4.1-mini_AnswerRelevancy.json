@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 20.001999139785767,
+    "Answer Relevancy": {
+        "average": 0.9032258064516129,
+        "median": 0.9032258064516129,
+        "minimum": 0.9032258064516129,
+        "maximum": 0.9032258064516129,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Answer Relevancy": [
+                "The score is 0.90 because the response mostly addresses the question about Superman movies from the 1950s to today and mentions a new one soon, providing relevant information. However, it includes irrelevant and factually incorrect statements about Richard Pryor playing Lex Luthor and details about The Flash movie, which do not directly answer the question and reduce the overall relevancy."
+            ]
+        }
+    }
+}

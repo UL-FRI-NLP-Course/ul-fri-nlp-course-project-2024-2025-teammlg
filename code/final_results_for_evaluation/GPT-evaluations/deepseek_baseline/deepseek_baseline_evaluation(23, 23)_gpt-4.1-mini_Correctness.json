@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.4219977855682373,
+    "Correctness (GEval)": {
+        "average": 0.2,
+        "median": 0.2,
+        "minimum": 0.2,
+        "maximum": 0.2,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by stating the film is based on a Spanish film rather than a PlayStation video game, which is a significant factual discrepancy."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.9790000915527344,
+    "Correctness (GEval)": {
+        "average": 0.7,
+        "median": 0.7,
+        "minimum": 0.7,
+        "maximum": 0.7,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Correctness (GEval)": [
+                "The actual output lists several correct films for both Hans Zimmer and John Williams without contradictions, but it omits many details and films present in the expected output, such as Zimmer's work on The Dark Knight Trilogy and Pirates of the Caribbean, and Williams' scores for Jurassic Park, Superman, and others. The omission of these frequent details reduces completeness but does not contradict the expected facts."
+            ]
+        }
+    }
+}

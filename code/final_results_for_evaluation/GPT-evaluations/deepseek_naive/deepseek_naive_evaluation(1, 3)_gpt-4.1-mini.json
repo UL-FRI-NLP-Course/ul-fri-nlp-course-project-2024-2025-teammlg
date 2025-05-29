@@ -1,0 +1,28 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.58765983581543,
+    "Correctness (GEval)": {
+        "average": 0.3431006001670423,
+        "median": 0.26791787056691696,
+        "minimum": 0.05845270669478113,
+        "maximum": 0.702931223239429,
+        "standard_deviation": 0.2684243800334235
+    },
+    "reasons": {
+        "test_case_1": {
+            "Correctness (GEval)": [
+                "The actual output describes 'The Big Sleep' novel and its themes, which contradicts the expected output about 'The Dark Knight' film and its distinct themes."
+            ]
+        },
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "The actual output covers many themes from the expected output such as order vs. chaos, moral ambiguity, and sacrifice, but omits key themes like justice vs. vengeance and fear and corruption. It introduces some unique themes like pride and hubris and free will vs. fate, which are not mentioned in the expected output, and slightly reframes duality. There are no direct contradictions, but some important expected themes are missing."
+            ]
+        },
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output provides speculative and vague information about release dates and platforms, while the expected output gives specific premiere dates in 2025, confirmed by Cineplexx Slovenia, and detailed digital and streaming release timelines. There is no direct contradiction, but the actual output omits precise dates and confirmed details, leading to a low alignment with the expected facts."
+            ]
+        }
+    }
+}

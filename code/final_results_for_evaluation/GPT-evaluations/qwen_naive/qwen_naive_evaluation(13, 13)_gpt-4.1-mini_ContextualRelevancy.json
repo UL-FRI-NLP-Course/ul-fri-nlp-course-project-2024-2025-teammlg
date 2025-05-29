@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 12.26499891281128,
+    "Contextual Relevancy": {
+        "average": 0.375,
+        "median": 0.375,
+        "minimum": 0.375,
+        "maximum": 0.375,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Contextual Relevancy": [
+                "The score is 0.38 because while the retrieval context includes relevant information such as 'The original language of \"Blades of Glory\" is English and its original title is \"Blades of Glory\"', it lacks the specific Slovene title requested. Additionally, many reasons for irrelevancy highlight that details like cast, user reviews, and plot summaries do not address the Slovene title, reducing overall relevancy."
+            ]
+        }
+    }
+}

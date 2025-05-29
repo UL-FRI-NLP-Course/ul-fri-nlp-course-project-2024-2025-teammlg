@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.771999835968018,
+    "Answer Relevancy": {
+        "average": 0.75,
+        "median": 0.75,
+        "minimum": 0.75,
+        "maximum": 0.75,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Answer Relevancy": [
+                "The score is 0.75 because the response provides some relevant information about the Minecraft Movie, but includes background details and production status that do not directly answer the specific questions about the release date in Slovenia or streaming availability, limiting its overall relevancy."
+            ]
+        }
+    }
+}

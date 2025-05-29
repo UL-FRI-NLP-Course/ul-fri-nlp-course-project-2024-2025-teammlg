@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.926999092102051,
+    "Correctness (GEval)": {
+        "average": 0.41160720183699395,
+        "median": 0.41160720183699395,
+        "minimum": 0.41160720183699395,
+        "maximum": 0.41160720183699395,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output on the release year (1999 vs 2002), production budget ($105\u2013115 million vs $140 million), and worldwide gross ($337 million vs $109.6 million). Some omitted details are acceptable, but these factual discrepancies lower the score."
+            ]
+        }
+    }
+}

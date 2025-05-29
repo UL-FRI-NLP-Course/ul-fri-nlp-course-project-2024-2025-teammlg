@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.453999996185303,
+    "Correctness (GEval)": {
+        "average": 0.19706877722695232,
+        "median": 0.19706877722695232,
+        "minimum": 0.19706877722695232,
+        "maximum": 0.19706877722695232,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the film is from 2018 and based on a 2007 novel, contradicting the expected output which says the film is from 2025 and adapted from a 2015 video game. The actual output omits the connection to the game's universe."
+            ]
+        }
+    }
+}

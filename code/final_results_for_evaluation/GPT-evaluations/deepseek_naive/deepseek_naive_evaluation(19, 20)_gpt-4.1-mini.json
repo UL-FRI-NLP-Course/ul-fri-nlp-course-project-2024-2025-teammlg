@@ -1,0 +1,23 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 18.690651655197144,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because the retrieval context focuses on a 1930 film and 1950s science fiction documentaries unrelated to Superman movies, and it lacks any mention of Superman films from the 1950s to today or upcoming Superman movies."
+            ]
+        },
+        "test_case_20": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because the retrieval context focuses on Steven Spielberg's film credits and roles without providing any information about his age, as highlighted by the reasons stating the absence of birthdate or age details necessary to answer the question."
+            ]
+        }
+    }
+}

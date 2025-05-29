@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.9360010623931885,
+    "Correctness (GEval)": {
+        "average": 0.3,
+        "median": 0.3,
+        "minimum": 0.3,
+        "maximum": 0.3,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states that Spider-Man: Homecoming is the next film after Captain America: Civil War, while the expected output correctly identifies Doctor Strange as the next film released in 2016. The actual output omits the release year and additional context about Doctor Strange, which is acceptable but the factual contradiction lowers the score."
+            ]
+        }
+    }
+}

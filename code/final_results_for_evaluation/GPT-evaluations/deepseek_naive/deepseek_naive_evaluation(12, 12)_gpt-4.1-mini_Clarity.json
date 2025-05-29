@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.309000253677368,
+    "Clarity (GEval)": {
+        "average": 0.8047425874692232,
+        "median": 0.8047425874692232,
+        "minimum": 0.8047425874692232,
+        "maximum": 0.8047425874692232,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points. However, the mention of 'Legend of Zelda: Breath of the Wild' as a film is confusing since it is not a released movie, which may reduce understanding. There is no unnecessary repetition."
+            ]
+        }
+    }
+}

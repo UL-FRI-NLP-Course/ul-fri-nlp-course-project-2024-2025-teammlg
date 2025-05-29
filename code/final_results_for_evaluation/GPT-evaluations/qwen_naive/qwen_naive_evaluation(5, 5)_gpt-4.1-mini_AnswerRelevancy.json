@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.467999696731567,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly addresses the user's request by recommending cartoons similar to 'Flow,' with no irrelevant information included. It is not higher because 1.00 is the maximum relevancy score, indicating a perfectly relevant answer."
+            ]
+        }
+    }
+}

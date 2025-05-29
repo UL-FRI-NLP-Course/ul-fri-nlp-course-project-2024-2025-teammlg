@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.570001125335693,
+    "Contextual Recall": {
+        "average": 0.1111111111111111,
+        "median": 0.1111111111111111,
+        "minimum": 0.1111111111111111,
+        "maximum": 0.1111111111111111,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Recall": [
+                "The score is 0.11 because only the first sentence of the expected output is supported by node 1 in the retrieval context, which mentions the film's title, director, lead actor, and mixed reviews. However, the majority of the detailed critical and audience reception data in sentences 2 through 10 are not found in any retrieval nodes, leading to a low overall contextual recall score."
+            ]
+        }
+    }
+}

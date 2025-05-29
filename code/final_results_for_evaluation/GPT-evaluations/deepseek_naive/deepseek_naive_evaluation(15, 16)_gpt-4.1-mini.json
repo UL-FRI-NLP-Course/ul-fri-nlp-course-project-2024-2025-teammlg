@@ -1,0 +1,23 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 27.720716953277588,
+    "Contextual Relevancy": {
+        "average": 0.425,
+        "median": 0.425,
+        "minimum": 0.25,
+        "maximum": 0.6,
+        "standard_deviation": 0.175
+    },
+    "reasons": {
+        "test_case_15": {
+            "Contextual Relevancy": [
+                "The score is 0.25 because while most statements focus on aspects unrelated to box-office gross, such as adaptation, directors, release dates, and critical reception, the relevant statements do provide specific financial details: 'With a budget of $140 million, it is the most expensive traditionally animated film to date.' and 'The film was a box-office failure, earning $109 million worldwide against a budget of $140 million.' This partial relevance justifies the low score."
+            ]
+        },
+        "test_case_16": {
+            "Contextual Relevancy": [
+                "The score is 0.60 because while the retrieval context includes relevant information about the film 'Paris' (2008) being a comedy-drama set in Paris, which aligns with the input's request for a dramedy in Paris, much of the context is irrelevant as it focuses on an unrelated animated fantasy film and unrelated similar movies. This mix of relevant and irrelevant information justifies the moderate relevancy score."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.5410001277923584,
+    "Clarity (GEval)": {
+        "average": 0.8985936375888135,
+        "median": 0.8985936375888135,
+        "minimum": 0.8985936375888135,
+        "maximum": 0.8985936375888135,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts. There is no unnecessary repetition, and the recommendations are relevant and well-explained."
+            ]
+        }
+    }
+}

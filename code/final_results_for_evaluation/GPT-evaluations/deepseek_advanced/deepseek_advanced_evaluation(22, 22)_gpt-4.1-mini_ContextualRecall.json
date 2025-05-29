@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.912998914718628,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output about 'Sinners' and its graphic content are supported by the information in the retrieval context, which only contains details about 'Until Dawn' in node 1."
+            ]
+        }
+    }
+}

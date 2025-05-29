@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.10599946975708,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because the retrieval context focuses on unrelated topics such as a documentary on 1950s science fiction movies and films like The Matrix Reloaded, which do not pertain to Superman movies from the 1950s to today or any upcoming Superman movie, as highlighted by reasons stating the absence of relevant Superman movie information."
+            ]
+        }
+    }
+}

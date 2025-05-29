@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.776999950408936,
+    "Faithfulness": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Faithfulness": [
+                "The score is 0.90 because the actual output claims Gore Verbinski directed \"Treasure Planet,\" but the retrieval context does not mention this, indicating a minor contradiction due to missing confirmation of the director's identity."
+            ]
+        }
+    }
+}

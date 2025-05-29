@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.337001085281372,
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Recall": [
+                "The score is 1.00 because the explanation that 'Challengers' is not based on a true story but draws inspiration from real-life tennis events is fully supported by node 4 in the retrieval context, which details the film's plot involving tennis characters and events, with no contradictory information present."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.022000312805176,
+    "Clarity (GEval)": {
+        "average": 0.8320821307318385,
+        "median": 0.8320821307318385,
+        "minimum": 0.8320821307318385,
+        "maximum": 0.8320821307318385,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language and provides relevant recommendations with brief explanations. However, the inclusion of 'The Secret Life of Pets' and 'Tangled' may be slightly less relevant to the theme of 'Flow,' and the phrase 'Let me know if you'd prefer something specific!' is somewhat repetitive and unnecessary."
+            ]
+        }
+    }
+}

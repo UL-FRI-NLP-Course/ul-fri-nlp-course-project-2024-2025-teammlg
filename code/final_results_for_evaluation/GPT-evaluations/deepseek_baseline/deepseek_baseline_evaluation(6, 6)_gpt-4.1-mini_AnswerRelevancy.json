@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 25.366999626159668,
+    "Answer Relevancy": {
+        "average": 0.04,
+        "median": 0.04,
+        "minimum": 0.04,
+        "maximum": 0.04,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 0.04 because the response mostly discusses 'Mickey 7', a different movie, which is irrelevant to the user's query about 'Mickey 17'. However, the score is not zero as there is some minimal connection through the mention of a similarly named film, indicating a slight attempt to address the topic."
+            ]
+        }
+    }
+}

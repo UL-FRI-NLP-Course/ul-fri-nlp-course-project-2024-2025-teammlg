@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.287998676300049,
+    "Correctness (GEval)": {
+        "average": 0.6851952796329895,
+        "median": 0.6851952796329895,
+        "minimum": 0.6851952796329895,
+        "maximum": 0.6851952796329895,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Correctness (GEval)": [
+                "The actual output lists major Superman films from the 1950s to present, including TV series and key live-action movies, but omits several important films like 'Superman and the Mole Men' (1951), 'Superman Returns' (2006), and the upcoming 'Superman' (2025) with James Gunn. It also incorrectly includes 'Batman & Robin' (1997) as a Superman movie and lacks mention of notable animated films and director's cuts present in the expected output."
+            ]
+        }
+    }
+}

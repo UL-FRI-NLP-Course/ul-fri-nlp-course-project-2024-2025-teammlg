@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.425999641418457,
+    "Correctness (GEval)": {
+        "average": 0.8851952798209366,
+        "median": 0.8851952798209366,
+        "minimum": 0.8851952798209366,
+        "maximum": 0.8851952798209366,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Correctness (GEval)": [
+                "The actual output correctly states that Challengers is not based on real events and mentions inspiration from tennis culture, aligning with the expected output's note on inspiration from real-life tennis events and personalities. The actual output is more detailed but does not contradict the expected output."
+            ]
+        }
+    }
+}

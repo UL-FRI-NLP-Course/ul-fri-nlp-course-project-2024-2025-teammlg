@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.610999584197998,
+    "Correctness (GEval)": {
+        "average": 0.6052973147364,
+        "median": 0.6052973147364,
+        "minimum": 0.6052973147364,
+        "maximum": 0.6052973147364,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Correctness (GEval)": [
+                "Actual output includes Deadpool with correct actor but adds movies like Free Guy and Zombieland not in expected output, and omits key titles such as The Nice Guys, Kingsman, Bullet Train, Hot Fuzz, Tropic Thunder, and Shoot 'Em Up. No contradictions, but significant omissions reduce alignment."
+            ]
+        }
+    }
+}

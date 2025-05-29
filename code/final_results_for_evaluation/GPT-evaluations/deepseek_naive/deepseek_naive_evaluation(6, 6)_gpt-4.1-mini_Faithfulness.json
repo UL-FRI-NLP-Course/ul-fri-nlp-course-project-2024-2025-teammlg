@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 32.65299963951111,
+    "Faithfulness": {
+        "average": 0.3333333333333333,
+        "median": 0.3333333333333333,
+        "minimum": 0.3333333333333333,
+        "maximum": 0.3333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Faithfulness": [
+                "The score is 0.33 because the actual output incorrectly describes Mickey 17 as a 1993 Disney animated featurette directed by Steve Moore and produced by Roy E. Disney, whereas the retrieval context states it is a 2025 science fiction black comedy film directed by Bong Joon Ho. The output falsely associates the film with Disney and the golden age of Disney animation, which is unsupported. It also misrepresents the plot, portraying it as a story about Mickey Mouse and time travel, while the context describes a clone named Mickey Barnes on a space colony. Additionally, the output claims limited popularity and comparisons to Disney classics, contradicting the context's note of generally positive reviews and $132 million gross. The narrative is wrongly described as convoluted and lacking depth, contrary to the context's mention of themes and social commentary with some criticism for tone and coherence. Finally, the output incorrectly states availability on streaming platforms and relative obscurity, while the context confirms a 2025 theatrical release in multiple countries."
+            ]
+        }
+    }
+}

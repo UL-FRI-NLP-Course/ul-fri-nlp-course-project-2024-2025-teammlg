@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 17.897000312805176,
+    "Answer Relevancy": {
+        "average": 0.9615384615384616,
+        "median": 0.9615384615384616,
+        "minimum": 0.9615384615384616,
+        "maximum": 0.9615384615384616,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Answer Relevancy": [
+                "The score is 0.96 because the response effectively addresses the most popular movies this week and opinions on the first one, but it includes an irrelevant and factually incorrect statement about 'The Gray Man' being a WWII-set action-thriller, which slightly detracts from the overall relevance."
+            ]
+        }
+    }
+}

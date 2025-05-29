@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.7029995918273926,
+    "Correctness (GEval)": {
+        "average": 0.7562176500885798,
+        "median": 0.7562176500885798,
+        "minimum": 0.7562176500885798,
+        "maximum": 0.7562176500885798,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "The actual output covers major themes like justice vs. chaos, moral ambiguity, and hope, aligning well with the expected output. However, it omits themes such as justice vs. vengeance, the nature of heroism, and fear and corruption, which are significant in the expected output."
+            ]
+        }
+    }
+}

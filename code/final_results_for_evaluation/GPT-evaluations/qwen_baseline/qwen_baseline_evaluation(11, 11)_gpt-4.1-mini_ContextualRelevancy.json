@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.660998821258545,
+    "Contextual Relevancy": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the retrieval context includes relevant statements such as 'Arnold Schwarzenegger is an actor known for his roles in action films' and 'His recent film projects include movies released in the last few years,' it also contains irrelevant information like 'Arnold Schwarzenegger was also a former governor of California,' which does not pertain to the user's query about his recent films and directors."
+            ]
+        }
+    }
+}

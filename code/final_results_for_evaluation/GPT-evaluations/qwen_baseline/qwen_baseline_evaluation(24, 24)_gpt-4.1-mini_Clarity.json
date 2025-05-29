@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.700880527496338,
+    "Clarity (GEval)": {
+        "average": 0.8053476340492379,
+        "median": 0.8053476340492379,
+        "minimum": 0.8053476340492379,
+        "maximum": 0.8053476340492379,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language and provides relevant information about Ben Affleck's most recent film, 'Air' (2023). However, the phrase 'He played the role of Michael Jordan' is factually incorrect and could cause confusion, reducing clarity."
+            ]
+        }
+    }
+}

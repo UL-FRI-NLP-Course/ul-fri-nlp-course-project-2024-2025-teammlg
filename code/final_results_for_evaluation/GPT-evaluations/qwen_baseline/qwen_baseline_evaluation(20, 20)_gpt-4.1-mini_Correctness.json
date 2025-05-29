@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.2069997787475586,
+    "Correctness (GEval)": {
+        "average": 0.5276179970198932,
+        "median": 0.5276179970198932,
+        "minimum": 0.5276179970198932,
+        "maximum": 0.5276179970198932,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output but omits the specific birthdate and current age, providing instead a method to calculate the age."
+            ]
+        }
+    }
+}

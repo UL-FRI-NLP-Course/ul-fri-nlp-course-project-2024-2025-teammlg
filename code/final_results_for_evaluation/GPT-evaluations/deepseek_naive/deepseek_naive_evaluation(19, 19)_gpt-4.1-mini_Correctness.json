@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.721999168395996,
+    "Correctness (GEval)": {
+        "average": 0.6939913346459746,
+        "median": 0.6939913346459746,
+        "minimum": 0.6939913346459746,
+        "maximum": 0.6939913346459746,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Correctness (GEval)": [
+                "The actual output contains no factual contradictions but omits key details such as the 1951 Superman film, director changes, animated films, and upcoming 2025 Superman movie with David Corenswet and James Gunn. It also incorrectly lists Richard Pryor as Lex Luthor in Superman II, which contradicts the expected output."
+            ]
+        }
+    }
+}

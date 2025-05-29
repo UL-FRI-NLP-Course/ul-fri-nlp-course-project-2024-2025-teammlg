@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.0769996643066406,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons provided for irrelevancy and no relevant statements in the retrieval context to support the input about light entertainment with shooting and funny one-liners."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.500999927520752,
+    "Clarity (GEval)": {
+        "average": 0.8017986209337004,
+        "median": 0.8017986209337004,
+        "minimum": 0.8017986209337004,
+        "maximum": 0.8017986209337004,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but the phrase 'various reports indicating potential losses exceeding $100 million' is somewhat vague. There is minor repetition regarding the film's financial loss, mentioned both in the body and final answer."
+            ]
+        }
+    }
+}

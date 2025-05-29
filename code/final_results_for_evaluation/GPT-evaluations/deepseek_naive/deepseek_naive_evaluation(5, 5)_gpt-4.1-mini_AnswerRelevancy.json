@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.871000051498413,
+    "Answer Relevancy": {
+        "average": 0.9444444444444444,
+        "median": 0.9444444444444444,
+        "minimum": 0.9444444444444444,
+        "maximum": 0.9444444444444444,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Answer Relevancy": [
+                "The score is 0.94 because the response effectively recommends cartoons similar to \"Flow,\" demonstrating strong relevance. However, it includes a minor irrelevant detail about \"Star Wars Rebels\" not being explicitly environmental, which slightly detracts from the focus, preventing a perfect score."
+            ]
+        }
+    }
+}

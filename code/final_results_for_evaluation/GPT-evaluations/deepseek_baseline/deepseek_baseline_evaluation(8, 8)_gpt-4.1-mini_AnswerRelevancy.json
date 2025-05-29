@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.35700011253357,
+    "Answer Relevancy": {
+        "average": 0.875,
+        "median": 0.875,
+        "minimum": 0.875,
+        "maximum": 0.875,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Answer Relevancy": [
+                "The score is 0.88 because the response correctly addresses the question about the existence of a movie based on Firefly, providing relevant information. However, it includes some irrelevant details about fan-driven projects and a non-existent spin-off, which slightly detracts from the focus and prevents a higher score."
+            ]
+        }
+    }
+}

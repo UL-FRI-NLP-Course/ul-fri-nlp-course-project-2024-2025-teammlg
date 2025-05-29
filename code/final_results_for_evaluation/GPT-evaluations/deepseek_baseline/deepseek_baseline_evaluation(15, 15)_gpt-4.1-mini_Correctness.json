@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.858999013900757,
+    "Correctness (GEval)": {
+        "average": 0.8075858175320423,
+        "median": 0.8075858175320423,
+        "minimum": 0.8075858175320423,
+        "maximum": 0.8075858175320423,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output and correctly states the film's financial loss, but omits the specific worldwide gross of $109.6 million and the production budget of around $140 million mentioned in the expected output."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.859999179840088,
+    "Clarity (GEval)": {
+        "average": 0.5846188921363817,
+        "median": 0.5846188921363817,
+        "minimum": 0.5846188921363817,
+        "maximum": 0.5846188921363817,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but includes vague elements like listing 'X-Men: Apocalypse' which is not an MCU film, and includes Disney+ series such as 'Moon Knight' and 'What If...?' without clear distinction. There is minor repetition in explaining the inclusion of series as films."
+            ]
+        }
+    }
+}

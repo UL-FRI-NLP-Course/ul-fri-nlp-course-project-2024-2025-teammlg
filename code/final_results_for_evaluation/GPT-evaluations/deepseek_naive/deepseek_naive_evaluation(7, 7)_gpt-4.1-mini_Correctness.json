@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.2620010375976562,
+    "Correctness (GEval)": {
+        "average": 0.695257412513947,
+        "median": 0.695257412513947,
+        "minimum": 0.695257412513947,
+        "maximum": 0.695257412513947,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Correctness (GEval)": [
+                "The actual output includes several films from the expected list like Deadpool, The Nice Guys, and Tropic Thunder without contradicting facts, but it omits many titles such as Kingsman, Bullet Train, Hot Fuzz, and Shoot 'Em Up. It also lacks detailed cast and 'why watch' explanations present in the expected output."
+            ]
+        }
+    }
+}

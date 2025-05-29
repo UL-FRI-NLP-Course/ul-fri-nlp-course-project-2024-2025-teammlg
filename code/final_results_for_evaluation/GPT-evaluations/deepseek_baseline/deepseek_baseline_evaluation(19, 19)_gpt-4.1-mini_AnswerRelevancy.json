@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 22.16900062561035,
+    "Answer Relevancy": {
+        "average": 0.26666666666666666,
+        "median": 0.26666666666666666,
+        "minimum": 0.26666666666666666,
+        "maximum": 0.26666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Answer Relevancy": [
+                "The score is 0.27 because while the output includes some relevant information about Superman movies, it is heavily diluted by numerous irrelevant details such as directors, actors, incorrect dates, and unrelated films like Wonder Woman and The Flash. These irrelevant statements reduce the overall focus and usefulness of the response, preventing a higher score."
+            ]
+        }
+    }
+}

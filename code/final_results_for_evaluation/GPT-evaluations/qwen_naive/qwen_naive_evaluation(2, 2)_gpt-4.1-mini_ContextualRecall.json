@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.321999311447144,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output are supported by the retrieval context; the context lacks any mention of the film's themes such as chaos vs. order, moral ambiguity, justice vs. vengeance, heroism, or fear and corruption, making it impossible to attribute the expected output to any node in the retrieval context."
+            ]
+        }
+    }
+}

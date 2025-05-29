@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 16.027999877929688,
+    "Answer Relevancy": {
+        "average": 0.8888888888888888,
+        "median": 0.8888888888888888,
+        "minimum": 0.8888888888888888,
+        "maximum": 0.8888888888888888,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Answer Relevancy": [
+                "The score is 0.89 because the response addresses the question about gore and blood in the film but includes subjective comments about personal tolerance and perception, which are somewhat irrelevant. However, the core information about the film's gore content is still present, justifying the relatively high score."
+            ]
+        }
+    }
+}

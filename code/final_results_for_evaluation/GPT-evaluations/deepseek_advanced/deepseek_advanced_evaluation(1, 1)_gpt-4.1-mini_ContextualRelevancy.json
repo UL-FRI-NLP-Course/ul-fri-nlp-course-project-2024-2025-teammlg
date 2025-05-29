@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 45.85899901390076,
+    "Contextual Relevancy": {
+        "average": 0.6666666666666666,
+        "median": 0.6666666666666666,
+        "minimum": 0.6666666666666666,
+        "maximum": 0.6666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Contextual Relevancy": [
+                "The score is 0.67 because while many statements in the retrieval context focus on production details and plot points irrelevant to the main themes, relevant statements such as 'The Dark Knight has been analyzed for its themes of terrorism and the limitations of morality and ethics' and the detailed plot summary highlight the film's core themes. This mix of relevant thematic analysis and unrelated production information justifies a moderate relevancy score."
+            ]
+        }
+    }
+}

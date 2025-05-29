@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 17.360000610351562,
+    "Answer Relevancy": {
+        "average": 0.8709677419354839,
+        "median": 0.8709677419354839,
+        "minimum": 0.8709677419354839,
+        "maximum": 0.8709677419354839,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Answer Relevancy": [
+                "The score is 0.87 because the response provides relevant information about popular movies and public opinions, but it includes some general statements lacking specificity and contains factual inaccuracies regarding movie appearances, which lowers its precision and relevance."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.003000259399414,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output are supported by any node in the retrieval context; the retrieval context lacks any mention of 'Flow' or the listed similar films and recommendations, resulting in no alignment between the expected output and the retrieval context."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.4899988174438477,
+    "Correctness (GEval)": {
+        "average": 0.10293122321293013,
+        "median": 0.10293122321293013,
+        "minimum": 0.10293122321293013,
+        "maximum": 0.10293122321293013,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by misidentifying the director and cast, and portraying the film as poorly received, whereas the expected output shows generally favorable reviews and a different creative team."
+            ]
+        }
+    }
+}

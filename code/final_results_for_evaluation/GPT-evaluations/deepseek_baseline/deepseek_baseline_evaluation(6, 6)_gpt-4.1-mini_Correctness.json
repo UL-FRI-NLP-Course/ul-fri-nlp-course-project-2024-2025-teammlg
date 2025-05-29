@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.955000638961792,
+    "Correctness (GEval)": {
+        "average": 0.10229773697427644,
+        "median": 0.10229773697427644,
+        "minimum": 0.10229773697427644,
+        "maximum": 0.10229773697427644,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by presenting a different film title, director, lead actor, plot, and reception details, with no overlap in facts."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 15.71000051498413,
+    "Faithfulness": {
+        "average": 0.6428571428571429,
+        "median": 0.6428571428571429,
+        "minimum": 0.6428571428571429,
+        "maximum": 0.6428571428571429,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Faithfulness": [
+                "The score is 0.64 because the actual output contains multiple inaccuracies: it incorrectly casts Michaelangelo as Shrek in TMNT (2003), wrongly states Antonio Banderas voices Blue Smurf in The Smurfs (2011), falsely claims Tom Hardy stars in Overkill (2009), mistakenly includes JK Rowling as cast in Bloodstone (2023), and inaccurately associates Jake Gyllenhaal with Prince of Persia: The Sands of Time, all of which contradict the retrieval context."
+            ]
+        }
+    }
+}

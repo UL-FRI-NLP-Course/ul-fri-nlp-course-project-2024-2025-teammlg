@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.770000219345093,
+    "Contextual Relevancy": {
+        "average": 0.7777777777777778,
+        "median": 0.7777777777777778,
+        "minimum": 0.7777777777777778,
+        "maximum": 0.7777777777777778,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Relevancy": [
+                "The score is 0.78 because while the context provides extensive information about Arnold Schwarzenegger's films and roles, it lacks details on any recent films after 2019 and does not specify the director of his last movie, as noted in the reasons for irrelevancy. However, relevant statements like 'The last movie Arnold Schwarzenegger acted in with a known release date is \"Terminator: Dark Fate\" released in 2019' and 'Arnold Schwarzenegger has also worked as a producer and director on some films...' support partial relevance."
+            ]
+        }
+    }
+}

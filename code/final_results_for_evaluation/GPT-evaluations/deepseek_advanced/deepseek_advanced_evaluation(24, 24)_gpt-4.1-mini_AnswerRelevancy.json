@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 21.741999864578247,
+    "Answer Relevancy": {
+        "average": 0.8611111111111112,
+        "median": 0.8611111111111112,
+        "minimum": 0.8611111111111112,
+        "maximum": 0.8611111111111112,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Answer Relevancy": [
+                "The score is 0.86 because the response correctly identifies many Marvel-produced films, but it includes irrelevant statements about series and specials that are not films, which lowers the relevancy slightly. Overall, it provides a mostly accurate and helpful answer."
+            ]
+        }
+    }
+}

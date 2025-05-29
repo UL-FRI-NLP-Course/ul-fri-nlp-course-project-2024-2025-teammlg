@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.7060000896453857,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context is empty and contains no information to support the sentence 'The Bucket List.' in the expected output."
+            ]
+        }
+    }
+}

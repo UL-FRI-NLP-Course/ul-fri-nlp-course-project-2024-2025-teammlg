@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.975000619888306,
+    "Faithfulness": {
+        "average": 0.6666666666666666,
+        "median": 0.6666666666666666,
+        "minimum": 0.6666666666666666,
+        "maximum": 0.6666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Faithfulness": [
+                "The score is 0.67 because the actual output incorrectly states that 'Avengers: Infinity War' (2018) follows 'Avengers: Endgame' (2019), which contradicts the correct chronological order presented in the retrieval context."
+            ]
+        }
+    }
+}

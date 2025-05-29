@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.5520005226135254,
+    "Correctness (GEval)": {
+        "average": 0.12689414330889798,
+        "median": 0.12689414330889798,
+        "minimum": 0.12689414330889798,
+        "maximum": 0.12689414330889798,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Correctness (GEval)": [
+                "The actual output does not mention 'The Bucket List' as the original title and instead provides unrelated information about a Slovene translation and a different film, contradicting the expected output."
+            ]
+        }
+    }
+}

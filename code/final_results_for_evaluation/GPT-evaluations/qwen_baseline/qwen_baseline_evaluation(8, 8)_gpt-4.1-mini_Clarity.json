@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.4509999752044678,
+    "Clarity (GEval)": {
+        "average": 0.8977022627455611,
+        "median": 0.8977022627455611,
+        "minimum": 0.8977022627455611,
+        "maximum": 0.8977022627455611,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts. There is minor repetition in mentioning the film's title and its relation to the series, but it does not significantly reduce understanding."
+            ]
+        }
+    }
+}

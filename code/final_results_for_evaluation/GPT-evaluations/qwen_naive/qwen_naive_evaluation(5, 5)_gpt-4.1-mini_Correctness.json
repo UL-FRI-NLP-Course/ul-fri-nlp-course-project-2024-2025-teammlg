@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.231999635696411,
+    "Correctness (GEval)": {
+        "average": 0.43204976694105135,
+        "median": 0.43204976694105135,
+        "minimum": 0.43204976694105135,
+        "maximum": 0.43204976694105135,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Correctness (GEval)": [
+                "The actual output recommends mainstream animated feature films like Finding Nemo and Tangled, which differ significantly from the expected output's focus on atmospheric, dialogue-free shorts and emotionally rich, visually poetic films similar to Flow. It lacks mention of short films and the specific thematic emphasis on nature, emotion, and minimal dialogue present in the expected output."
+            ]
+        }
+    }
+}

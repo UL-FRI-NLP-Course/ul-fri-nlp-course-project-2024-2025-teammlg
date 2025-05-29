@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.853999614715576,
+    "Correctness (GEval)": {
+        "average": 0.20293122330832633,
+        "median": 0.20293122330832633,
+        "minimum": 0.20293122330832633,
+        "maximum": 0.20293122330832633,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states a 2017 release and a 2024 prequel, contradicting the expected 2025 premiere dates in Slovenia and U.S. It also omits specific digital release dates and platforms like Apple TV and Max, which are detailed in the expected output."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 17.845001697540283,
+    "Answer Relevancy": {
+        "average": 0.6666666666666666,
+        "median": 0.6666666666666666,
+        "minimum": 0.6666666666666666,
+        "maximum": 0.6666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Answer Relevancy": [
+                "The score is 0.67 because the response includes relevant information about Superman movies from the 1950s to today and mentions upcoming projects, addressing the user's query. However, it also contains irrelevant details about TV series, ensemble movies like Justice League and Suicide Squad, and unrelated streaming content, which lowers the relevancy."
+            ]
+        }
+    }
+}

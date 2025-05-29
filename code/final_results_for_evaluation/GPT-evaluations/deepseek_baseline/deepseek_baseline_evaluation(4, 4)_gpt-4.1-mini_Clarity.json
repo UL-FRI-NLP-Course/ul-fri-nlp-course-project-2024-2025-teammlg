@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.5599989891052246,
+    "Clarity (GEval)": {
+        "average": 0.8026350752873231,
+        "median": 0.8026350752873231,
+        "minimum": 0.8026350752873231,
+        "maximum": 0.8026350752873231,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but phrases like 'is believed to be' introduce slight vagueness. There is no unnecessary repetition, and the explanation about the title and its significance is concise."
+            ]
+        }
+    }
+}

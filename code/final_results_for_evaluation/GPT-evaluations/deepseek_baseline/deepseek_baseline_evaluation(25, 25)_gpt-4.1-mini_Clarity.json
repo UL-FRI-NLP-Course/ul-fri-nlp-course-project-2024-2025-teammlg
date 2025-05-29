@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.1949989795684814,
+    "Clarity (GEval)": {
+        "average": 0.3119202931409276,
+        "median": 0.3119202931409276,
+        "minimum": 0.3119202931409276,
+        "maximum": 0.3119202931409276,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Clarity (GEval)": [
+                "The list contains many inaccuracies and confusing entries, such as non-MCU films like 'Aquaman', 'Shazam!', 'Barbie', and 'Blade Runner 2049', and misclassified titles like 'The Wolverine' and 'Wolverine: Logan'. There is unnecessary repetition with 'Iron Man' listed twice at the start, and vague grouping that mixes TV shows and unrelated films, reducing clarity."
+            ]
+        }
+    }
+}

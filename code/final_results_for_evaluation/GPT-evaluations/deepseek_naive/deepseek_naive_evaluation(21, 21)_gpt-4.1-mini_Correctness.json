@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.605999708175659,
+    "Correctness (GEval)": {
+        "average": 0.2029312230963348,
+        "median": 0.2029312230963348,
+        "minimum": 0.2029312230963348,
+        "maximum": 0.2029312230963348,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the movie is inspired by the 1996 Atlanta Olympics and an Australian diving team, which contradicts the expected output that says it is not based on a true story but inspired by real-life tennis events."
+            ]
+        }
+    }
+}

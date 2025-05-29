@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.398585081100464,
+    "Answer Relevancy": {
+        "average": 0.75,
+        "median": 0.75,
+        "minimum": 0.75,
+        "maximum": 0.75,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Answer Relevancy": [
+                "The score is 0.75 because the response correctly identifies Ben Affleck's most recent film, providing relevant information. However, it includes an incorrect and irrelevant statement about Ben Affleck playing Michael Jordan, which detracts from the overall accuracy and relevance."
+            ]
+        }
+    }
+}

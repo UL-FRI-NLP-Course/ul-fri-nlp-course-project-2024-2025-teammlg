@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 14.87799882888794,
+    "Contextual Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the retrieval context includes relevant statements such as 'Ashton Kutcher played Steve Jobs in the movie Jobs' and 'Josh Gad played Steve Wozniak in the movie Jobs,' it also contains several irrelevant details like information about the director, producers, and festival screenings, which do not address the casting question."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.060001134872437,
+    "Contextual Precision": {
+        "average": 0.25,
+        "median": 0.25,
+        "minimum": 0.25,
+        "maximum": 0.25,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Contextual Precision": [
+                "The score is 0.25 because the relevant node in retrieval contexts is ranked last (4th), while the first three nodes are irrelevant. The first node discusses a different film, the second node contains reviews without the Slovene title, and the third node lists streaming services but lacks the Slovene title. This ordering places irrelevant nodes above the relevant one, lowering the score. However, the relevant node clearly provides the exact Slovene title, justifying its presence despite the low ranking."
+            ]
+        }
+    }
+}

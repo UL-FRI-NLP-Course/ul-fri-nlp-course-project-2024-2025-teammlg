@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.8939990997314453,
+    "Correctness (GEval)": {
+        "average": 0.02318899240303173,
+        "median": 0.02318899240303173,
+        "minimum": 0.02318899240303173,
+        "maximum": 0.02318899240303173,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Correctness (GEval)": [
+                "The actual output provides English equivalents for 'Preden se stegneva,' which contradicts the expected output 'The Bucket List.'"
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.291999578475952,
+    "Contextual Precision": {
+        "average": 0.25,
+        "median": 0.25,
+        "minimum": 0.25,
+        "maximum": 0.25,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Contextual Precision": [
+                "The score is 0.25 because the first three nodes in retrieval contexts are irrelevant, with reasons such as the first node describing an animated adventure/fantasy film not fitting the dramedy genre, the second node focusing on reviews without listing specific dramedy films, and the third node providing no relevant information. Only the fourth node, ranked last, is relevant as it details a French comedy-drama set in Paris matching the user's request. This low ranking of the relevant node among mostly irrelevant ones results in a low contextual precision score."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.277000904083252,
+    "Correctness (GEval)": {
+        "average": 0.7851952807606726,
+        "median": 0.7851952807606726,
+        "minimum": 0.7851952807606726,
+        "maximum": 0.7851952807606726,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Correctness (GEval)": [
+                "The actual output correctly lists major live-action Superman films from the 1950s to 2020s and notes the absence of a confirmed new standalone movie after January 2025, but it omits several details present in the expected output such as specific actors, directors for all films, alternate cuts like Superman II: The Richard Donner Cut, and notable animated films. It also incorrectly states no official announcement for a new movie, whereas the expected output specifies a 2025 release directed by James Gunn."
+            ]
+        }
+    }
+}

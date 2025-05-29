@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.5859994888305664,
+    "Correctness (GEval)": {
+        "average": 0.40846621163015434,
+        "median": 0.40846621163015434,
+        "minimum": 0.40846621163015434,
+        "maximum": 0.40846621163015434,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output states the release date in Slovenia is not announced and gives a general late 2025 timeframe, contradicting the expected output which specifies a confirmed premiere on 2 April 2025. It also lacks the detailed streaming release dates and platforms mentioned in the expected output."
+            ]
+        }
+    }
+}

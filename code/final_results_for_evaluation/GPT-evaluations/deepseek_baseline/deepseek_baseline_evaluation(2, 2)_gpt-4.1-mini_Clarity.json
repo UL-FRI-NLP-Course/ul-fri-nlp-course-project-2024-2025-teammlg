@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.4170022010803223,
+    "Clarity (GEval)": {
+        "average": 0.8268941421369995,
+        "median": 0.8268941421369995,
+        "minimum": 0.8268941421369995,
+        "maximum": 0.8268941421369995,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but some phrases like 'choices made in extremis' may be confusing. There is no unnecessary repetition, and the description is concise and informative."
+            ]
+        }
+    }
+}

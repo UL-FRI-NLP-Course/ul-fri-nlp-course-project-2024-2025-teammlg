@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.817003011703491,
+    "Clarity (GEval)": {
+        "average": 0.4731645094935349,
+        "median": 0.4731645094935349,
+        "minimum": 0.4731645094935349,
+        "maximum": 0.4731645094935349,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Clarity (GEval)": [
+                "The response contains a clear list of upcoming movies but incorrectly states that 'Avengers: Infinity War' follows 'Avengers: Endgame,' which is factually wrong and confusing. The language is mostly direct, but the timeline error reduces clarity. There is no unnecessary repetition."
+            ]
+        }
+    }
+}

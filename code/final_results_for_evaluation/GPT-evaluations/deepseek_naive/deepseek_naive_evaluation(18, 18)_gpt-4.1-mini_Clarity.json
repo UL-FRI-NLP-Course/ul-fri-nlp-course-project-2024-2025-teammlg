@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.2169992923736572,
+    "Clarity (GEval)": {
+        "average": 0.8924141814233307,
+        "median": 0.8924141814233307,
+        "minimum": 0.8924141814233307,
+        "maximum": 0.8924141814233307,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points. There is minor vagueness in phrases like 'opinions vary' and 'may be challenging,' but overall understanding is strong. No unnecessary repetition is present."
+            ]
+        }
+    }
+}
