@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.272000789642334,
+    "Clarity (GEval)": {
+        "average": 0.8095349468755142,
+        "median": 0.8095349468755142,
+        "minimum": 0.8095349468755142,
+        "maximum": 0.8095349468755142,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points, but some phrases like 'likely enhancing' and 'might include' introduce slight vagueness. There is no unnecessary repetition, and the explanation is concise and relevant."
+            ]
+        }
+    }
+}

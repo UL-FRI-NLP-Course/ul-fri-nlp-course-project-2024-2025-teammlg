@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.945234060287476,
+    "Answer Relevancy": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Answer Relevancy": [
+                "The score is 0.60 because the response provides the correct age of Steven Spielberg, directly addressing the question. However, it includes meta-information about the user's question and offers further assistance, which are not relevant to the specific inquiry, preventing a higher score."
+            ]
+        }
+    }
+}

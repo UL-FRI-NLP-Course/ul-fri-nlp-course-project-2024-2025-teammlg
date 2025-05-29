@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.192000865936279,
+    "Correctness (GEval)": {
+        "average": 0.7023275474092053,
+        "median": 0.7023275474092053,
+        "minimum": 0.7023275474092053,
+        "maximum": 0.7023275474092053,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Correctness (GEval)": [
+                "The actual output includes MCU films up to 2025 but omits several key titles like Doctor Strange (2016), Spider-Man: No Way Home (2021), and upcoming Phase 5 and 6 films. It incorrectly lists X-Men: Apocalypse (2016) as a Marvel Studios MCU film, which contradicts the expected output that separates non-MCU Fox films. Inclusion of series like Moon Knight and What If...? as films also deviates from the expected film-only list."
+            ]
+        }
+    }
+}

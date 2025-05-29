@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 23.782000064849854,
+    "Contextual Relevancy": {
+        "average": 0.8333333333333334,
+        "median": 0.8333333333333334,
+        "minimum": 0.8333333333333334,
+        "maximum": 0.8333333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Contextual Relevancy": [
+                "The score is 0.83 because while the input asks about the most popular movies this week and opinions on the first one, the retrieval context provides relevant details about the movies \"7:20 Once a Week\" and \"Sex First, Love Second\" including their popularity, vote averages, plots, and reviews. However, some parts of the context, such as services for \"this week\" and lists of similar movies, are irrelevant as noted in the reasons for irrelevancy. This mix of relevant movie details and some unrelated information justifies the moderately high relevancy score."
+            ]
+        }
+    }
+}

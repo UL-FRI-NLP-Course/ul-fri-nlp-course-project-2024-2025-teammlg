@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.667998552322388,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output are supported by any node in the retrieval context; the context lacks any mention of the 2025 film Until Dawn, its connection to the 2015 PlayStation video game, or details about its storyline and characters."
+            ]
+        }
+    }
+}

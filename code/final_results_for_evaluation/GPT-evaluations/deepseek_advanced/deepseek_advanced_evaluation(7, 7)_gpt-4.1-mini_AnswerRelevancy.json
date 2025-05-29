@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.050000190734863,
+    "Answer Relevancy": {
+        "average": 0.9444444444444444,
+        "median": 0.9444444444444444,
+        "minimum": 0.9444444444444444,
+        "maximum": 0.9444444444444444,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Answer Relevancy": [
+                "The score is 0.94 because the response effectively recommends films matching the user's request for light entertainment with shooting and humor, but it includes a closing remark 'Enjoy!' which, while friendly, is not directly relevant to the recommendation itself."
+            ]
+        }
+    }
+}

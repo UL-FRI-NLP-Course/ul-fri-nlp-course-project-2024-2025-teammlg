@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.8169991970062256,
+    "Clarity (GEval)": {
+        "average": 0.75,
+        "median": 0.75,
+        "minimum": 0.75,
+        "maximum": 0.75,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but contains minor formatting inconsistencies (extra spaces in some titles) and slight vagueness in descriptions like 'a visually stunning film.' There is no unnecessary repetition, but some entries vary in detail level, which may affect clarity."
+            ]
+        }
+    }
+}

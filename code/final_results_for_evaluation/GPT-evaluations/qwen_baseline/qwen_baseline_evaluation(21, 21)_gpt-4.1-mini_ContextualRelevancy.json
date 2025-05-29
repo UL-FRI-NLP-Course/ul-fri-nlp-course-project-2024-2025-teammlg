@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.225999355316162,
+    "Contextual Relevancy": {
+        "average": 0.8333333333333334,
+        "median": 0.8333333333333334,
+        "minimum": 0.8333333333333334,
+        "maximum": 0.8333333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Relevancy": [
+                "The score is 0.83 because while the context provides detailed information about the film Challengers, including its genre, plot, and cast, it does not explicitly state whether the film is based on real events. The irrelevancy arises from statements like 'The film is produced by MGM and Amy Pascal's production company, Pascal Pictures' which do not address the question, but relevant details about the film's plot and setting help maintain a relatively high relevancy score."
+            ]
+        }
+    }
+}

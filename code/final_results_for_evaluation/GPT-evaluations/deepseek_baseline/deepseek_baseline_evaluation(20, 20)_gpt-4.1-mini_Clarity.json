@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.0090010166168213,
+    "Clarity (GEval)": {
+        "average": 0.8985936375797741,
+        "median": 0.8985936375797741,
+        "minimum": 0.8985936375797741,
+        "maximum": 0.8985936375797741,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts and no unnecessary repetition, but the age calculation could be considered slightly redundant given the birth date."
+            ]
+        }
+    }
+}

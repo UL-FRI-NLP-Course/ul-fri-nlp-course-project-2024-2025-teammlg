@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.730999708175659,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Recall": [
+                "The score is 0.00 because the expected output discusses 'Challengers' and its basis on a true story, but the retrieval context only contains information about the film 'Sinners' and does not mention 'Challengers' or any related tennis events, resulting in no relevant nodes supporting the output."
+            ]
+        }
+    }
+}

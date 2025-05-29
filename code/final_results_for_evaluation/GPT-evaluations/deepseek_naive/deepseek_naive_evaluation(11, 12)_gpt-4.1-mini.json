@@ -1,0 +1,23 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 21.742599487304688,
+    "Contextual Relevancy": {
+        "average": 0.3888888888888889,
+        "median": 0.3888888888888889,
+        "minimum": 0.0,
+        "maximum": 0.7777777777777778,
+        "standard_deviation": 0.3888888888888889
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Relevancy": [
+                "The score is 0.78 because while the context provides detailed information about Arnold Schwarzenegger's films, including recent ones like 'Terminator: Dark Fate' (2019), it lacks information about the director of that movie, as noted in the reasons for irrelevancy stating 'The context does not provide any information about the director of \"Terminator: Dark Fate\" or any other recent movie Arnold Schwarzenegger filmed.' This partial relevance justifies the score below 1."
+            ]
+        },
+        "test_case_12": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because the input asks about movies based on video games and their stars, but the retrieval context only contains information about a romance/drama and an Olympic documentary unrelated to video games, with no relevant statements provided."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 16.69700002670288,
+    "Faithfulness": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Faithfulness": [
+                "The score is 0.00 because the actual output incorrectly claims that the Slovenian title for 'Blades of Glory' is 'Obglej\u0161i Slava', which is not supported by the retrieval context that only mentions the original Slovene title for 'Slovene' as 'Slovenka' and provides no information about 'Blades of Glory' in Slovenian."
+            ]
+        }
+    }
+}

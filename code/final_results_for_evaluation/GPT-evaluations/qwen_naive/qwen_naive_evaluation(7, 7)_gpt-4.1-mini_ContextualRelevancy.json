@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.752999067306519,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because all reasons for irrelevancy highlight that the retrieval context focuses on horror and ideological themes, which do not match the user's request for light entertainment with shooting and funny one-liners, and there are no relevant statements in the retrieval context to support the input."
+            ]
+        }
+    }
+}

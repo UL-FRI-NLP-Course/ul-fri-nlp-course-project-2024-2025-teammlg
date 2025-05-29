@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 12.138000965118408,
+    "Contextual Relevancy": {
+        "average": 0.5833333333333334,
+        "median": 0.5833333333333334,
+        "minimum": 0.5833333333333334,
+        "maximum": 0.5833333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Relevancy": [
+                "The score is 0.58 because while the retrieval context includes relevant statements about Mickey 17, such as it being a sci-fi satire and comments on its tone and accessibility ('Mickey 17 is a sci-fi satire covered as blockbuster', 'you DO NOT have to watch the first 16 films to enjoy this one'), much of the context is irrelevant due to vague or unrelated content ('the challengers-ism of that one scene', mentions of 'Trump' and 'Minecraft'). This mix of relevant and irrelevant information lowers the overall relevancy score."
+            ]
+        }
+    }
+}

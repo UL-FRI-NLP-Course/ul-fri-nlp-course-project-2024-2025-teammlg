@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 26.844000101089478,
+    "Faithfulness": {
+        "average": 0.7894736842105263,
+        "median": 0.7894736842105263,
+        "minimum": 0.7894736842105263,
+        "maximum": 0.7894736842105263,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Faithfulness": [
+                "The score is 0.79 because the actual output contains several inaccuracies: it incorrectly states that The Adventures of Superman (1950\u20131957) were theatrical shorts featuring George Reeves, misattributes the direction of Superman II: The Quest Continues (1980) to Richard Donner instead of Richard Lester, wrongly names Jeanie Richardson as the director of Supergirl (1984) instead of Jeannot Szwarc, and mistakenly claims Zachary Levi played a young Superman in Shazam! (2019) when he actually portrayed Shazam."
+            ]
+        }
+    }
+}

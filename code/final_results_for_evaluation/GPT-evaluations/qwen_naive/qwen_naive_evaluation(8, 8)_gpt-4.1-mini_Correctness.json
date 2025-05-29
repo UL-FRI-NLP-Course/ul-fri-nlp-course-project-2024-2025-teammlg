@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.040000677108765,
+    "Correctness (GEval)": {
+        "average": 0.6904650534458219,
+        "median": 0.6904650534458219,
+        "minimum": 0.6904650534458219,
+        "maximum": 0.6904650534458219,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Correctness (GEval)": [
+                "The actual output correctly confirms the existence of the movie Serenity (2005) and its continuation of the Firefly story, mentioning key details like the creator and lead actor. However, it omits many specifics from the expected output such as the director, full cast, plot details about River Tam, tone, and reception, which reduces completeness but does not contradict any facts."
+            ]
+        }
+    }
+}

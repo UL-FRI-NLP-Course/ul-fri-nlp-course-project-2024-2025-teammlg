@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 38.41399788856506,
+    "Contextual Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Relevancy": [
+                "The score is 1.00 because the retrieval context fully addresses the input about 'Mickey 17' by providing detailed information on the film's plot, cast, release, and reception, such as 'Mickey 17 is a 2025 science fiction black comedy film...' and 'The film received generally positive reviews from critics,' which directly answers what people generally think of it."
+            ]
+        }
+    }
+}

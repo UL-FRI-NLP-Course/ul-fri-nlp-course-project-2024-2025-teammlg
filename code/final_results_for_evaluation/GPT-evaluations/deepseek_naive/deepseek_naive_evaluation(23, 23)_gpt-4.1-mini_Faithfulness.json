@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.075998544692993,
+    "Faithfulness": {
+        "average": 0.75,
+        "median": 0.75,
+        "minimum": 0.75,
+        "maximum": 0.75,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Faithfulness": [
+                "The score is 0.75 because the actual output incorrectly states that Until Dawn is a 2018 film, while the retrieval context clarifies it is a 2025 film, indicating a factual inconsistency."
+            ]
+        }
+    }
+}

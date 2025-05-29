@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.407000780105591,
+    "Correctness (GEval)": {
+        "average": 0.18807970670261978,
+        "median": 0.18807970670261978,
+        "minimum": 0.18807970670261978,
+        "maximum": 0.18807970670261978,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output but provides no relevant information about video game movies or their cast, unlike the detailed list and specific cast details in the expected output."
+            ]
+        }
+    }
+}

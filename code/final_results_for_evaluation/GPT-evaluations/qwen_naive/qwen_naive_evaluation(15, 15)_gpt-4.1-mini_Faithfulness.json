@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.135000228881836,
+    "Faithfulness": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Faithfulness": [
+                "The score is 0.00 because the actual output incorrectly claims that Treasure Planet grossed $216 million worldwide, while the retrieval context clearly states it earned only $109 million against a $140 million budget, showing a significant contradiction."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.070998907089233,
+    "Answer Relevancy": {
+        "average": 0.16666666666666666,
+        "median": 0.16666666666666666,
+        "minimum": 0.16666666666666666,
+        "maximum": 0.16666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Answer Relevancy": [
+                "The score is 0.17 because the response discusses the MCU timeline and themes related to the next phase but fails to directly provide the title of the next Marvel film after Captain America 3. While it offers relevant context, the absence of the specific film title limits its relevancy."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.309999942779541,
+    "Correctness (GEval)": {
+        "average": 0.2377540661794489,
+        "median": 0.2377540661794489,
+        "minimum": 0.2377540661794489,
+        "maximum": 0.2377540661794489,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by stating Schwarzenegger has not directed or starred in recent films, while the expected output lists multiple recent projects including 'The Man with the Bag' (2025) and 'FUBAR' (2023). The actual output omits all recent roles and details about these projects."
+            ]
+        }
+    }
+}

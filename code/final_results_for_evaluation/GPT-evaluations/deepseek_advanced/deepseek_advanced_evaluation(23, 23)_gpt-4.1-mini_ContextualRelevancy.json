@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 32.67030167579651,
+    "Contextual Relevancy": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the retrieval context includes extensive lists of Ben Affleck's films and roles, it also contains irrelevant information such as documentaries and archive footage, as noted in the reason for irrelevancy. However, the relevant statements clearly identify 'Air' (2023) as Ben Affleck's most recent film as both actor and director, directly addressing the input question."
+            ]
+        }
+    }
+}

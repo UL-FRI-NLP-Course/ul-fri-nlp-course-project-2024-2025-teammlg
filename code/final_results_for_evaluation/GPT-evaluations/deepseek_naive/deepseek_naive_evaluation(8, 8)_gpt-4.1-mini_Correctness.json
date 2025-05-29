@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.9525339603424072,
+    "Correctness (GEval)": {
+        "average": 0.7095349467469796,
+        "median": 0.7095349467469796,
+        "minimum": 0.7095349467469796,
+        "maximum": 0.7095349467469796,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Correctness (GEval)": [
+                "The actual output correctly states the existence of the movie Serenity as a continuation of Firefly, its release year, and director, with no contradictions. However, it omits many details present in the expected output, such as cast members, plot specifics about River Tam, tone, and reception, which reduces completeness but does not contradict facts."
+            ]
+        }
+    }
+}

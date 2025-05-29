@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.06399941444397,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Recall": [
+                "The score is 0.00 because there is no information in the retrieval context to support any part of the expected output regarding the Minecraft Movie's suitability for kids or its PG rating and content warnings."
+            ]
+        }
+    }
+}

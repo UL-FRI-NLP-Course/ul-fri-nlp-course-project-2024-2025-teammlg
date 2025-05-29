@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 32.894999742507935,
+    "Contextual Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while many statements about production, release, and reception are irrelevant, the retrieval context includes key relevant information such as 'Until Dawn is set in the same universe as the 2015 video game but features an original standalone story that expands upon the game's mythology,' directly addressing the film's originality."
+            ]
+        }
+    }
+}

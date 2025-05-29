@@ -1,0 +1,23 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 37.496497631073,
+    "Contextual Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the retrieval context clarifies that 'Blades of Glory' is an English language film with no Slovene title provided, it also mentions a Slovene film titled 'Slovenka' which is unrelated. This partial relevance explains the moderate score."
+            ]
+        },
+        "test_case_14": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the relevant statements correctly identify 'Preden se stegneva' as the Slovene translation of 'The Bucket List' and provide useful details about the movie, the reasons for irrelevancy highlight that much of the retrieval context, such as information about 'Slovenka' and streaming availability, does not pertain to the input question. This mix of relevant and irrelevant information justifies a moderate relevancy score."
+            ]
+        }
+    }
+}

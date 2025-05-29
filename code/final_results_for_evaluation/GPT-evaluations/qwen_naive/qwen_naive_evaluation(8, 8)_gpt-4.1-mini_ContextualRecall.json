@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.678000211715698,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output about the movie 'Serenity' and its connection to the Firefly TV series are supported by any node in the retrieval context, which instead discusses unrelated films named 'Firefly' and lacks any mention of 'Serenity' or its details."
+            ]
+        }
+    }
+}

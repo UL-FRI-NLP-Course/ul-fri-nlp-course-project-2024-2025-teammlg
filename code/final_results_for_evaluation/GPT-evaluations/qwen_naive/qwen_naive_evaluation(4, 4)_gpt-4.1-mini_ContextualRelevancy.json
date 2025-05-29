@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.654000997543335,
+    "Contextual Relevancy": {
+        "average": 0.16666666666666666,
+        "median": 0.16666666666666666,
+        "minimum": 0.16666666666666666,
+        "maximum": 0.16666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Contextual Relevancy": [
+                "The score is 0.17 because most of the retrieval context is irrelevant, as noted by reasons such as 'The overview's plot details do not relate to the question about the title' and 'The director's name is not relevant to the question about the film's title.' However, the relevant statement 'The original_title of the next Marvel film is \"The Marvels\"' provides some useful information, justifying the low but non-zero score."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.560000896453857,
+    "Answer Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Answer Relevancy": [
+                "The score is 0.50 because the response mentions the movie title and director, which is somewhat related, but it fails to answer the specific question about who played Steve Jobs and Wozniak, leaving the main query unaddressed."
+            ]
+        }
+    }
+}

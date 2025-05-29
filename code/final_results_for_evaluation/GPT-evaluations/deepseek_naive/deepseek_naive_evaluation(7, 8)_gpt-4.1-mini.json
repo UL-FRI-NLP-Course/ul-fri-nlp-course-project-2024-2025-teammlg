@@ -1,0 +1,23 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 24.26979422569275,
+    "Contextual Relevancy": {
+        "average": 0.5875,
+        "median": 0.5875,
+        "minimum": 0.375,
+        "maximum": 0.8,
+        "standard_deviation": 0.21250000000000002
+    },
+    "reasons": {
+        "test_case_7": {
+            "Contextual Relevancy": [
+                "The score is 0.38 because while the retrieval context includes relevant genre information such as 'Comedy and Horror' and a plot involving teens at a rehabilitation camp, it lacks direct references to 'shooting' or 'funny one-liners' that the user specifically requested. Additionally, reasons for irrelevancy like the absence of language preference and unrelated review content reduce the overall relevancy."
+            ]
+        },
+        "test_case_8": {
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the retrieval context includes irrelevant information about the Japanese movie 'Grave of the Fireflies,' it also contains relevant statements such as 'Firefly is a movie released in 2005, also known as Serenity,' which directly addresses the input about the Firefly series and its movie."
+            ]
+        }
+    }
+}

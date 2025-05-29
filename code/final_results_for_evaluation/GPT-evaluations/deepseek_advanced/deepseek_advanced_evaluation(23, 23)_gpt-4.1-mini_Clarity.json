@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3239998817443848,
+    "Clarity (GEval)": {
+        "average": 0.6092634094504031,
+        "median": 0.6092634094504031,
+        "minimum": 0.6092634094504031,
+        "maximum": 0.6092634094504031,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Clarity (GEval)": [
+                "The response uses clear language but includes a confusing element with the superscript '\u00b2' in the film title and an unnecessary blank line after the sentence."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 39.19499945640564,
+    "Contextual Relevancy": {
+        "average": 0.8636363636363636,
+        "median": 0.8636363636363636,
+        "minimum": 0.8636363636363636,
+        "maximum": 0.8636363636363636,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Relevancy": [
+                "The score is 0.86 because while most statements are irrelevant, the relevant statements clearly describe the film as a fictional story about a love triangle involving tennis players and explicitly state it is not based on real events, directly addressing the input question."
+            ]
+        }
+    }
+}

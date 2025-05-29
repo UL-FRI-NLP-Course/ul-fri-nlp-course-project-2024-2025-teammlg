@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 48.51400399208069,
+    "Answer Relevancy": {
+        "average": 0.20833333333333334,
+        "median": 0.20833333333333334,
+        "minimum": 0.20833333333333334,
+        "maximum": 0.20833333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Answer Relevancy": [
+                "The score is 0.21 because while the output correctly identifies some Marvel Studios films, it includes many inaccurate and irrelevant titles such as non-MCU films, incorrect phases, and non-Marvel productions, which significantly reduces relevancy. However, the presence of some correct information prevents the score from being lower."
+            ]
+        }
+    }
+}

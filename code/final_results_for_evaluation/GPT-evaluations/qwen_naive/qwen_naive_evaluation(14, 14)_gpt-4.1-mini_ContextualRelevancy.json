@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.243000030517578,
+    "Contextual Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the relevant statements correctly link 'Preden se stegneva' to the original title 'The Bucket List' and provide useful details about the movie, the reasons for irrelevancy highlight that unrelated information like 'Slovenka' and streaming service details dilute the focus, making the overall context only partially relevant."
+            ]
+        }
+    }
+}

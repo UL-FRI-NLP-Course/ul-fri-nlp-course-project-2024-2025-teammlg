@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.100996017456055,
+    "Contextual Relevancy": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Relevancy": [
+                "The score is 0.60 because while the retrieval context clarifies that Until Dawn is an original video game and not a film, much of the context focuses on game plot and mechanics, which do not directly address the question about the film's originality."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.1720008850097656,
+    "Correctness (GEval)": {
+        "average": 0.17310585669110204,
+        "median": 0.17310585669110204,
+        "minimum": 0.17310585669110204,
+        "maximum": 0.17310585669110204,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Correctness (GEval)": [
+                "The actual output provides a Slovene title 'Oblekovi Vsi' which contradicts the expected title 'Drkajva skupaj'; the year (2007) is omitted but acceptable."
+            ]
+        }
+    }
+}

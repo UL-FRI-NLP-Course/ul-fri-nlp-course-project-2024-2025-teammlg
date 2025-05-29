@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6820003986358643,
+    "Clarity (GEval)": {
+        "average": 0.6090205881110009,
+        "median": 0.6090205881110009,
+        "minimum": 0.6090205881110009,
+        "maximum": 0.6090205881110009,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but contains confusing inaccuracies, such as listing 'Inception' under Hans Zimmer's Star Trek works and attributing 'Star Trek: The Next Generation' to him. There is minor repetition in describing the composers' impact, and some entries lack clarity or context."
+            ]
+        }
+    }
+}

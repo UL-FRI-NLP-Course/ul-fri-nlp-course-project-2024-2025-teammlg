@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.886000633239746,
+    "Correctness (GEval)": {
+        "average": 0.21824255304737225,
+        "median": 0.21824255304737225,
+        "minimum": 0.21824255304737225,
+        "maximum": 0.21824255304737225,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by stating the gross as $216 million instead of approximately $109.6 million, and omits important context about the film's budget and box office disappointment."
+            ]
+        }
+    }
+}

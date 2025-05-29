@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 47.112000465393066,
+    "Contextual Relevancy": {
+        "average": 0.8444444444444444,
+        "median": 0.8444444444444444,
+        "minimum": 0.8444444444444444,
+        "maximum": 0.8444444444444444,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Relevancy": [
+                "The score is 0.84 because while the retrieval context provides detailed plot points about the fictional characters and events in 'Challengers,' it explicitly states that Art Donaldson is not a real person, indicating the story is fictional. This supports the conclusion that the film is not based on real events, making the context relevant but not perfectly aligned with the input question."
+            ]
+        }
+    }
+}

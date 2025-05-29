@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.568000793457031,
+    "Answer Relevancy": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Answer Relevancy": [
+                "The score is 0.80 because the response provides relevant dramedy recommendations but includes repeated mentions of 'Curb Your Enthhesiasm,' which is not set in Paris and thus irrelevant to the request. This lowers the score, but the overall answer still addresses the main query about dramedies set in Paris."
+            ]
+        }
+    }
+}

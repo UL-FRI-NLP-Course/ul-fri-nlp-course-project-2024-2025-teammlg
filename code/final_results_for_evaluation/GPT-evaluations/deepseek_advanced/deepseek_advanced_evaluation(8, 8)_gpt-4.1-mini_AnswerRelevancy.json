@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.126001596450806,
+    "Answer Relevancy": {
+        "average": 0.8333333333333334,
+        "median": 0.8333333333333334,
+        "minimum": 0.8333333333333334,
+        "maximum": 0.8333333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Answer Relevancy": [
+                "The score is 0.83 because the response addresses the question about the Firefly movie but includes a generic call to action that doesn't add relevant information, preventing a higher score."
+            ]
+        }
+    }
+}

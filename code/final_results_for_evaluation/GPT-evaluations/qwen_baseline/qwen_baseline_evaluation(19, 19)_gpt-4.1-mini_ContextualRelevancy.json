@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.434000730514526,
+    "Contextual Relevancy": {
+        "average": 0.8181818181818182,
+        "median": 0.8181818181818182,
+        "minimum": 0.8181818181818182,
+        "maximum": 0.8181818181818182,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Contextual Relevancy": [
+                "The score is 0.82 because while some retrieval context statements like the creation of Superman and the 1948 film serial are irrelevant to the question about movies from the 1950s onward, the relevant statements comprehensively cover Superman films from 1951's 'Superman and the Mole Men' through recent films and the upcoming 'Superman: Legacy' in 2025, providing substantial useful information."
+            ]
+        }
+    }
+}

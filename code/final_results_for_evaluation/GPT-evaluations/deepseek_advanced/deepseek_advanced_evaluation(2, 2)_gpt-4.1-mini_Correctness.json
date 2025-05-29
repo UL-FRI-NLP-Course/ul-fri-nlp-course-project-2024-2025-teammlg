@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.261000156402588,
+    "Correctness (GEval)": {
+        "average": 0.8060086654802598,
+        "median": 0.8060086654802598,
+        "minimum": 0.8060086654802598,
+        "maximum": 0.8060086654802598,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "The actual output covers most key themes from the expected output, such as justice vs. vengeance, moral ambiguity, fear, and sacrifice, but introduces additional themes like psychological depth and technology vs. humanity not mentioned in the expected output. It omits explicit mention of chaos vs. order and corruption of institutions, which are central in the expected output."
+            ]
+        }
+    }
+}

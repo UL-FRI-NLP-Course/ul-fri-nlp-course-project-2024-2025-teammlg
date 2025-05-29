@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 21.574078798294067,
+    "Answer Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Answer Relevancy": [
+                "The score is 0.00 because the actual output contains statements about a different work entirely, not The Dark Knight, making it completely irrelevant to the input question about its main themes."
+            ]
+        }
+    }
+}

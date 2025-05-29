@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6670000553131104,
+    "Correctness (GEval)": {
+        "average": 0.04564097538451431,
+        "median": 0.04564097538451431,
+        "minimum": 0.04564097538451431,
+        "maximum": 0.04564097538451431,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Correctness (GEval)": [
+                "The actual output describes 'The Big Sleep' novel and its themes, which contradicts the expected output about 'The Dark Knight' film and its distinct themes."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.924999952316284,
+    "Clarity (GEval)": {
+        "average": 0.6205537201218208,
+        "median": 0.6205537201218208,
+        "minimum": 0.6205537201218208,
+        "maximum": 0.6205537201218208,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Clarity (GEval)": [
+                "The language is mostly clear and direct, but the inclusion of incorrect or confusing details like 'Michaelangelo as Shrek' and 'JK Rowling' in a cast list reduces understanding. There is minor repetition in describing the films as action-packed or animated, which could be more concise."
+            ]
+        }
+    }
+}

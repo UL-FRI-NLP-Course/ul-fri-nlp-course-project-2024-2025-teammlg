@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.556999921798706,
+    "Contextual Relevancy": {
+        "average": 0.625,
+        "median": 0.625,
+        "minimum": 0.625,
+        "maximum": 0.625,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Contextual Relevancy": [
+                "The score is 0.62 because while the input requests a dramedy set in Paris, the retrieval context includes an animated adventure fantasy family film irrelevant to the genre, as noted in the reasons for irrelevancy. However, the context also contains relevant information about the film Paris (2008), described as a French comedy-drama with interconnected stories set in Paris, which aligns with the input's request. This partial relevance justifies the moderate score."
+            ]
+        }
+    }
+}

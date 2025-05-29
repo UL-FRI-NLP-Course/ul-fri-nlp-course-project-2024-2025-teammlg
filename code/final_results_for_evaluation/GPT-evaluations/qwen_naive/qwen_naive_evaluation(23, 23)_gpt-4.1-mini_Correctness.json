@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.7740001678466797,
+    "Correctness (GEval)": {
+        "average": 0.28763052722352656,
+        "median": 0.28763052722352656,
+        "minimum": 0.28763052722352656,
+        "maximum": 0.28763052722352656,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states that Until Dawn is an original film, contradicting the expected output which clarifies it is a film adaptation of a 2015 video game. The actual output omits the 2025 release date and the creative approach of the film."
+            ]
+        }
+    }
+}

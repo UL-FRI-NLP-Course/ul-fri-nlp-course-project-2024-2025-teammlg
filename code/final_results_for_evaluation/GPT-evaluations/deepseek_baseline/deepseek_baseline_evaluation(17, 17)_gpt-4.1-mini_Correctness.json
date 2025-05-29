@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.4319987297058105,
+    "Correctness (GEval)": {
+        "average": 0.632082129433083,
+        "median": 0.632082129433083,
+        "minimum": 0.632082129433083,
+        "maximum": 0.632082129433083,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Correctness (GEval)": [
+                "Actual output contains no direct contradictions but omits many key films listed in expected output such as The Lion King, Dunkirk, Interstellar, Pirates of the Caribbean, and others for Zimmer, and omits many Williams works like Jaws, E.T., Jurassic Park, Superman, and more. It also incorrectly states Zimmer contributed to Joker, which is primarily by Ludwig G\u00f6ransson, a minor factual inaccuracy."
+            ]
+        }
+    }
+}

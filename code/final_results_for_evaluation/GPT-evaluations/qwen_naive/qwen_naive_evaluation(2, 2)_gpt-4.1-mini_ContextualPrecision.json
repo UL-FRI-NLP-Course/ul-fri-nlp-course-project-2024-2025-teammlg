@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.892999649047852,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Contextual Precision": [
+                "The score is 0.00 because all nodes in the retrieval contexts are irrelevant to the input. For example, the first node, ranked first, provides information about the movie's production, cast, and crew but does not discuss the main themes, which is the focus of the input. Similarly, the second node contains reviews without explicit thematic summaries, the third lists streaming services without thematic content, and the fourth is empty. Since no relevant nodes are ranked higher than irrelevant ones, the score cannot be higher."
+            ]
+        }
+    }
+}

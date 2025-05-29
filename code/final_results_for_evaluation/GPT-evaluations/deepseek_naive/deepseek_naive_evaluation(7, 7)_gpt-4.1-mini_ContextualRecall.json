@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.020000219345093,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output about various action-comedy films and their details are supported by the retrieval context, which only discusses a Polish horror-comedy film 'Nobody Sleeps in the Woods Tonight' (node 1). There is no mention of any of the listed films, actors, or descriptions in the retrieval context, leading to a complete lack of alignment."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 18.72499990463257,
+    "Contextual Relevancy": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Contextual Relevancy": [
+                "The score is 0.60 because while the input asks specifically about the Minecraft Movie release in Slovenia and streaming services, the relevant statements provide general release dates and mention streaming availability on Apple TV and Bookmyshow, but only note that Slovenia has Amazon Prime Video as a streaming service without confirming the movie's availability there. Additionally, many irrelevant details about cast and reviews reduce the overall relevancy."
+            ]
+        }
+    }
+}

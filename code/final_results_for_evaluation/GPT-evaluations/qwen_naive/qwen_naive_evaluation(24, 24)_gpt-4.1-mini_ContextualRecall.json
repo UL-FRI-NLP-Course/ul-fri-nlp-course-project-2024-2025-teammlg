@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.417999982833862,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the details in the expected output, such as the film title 'The Accountant 2', its premiere date of April 25, 2025, or the involvement of director Gavin O'Connor and co-stars Jon Bernthal, Cynthia Addai-Robinson, and J.K. Simmons, are supported by any node in the retrieval context."
+            ]
+        }
+    }
+}

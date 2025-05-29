@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 15.626001596450806,
+    "Answer Relevancy": {
+        "average": 0.6521739130434783,
+        "median": 0.6521739130434783,
+        "minimum": 0.6521739130434783,
+        "maximum": 0.6521739130434783,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Answer Relevancy": [
+                "The score is 0.65 because the response includes some relevant suggestions related to dramedies and Paris, but it also contains several irrelevant details such as documentaries, settings outside Paris, and themes not aligned with the dramedy genre. These irrelevant elements prevent a higher score, though the partial relevance justifies the current moderate rating."
+            ]
+        }
+    }
+}

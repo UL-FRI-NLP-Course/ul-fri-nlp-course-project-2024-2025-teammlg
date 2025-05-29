@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.712998867034912,
+    "Correctness (GEval)": {
+        "average": 0.2,
+        "median": 0.2,
+        "minimum": 0.2,
+        "maximum": 0.2,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the release year as 2011 and director as Gore Verbinski, contradicting the expected 2002 Disney animated film. It also misattributes Johnny Depp as Jack Sparrow, a character unrelated to Treasure Planet, and inflates box office figures and production costs compared to the expected $140 million budget and $109.6 million gross."
+            ]
+        }
+    }
+}

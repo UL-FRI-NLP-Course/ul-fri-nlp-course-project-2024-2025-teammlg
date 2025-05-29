@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.1080002784729,
+    "Contextual Relevancy": {
+        "average": 0.7142857142857143,
+        "median": 0.7142857142857143,
+        "minimum": 0.7142857142857143,
+        "maximum": 0.7142857142857143,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Relevancy": [
+                "The score is 0.71 because while some statements like 'Marvel's original title is The Marvels' and details about the film support the input question about Marvel films, irrelevant points such as 'Marvel has no listed services' and 'Marvel's cast list is empty' reduce the overall relevancy."
+            ]
+        }
+    }
+}

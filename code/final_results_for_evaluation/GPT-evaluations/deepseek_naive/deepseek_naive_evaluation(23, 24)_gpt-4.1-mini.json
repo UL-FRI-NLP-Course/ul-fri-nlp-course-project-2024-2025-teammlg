@@ -1,0 +1,23 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 39.9807813167572,
+    "Contextual Relevancy": {
+        "average": 0.4954545454545455,
+        "median": 0.4954545454545455,
+        "minimum": 0.4,
+        "maximum": 0.5909090909090909,
+        "standard_deviation": 0.09545454545454546
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Relevancy": [
+                "The score is 0.40 because while most retrieval context statements focus on cast, production, and release details irrelevant to the film's originality, relevant statements clarify that 'Until Dawn is set in the same universe as the 2015 video game but features an original standalone story' and 'the film completely changes the story from the game and is not a direct adaptation.' These relevant points partially address the question, justifying a moderate relevancy score."
+            ]
+        },
+        "test_case_24": {
+            "Contextual Relevancy": [
+                "The score is 0.59 because while the retrieval context includes relevant information about Ben Affleck's recent acting roles such as 'The Flash' (2023-06-13) and 'Hypnotic' (2023-05-11), it also contains many irrelevant statements about older films and directing or producing roles unrelated to his most recent acting work, such as films from 1997-2012 and future projects set for 2025."
+            ]
+        }
+    }
+}

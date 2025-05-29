@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.13399863243103,
+    "Correctness (GEval)": {
+        "average": 0.0731058584489497,
+        "median": 0.0731058584489497,
+        "minimum": 0.0731058584489497,
+        "maximum": 0.0731058584489497,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Correctness (GEval)": [
+                "The actual output about Ben Affleck's film 'The Accountant\u00b2' (2025) contradicts the expected output about the 2025 film 'Until Dawn' being an adaptation of a video game."
+            ]
+        }
+    }
+}

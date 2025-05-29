@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 22.328000783920288,
+    "Answer Relevancy": {
+        "average": 0.5416666666666666,
+        "median": 0.5416666666666666,
+        "minimum": 0.5416666666666666,
+        "maximum": 0.5416666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Answer Relevancy": [
+                "The score is 0.54 because the response includes some relevant information about the film's horror elements, which partially addresses the question about gore and blood. However, many statements focus on suspense, thematic depth, the director's style, and plot details unrelated to gore or blood, limiting the relevancy and preventing a higher score."
+            ]
+        }
+    }
+}

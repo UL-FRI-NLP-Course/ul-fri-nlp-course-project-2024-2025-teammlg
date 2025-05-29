@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 14.871999263763428,
+    "Contextual Relevancy": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Contextual Relevancy": [
+                "The score is 0.60 because while the retrieval context largely discusses 'Grave of the Fireflies', which is unrelated to the 'Firefly' TV series or its movie, it does include relevant statements such as 'Firefly is a movie released in 2005, also known as Serenity' and 'Firefly's movie was released in 2005 and is called Serenity.' These relevant points justify a moderate relevancy score despite the predominant irrelevance."
+            ]
+        }
+    }
+}

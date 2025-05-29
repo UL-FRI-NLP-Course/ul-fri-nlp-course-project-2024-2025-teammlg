@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.613000154495239,
+    "Correctness (GEval)": {
+        "average": 0.3437823499114202,
+        "median": 0.3437823499114202,
+        "minimum": 0.3437823499114202,
+        "maximum": 0.3437823499114202,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Correctness (GEval)": [
+                "The actual output recommends TV series with action and environmental themes, which contradicts the expected output's focus on dialogue-free, atmospheric animated shorts emphasizing emotion, nature, and visual storytelling. The actual output omits the specific short films and stylistic details central to the expected recommendations."
+            ]
+        }
+    }
+}

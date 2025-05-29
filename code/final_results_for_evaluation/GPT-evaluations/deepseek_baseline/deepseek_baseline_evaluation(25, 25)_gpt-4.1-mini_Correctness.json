@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.668998718261719,
+    "Correctness (GEval)": {
+        "average": 0.23208212943308298,
+        "median": 0.23208212943308298,
+        "minimum": 0.23208212943308298,
+        "maximum": 0.23208212943308298,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Correctness (GEval)": [
+                "The actual output contains numerous factual inaccuracies and non-MCU films incorrectly listed under MCU phases, such as 'The Wolverine,' 'Aquaman,' 'Shazam!,' 'Barbie,' 'Blade Runner 2049,' and 'Futurama Bender's Big Score.' It also misorders films and omits key MCU titles like 'Ant-Man and the Wasp' and 'Captain Marvel.' The expected output provides a clear, accurate phase-wise MCU list and correct non-MCU films, which the actual output fails to match."
+            ]
+        }
+    }
+}

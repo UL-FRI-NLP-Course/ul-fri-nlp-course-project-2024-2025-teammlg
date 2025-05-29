@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 21.942999601364136,
+    "Contextual Relevancy": {
+        "average": 0.4444444444444444,
+        "median": 0.4444444444444444,
+        "minimum": 0.4444444444444444,
+        "maximum": 0.4444444444444444,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Contextual Relevancy": [
+                "The score is 0.44 because while the input asks about the Minecraft Movie release in Slovenia and streaming services, many retrieval statements are irrelevant, such as those about cast, box office, reviews, and a different movie titled 'Slovenian Girl'. However, relevant statements include the Minecraft Movie's world premiere on March 30, 2025, its worldwide theatrical release on April 4, 2025, the release date of 2025-03-31, and its availability on streaming services Apple TV and Bookmyshow."
+            ]
+        }
+    }
+}

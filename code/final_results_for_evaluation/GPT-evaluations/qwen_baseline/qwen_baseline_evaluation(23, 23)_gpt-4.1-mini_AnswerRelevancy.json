@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.304999828338623,
+    "Answer Relevancy": {
+        "average": 0.5714285714285714,
+        "median": 0.5714285714285714,
+        "minimum": 0.5714285714285714,
+        "maximum": 0.5714285714285714,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Answer Relevancy": [
+                "The score is 0.57 because the response partially addresses the question about the film's originality but includes irrelevant and incorrect statements about the game and adaptation status, which detract from clarity and focus. However, it still provides some relevant information, justifying a moderate score rather than a lower one."
+            ]
+        }
+    }
+}

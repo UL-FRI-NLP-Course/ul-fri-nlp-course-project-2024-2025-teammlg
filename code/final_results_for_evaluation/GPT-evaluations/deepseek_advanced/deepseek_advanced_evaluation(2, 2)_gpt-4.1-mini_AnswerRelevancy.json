@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 16.694602251052856,
+    "Answer Relevancy": {
+        "average": 0.7727272727272727,
+        "median": 0.7727272727272727,
+        "minimum": 0.7727272727272727,
+        "maximum": 0.7727272727272727,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Answer Relevancy": [
+                "The score is 0.77 because the summary captures several main themes of The Dark Knight, such as moral ambiguity and the struggle between order and chaos. However, it includes irrelevant points like advanced gadgetry, chaos theory, and meta-commentary, which detract from the focus on the film's core themes, preventing a higher score."
+            ]
+        }
+    }
+}

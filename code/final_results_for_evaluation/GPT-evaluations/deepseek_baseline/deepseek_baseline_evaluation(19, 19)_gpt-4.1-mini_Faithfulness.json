@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.948000431060791,
+    "Faithfulness": {
+        "average": 0.8888888888888888,
+        "median": 0.8888888888888888,
+        "minimum": 0.8888888888888888,
+        "maximum": 0.8888888888888888,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Faithfulness": [
+                "The score is 0.89 because the actual output incorrectly states that Batman v Superman: Dawn of Justice was released in 2006 and directed by Alan Moore, which contradicts the retrieval context and known facts about the film's release date and director."
+            ]
+        }
+    }
+}

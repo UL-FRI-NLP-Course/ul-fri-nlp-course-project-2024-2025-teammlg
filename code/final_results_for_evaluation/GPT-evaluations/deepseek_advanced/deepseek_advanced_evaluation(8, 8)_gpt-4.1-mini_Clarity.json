@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6929991245269775,
+    "Clarity (GEval)": {
+        "average": 0.8060086649753225,
+        "median": 0.8060086649753225,
+        "minimum": 0.8060086649753225,
+        "maximum": 0.8060086649753225,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but phrases like 'Fans may confuse extended episodes or alternative content' are slightly vague. There is minor repetition in mentioning both the lack of a finalized project and no confirmed adaptation."
+            ]
+        }
+    }
+}

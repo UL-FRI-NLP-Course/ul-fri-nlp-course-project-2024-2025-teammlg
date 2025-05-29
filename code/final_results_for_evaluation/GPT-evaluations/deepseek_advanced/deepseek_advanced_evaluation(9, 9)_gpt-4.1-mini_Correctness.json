@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.252999782562256,
+    "Correctness (GEval)": {
+        "average": 0.6851952796329894,
+        "median": 0.6851952796329894,
+        "minimum": 0.6851952796329894,
+        "maximum": 0.6851952796329894,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Correctness (GEval)": [
+                "The actual output lists many relevant spooky sci-fi films without contradicting the expected output, but omits key details like directors, reasons to watch, and some films such as The Endless, Event Horizon, Possessor, Aliens, and Splice. Some years are incorrect (Annihilation 2014 vs 2018)."
+            ]
+        }
+    }
+}

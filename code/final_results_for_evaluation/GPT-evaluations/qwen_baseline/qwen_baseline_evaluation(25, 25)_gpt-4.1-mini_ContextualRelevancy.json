@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.570000886917114,
+    "Contextual Relevancy": {
+        "average": 0.6666666666666666,
+        "median": 0.6666666666666666,
+        "minimum": 0.6666666666666666,
+        "maximum": 0.6666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Relevancy": [
+                "The score is 0.67 because while the retrieval context includes relevant statements such as 'Marvel Studios is known for producing the Marvel Cinematic Universe (MCU) films' and 'The MCU films are based on characters that appear in American comic books published by Marvel Comics,' it also contains irrelevant information like 'The MCU is the highest-grossing film franchise of all time' and details about the founding history of Marvel Studios, which do not directly answer the question about what films Marvel produced."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.517000198364258,
+    "Answer Relevancy": {
+        "average": 0.9333333333333333,
+        "median": 0.9333333333333333,
+        "minimum": 0.9333333333333333,
+        "maximum": 0.9333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Answer Relevancy": [
+                "The score is 0.93 because the response mostly addresses the suitability of the Minecraft Movie for kids, but it includes an irrelevant detail about the movie's duration, which doesn't directly relate to its appropriateness for children."
+            ]
+        }
+    }
+}

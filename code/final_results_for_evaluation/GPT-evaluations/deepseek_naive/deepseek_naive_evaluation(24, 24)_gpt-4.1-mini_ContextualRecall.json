@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.348998785018921,
+    "Contextual Recall": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Contextual Recall": [
+                "The score is 0.50 because while the first sentence about 'The Accountant 2' premiering in 2025 is supported by node 1 in the retrieval context, the details about the sequel being a reunion with director Gavin O'Connor and co-stars Jon Bernthal, Cynthia Addai-Robinson, and J.K. Simmons are not mentioned in any node, limiting the overall contextual recall."
+            ]
+        }
+    }
+}

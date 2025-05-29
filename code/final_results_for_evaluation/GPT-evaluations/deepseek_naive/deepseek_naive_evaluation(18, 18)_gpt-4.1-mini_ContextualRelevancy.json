@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.68899941444397,
+    "Contextual Relevancy": {
+        "average": 0.5714285714285714,
+        "median": 0.5714285714285714,
+        "minimum": 0.5714285714285714,
+        "maximum": 0.5714285714285714,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Contextual Relevancy": [
+                "The score is 0.57 because while the retrieval context provides some relevant information about the popularity and reviews of the movies '7:20 Once a Week' and 'Sex First, Love Second', it lacks direct opinions from people and detailed popularity data as requested. The reasons for irrelevancy note that cast and crew details and streaming availability are not addressed, which lowers the relevancy despite some useful movie info and reviews being present."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.020999670028687,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Contextual Precision": [
+                "The score is 0.00 because all nodes in the retrieval contexts are irrelevant, with the first node discussing a Korean romance drama unrelated to video game movies, the second node covering a documentary about Olympians, and the subsequent nodes providing no useful information. Since no relevant nodes are present, none are ranked higher, resulting in the lowest possible score."
+            ]
+        }
+    }
+}

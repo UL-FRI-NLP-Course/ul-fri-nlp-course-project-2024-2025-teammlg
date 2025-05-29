@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.1110007762908936,
+    "Clarity (GEval)": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured recommendations. There is no vague or confusing content, and no unnecessary repetition is present. The descriptions are concise and relevant to the themes of 'Flow.'"
+            ]
+        }
+    }
+}

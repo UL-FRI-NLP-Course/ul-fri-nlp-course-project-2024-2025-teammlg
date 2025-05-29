@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.077000617980957,
+    "Contextual Precision": {
+        "average": 0.25,
+        "median": 0.25,
+        "minimum": 0.25,
+        "maximum": 0.25,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Contextual Precision": [
+                "The score is 0.25 because the first three nodes in retrieval contexts are irrelevant, as they either describe unrelated genres, lack recommendations for dramedies set in Paris, or contain no relevant information, which justifies their lower ranking. However, the fourth node is relevant, providing a detailed summary of a comedy-drama film set in Paris, but its placement at rank 4 lowers the overall precision score since relevant information appears after irrelevant nodes."
+            ]
+        }
+    }
+}

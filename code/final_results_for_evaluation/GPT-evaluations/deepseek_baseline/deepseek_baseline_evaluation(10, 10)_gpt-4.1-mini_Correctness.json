@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3779995441436768,
+    "Correctness (GEval)": {
+        "average": 0.3140206013776125,
+        "median": 0.3140206013776125,
+        "minimum": 0.3140206013776125,
+        "maximum": 0.3140206013776125,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states James Gunn played Steve Wozniak, contradicting the expected output which names Josh Gad. The omission of Wozniak as co-founder is acceptable."
+            ]
+        }
+    }
+}

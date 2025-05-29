@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.831176280975342,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context only provides a single date '2025-03-31' for the 'Minecraft Movie', which does not match the premiere dates in Slovenia or the U.S. mentioned in the expected output. Additionally, the context lacks any mention of Cineplexx Slovenia or confirmation of an early release, making it impossible to attribute the expected output sentences to the provided nodes."
+            ]
+        }
+    }
+}

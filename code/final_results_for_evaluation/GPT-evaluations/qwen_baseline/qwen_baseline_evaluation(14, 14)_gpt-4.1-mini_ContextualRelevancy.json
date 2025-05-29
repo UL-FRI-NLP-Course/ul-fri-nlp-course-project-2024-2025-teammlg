@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.209999322891235,
+    "Contextual Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Contextual Relevancy": [
+                "The score is 1.00 because the retrieval context directly includes the Slovene translation 'Preden se stegneva', which matches the input, even though the original title is not provided. This makes the context fully relevant to the input."
+            ]
+        }
+    }
+}

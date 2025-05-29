@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.564001083374023,
+    "Correctness (GEval)": {
+        "average": 0.6008023435420674,
+        "median": 0.6008023435420674,
+        "minimum": 0.6008023435420674,
+        "maximum": 0.6008023435420674,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output recommends 'Am\u00e9lie' and mentions 'The Da Vinci Code' as set in Paris with dramedy elements, aligning with the expected output. However, it omits most of the detailed list of films, directors, cast, and reasons for watching, providing a much shorter and less comprehensive response."
+            ]
+        }
+    }
+}

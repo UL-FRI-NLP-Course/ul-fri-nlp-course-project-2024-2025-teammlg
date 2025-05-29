@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 29.135998725891113,
+    "Answer Relevancy": {
+        "average": 0.40625,
+        "median": 0.40625,
+        "minimum": 0.40625,
+        "maximum": 0.40625,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Answer Relevancy": [
+                "The score is 0.41 because the response includes several irrelevant references to films and series that are not dramedies set in Paris, such as 'Call Me By Your Name' and 'Dexter: New Blood.' However, it still partially addresses the request by mentioning some dramedy elements, which justifies the moderate score rather than a lower one."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.1449990272521973,
+    "Correctness (GEval)": {
+        "average": 0.04378234991142019,
+        "median": 0.04378234991142019,
+        "minimum": 0.04378234991142019,
+        "maximum": 0.04378234991142019,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Correctness (GEval)": [
+                "The actual output discusses a Slovenian phrase and possible film themes, which contradicts the expected output naming 'The Bucket List.'"
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.324021577835083,
+    "Correctness (GEval)": {
+        "average": 0.42674100827367295,
+        "median": 0.42674100827367295,
+        "minimum": 0.42674100827367295,
+        "maximum": 0.42674100827367295,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output lists many video game-inspired movies and series but omits key popular titles like Sonic the Hedgehog, Detective Pikachu, Ready Player One, and detailed cast or reasons to watch. It also includes speculative or less relevant entries like Elden Ring and Doki Doki Literature Club, which are not in the expected output. The actual output lacks the detailed descriptions and star information present in the expected output."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.500998497009277,
+    "Contextual Relevancy": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the irrelevant statement about the weather ('The weather today is sunny with a high of 75 degrees') does not pertain to video game movies, the relevant statements provide clear information about movies based on video games and their stars, such as 'The first movie in the Resident Evil series stars Milla Jovovich.' This partial relevance justifies a moderately high score."
+            ]
+        }
+    }
+}

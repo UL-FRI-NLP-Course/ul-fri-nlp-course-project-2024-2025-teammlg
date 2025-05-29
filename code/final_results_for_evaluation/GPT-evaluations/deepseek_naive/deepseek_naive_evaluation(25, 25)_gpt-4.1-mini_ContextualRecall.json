@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 22.833000421524048,
+    "Contextual Recall": {
+        "average": 0.02040816326530612,
+        "median": 0.02040816326530612,
+        "minimum": 0.02040816326530612,
+        "maximum": 0.02040816326530612,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Recall": [
+                "The score is 0.02 because only one sentence in the expected output (sentence mentioning 'The Marvels (2023)') is supported by node 1 in the retrieval context, while the vast majority of sentences detailing MCU phases, film lists, and non-MCU films have no corresponding information in the retrieval context, resulting in very low overall contextual recall."
+            ]
+        }
+    }
+}

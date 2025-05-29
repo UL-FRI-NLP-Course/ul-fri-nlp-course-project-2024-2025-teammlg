@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.427999496459961,
+    "Contextual Recall": {
+        "average": 0.16666666666666666,
+        "median": 0.16666666666666666,
+        "minimum": 0.16666666666666666,
+        "maximum": 0.16666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Contextual Recall": [
+                "The score is 0.17 because only the first sentence of the expected output, which identifies the movie and director, is supported by node 1 in the retrieval context. However, the rest of the thematic details and analyses in sentences 2 to 6 are not reflected or supported by any nodes in the retrieval context, leading to a low contextual recall score."
+            ]
+        }
+    }
+}

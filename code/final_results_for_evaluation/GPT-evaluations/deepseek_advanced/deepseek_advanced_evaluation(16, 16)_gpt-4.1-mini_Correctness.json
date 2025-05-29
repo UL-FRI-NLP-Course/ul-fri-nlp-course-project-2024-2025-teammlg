@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.417001247406006,
+    "Correctness (GEval)": {
+        "average": 0.5656485613934409,
+        "median": 0.5656485613934409,
+        "minimum": 0.5656485613934409,
+        "maximum": 0.5656485613934409,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output includes some titles not present in the expected output, such as 'Emily in Paris' and 'The Girl in the Bunker,' and omits key expected titles like 'Am\u00e9lie' and 'Paris, Je T'Aime.' There are no direct factual contradictions, but the actual output diverges significantly in content focus and detail."
+            ]
+        }
+    }
+}

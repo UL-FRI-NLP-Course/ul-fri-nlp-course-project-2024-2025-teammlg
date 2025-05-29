@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.8040003776550293,
+    "Correctness (GEval)": {
+        "average": 0.6851952805727255,
+        "median": 0.6851952805727255,
+        "minimum": 0.6851952805727255,
+        "maximum": 0.6851952805727255,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Correctness (GEval)": [
+                "The actual output correctly states that 'Challengers' is fictional and not based on a true story, aligning with the expected output's denial of a true story basis. However, it omits the detail that the film draws inspiration from real-life tennis events and personalities, which is a key element in the expected output."
+            ]
+        }
+    }
+}

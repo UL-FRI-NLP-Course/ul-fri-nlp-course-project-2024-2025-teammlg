@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.18100070953369,
+    "Faithfulness": {
+        "average": 0.9090909090909091,
+        "median": 0.9090909090909091,
+        "minimum": 0.9090909090909091,
+        "maximum": 0.9090909090909091,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Faithfulness": [
+                "The score is 0.91 because the actual output incorrectly claims Richard Pryor played Lex Luthor in 'Superman II: The Legend Continues' (1980), a fact not supported by the retrieval context and contradicting known information about the casting."
+            ]
+        }
+    }
+}

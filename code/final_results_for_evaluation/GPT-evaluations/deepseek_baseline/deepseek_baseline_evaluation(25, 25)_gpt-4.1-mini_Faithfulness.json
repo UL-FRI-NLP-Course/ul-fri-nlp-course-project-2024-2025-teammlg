@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 37.92300033569336,
+    "Faithfulness": {
+        "average": 0.5319148936170213,
+        "median": 0.5319148936170213,
+        "minimum": 0.5319148936170213,
+        "maximum": 0.5319148936170213,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Faithfulness": [
+                "The score is 0.53 because the actual output incorrectly assigns many films and series to MCU phases they do not belong to, such as including non-MCU films like The Wolverine (2013), Spider-Man: Into the Spider-Verse, Aquaman, Shazam!, and Barbie in MCU phases, misclassifying Phase Two and Three films like Iron Man 3, Thor: The Dark World, Captain America: The Winter Soldier, and Avengers: Age of Ultron as Phase One, and including non-MCU titles like Deadpool, X-Men films, Blade Runner 2049, and Futurama in Phase Three. These significant inaccuracies reduce faithfulness to the retrieval context."
+            ]
+        }
+    }
+}
