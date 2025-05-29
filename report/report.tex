@@ -131,7 +131,7 @@ In this paper, we focus on \ac{rag} methods and their use in chatbots. To that e
 
 \section*{Methods}
 
-We designed two \ac{rag} pipelines, as presented in~\cref{fig:pipeline}. The simple RAG pipeline used \ac{nlp} methods to extract the important feature information from prompt via lemmatization, stop-word removal, and entity detection. Prompt information was used to determine movie titles and names of people to query for in our selected databases. That information was then appended to the prompt and fed into an \ac{llm}.
+We designed two \ac{rag} pipelines, as presented in~\cref{fig:pipeline}. The naive RAG pipeline used \ac{nlp} methods to extract the important feature information from prompt via lemmatization, stop-word removal, and entity detection. Prompt information was used to determine movie titles and names of people to query for in our selected databases. That information was then appended to the prompt and fed into an \ac{llm}.
 
 A more advanced version of our \ac{rag} system utilized various components, but we ultimately chose to employ function-calling functionality that is present in some \acp{llm}. Based on the prompt, the \ac{llm} decides on the most appropriate information retrieval function to call and informs the \ac{rag} system, which then retrieves that information. The information is then inserted into the prompt, which is fed into the \ac{llm}.
 
@@ -139,14 +139,14 @@ A more advanced version of our \ac{rag} system utilized various components, but 
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\textwidth]{./figures/simple_rag.pdf}
-		\caption{A simple \ac{rag} system.}
+		\caption{A naive \ac{rag} system.}
 	\end{subfigure}
 	\hspace{20pt}
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width=\linewidth]{./figures/advanced_rag.pdf}
 		\caption{An advanced \ac{rag} system.}
 	\end{subfigure}
-	\caption{Our proposed \ac{rag} pipelines for evaluation. The simple \ac{rag} variant preprocesses the prompt, extracts meaningful information from it, retrieves the data based on that, and enhances the prompt with that raw data. The advanced variant employs \ac{llm} function-calling capabilities to decide what data to scrape and enhances the prompt only with necessary data.}
+	\caption{Our proposed \ac{rag} pipelines for evaluation. The naive \ac{rag} variant preprocesses the prompt, extracts meaningful information from it, retrieves the data based on that, and enhances the prompt with that raw data. The advanced variant employs \ac{llm} function-calling capabilities to decide what data to scrape and enhances the prompt only with necessary data.}
 	\label{fig:pipeline}
 \end{figure*}
 
@@ -175,22 +175,13 @@ To provide a sufficient level of information related to movies and similar media
 	\item \textbf{Wikipedia.} We used it to retrieve information such as film plots, summaries, etc.
 \end{itemize}
 
-In our simple \ac{rag} implementation, we retrieved data from all four sources. This would amount to over 250,000 characters of context.
+In our naive \ac{rag} implementation, we retrieved data from all four sources. This would amount to over 250,000 characters of context.
 
 For our advanced version, we prepared nine custom scraping functions that would equip the model with essential information about movie titles and film-related people. These functions had to be specifically annotated and various versions of descriptions were used to elicit a proper function-calling response from the model.
 
 \subsection*{\ac{rag}}
 
-% TODO: Injection into prompt - what format, how much
-% Prepend certain info: e.g. date
-
-% TODO: What are prompt limits (length, tokens...)?
-
-% TODO: Simple RAG
-% 		- POS tagging
-%		- prompt injection
-
-For the simple \ac{rag} system, we first analyzed the user prompt and gathered all relevant entities, consisting of film titles and names of people. We used a Roberta-like \texttt{spacy} model~\footnote{https://huggingface.co/spacy/en\_core\_web\_sm}. We performed unfiltered knowledge injection, gathering all relevant documents based on prompt entities, structured them in JSON format, and passed them allong with user query to the \ac{llm}.
+For the naive \ac{rag} system, we first analyzed the user prompt and gathered all relevant entities, consisting of film titles and names of people. We used a Roberta-like \texttt{spacy} model~\footnote{https://huggingface.co/spacy/en\_core\_web\_sm}. We performed unfiltered knowledge injection, gathering all relevant documents based on prompt entities, structured them in JSON format, and passed them allong with user query to the \ac{llm}.
 
 For advanced \ac{rag} system, we tried several versions before basing it on function calling. Our earlier attempts performed the entity extraction from prompt, retrieval of documents from all sources based on those entities, and content curation based on statistical methods and user prompt. For example, we treated all sentences in the retrieved data as documents, performing TF-IDF sorting and using only top $N$ most relevant sentences. Unfortunatelly, results of these extractions accounted only for literal appearance of words from the prompt in documents, instead of accounting for larger context, synonyms, etc.
 
@@ -213,14 +204,14 @@ Our user prompt first presented the user's initial query, followed by the retrie
 
 \section*{Results}
 
-In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Llama-8B \cite{deepseek3} model and a non-reasoning Qwen3-8B \cite{qwen3} model. For each of these we run experiments on three different sets of parameters: without RAG, with naive RAG - data is scraped and appended to the context, and advanced RAG - data is additionally processed and summarized before being inputed into the model. In total, we are evaluating the following models:
+In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Llama-8B \cite{deepseek3} model and a non-reasoning Qwen3-8B \cite{qwen3} model. For each of these we run experiments on three different sets of parameters: without \ac{rag}, with naive \ac{rag} - data is scraped and appended to the context, and advanced \ac{rag} - data is additionally processed and summarized before being inputed into the model. In total, we are evaluating the following models:
 \begin{itemize}
 	\item DeepSeek-R1-Distill-Llama-8B (baseline)
-	\item DeepSeek-R1-Distill-Llama-8B with naive RAG
-	\item DeepSeek-R1-Distill-Llama-8B with advanced RAG
+	\item DeepSeek-R1-Distill-Llama-8B with naive \ac{rag}
+	\item DeepSeek-R1-Distill-Llama-8B with advanced \ac{rag}
 	\item Qwen3-8B (baseline)
-	\item Qwen3-8B with naive RAG
-	\item Qwen3-8B with advanced RAG
+	\item Qwen3-8B with naive \ac{rag}
+	\item Qwen3-8B with advanced \ac{rag}
 \end{itemize}
 
 Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth, so we can apply standard metrics such as ROUGE and BLEU \footnote{https://huggingface.co/docs/evaluate/index}. To avoid overfitting a model to a specific set of questions, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. Results are shown in Table \ref{tab:comparison}.
