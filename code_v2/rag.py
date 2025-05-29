@@ -16,8 +16,9 @@ class Rag:
             scraper.get_movie_reviews,
             scraper.get_movie_streaming_services,
             scraper.get_movie_summary,
-            scraper.get_person_credits,
-            scraper.get_similar_movies
+            scraper.get_persons_movie_credits,
+            scraper.get_similar_movies,
+            scraper.get_movie_general_info
         ]
         try:
             self.nlp = spacy.load("en_core_web_sm")
