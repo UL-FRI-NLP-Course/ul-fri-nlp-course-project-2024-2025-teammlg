@@ -1,22 +1,30 @@
 # meta-llama/Llama-3.1-8B-Instruct
 # meta-llama/Llama-3.1-70B-Instruct
 
+# deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+
 # meta-llama/Llama-3.3-70B-Instruct
 
 # 01-ai/Yi-34B-Chat
 # Qwen/Qwen3-14B
-
-# sbatch llm_evaluation.sh deepseek_baseline Qwen/Qwen3-14B 1 10
 
 # Arguments:
 # 1. model to evaluate (without json)
 # 2. model used to evaluate (from huggingface)
 # 3. [OPTIONAL] evaluate start test
 # 4. [OPTIONAL] evaluate end test (inclusive [start, end])
-
+# 5. [OPTIONAl] metric = "Correctness", "Clarity", "AnswerRelevancy", "Faithfulness", "ContextualPrecision", "ContextualRecall", "ContextualRelevancy"
 import sys
 
-if len(sys.argv) - 1 == 4:
+test_metric = None
+if len(sys.argv) - 1 == 5:
+    model_to_evaluate = sys.argv[1]
+    model_name = sys.argv[2]
+    start = int(sys.argv[3])
+    end = int(sys.argv[4])
+    evaluate_range = (start, end)
+    test_metric = sys.argv[5]
+elif len(sys.argv) - 1 == 4:
     model_to_evaluate = sys.argv[1]
     model_name = sys.argv[2]
     start = int(sys.argv[3])
@@ -93,7 +101,6 @@ import numpy as np
 import warnings
 import io
 from contextlib import redirect_stdout
-
 print(f"other loaded: {time() - start}s")
 
 
@@ -212,7 +219,7 @@ class EvaluationModel(DeepEvalBaseLLM):
 
 class EvaluationWithLLM:
     def __init__(self, model_name_for_evaluation=None, include_reason=False, verbose_mode=False,
-                 hugging_face_token=None):
+                 hugging_face_token=None, test_metric=None):
         self.verbose_mode = verbose_mode
         self.model_name = model_name_for_evaluation
 
@@ -223,24 +230,27 @@ class EvaluationWithLLM:
         else:
             self.print("CUDA is not available!")
 
-        if model_name_for_evaluation is not None:
+        # I assume all model names are "organization/model"
+        if model_name_for_evaluation is not None and "/" in model_name_for_evaluation:
             self.print(f"Initializing model {self.model_name}")
             start = time()
             self.evaluation_model = EvaluationModel(self.model_name, hugging_face_token=hugging_face_token)
             self.print(f"Model loaded: {time() - start}s")
             self.evaluation_model_name = self.evaluation_model.get_model_name()
-        else:
-            self.evaluation_model = "gpt-4.1-mini"
+        elif model_name_for_evaluation is not None:
+            self.evaluation_model = model_name_for_evaluation
             self.evaluation_model_name = self.evaluation_model
+        else:
+            raise Exception("Invalid model name for evaluation")
 
-        self.metrics = self.get_default_metrics(self.evaluation_model, include_reason=include_reason)
+        self.metrics = self.get_default_metrics(self.evaluation_model, include_reason=include_reason, test_metric=test_metric)
 
     def print(self, message):
         if self.verbose_mode:
             print(message)
 
-    def get_default_metrics(self, evaluation_model, include_reason=False):
-        return [
+    def get_default_metrics(self, evaluation_model, include_reason=False, test_metric=None):
+        metric_list = [
             GEval(
                 name="Correctness",
                 model=evaluation_model,
@@ -286,6 +296,13 @@ class EvaluationWithLLM:
                 include_reason=include_reason
             )
         ]
+        if test_metric is None:
+            return metric_list
+
+        metric_names = ["Correctness", "Clarity", "AnswerRelevancy", "Faithfulness", "ContextualPrecision", "ContextualRecall", "ContextualRelevancy"]
+        if test_metric not in metric_names:
+            raise Exception("Invalid metric name")
+        return [metric_list[metric_names.index(test_metric)]]
 
     def get_test_cases(self, json_data):
         test_cases = []
@@ -304,7 +321,7 @@ class EvaluationWithLLM:
         return test_cases
 
     def load_json(self, results_file_path):
-        with open(results_file_path) as file:
+        with open(results_file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
 
         self.print(f"Getting results from {results_file_path} is successful")
@@ -314,8 +331,7 @@ class EvaluationWithLLM:
     def evaluate_results(self, results_file_path, evaluation_output_path, evaluate_range=None):
         start = time()
 
-        with open(results_file_path) as file:
-            json_data = json.load(file)
+        json_data = self.load_json(results_file_path)
 
         test_cases = self.get_test_cases(json_data)
 
@@ -323,14 +339,15 @@ class EvaluationWithLLM:
 
         if evaluate_range is not None:
             test_cases = test_cases[evaluate_range[0] - 1: evaluate_range[1]]
-            self.print(f"Continuing to evaluate from test {evaluate_range[0]} to {evaluate_range[1] + 1}")
+            self.print(f"Continuing to evaluate from test {evaluate_range[0]} to {evaluate_range[1]}")
 
         display_config = DisplayConfig(show_indicator=False, print_results=False, verbose_mode=False)
+        start = time()
         results = []
         for i, test_case in enumerate(test_cases, start=1):
             self.print(f"Evaluating test case {i}/{len(test_cases)}")
-            with redirect_stdout(io.StringIO()):
-                result, _ = evaluate(test_cases=[test_case], metrics=self.metrics, display_config=display_config)
+            #with redirect_stdout(io.StringIO()):
+            result, _ = evaluate(test_cases=[test_case], metrics=self.metrics, display_config=display_config)
             results.extend(result[1])
 
         end = time()
@@ -402,7 +419,6 @@ class EvaluationWithLLM:
 
         return json_dict
 
-
 if __name__ == "__main__":
     # deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
     # deepseek-ai/DeepSeek-R1-Distill-Qwen-32B
@@ -425,8 +441,18 @@ if __name__ == "__main__":
     # model_name = "Qwen/Qwen3-14B"
 
     results_path = os.path.join("..", "final_results_for_evaluation", f"{model_to_evaluate}.json")
-    evaluation_results_path = os.path.join("..", "final_results_for_evaluation",
-                                           f"{model_to_evaluate}_evaluation{evaluate_range}.json")
+
+    output_model_name = model_name
+    if "/" in output_model_name:
+        x = output_model_name.split("/")
+        output_model_name = x[-1]
+    if test_metric is None:
+        evaluation_results_path = os.path.join("..", "final_results_for_evaluation",
+                                           f"{model_to_evaluate}_evaluation{evaluate_range}_{output_model_name}.json")
+    else:
+        evaluation_results_path = os.path.join("..", "final_results_for_evaluation",
+                                               f"{model_to_evaluate}_evaluation{evaluate_range}_{output_model_name}_{test_metric}.json")
+
     verbose_mode = True
 
     # model_name = None
@@ -435,5 +461,5 @@ if __name__ == "__main__":
     hf_key = None
 
     evaluation = EvaluationWithLLM(model_name_for_evaluation=model_name, include_reason=include_reason,
-                                   verbose_mode=verbose_mode, hugging_face_token=hf_key)
+                                   verbose_mode=verbose_mode, hugging_face_token=hf_key, test_metric=test_metric)
     evaluation.evaluate_results(results_path, evaluation_results_path, evaluate_range=evaluate_range)
