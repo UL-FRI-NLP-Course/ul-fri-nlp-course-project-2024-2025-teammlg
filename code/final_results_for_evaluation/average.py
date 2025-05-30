@@ -1,7 +1,7 @@
 import os
 import json
 
-def average(name, metrics, dbfolder = "final_results_for_evaluation"):
+def average(name, metrics, dbfolder = "./"):
     out_metrics = {}
     for metric in metrics:
         out_metrics[metric] = 0

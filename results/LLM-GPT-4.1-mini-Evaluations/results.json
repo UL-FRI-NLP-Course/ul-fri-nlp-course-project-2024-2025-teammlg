@@ -1,0 +1,56 @@
+{
+    "qwen_advanced": {
+        "Correctness (GEval)": 0.5233689786301321,
+        "Clarity (GEval)": 0.8338278976475041,
+        "Answer Relevancy": 0.6804201745431254,
+        "Faithfulness": 0.9793508771929824,
+        "Contextual Precision": 1.0,
+        "Contextual Recall": 0.6109607351712616,
+        "Contextual Relevancy": 0.6835511982570806
+    },
+    "deepseek_advanced": {
+        "Correctness (GEval)": 0.33412725901696794,
+        "Clarity (GEval)": 0.7841462898463735,
+        "Answer Relevancy": 0.8097309791657616,
+        "Faithfulness": 0.9309598997493734,
+        "Contextual Precision": 1.0,
+        "Contextual Recall": 0.609375,
+        "Contextual Relevancy": 0.5681323368823369
+    },
+    "qwen_naive": {
+        "Correctness (GEval)": 0.451162246846791,
+        "Clarity (GEval)": 0.7799255877091893,
+        "Answer Relevancy": 0.8001335597057161,
+        "Faithfulness": 0.8323412698412699,
+        "Contextual Precision": 0.34,
+        "Contextual Recall": 0.26440115440115436,
+        "Contextual Relevancy": 0.5164327548075943
+    },
+    "qwen_baseline": {
+        "Correctness (GEval)": 0.45205423160367425,
+        "Clarity (GEval)": 0.8102388248055049,
+        "Answer Relevancy": 0.8794413919413919,
+        "Faithfulness": 0.9866666666666667,
+        "Contextual Precision": 0.0,
+        "Contextual Recall": 0.0,
+        "Contextual Relevancy": 0.4807272727272728
+    },
+    "deepseek_baseline": {
+        "Correctness (GEval)": 0.3184503712125178,
+        "Clarity (GEval)": 0.7492339886150967,
+        "Answer Relevancy": 0.617207709196419,
+        "Faithfulness": 0.9496575481256332,
+        "Contextual Precision": 0.0,
+        "Contextual Recall": 0.0,
+        "Contextual Relevancy": 0.45
+    },
+    "deepseek_naive": {
+        "Correctness (GEval)": 0.3341001982443842,
+        "Clarity (GEval)": 0.8144320424531972,
+        "Answer Relevancy": 0.7207146688437011,
+        "Faithfulness": 0.7561102092352092,
+        "Contextual Precision": 0.34,
+        "Contextual Recall": 0.32014965986394556,
+        "Contextual Relevancy": 0.4362366982610886
+    }
+}

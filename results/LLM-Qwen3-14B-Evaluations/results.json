@@ -1,0 +1,56 @@
+{
+    "deepseek_advanced": {
+        "Correctness (GEval)": 0.24400000000000002,
+        "Clarity (GEval)": 0.6916666666666669,
+        "Answer Relevancy": 0.8055012531328322,
+        "Faithfulness": 0.9397222222222222,
+        "Contextual Precision": 1.0,
+        "Contextual Recall": 1.0,
+        "Contextual Relevancy": 0.5579545454545455
+    },
+    "qwen_baseline_evaluation": {
+        "Correctness (GEval)": 0.29500000000000004,
+        "Clarity (GEval)": 0.8949999999999999,
+        "Answer Relevancy": 0.7283333333333333,
+        "Faithfulness": 0.9525,
+        "Contextual Precision": 0.0,
+        "Contextual Recall": 0.0,
+        "Contextual Relevancy": 0.0
+    },
+    "qwen_naive_evaluation": {
+        "Correctness (GEval)": 0.27999999999999997,
+        "Clarity (GEval)": 0.8424999999999999,
+        "Answer Relevancy": 0.851,
+        "Faithfulness": 0.853,
+        "Contextual Precision": 0.95,
+        "Contextual Recall": 0.895,
+        "Contextual Relevancy": 0.33699999999999997
+    },
+    "qwen_advanced_evaluation": {
+        "Correctness (GEval)": 0.44000000000000006,
+        "Clarity (GEval)": 0.82,
+        "Answer Relevancy": 0.7410873015873015,
+        "Faithfulness": 0.9279999999999999,
+        "Contextual Precision": 0.2,
+        "Contextual Recall": 0.39999999999999997,
+        "Contextual Relevancy": 0.17740740740740743
+    },
+    "deepseek_baseline_evaluation": {
+        "Correctness (GEval)": 0.12799999999999997,
+        "Clarity (GEval)": 0.778,
+        "Answer Relevancy": 0.7657223186170554,
+        "Faithfulness": 0.9937777777777779,
+        "Contextual Precision": 0.0,
+        "Contextual Recall": 0.0,
+        "Contextual Relevancy": 0.0
+    },
+    "deepseek_naive_evaluation": {
+        "Correctness (GEval)": 0.172,
+        "Clarity (GEval)": 0.78,
+        "Answer Relevancy": 0.6845952380952381,
+        "Faithfulness": 0.931,
+        "Contextual Precision": 0.16,
+        "Contextual Recall": 0.5097142857142857,
+        "Contextual Relevancy": 0.42377777777777775
+    }
+}
