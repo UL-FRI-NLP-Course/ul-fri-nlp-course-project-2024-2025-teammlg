@@ -163,7 +163,7 @@ Since we were limited by hardware capabilities during our research, we focused o
 
 Both models were loaded from HuggingFace and were run through the \texttt{transformers} API.
 
-\subsubsection{Function Calling}
+\subsubsection*{Function Calling}
 
 In some cases, we leveraged the function calling capabilities of our models. While DeepSeek hints at possibility of using this feature~\cite{deepseekFunctionCalling}, their proposed prompt templates do not support it. We instead turned to Qwen's function calling capabilities, which proved to be sufficient.
 
@@ -213,41 +213,39 @@ Because we designed our agent as a chatbot, we also implemented a simple answer 
 
 % In advanced \ac{rag}, we observed that the memory mechanism prevented the chatbot from being confused about queries referencing previous ones, managing to remember crucial data for function calling. Sometimes, the \ac{llm} even decided against retrieving information in queries where it otherwise would, because previous questions and answers provided enough information or context to formulate a sufficient response.
 
+
+\subsection*{Evaluation methodology}
+
+Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth for metric computations. To avoid overfitting a model to a specific set of expected outputs, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. 
+
+
+\subsubsection*{LLM-based evaluation}
+
+Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test set, because they penalize diverse answers, which could still be correct in the context of open-ended questions. To bypass this limitation, we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response:
+
+\begin{itemize}
+	\item correctness: compares similarity of the response with the ground truth,
+	\item clarity: measures readability of the text (we do not expect to improve this metric with \ac{rag}, we only utilize it to ensure that our modifications do not degrade the original model's inherent capabilities),
+	\item answer relevancy: determines to which extent the response is related to the query,
+	\item faithfulness: determines to which extent the retrieved documents are represented in the response,
+	\item contextual precision: measures the correctness of retrieved documents.
+	\item contextual recall: measures the completeness of retrieved documents.
+	\item contextual relevancy: measures the relevance of retrieved documents.
+\end{itemize} 
+
+
+
 \section*{Results}
 
-In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Llama-8B \cite{deepseek3} model and a non-reasoning Qwen3-8B \cite{qwen3} model. For each of these we run experiments on three different sets of parameters: without \ac{rag}, with naive \ac{rag} - data is scraped and appended to the context, and advanced \ac{rag} - data is additionally processed and summarized before being inputed into the model. In total, we are evaluating the following models:
+In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Llama-8B \cite{deepseek3} model and a non-reasoning Qwen3-8B \cite{qwen3} model. For each of these we run experiments on three different sets of parameters:
 \begin{itemize}
-	\item DeepSeek-R1-Distill-Llama-8B (baseline)
-	\item DeepSeek-R1-Distill-Llama-8B with naive \ac{rag}
-	\item DeepSeek-R1-Distill-Llama-8B with advanced \ac{rag}
-	\item Qwen3-8B (baseline)
-	\item Qwen3-8B with naive \ac{rag}
-	\item Qwen3-8B with advanced \ac{rag}
+	\item without \ac{rag} - out-of-the-box model with no modifications
+	\item with naive \ac{rag} - data is scraped and appended to the context
+	\item advanced \ac{rag} - data is additionally processed and summarized before being inputed into the model
 \end{itemize}
 
-Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth, so we can apply standard metrics such as ROUGE and BLEU \footnote{https://huggingface.co/docs/evaluate/index}. To avoid overfitting a model to a specific set of questions, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. Results are shown in Table \ref{tab:comparison}.
+Results are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because they do not receive any context. 
 
-\begin{table}[!htb]
-\centering
-\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| l | c c |}
-\hline
-Model & ROUGE & BLEU   \\ \hline
-deepseek-baseline  & 0.171003 & 0.049453 \\
-deepseek-naive     & 0.165164 & 0.043081   \\
-deepseek-advanced  & 0.16714  & 0.01866   \\
-qwen-baseline      & 0.192379 & 0.031395    \\
-qwen-naive         & 0.194950 & 0.034025  \\
-qwen-advanced      & 0.17380  & 0.02584   \\
-\hline
-\end{tabular}}
-\caption{Performance comparison against ChatGPT-generated ground truth.}
-\label{tab:comparison}
-\end{table}
-
-
-\subsection*{LLM-based evaluation}
-
-Metrics such as BLEU and ROUGE are ill-adjusted to our test set, therefore we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response. Results are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because they do not receive any context. 
 
 \begin{table*}[!htb]
 %\centering
@@ -262,7 +260,7 @@ qwen-naive  & 0.23111 & 0.65888 & \textbf{0.84670} & 0.88345 & \textbf{0.88345} 
 qwen-advanced  &  & & &  &  & &    \\
 \hline
 \end{tabular}}
-\caption{Performance comparison as evaluated by a 14B parameter Qwen model with GEval framework.}
+\caption{Performance comparison as evaluated by a 14B parameter Qwen model with DeepEval framework.}
 \label{tab:llm_metrics}
 \end{table*}
 
@@ -283,7 +281,7 @@ qwen-naive  & 0.45116 & 0.77992 & 0.80013 & 0.83234 & 0.34 & 0.264401 & 0.51643 
 qwen-advanced  & \textbf{0.52336} & \textbf{0.83382} & 0.68042 & \textbf{0.97935} & \textbf{1.0} & \textbf{0.61096} & \textbf{0.68355}   \\
 \hline
 \end{tabular}}
-\caption{Performance comparison as evaluated by GPT-mini-4.1 model with GEval framework.}
+\caption{Performance comparison as evaluated by GPT-mini-4.1 model with DeepEval framework.}
 \label{tab:gpt}
 \end{table*}
 
