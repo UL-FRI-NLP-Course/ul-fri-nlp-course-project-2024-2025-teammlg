@@ -228,16 +228,23 @@ Since we are working with relatively open-ended questions, there is a lack of ob
 Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test set, because they penalize diverse answers, which could still be correct in the context of open-ended questions. To bypass this limitation, we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response:
 
 \begin{itemize}
-	\item correctness: compares similarity of the response with the ground truth,
-	\item clarity: measures readability of the text (we do not expect to improve this metric with \ac{rag}, we only utilize it to ensure that our modifications do not degrade the original model's inherent capabilities),
-	\item answer relevancy: determines to which extent the response is related to the query,
-	\item faithfulness: determines to which extent the retrieved documents are represented in the response,
-	\item contextual precision: measures the correctness of retrieved documents.
-	\item contextual recall: measures the completeness of retrieved documents.
-	\item contextual relevancy: measures the relevance of retrieved documents.
+	\item \textbf{Correctness}: Measures how accurate the response is compared to the ground truth.
+
+	\item \textbf{Clarity}: Evaluates how clear and understandable the response is for the user. (we do not expect to improve this metric with \ac{rag}, we only utilize it to ensure that our modifications do not degrade the original model's inherent capabilities),
+	
+	\item \textbf{Answer Relevancy}: Assesses how well the response addresses the user's input and stays on topic.
+	
+	\item \textbf{Faithfulness}: Measures whether the response is factually consistent with the provided context, without introducing unsupported claims.
+	
+	\item \textbf{Contextual Precision}: Evaluates whether relevant pieces of context are ranked higher than irrelevant ones for the given user's input.
+	
+	\item \textbf{Contextual Recall}: Measures how well the retrieved context covers the information needed to produce the ground truth response.
+	
+	\item \textbf{Contextual Relevancy}: Assesses the overall relevance and usefulness of the retrieved context for answering the user's input.
+
 \end{itemize} 
 
-
+The correctness, clarity, and answer relevancy show the \ac{llm}'s focus on the retrieved information with respect to the ground truth and the user's query. Faithfulness measures the \ac{llm}'s capability to properly use the retrieved information. Precision, recall, and contextual relevancy all present the performance of the retrieval system.
 
 \section*{Results}
 
@@ -246,9 +253,9 @@ Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test 
 \resizebox{1.0 \linewidth}{!}{\begin{tabular}{| r | c c c c c c c |}
 \hline
 model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
-deepseek-baseline  & 0.19 & 0.7725 & 0.76846 & / & / & / & / \\
-deepseek-naive  & 0.152 & 0.82800 & 0.78138 & 0.93233 & 0.24000 & 0.61771 & 0.40468   \\
-deepseek-advanced  & 0.244 & 0.69167 & 0.8055 & 0.93972 & 1.0 & 1.0 & \textbf{0.55796}  \\
+deepseek-baseline  & 0.128 & 0.778 & 0.766 & / & / & / & / \\
+deepseek-naive  & 0.172 & 0.78 & 0.684 & 0.931 & 0.160 & 0.510 & 0.424   \\
+deepseek-advanced  & 0.810 & 0.692 & 0.04 & 0.08 & 1.0 & 1.0 & \textbf{0.55796}  \\
 qwen-baseline  & \textbf{0.30962} & \textbf{0.86888} & 0.74805 & / & / & / & /  \\
 qwen-naive  & 0.23111 & 0.65888 & \textbf{0.84670} & 0.88345 & \textbf{0.88345} & \textbf{0.76333} & 0.37029  \\
 qwen-advanced  &  & & &  &  & &    \\
@@ -293,6 +300,8 @@ Because the model used for evaluation is not drastically larger than the model u
 Extending a question answering model into a conversational chatbot is straightforward: the information retrieval pipeline remains the same, we only need to implement a mechanism for memorization of previous questions and responses. Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
 
 
+\section*{Discussion}
+
 % TODO: Prompt formulating: Difficult to get LLM to not make stuff up and only use provided information.
 
 % TODO: Function calling: difficulties with describing the functions in a way that would make the LLM call that function in the desired context.
@@ -303,13 +312,12 @@ Extending a question answering model into a conversational chatbot is straightfo
 
 %------------------------------------------------
 
-\section*{Discussion}
 
-We conclude that it is possible to improve the responses of 8B-parameter LLMs, such as Qwen and DeepSeek on queries from a specific domain by employing on-the-fly information retrieval via web scraping. 
+%We conclude that it is possible to improve the responses of 8B-parameter LLMs, such as Qwen and DeepSeek on queries from a specific domain by employing on-the-fly information retrieval via web scraping. 
 
-Superior performance is achieved by constructing document retrieval functions in such a way that an LLM can be used not only to generate a response, but also to determine which documents are relevant based on the user query. 
+%Superior performance is achieved by constructing document retrieval functions in such a way that an LLM can be used not only to generate a response, but also to determine which documents are relevant based on the user query. 
 
-A question answering model with \ac{rag} can be extended into a chatbot by implementing a memory mechanism, which stores a buffer of previous questions, which allows the model to keep track of recent conversation.
+%A question answering model with \ac{rag} can be extended into a chatbot by implementing a memory mechanism, which stores a buffer of previous questions, which allows the model to keep track of recent conversation.
 
 
 

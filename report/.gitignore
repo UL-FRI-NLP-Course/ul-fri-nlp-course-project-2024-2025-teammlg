@@ -8,3 +8,5 @@
 logo.png
 /fig
 /code
+*.fdb_latexmk
+*.fls
