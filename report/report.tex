@@ -16,7 +16,7 @@
 
 
 %----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 \documentclass[fleqn,moreauthors,10pt]{ds_report}
 \usepackage[english]{babel}
@@ -40,7 +40,7 @@ inputencoding=utf8/latin1
 }
 
 %----------------------------------------------------------------------------------------
-%	ARTICLE INFORMATION
+%   ARTICLE INFORMATION
 %----------------------------------------------------------------------------------------
 
 % Header
@@ -66,28 +66,28 @@ inputencoding=utf8/latin1
 
 % Abbreviations
 \DeclareAcronym{llm}{
-	short=LLM,
-	long=Large Language Model
+    short=LLM,
+    long=Large Language Model
 }
 
 \DeclareAcronym{rag}{
-	short=RAG,
-	long=Retrieval Augmented Generation
+    short=RAG,
+    long=Retrieval Augmented Generation
 }
 
 \DeclareAcronym{nlp}{
-	short=NLP,
-	long=Natural Language Processing
+    short=NLP,
+    long=Natural Language Processing
 }
 
 \DeclareAcronym{tmdb}{
-	short=TMDB,
-	long=The Movie Database
+    short=TMDB,
+    long=The Movie Database
 }
 
 \DeclareAcronym{fifo}{
-	short=FIFO,
-	long=First-In-First-Out
+    short=FIFO,
+    long=First-In-First-Out
 }
 
 \newcommand{\etal}{\textit{et al}., }
@@ -96,7 +96,7 @@ inputencoding=utf8/latin1
 
 
 %----------------------------------------------------------------------------------------
-%	ABSTRACT
+%   ABSTRACT
 %----------------------------------------------------------------------------------------
 
 \Abstract{
@@ -118,52 +118,52 @@ In this report, we developed a set of RAG solutions and performed a thorough eva
 \thispagestyle{empty} 
 
 %----------------------------------------------------------------------------------------
-%	ARTICLE CONTENTS
+%   ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
 \section*{Introduction}
-	
+    
 While \acp{llm} have evolved considerably and now produce convincing replies, they have inherent limitations. They rely on training data consisting of documents from the past and may not possess knowledge of current events and developments. Due to differences and properties of training datasets, they may not contain specific domain knowledge, failing to answer certain prompts or outright hallucinating. The latter could prove especially disastrous in dedicated chatbots, for example for legal guidance or health care~\cite{thirunavukarasu2023large}.
 
-One possibility would be to retrain the chat model in intervals to try to keep it up to date, but that would still produce periods where the information is missing from the \ac{llm} or is outdated. This approach, while completelly time and energy inefficient, would also not guard against hallucinations. To solve these issues, \ac{rag} is used to provide the missing knowledge to the \ac{llm}. \ac{rag} employs different techniques to retrieve information from external sources based on user’s prompt and through prompt augmentation feed the \ac{llm} sufficient information to provide informative and factually correct answer. In the survey by Gao~\etal~\cite{survey}, multiple approaches to \ac{rag} are presented, highlighting three architectures: naive \ac{rag}, which analyzes the user’s prompt, retrieves the required information and appends it, letting the \ac{llm} do the rest; advanced \ac{rag}, which employs pre-retrieval and post-retrieval modifications to the prompt to make it more suitable for information retrieval and subsequent interpretation by \ac{llm}; lastly, modular \ac{rag} combines multiple approaches, using iterative prompt enhancement, ranking, fusion, etc.
+One possibility would be to retrain the chat model in intervals to try to keep it up to date, but that would still produce periods where the information is missing from the \ac{llm} or is outdated. This approach, while completely time- and energy-inefficient, would also not guard against hallucinations. To solve these issues, \ac{rag} is used to provide the missing knowledge to the \ac{llm}. \ac{rag} employs different techniques to retrieve information from external sources based on the user’s prompt and, through prompt augmentation, feed the \ac{llm} sufficient information to provide an informative and factually correct answer. In the survey by Gao~\etal~\cite{survey}, multiple approaches to \ac{rag} are presented, highlighting three architectures: naive \ac{rag}, which analyzes the user’s prompt, retrieves the required information, and appends it, letting the \ac{llm} do the rest; advanced \ac{rag}, which employs pre-retrieval and post-retrieval modifications to the prompt to make it more suitable for information retrieval and subsequent interpretation by \ac{llm}; lastly, modular \ac{rag} combines multiple approaches, using iterative prompt enhancement, ranking, fusion, etc.
 
-For document summarization, \acp{llm}, statistical models, graph-based models and other approaches are used to extract the most important information from text. Zhang~\etal~\cite{summarization} present multiple solutions, noting that \acp{llm}, while consuming more resources, tend to be more coherent and precise in their summarization if trained correctly.
+For document summarization, \acp{llm}, statistical models, graph-based models, and other approaches are used to extract the most important information from text. Zhang~\etal~\cite{summarization} present multiple solutions, noting that \acp{llm}, while consuming more resources, tend to be more coherent and precise in their summarization if trained correctly.
 
 In this paper, we focus on \ac{rag} methods and their use in chatbots. To that end, we design a conversational agent operating on knowledge about different art and media. Specifically, the agent is to suggest and converse about films and other related media based on the user’s prompts and preferences. Our contributions are:
 
 \begin{itemize}
 \setlength\itemsep{-0.3em}
-	\item Implementation of a conversational agent using two different pretrained models: DeepSeek-R1~\cite{deepseek3} and Qwen 3~\cite{qwen3}.
-	\item Implementation of two \ac{rag} techniques, a primitive and advanced one, with capabilities of retrieving data from various film-related databases and web sources.
-	\item Evaluation of conversational agents with respect to the model used and the \ac{rag} technique. Agents are evaluated against the baseline \ac{rag}-less chatbots. Human and \ac{llm} judges are used to score responses, and different metrics are analyzed.
+    \item Implementation of a conversational agent using two different pretrained models: DeepSeek-R1~\cite{deepseek3} and Qwen 3~\cite{qwen3}.
+    \item Implementation of two \ac{rag} techniques, a primitive and advanced one, with capabilities of retrieving data from various film-related databases and web sources.
+    \item Evaluation of conversational agents regarding the model used and the \ac{rag} technique. Agents are evaluated against the baseline \ac{rag}-less chatbots. Human and \ac{llm} judges are used to score responses, and different metrics are analyzed.
 \end{itemize}
 
 %------------------------------------------------
 
 \section*{Methods}
 
-We designed two \ac{rag} pipelines, as presented in~\cref{fig:pipeline}. The naive RAG pipeline used \ac{nlp} methods to extract the important feature information from prompt via lemmatization, stop-word removal, and entity detection. Prompt information was used to determine movie titles and names of people to query for in our selected databases. That information was then appended to the prompt and fed into an \ac{llm}.
+We designed two \ac{rag} pipelines, as presented in~\cref{fig:pipeline}. The naive RAG pipeline used \ac{nlp} methods to extract the important feature information from prompts via lemmatization, stop-word removal, and entity detection. Prompt information was used to determine movie titles and names of people to query for in our selected databases. That information was then appended to the prompt and fed into an \ac{llm}.
 
 A more advanced version of our \ac{rag} system utilized various components, but we ultimately chose to employ function-calling functionality that is present in some \acp{llm}. Based on the prompt, the \ac{llm} decides on the most appropriate information retrieval function to call and informs the \ac{rag} system, which then retrieves that information. The information is then inserted into the prompt, which is fed into the \ac{llm}.
 
 \begin{figure*}
-	\centering
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=\textwidth]{./figures/simple_rag.pdf}
-		\caption{A naive \ac{rag} system.}
-	\end{subfigure}
-	\hspace{20pt}
-	\begin{subfigure}{0.4\textwidth}
-		\includegraphics[width=\linewidth]{./figures/advanced_rag.pdf}
-		\caption{An advanced \ac{rag} system.}
-	\end{subfigure}
-	\caption{Our proposed \ac{rag} pipelines for evaluation. The naive \ac{rag} variant preprocesses the prompt, extracts meaningful information from it, retrieves the data based on that, and enhances the prompt with that raw data. The advanced variant employs \ac{llm} function-calling capabilities to decide what data to scrape and enhances the prompt only with necessary data.}
-	\label{fig:pipeline}
+    \centering
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{./figures/simple_rag.pdf}
+        \caption{A naive \ac{rag} system.}
+    \end{subfigure}
+    \hspace{20pt}
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=\linewidth]{./figures/advanced_rag.pdf}
+        \caption{An advanced \ac{rag} system.}
+    \end{subfigure}
+    \caption{Our proposed \ac{rag} pipelines for evaluation. The naive \ac{rag} variant preprocesses the prompt, extracts meaningful information from it, retrieves the data based on that, and enhances the prompt with that raw data. The advanced variant employs \ac{llm} function-calling capabilities to decide what data to scrape and enhances the prompt only with necessary data.}
+    \label{fig:pipeline}
 \end{figure*}
 
 \subsubsection*{Function Calling}
 
-In some cases, we leveraged the function calling capabilities of our models. While DeepSeek hints at possibility of using this feature~\cite{deepseekFunctionCalling}, their proposed prompt templates do not support it. We instead turned to Qwen's function calling capabilities, which proved to be sufficient.
+In some cases, we leveraged the function calling capabilities of our models. While DeepSeek hints at the possibility of using this feature~\cite{deepseekFunctionCalling}, their proposed prompt templates do not support it. We instead turned to Qwen's function calling capabilities, which proved to be sufficient.
 
 In function calling, the model is presented with the user prompt and structured information about programmatic functions it may call to fullfil the user's request. The \ac{llm} is tought to return a similarly structured set of instructions on which functions to call, and with what parameters.
 
@@ -173,38 +173,38 @@ To provide a sufficient level of information related to movies and similar media
 
 \begin{itemize}
  \setlength\itemsep{-0.3em}
-	\item \textbf{\ac{tmdb}.} This is an open database of movies, TV-shows, and people associated with them. They provide a free-to-use API for various types of requests -- release dates, cast, crew, similar films ...
-	\item \textbf{Letterboxd.} This is a movie-themed social network to log watched films, provide reviews, and engage in movie-related discussions. We chose to include it to give the model a better understanding of how people percieve certain media.
-	\item \textbf{JustWatch.} This website tracks the availability of media on digital and streaming platforms.
-	\item \textbf{Wikipedia.} We used it to retrieve information such as film plots, summaries, etc.
+    \item \textbf{\ac{tmdb}.} This is an open database of movies, TV shows, and people associated with them. They provide a free-to-use API for various types of requests -- release dates, cast, crew, similar films ...
+    \item \textbf{Letterboxd.} This is a movie-themed social network to log watched films, provide reviews, and engage in movie-related discussions. We chose to include it to give the model a better understanding of how people perceive certain media.
+    \item \textbf{JustWatch.} This website tracks the availability of media on digital and streaming platforms.
+    \item \textbf{Wikipedia.} We used it to retrieve information such as film plots, summaries, etc.
 \end{itemize}
 
 In our naive \ac{rag} implementation, we retrieved data from all four sources. This would amount to over 250,000 characters of context.
 
-For our advanced version, we prepared nine custom scraping functions that would equip the model with essential information about movie titles and film-related people. These functions had to be specifically annotated and various versions of descriptions were used to elicit a proper function-calling response from the model.
+For our advanced version, we prepared nine custom scraping functions that would equip the model with essential information about movie titles and film-related people. These functions had to be specifically annotated, and various versions of descriptions were used to elicit a proper function-calling response from the model.
 
 \subsection*{\ac{rag}}
 
-For the naive \ac{rag} system, we first analyzed the user prompt and gathered all relevant entities, consisting of film titles and names of people. We used a Roberta-like \texttt{spacy} model~\footnote{https://huggingface.co/spacy/en\_core\_web\_sm}. We performed unfiltered knowledge injection, gathering all relevant documents based on prompt entities, structured them in JSON format, and passed them allong with user query to the \ac{llm}.
+For the naive \ac{rag} system, we first analyzed the user prompt and gathered all relevant entities, consisting of film titles and names of people. We used a Roberta-like \texttt{spacy} model~\footnote{https://huggingface.co/spacy/en\_core\_web\_sm}. We performed unfiltered knowledge injection, gathering all relevant documents based on prompt entities, structuring them in JSON format, and passing them along with user query to the \ac{llm}.
 
-For advanced \ac{rag} system, we tried several versions before basing it on function calling. Our earlier attempts performed the entity extraction from prompt, retrieval of documents from all sources based on those entities, and content curation based on statistical methods and user prompt. For example, we treated all sentences in the retrieved data as documents, performing TF-IDF sorting and using only top $N$ most relevant sentences. Unfortunatelly, results of these extractions accounted only for literal appearance of words from the prompt in documents, instead of accounting for larger context, synonyms, etc.
+For the advanced \ac{rag} system, we tried several versions before basing it on function calling. Our earlier attempts performed the entity extraction from prompt, retrieval of documents from all sources based on those entities, and content curation based on statistical methods and user prompt. For example, we treated all sentences in the retrieved data as documents, performing TF-IDF sorting and using only the top $N$ most relevant sentences. Unfortunately, results of these extractions accounted only for literal appearance of words from the prompt in documents, instead of accounting for larger context, synonyms, etc.
 
-To address these shortcomings, we turned to function calling, letting the \ac{llm} decide what information to retrieve. In the system prompt, we also appended additional information about current date for better context formulation.
+To address these shortcomings, we turned to function calling, letting the \ac{llm} decide what information to retrieve. In the system prompt, we also appended additional information about the current date for better context formulation.
 
 With function calling, we also had to thoroughly describe all available functions to the \ac{llm}, which proved challenging, as the model sometimes failed to infer the correct connection between the user's input and the function descriptions.
 
 \subsection*{Prompt formulation}
 
-We structured our prompts to consist of three roles: system, user, and assistant. We put system prompt first, followed by the user prompt, and finally by assistant tag to signal the \ac{llm} to generate the answer, not to continue the user prompt.
+We structured our prompts to consist of three roles: system, user, and assistant. We put system prompt first, followed by the user prompt, and finally by an assistant tag to signal the \ac{llm} to generate the answer, not to continue the user prompt.
 
 
 
 \begin{figure}[h!]
-	\begin{tcolorbox}
-		You are an AI chatbot, assisting user with anything related to movies. [Today's date is \verb|{date}|.] You may only use information provided to you inside the \verb|<data>| tags.
-	\end{tcolorbox}
-	\caption{Out prompt for \ac{rag} usage. The text in square brackets was only used in advanced \ac{rag}, and the text in braces represents variables.}
-	\label{fig:prompt}
+    \begin{tcolorbox}
+        You are an AI chatbot, assisting user with anything related to movies. [Today's date is \verb|{date}|.] You may only use information provided to you inside the \verb|<data>| tags.
+    \end{tcolorbox}
+    \caption{Out prompt for \ac{rag} usage. The text in square brackets was only used in advanced \ac{rag}, and the text in braces represents variables.}
+    \label{fig:prompt}
 \end{figure}
 
 Our system prompt is shown in fig. \ref{fig:prompt}. The user prompt consists of the user's initial query and the retrieved information, enclosed in \verb|<data>| tags, in that order.
@@ -213,36 +213,36 @@ A key challenge during this stage was ensuring that the LLM relied solely on the
 
 \subsection*{Memory and chat}
 
-To extend a question answering model into a conversational chatbot, we kept the information retrieval pipeline unchanged and implemented a simple answer caching mechanism to preserve conversational context. Specifically, we stored the last $n$ user queries and chatbot responses using the \ac{fifo} method and included them in the prompt provided to the \ac{llm}. Due to input token limitations, the value of $n$ had to remain relatively small in our experiments to ensure the model could process the full prompt effectively. Otherwise, there was a risk of token truncation and generation errors.
+To extend a question-answering model into a conversational chatbot, we kept the information retrieval pipeline unchanged and implemented a simple answer caching mechanism to preserve conversational context. Specifically, we stored the last $n$ user queries and chatbot responses using the \ac{fifo} method and included them in the prompt provided to the \ac{llm}. Due to input token limitations, the value of $n$ had to remain relatively small in our experiments to ensure the model could process the full prompt effectively. Otherwise, there was a risk of token truncation and generation errors.
 
 \subsection*{Evaluation methodology}
 
-Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth for metric computations. To avoid overfitting a model to a specific set of expected outputs, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. All queries are zero-shot.
+Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth for metric computations. To avoid overfitting a model to a specific set of expected outputs, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval, and summarization. All queries are zero-shot.
 
 
 \subsubsection*{LLM-based evaluation}
 
-Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test set, because they penalize diverse answers, which could still be correct in the context of open-ended questions. To bypass this limitation, we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response:
+Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test set because they penalize diverse answers, which could still be correct in the context of open-ended questions. To bypass this limitation, we employ the DeepEval framework \cite{deepeval} to obtain more relevant metrics based on context, query and response:
 
 \begin{itemize}
 \setlength\itemsep{-0.3em}
-	\item \textbf{Correctness}: Measures how accurate the response is compared to the ground truth.
+    \item \textbf{Correctness}: Measures how accurate the response is compared to the ground truth.
 
-	\item \textbf{Clarity}: Evaluates how clear and understandable the response is for the user. (we do not expect to improve this metric with \ac{rag}, we only utilize it to ensure that our modifications do not degrade the original model's inherent capabilities),
-	
-	\item \textbf{Answer Relevancy}: Assesses how well the response addresses the user's input and stays on topic.
-	
-	\item \textbf{Faithfulness}: Measures whether the response is factually consistent with the provided context, without introducing unsupported claims.
-	
-	\item \textbf{Contextual Precision}: Evaluates whether relevant pieces of context are ranked higher than irrelevant ones for the given user's input.
-	
-	\item \textbf{Contextual Recall}: Measures how well the retrieved context covers the information needed to produce the ground truth response.
-	
-	\item \textbf{Contextual Relevancy}: Assesses the overall relevance and usefulness of the retrieved context for answering the user's input.
+    \item \textbf{Clarity}: Evaluates how clear and understandable the response is for the user. (We do not expect to improve this metric with \ac{rag}, we only utilize it to ensure that our modifications do not degrade the original model's inherent capabilities).
+    
+    \item \textbf{Answer Relevancy}: Assesses how well the response addresses the user's input and stays on topic.
+    
+    \item \textbf{Faithfulness}: Measures whether the response is factually consistent with the provided context, without introducing unsupported claims.
+    
+    \item \textbf{Contextual Precision}: Evaluates whether relevant pieces of context are ranked higher than irrelevant ones for the given user's input.
+    
+    \item \textbf{Contextual Recall}: Measures how well the retrieved context covers the information needed to produce the ground truth response.
+    
+    \item \textbf{Contextual Relevancy}: Assesses the overall relevance and usefulness of the retrieved context for answering the user's input.
 
 \end{itemize} 
 
-The correctness, clarity, and answer relevancy show the \ac{llm}'s focus on the retrieved information with respect to the ground truth and the user's query. Faithfulness measures the \ac{llm}'s capability to properly use the retrieved information. Precision, recall, and contextual relevancy all present the performance of the retrieval system. The models were judged on scale from 0 to 1. 
+The correctness, clarity, and answer relevancy show the \ac{llm}'s focus on the retrieved information regarding the ground truth and the user's query. Faithfulness measures the \ac{llm}'s capability to properly use the retrieved information. Precision, recall, and contextual relevancy all present the performance of the retrieval system. The models were judged on a scale from 0 to 1. 
 
 \section*{Results}
 
@@ -281,24 +281,24 @@ qwen-advanced & \textbf{0.5234} & \textbf{0.8338} & 0.6804 & \textbf{0.9794} & \
 \end{table*}
 
 
-Since we were limited by hardware capabilities during our research, we focused on models with quantized or distilled variants. We ultimatelly decided on a Qwen3 \cite{qwen3}~\footnote{https://huggingface.co/Qwen/Qwen3-8B} model as our non-reasoning \ac{llm}, and a distilled Llama variant of DeepSeek R1 \cite{deepseek3}~\footnote{https://huggingface.co/deepseek-ai/DeepSeek-R1} as our reasoning \ac{llm}. Both models were loaded from HuggingFace and were run through the \texttt{transformers} API.
+Since we were limited by hardware capabilities during our research, we focused on models with quantized or distilled variants. We ultimately decided on a Qwen3 \cite{qwen3}~\footnote{https://huggingface.co/Qwen/Qwen3-8B} model as our non-reasoning \ac{llm}, and a distilled Llama variant of DeepSeek R1 \cite{deepseek3}~\footnote{https://huggingface.co/deepseek-ai/DeepSeek-R1} as our reasoning \ac{llm}. Both models were loaded from HuggingFace and were run through the \texttt{transformers} API.
 
 Both models were 8-billion-parameters versions. We chose DeepSeek as it is a novel set of models with positive benchmarking results~\cite{deepseek3}. For each of these, we run experiments on three different sets of parameters:
 \begin{itemize}
 \setlength\itemsep{-0.3em}
-	\item without \ac{rag} - out-of-the-box model with no modifications (baseline)
-	\item with naive \ac{rag} - all documents are retrieved and appended to the context with no consideration for token limitation (data is truncated)
-	\item advanced \ac{rag} - documents are selectively retrieved and processed before being appended to the context
+    \item without \ac{rag} - out-of-the-box model with no modifications (baseline)
+    \item with naive \ac{rag} - all documents are retrieved and appended to the context with no consideration for token limitation (data is truncated)
+    \item advanced \ac{rag} - documents are selectively retrieved and processed before being appended to the context
 \end{itemize}
 
-Results obtained with Qwen3-14B model are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because their context is an empty set. Models with advanced \ac{rag} can choose not to retrieve documents, depending on the user query, so the context-related metrics are only computed when at least one document was retrieved.
+Results obtained with the Qwen3-14B model are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models because their context is an empty set. Models with advanced \ac{rag} can choose not to retrieve documents, depending on the user query, so the context-related metrics are only computed when at least one document was retrieved.
 
-Because the model used for evaluation is not drastically larger than the model used for response generation, it is sensible to repeat the same experiments with an even larger LLM to obtain more reliable results. We opted for GPT-4.1-mini. Results are shown in Table \ref{tab:gpt}. Due to computational complexity, we compute the metrics on first 25 questions in the test set and report the average values. 
+Because the model used for evaluation is not drastically larger than the model used for response generation, it is sensible to repeat the same experiments with an even larger LLM to obtain more reliable results. We opted for GPT-4.1-mini. Results are shown in Table \ref{tab:gpt}. Due to computational complexity, we compute the metrics on the first 25 questions in the test set and report the average values. 
 
 \subsection*{Conversational chatbot}
-In advanced \ac{rag}, we observed that the memory mechanism prevented the chatbot from being confused about queries referencing previous ones, managing to remember crucial data for function calling. Sometimes, the \ac{llm} even decided against retrieving information in queries where it otherwise would, because previous questions and answers provided enough information or context to formulate a sufficient response.
+In advanced \ac{rag}, we observed that the memory mechanism prevented the chatbot from being confused about queries referencing previous ones, managing to remember crucial data for function calling. Sometimes, the \ac{llm} even decided against retrieving information in queries where it otherwise would because previous questions and answers provided enough information or context to formulate a sufficient response.
 
-Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
+Examples of Qwen chatbot results are shown in the Appendix.
 
 
 \section*{Discussion}
@@ -317,23 +317,23 @@ Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
 
 %Superior performance is achieved by constructing document retrieval functions in such a way that an LLM can be used not only to generate a response, but also to determine which documents are relevant based on the user query. 
 
-%A question answering model with \ac{rag} can be extended into a chatbot by implementing a memory mechanism, which stores a buffer of previous questions, which allows the model to keep track of recent conversation.
+%A question-answer model with \ac{rag} can be extended into a chatbot by implementing a memory mechanism that stores a buffer of previous questions, which allows the model to keep track of recent conversations.
 
-As seen in Table \ref{tab:llm_metrics}, Qwen judge scores DeepSeek with advanced RAG quite high on the information retrieval metrics, while prefering Qwen in \ac{llm} answer generation based on ground truth and user prompt. Qwen with advanced RAG is considered to be the most in line with ground truth answers. Interestingly, Qwen judge considers even the best model to perform poorly on more than half the questions in regards to correctness.
+As seen in Table \ref{tab:llm_metrics}, Qwen judge scores DeepSeek with advanced RAG quite high on the information retrieval metrics, while preferring Qwen in \ac{llm} answer generation based on ground truth and user prompt. Qwen with advanced RAG is considered to be the most in line with ground truth answers. Interestingly, Qwen judge considers even the best model to perform poorly on more than half the questions regarding correctness.
 
 Table \ref{tab:gpt} shows that GPT tends to evaluate the results more favorably than Qwen.
 
-Notably, Qwen with advanced RAG system performs best in most metrics. Specifically, it generally generates responses relevant to the user's question. When given context, it follows the provided information most faithfully. It performs somewhat decent when compared to the ground truth, passing over 50\% of the tests.
+Notably, Qwen with advanced RAG system performs best in most metrics. Specifically, it generally generates responses relevant to the user's question. When given context, it follows the provided information most faithfully. It performs decently when compared to the ground truth, passing over 50\% of the tests.
 
-Our advanced RAG system shows that our retrieved data is mostly aligned with what is expected, although we sometimes present the \ac{llm} with irrelevant information. This can be attributed due to the fact that our retrieval does not perform granular information extraction, instead relying on function-calling model to pick specific (short) documents of information to retrieve.
+Our advanced RAG system shows that our retrieved data is mostly aligned with what is expected, although we sometimes present the \ac{llm} with irrelevant information. This can be attributed to the fact that our retrieval does not perform granular information extraction, instead relying on a function-calling model to pick specific (short) documents of information to retrieve.
 
-Baseline Qwen returns more relevant answer, which we could attribute to the fact that it has the most freedom to when answering, not tied to the context which could lead the answer to not directly align with what the query is asking, or cause the \ac{llm} to populate the answer with unnecessary details.
+Baseline Qwen returns a more relevant answer, which we could attribute to the fact that it has the most freedom when answering, not tied to the context, which could lead the answer to not directly align with what the query is asking or cause the \ac{llm} to populate the answer with unnecessary details.
 
-In addition to evaluating RAG methods, we also explored how large a model needs to be to effectively serve as an \ac{llm}-as-judge for smaller models. We compared the performance of Qwen3-14B and GPT-4.1-mini as judges. Based on both metric results and manual inspection of model outputs against ground truth answers, we observed that GPT-4.1-mini was better at fairly and accurately evaluating responses. Qwen3-14B often failed to do so reliably, which is why we place more trust in GPT-based evaluations. Our results also confirm that the advanced RAG approach consistently outperforms the naive one across models. Qwen with advanced RAG performs better than DeepSeek with advanced RAG. DeepSeek's reasoning capabilities may sometimes interfere with faithfully following retrieved context, leading to incorrect assumptions. In contrast, Qwen tends to adhere more closely to the provided input, which may contribute to its stronger performance in this setting.
+In addition to evaluating RAG methods, we also explored how large a model needs to be to effectively serve as an \ac{llm}-as-judge for smaller models. Based on both metric results and manual inspection of model outputs against ground truth answers, we observed that GPT-4.1-mini was better at fairly and accurately evaluating responses. Qwen3-14B often failed to do so reliably, which is why we place more trust in GPT-based evaluations. Our results also confirm that the advanced RAG approach outperforms the naive one across models, with Qwen generally performing better than DeepSeek.
 
 
 %----------------------------------------------------------------------------------------
-%	REFERENCE LIST
+%   REFERENCE LIST
 %----------------------------------------------------------------------------------------
 \bibliographystyle{unsrt}
 \bibliography{report}
@@ -341,10 +341,10 @@ In addition to evaluating RAG methods, we also explored how large a model needs 
 \newpage
 \begin{appendix}
 
-\section*{Appendix}
-\label{qwenconvo}
+\section*{Appendix}\label{qwenconvo}
+\addcontentsline{toc}{section}{Appendix}
 
-\begin{tcolorbox}[breakable,float*,width=\textwidth,title=Conversation Example with Advanced Qwen]
+\begin{tcolorbox}[enhanced,breakable,float*,width=\textwidth,title=Conversation Example with Advanced Qwen,floatplacement=!t]
 
 
 \textbf{What is the movie Until Dawn about?}
@@ -390,14 +390,14 @@ along with their roles:
 \subsubsection*{Main Cast:}
 
 \begin{tabular}{ l l }
-	Actor Name & Role \\
-	\textbf{Ella Rubin} & \textbf{Clover Paul} \\
-	\textbf{Michael Cimino} & \textbf{Max} \\
-	\textbf{Odessa A'zion} & \textbf{Nina Riley} \\
-	\textbf{Ji-young Yoo} & \textbf{Megan} \\
-	\textbf{Belmont Cameli} & \textbf{Abe} \\
-	\textbf{Maia Mitchell} & \textbf{Melanie Paul} \\
-	\textbf{Peter Stormare} & \textbf{Dr.~Alan Hill} \\
+    Actor Name & Role \\
+    \textbf{Ella Rubin} & \textbf{Clover Paul} \\
+    \textbf{Michael Cimino} & \textbf{Max} \\
+    \textbf{Odessa A'zion} & \textbf{Nina Riley} \\
+    \textbf{Ji-young Yoo} & \textbf{Megan} \\
+    \textbf{Belmont Cameli} & \textbf{Abe} \\
+    \textbf{Maia Mitchell} & \textbf{Melanie Paul} \\
+    \textbf{Peter Stormare} & \textbf{Dr.~Alan Hill} \\
 \end{tabular}
 
 \texttt{[... (omitted due to length)]} 
@@ -406,11 +406,9 @@ Would you like information about any particular actor or role from the
 film?
 
 \end{adjustwidth}
-
 \end{tcolorbox}
-%\caption{Conversation with Qwen}
-%\label{qwenconvo}
 
+\vfill
 
 \end{appendix}
 

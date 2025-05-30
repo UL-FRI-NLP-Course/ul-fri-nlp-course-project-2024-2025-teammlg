@@ -1,10 +1,13 @@
 # Natural language processing course: Conversational Agent with Retrieval-Augmented Generation
 
-Develop a conversational agent that enhances the quality and accuracy of its responses by dynamically retrieving and integrating relevant external documents from the web. Unlike traditional chatbots that rely solely on pre-trained knowledge, this system will perform real-time information retrieval, ensuring up-to-date answers. Potential applications include customer support, academic research assistance, and general knowledge queries. The project will involve natural language processing (NLP), web scraping, and retrieval-augmented generation (RAG) techniques to optimize answer quality.
+In this report, we developed a set of RAG solutions and performed a thorough evaluation. We used two LLMs, DeepSeek and Qwen3, to compare the behavior of RAG with and without reasoning, respectively. We built two methods for information retrieval and injection, one based on prompt analysis and nondiscriminative prompt injection, and one based on function calling at the LLM's discretion. To perform a more robust testing, we evaluated all variations of our RAG systems on a prepared question set, using two different-sized LLMs-as-judge -- GPT-4.1.-mini and 14-billion-parameter Qwen model -- and our own subjective observations. We found that both judges performed similarly in some metrics, with GPT-4.1.-mini performing better on others. The results show that Qwen with function-calling RAG system outperforms all other variants.
+ 
 
 
 ## Set-up
-On HPC clone the repository and then run the following to create the container:
+This repository can be cloned onto the HPC or it can also be found on the shared folder at `/d/hpc/projects/onj_fri/teammlg/`.
+
+Once you have the repository, run the following to create the container:
 
 ```bash
 ./ul-fri-nlp-course-project-2024-2025-teammlg/code/sling_setup.sh
