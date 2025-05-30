@@ -213,8 +213,6 @@ Our user prompt first presented the user's initial query, followed by the retrie
 
 Because we designed our agent as a chatbot, we also implemented a simple answer caching mechanism to provide the chatbot with immediate history of the conversation. We stored last $n$ user questions and chatbot replies with the \ac{fifo} method, and fed them to the \ac{llm} as part of the prompt. The $n$ in our observations had to be relatively small due to limitations on the amount of input tokens.
 
-% In advanced \ac{rag}, we observed that the memory mechanism prevented the chatbot from being confused about queries referencing previous ones, managing to remember crucial data for function calling. Sometimes, the \ac{llm} even decided against retrieving information in queries where it otherwise would, because previous questions and answers provided enough information or context to formulate a sufficient response.
-
 
 \subsection*{Evaluation methodology}
 
@@ -290,6 +288,14 @@ Because the model used for evaluation is not drastically larger than the model u
 
 Extending a question answering model into a conversational chatbot is straightforward: the information retrieval pipeline remains the same, we only need to implement a mechanism for memorization of previous questions and responses. Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
 
+
+% TODO: Prompt formulating: Difficult to get LLM to not make stuff up and only use provided information.
+
+% TODO: Function calling: difficulties with describing the functions in a way that would make the LLM call that function in the desired context.
+
+% TODO: In advanced \ac{rag}, we observed that the memory mechanism prevented the chatbot from being confused about queries referencing previous ones, managing to remember crucial data for function calling. Sometimes, the \ac{llm} even decided against retrieving information in queries where it otherwise would, because previous questions and answers provided enough information or context to formulate a sufficient response.
+
+% TODO: Letterboxd reviews provided a mixed-quality source, 
 
 %------------------------------------------------
 
