@@ -32,7 +32,9 @@
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
 
-
+\lstset{
+frame=none,
+}
 
 %----------------------------------------------------------------------------------------
 %	ARTICLE INFORMATION
@@ -216,7 +218,7 @@ Because we designed our agent as a chatbot, we also implemented a simple answer 
 
 \subsection*{Evaluation methodology}
 
-Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth for metric computations. To avoid overfitting a model to a specific set of expected outputs, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. 
+Since we are working with relatively open-ended questions, there is a lack of objective ground truth to evaluate against. Therefore, we construct a set of 50 domain-relevant questions and use manually checked answers from the commercial ChatGPT model as ground truth for metric computations. To avoid overfitting a model to a specific set of expected outputs, we included multiple types of questions into our test set, including yes/no questions, fact checking, list retrieval and summarization. All queries are zero-shot.
 
 
 \subsubsection*{LLM-based evaluation}
@@ -237,40 +239,26 @@ Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test 
 
 \section*{Results}
 
-In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Llama-8B \cite{deepseek3} model and a non-reasoning Qwen3-8B \cite{qwen3} model. For each of these we run experiments on three different sets of parameters:
-\begin{itemize}
-	\item without \ac{rag} - out-of-the-box model with no modifications
-	\item with naive \ac{rag} - data is scraped and appended to the context
-	\item advanced \ac{rag} - data is additionally processed and summarized before being inputed into the model
-\end{itemize}
-
-Results are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because they do not receive any context. 
-
-
-\begin{table*}[!htb]
+\begin{table*}[t]
 %\centering
-\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| c | c c c c c c c |}
+\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| r | c c c c c c c |}
 \hline
 model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
-deepseek-baseline  & 0.19 & 0.7725 & 0.76846 & \textbf{0.98615} & / & / & / \\
+deepseek-baseline  & 0.19 & 0.7725 & 0.76846 & / & / & / & / \\
 deepseek-naive  & 0.152 & 0.82800 & 0.78138 & 0.93233 & 0.24000 & 0.61771 & \textbf{0.40468}   \\
 deepseek-advanced  & & & & & & &   \\
-qwen-baseline  & \textbf{0.30962} & \textbf{0.86888} & 0.74805 & 0.94456 & / & / & /  \\
+qwen-baseline  & \textbf{0.30962} & \textbf{0.86888} & 0.74805 & / & / & / & /  \\
 qwen-naive  & 0.23111 & 0.65888 & \textbf{0.84670} & 0.88345 & \textbf{0.88345} & \textbf{0.76333} & 0.37029  \\
 qwen-advanced  &  & & &  &  & &    \\
 \hline
 \end{tabular}}
-\caption{Performance comparison as evaluated by a 14B parameter Qwen model with DeepEval framework.}
+\caption{Performance comparison as evaluated by a 14B-parameter Qwen model with DeepEval framework.}
 \label{tab:llm_metrics}
 \end{table*}
 
-
-
-
-
-\begin{table*}[!htb]
+\begin{table*}[t]
 %\centering
-\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| c | c c c c c c c |}
+\resizebox{1.0 \linewidth}{!}{\begin{tabular}{| r | c c c c c c c |}
 \hline
 model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
 deepseek-baseline  & 0.31845 & 0.74923 & 0.61720 & / & / & / & / \\
@@ -281,21 +269,37 @@ qwen-naive  & 0.45116 & 0.77992 & 0.80013 & 0.83234 & 0.34 & 0.264401 & 0.51643 
 qwen-advanced  & \textbf{0.52336} & \textbf{0.83382} & 0.68042 & \textbf{0.97935} & \textbf{1.0} & \textbf{0.61096} & \textbf{0.68355}   \\
 \hline
 \end{tabular}}
-\caption{Performance comparison as evaluated by GPT-mini-4.1 model with DeepEval framework.}
+\caption{Performance comparison as evaluated by GPT-4.1-mini model with DeepEval framework.}
 \label{tab:gpt}
 \end{table*}
+
+In this section we compare the performance of a reasoning DeepSeek-R1-Distill-Llama-8B \cite{deepseek3} model and a non-reasoning Qwen3-8B \cite{qwen3} model. For each of these we run experiments on three different sets of parameters:
+\begin{itemize}
+	\item without \ac{rag} - out-of-the-box model with no modifications (baseline)
+	\item with naive \ac{rag} - all documents are retrieved and appended to the context with no consideration for token limitation (data is truncated)
+	\item advanced \ac{rag} - documents are selectively retrieved and processed before being appended to the context
+\end{itemize}
+
+Results obtained with Qwen-14B model are shown in Table \ref{tab:llm_metrics}. Metrics related to context are not available for baseline models, because their context is an empty set. Models with advanced \ac{rag} can choose not to retrieve documents, depending on the question, so the metrics are only computed when at least one document was retrieved. 
+
+Because the model used for evaluation is not drastically larger than the model used for response generation, it is sensible to repeat the same experiments with an even larger LLM to obtain more reliable results. We opted for GPT-4.1-mini. Results are shown in Table \ref{tab:gpt}. Due to computational complexity, we compute the metrics on first 25 questions in the test set and report the average values. 
+
 
 
 \subsection*{Conversational chatbot}
 
-Extending a working model into a conversational chatbot is straightforward: the data retrieval pipeline remains the same, we only need to implement a mechanism for memorization of previous questions and responses. Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
+Extending a question answering model into a conversational chatbot is straightforward: the information retrieval pipeline remains the same, we only need to implement a mechanism for memorization of previous questions and responses. Examples of Qwen chatbot results are shown in Appendix \ref{qwenconvo}.
 
 
 %------------------------------------------------
 
 \section*{Discussion}
 
-We conclude that it is possible to improve the responses of 8B parameter large language models on queries from a specific domain by employing on-the-fly information retrieval via web scraping.  
+We conclude that it is possible to improve the responses of 8B-parameter LLMs, such as Qwen and DeepSeek on queries from a specific domain by employing on-the-fly information retrieval via web scraping. 
+
+Superior performance is achieved by constructing document retrieval functions in such a way that an LLM can be used not only to generate a response, but also to determine which documents are relevant based on the user query. 
+
+A question answering model with \ac{rag} can be extended into a chatbot by implementing a memory mechanism, which stores a buffer of previous questions, which allows the model to keep track of recent conversation.
 
 
 
@@ -343,6 +347,39 @@ Qwen: Based on the data provided:
 \caption{Conversation with Qwen}
 \label{qwenconvo}
 \end{figure}
+
+\begin{figure*}
+\begin{tcolorbox}
+\begin{lstlisting}[escapechar=\%]Add commentMore actions
+User: How many films did Chuck Jones make?
+
+Qwen: Based on the data provided:
+
+	**Total Number of Films:**  
+	Chuck Jones directed **over 100 films**, spanning multiple genres and formats.
+
+	### Breakdown:
+	- **Feature-Length Films**: 
+    		- *The Bugs Bunny/Road Runner Movie* (1979)
+	    - *The Phantom Tollbooth* (1970)
+	    - *The Grinch Stole Christmas!* (1966)
+
+	- **Shorts and Documentaries**:
+	    - Approximately **100+ short cartoons**
+	        - Many of these are Looney Tunes/Merry Melodies cartoons.
+	        - Includes iconic titles such as *What's Opera, Doc?*, *Duck Amuck*, etc.
+
+	    - **Documentaries**: Around **dozens**, e.g.,
+	    	    - *The Magical World of Chuck Jones*
+	        - *Chuck Jones: Memories of Childhood*
+
+
+	Chuck Jones made approximately **more than 100 films**, primarily consisting of **%\green{animated short cartoons}%**, a handful of **%\green{feature-length compilations}%**, and several **%\red{documentaries}%**.
+\end{lstlisting}
+\end{tcolorbox}
+\caption{Conversation with Qwen}
+\label{qwenconvo}
+\end{figure*}
 
 
  
