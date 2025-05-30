@@ -8,7 +8,7 @@
         "Contextual Recall": 0.26440115440115436,
         "Contextual Relevancy": 0.5164327548075943,
         "Correctness (GEval)": 0.451162246846791,
-        "Faithfulness": 0.8323412698412699
+        "Faithfulness": 0.908008658008658
     },
     "reasons": {
         "test_case_1": {
