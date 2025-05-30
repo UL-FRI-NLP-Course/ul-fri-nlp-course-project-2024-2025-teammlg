@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 52.716484785079956,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly addresses the input by providing relevant information about the general reception of the movie 'Mickey 17', without any irrelevant statements or deviations from the topic. The answer is concise and to the point, offering a clear summary of the film's critical reception and its status as a cult classic, which fully satisfies the user's query about people's general thoughts on the movie."
+            ]
+        }
+    }
+}

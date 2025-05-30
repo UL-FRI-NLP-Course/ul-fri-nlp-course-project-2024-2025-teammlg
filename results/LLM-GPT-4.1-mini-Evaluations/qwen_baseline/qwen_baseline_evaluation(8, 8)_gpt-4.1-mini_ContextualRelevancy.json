@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.2159998416900635,
+    "Contextual Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Contextual Relevancy": [
+                "The score is 1.00 because the relevant statements directly address the input by confirming that 'Firefly' is a series and that a movie titled 'Serenity' was released in 2005 as its continuation, perfectly matching the user's query."
+            ]
+        }
+    }
+}

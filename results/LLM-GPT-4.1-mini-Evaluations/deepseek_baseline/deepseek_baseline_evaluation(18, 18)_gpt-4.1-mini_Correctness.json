@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.107999563217163,
+    "Correctness (GEval)": {
+        "average": 0.10179862080210296,
+        "median": 0.10179862080210296,
+        "minimum": 0.10179862080210296,
+        "maximum": 0.10179862080210296,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Correctness (GEval)": [
+                "The actual output completely omits all movies listed in the expected output, including 'Sinners' and its detailed performance and critical acclaim, and instead lists unrelated films with no overlap, showing a total mismatch of facts."
+            ]
+        }
+    }
+}

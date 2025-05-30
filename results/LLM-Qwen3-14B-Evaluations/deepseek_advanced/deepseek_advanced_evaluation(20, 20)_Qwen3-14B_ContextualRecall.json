@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 34.914663314819336,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Contextual Recall": [
+                "The score is 0.00 because the sentence about Steven Spielberg's birthdate and age cannot be attributed to any node in the retrieval context, as the context only discusses the movie 'Challengers' and lacks any information about Spielberg."
+            ]
+        }
+    }
+}

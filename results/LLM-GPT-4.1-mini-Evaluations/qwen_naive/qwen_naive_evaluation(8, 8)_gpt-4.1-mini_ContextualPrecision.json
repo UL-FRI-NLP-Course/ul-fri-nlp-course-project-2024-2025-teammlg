@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.604000568389893,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Contextual Precision": [
+                "The score is 0.00 because all nodes in the retrieval contexts are irrelevant to the input, as the first node (rank 1) discusses an unrelated movie 'Grave of the Fireflies', the second node (rank 2) covers a different film named 'Firefly' not connected to the series, and the subsequent nodes (ranks 3 and 4) fail to mention the 'Serenity' movie or its relation to the 'Firefly' series. Since no relevant nodes are present or ranked higher, the score cannot be higher."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 16.37600040435791,
+    "Answer Relevancy": {
+        "average": 0.8181818181818182,
+        "median": 0.8181818181818182,
+        "minimum": 0.8181818181818182,
+        "maximum": 0.8181818181818182,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Answer Relevancy": [
+                "The score is 0.82 because the response provides a relevant film recommendation that aligns with the user's request for light entertainment involving shooting and humor. However, it includes some details about the film's plot, setting, and cast that do not directly address the specific request, preventing a higher score."
+            ]
+        }
+    }
+}

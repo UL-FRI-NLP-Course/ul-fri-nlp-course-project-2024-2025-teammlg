@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 37.85499954223633,
+    "Faithfulness": {
+        "average": 0.6363636363636364,
+        "median": 0.6363636363636364,
+        "minimum": 0.6363636363636364,
+        "maximum": 0.6363636363636364,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Faithfulness": [
+                "The score is 0.64 because the actual output incorrectly states the release year as 1999 instead of 2002, underestimates the production budget, and significantly overstates both the domestic and global box office earnings compared to the retrieval context."
+            ]
+        }
+    }
+}

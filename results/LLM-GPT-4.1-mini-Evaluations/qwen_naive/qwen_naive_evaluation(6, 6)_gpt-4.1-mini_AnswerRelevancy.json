@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.989001035690308,
+    "Answer Relevancy": {
+        "average": 0.7333333333333333,
+        "median": 0.7333333333333333,
+        "minimum": 0.7333333333333333,
+        "maximum": 0.7333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 0.73 because the response includes some relevant information about 'Mickey 17' and general opinions, but it also contains several irrelevant statements about different movies and incorrect details, which lowers the overall relevancy."
+            ]
+        }
+    }
+}

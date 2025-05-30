@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.522000789642334,
+    "Answer Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Answer Relevancy": [
+                "The score is 0.00 because the output fails to identify the original movie title from the Slovene translation and instead only discusses possible English equivalents and their qualities, which are irrelevant to the user's direct question."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.2300009727478027,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output discusses a fictional film directed by Luca Guadagnino, which contradicts the expected output about Steven Spielberg's birthdate and age."
+            ]
+        }
+    }
+}

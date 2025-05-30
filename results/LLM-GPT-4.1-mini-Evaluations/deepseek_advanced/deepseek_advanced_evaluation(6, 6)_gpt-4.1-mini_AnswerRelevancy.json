@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.269001245498657,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response fully addresses the user's query about general opinions on Mickey 17 without including any irrelevant information. It is concise, on-topic, and provides a clear answer, making it perfectly relevant."
+            ]
+        }
+    }
+}

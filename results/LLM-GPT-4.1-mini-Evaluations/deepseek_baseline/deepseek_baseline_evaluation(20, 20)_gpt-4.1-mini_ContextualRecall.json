@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.0159993171691895,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Contextual Recall": [
+                "The score is 0.00 because there is no information in the retrieval context about Steven Spielberg's birth date or age, so the expected output cannot be supported by any node in the context."
+            ]
+        }
+    }
+}

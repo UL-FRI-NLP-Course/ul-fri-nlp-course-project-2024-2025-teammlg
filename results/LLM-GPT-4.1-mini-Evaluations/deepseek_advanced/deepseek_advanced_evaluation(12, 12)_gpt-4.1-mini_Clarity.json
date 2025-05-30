@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.983997344970703,
+    "Clarity (GEval)": {
+        "average": 0.81824255215839,
+        "median": 0.81824255215839,
+        "minimum": 0.81824255215839,
+        "maximum": 0.81824255215839,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with well-organized genre categories. However, phrases like 'Potential future animated film' and 'Mentioned potential for Elden Ring or Dark Souls' are somewhat vague. There is minor repetition in listing both 'Warcraft' and 'World of Warcraft' separately without clarification."
+            ]
+        }
+    }
+}

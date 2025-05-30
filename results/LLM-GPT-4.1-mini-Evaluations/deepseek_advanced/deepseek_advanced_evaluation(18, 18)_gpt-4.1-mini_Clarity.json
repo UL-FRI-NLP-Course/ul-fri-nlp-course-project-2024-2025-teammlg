@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.7199995517730713,
+    "Clarity (GEval)": {
+        "average": 0.6962673111718829,
+        "median": 0.6962673111718829,
+        "minimum": 0.6962673111718829,
+        "maximum": 0.6962673111718829,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but includes some vague or confusing entries like 'Superman/Batman: Knightmare Future Movies' and 'Joker & Punchline' which are not widely recognized Superman films. There is minor repetition in describing DCEU connections and some inconsistent formatting."
+            ]
+        }
+    }
+}

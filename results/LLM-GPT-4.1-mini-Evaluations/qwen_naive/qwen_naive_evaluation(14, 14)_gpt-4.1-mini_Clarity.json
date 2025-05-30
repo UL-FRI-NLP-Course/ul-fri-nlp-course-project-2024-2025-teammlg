@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.1830005645751953,
+    "Clarity (GEval)": {
+        "average": 0.6254122141061812,
+        "median": 0.6254122141061812,
+        "minimum": 0.6254122141061812,
+        "maximum": 0.6254122141061812,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but includes some vague phrasing like 'likely a reference' which reduces certainty. There is minor repetition in restating the original title multiple times."
+            ]
+        }
+    }
+}

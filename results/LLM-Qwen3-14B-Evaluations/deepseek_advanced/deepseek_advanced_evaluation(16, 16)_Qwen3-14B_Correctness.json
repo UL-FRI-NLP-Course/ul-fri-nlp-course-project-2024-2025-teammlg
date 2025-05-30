@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 15.77479338645935,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output includes entries that contradict the expected output. For example, 'Emily in Paris' is not listed in the expected output, and 'The Girl in the Bunker' and 'Mamma Mia!: The Movie Sequel - ABBA in Paris' are not mentioned in the expected output. Additionally, entries like 'Downton Abbey' and 'Paris Is Burning' are not part of the expected list."
+            ]
+        }
+    }
+}

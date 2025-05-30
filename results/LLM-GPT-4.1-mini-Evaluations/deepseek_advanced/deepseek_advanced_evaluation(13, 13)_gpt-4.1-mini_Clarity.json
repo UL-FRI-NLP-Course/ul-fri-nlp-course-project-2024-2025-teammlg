@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3120005130767822,
+    "Clarity (GEval)": {
+        "average": 0.5988422912874106,
+        "median": 0.5988422912874106,
+        "minimum": 0.5988422912874106,
+        "maximum": 0.5988422912874106,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Clarity (GEval)": [
+                "The response uses clear language but includes confusing elements such as the unclear parenthetical '(Obli\u010devati Vsi)' and unnecessary repetition of the title."
+            ]
+        }
+    }
+}

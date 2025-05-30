@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 24.236429691314697,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant, as it is empty and contains no information to answer the question about popular movies this week. This results in no relevant nodes being ranked higher than irrelevant ones, leading to a precision score of zero."
+            ]
+        }
+    }
+}

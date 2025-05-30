@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.1220011711120605,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly addresses the question about movies based on video games and provides the requested information about the star of the first one, with no irrelevant content."
+            ]
+        }
+    }
+}

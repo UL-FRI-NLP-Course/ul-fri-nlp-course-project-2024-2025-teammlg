@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.5959999561309814,
+    "Correctness (GEval)": {
+        "average": 0.701098694400691,
+        "median": 0.701098694400691,
+        "minimum": 0.701098694400691,
+        "maximum": 0.701098694400691,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "The actual output covers many themes from the expected output such as order vs. chaos, moral ambiguity, and sacrifice, but omits key themes like justice vs. vengeance and fear and corruption. It introduces some unique themes like pride and hubris and free will vs. fate not mentioned in the expected output, and the phrasing differs, but no direct contradictions are present."
+            ]
+        }
+    }
+}

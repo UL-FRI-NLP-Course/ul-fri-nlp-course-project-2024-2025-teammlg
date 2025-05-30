@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.644999027252197,
+    "Faithfulness": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Faithfulness": [
+                "The score is 0.80 because the actual output incorrectly states that 'Minecraft: The Movie' is scheduled for global release on September 8, 2023, whereas the retrieval context indicates the movie is associated with the date March 31, 2025, showing a clear discrepancy in the release date."
+            ]
+        }
+    }
+}

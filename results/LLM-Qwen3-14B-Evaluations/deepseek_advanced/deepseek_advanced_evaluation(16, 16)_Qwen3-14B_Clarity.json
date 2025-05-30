@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 13.033977270126343,
+    "Clarity (GEval)": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, with each entry providing a concise description. However, there is some repetition in noting that certain entries are set in Paris but have primary settings elsewhere (e.g., 'Mamma Mia!...Paris' and 'Downton Abbey' Season 4)."
+            ]
+        }
+    }
+}

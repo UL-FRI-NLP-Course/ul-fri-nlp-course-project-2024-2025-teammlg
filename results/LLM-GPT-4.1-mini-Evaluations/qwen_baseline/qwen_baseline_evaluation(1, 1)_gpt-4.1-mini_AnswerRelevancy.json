@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.373998641967773,
+    "Answer Relevancy": {
+        "average": 0.9375,
+        "median": 0.9375,
+        "minimum": 0.9375,
+        "maximum": 0.9375,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Answer Relevancy": [
+                "The score is 0.94 because the summary effectively covers the main themes of The Dark Knight, but it includes a statement about the director, which is not directly relevant to the themes, preventing a perfect score."
+            ]
+        }
+    }
+}

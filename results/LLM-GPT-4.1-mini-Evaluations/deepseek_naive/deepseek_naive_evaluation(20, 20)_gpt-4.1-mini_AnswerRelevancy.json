@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.330999374389648,
+    "Answer Relevancy": {
+        "average": 0.3333333333333333,
+        "median": 0.3333333333333333,
+        "minimum": 0.3333333333333333,
+        "maximum": 0.3333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Answer Relevancy": [
+                "The score is 0.33 because the output includes irrelevant statements about the thought process and conclusion conciseness, which do not address Steven Spielberg's age. However, it still partially relates to the question, preventing a lower score."
+            ]
+        }
+    }
+}

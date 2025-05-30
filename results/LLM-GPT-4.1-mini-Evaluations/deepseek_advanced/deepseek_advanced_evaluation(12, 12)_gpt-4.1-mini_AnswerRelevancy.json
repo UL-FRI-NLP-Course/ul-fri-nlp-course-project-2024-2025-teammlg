@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 11.65299916267395,
+    "Answer Relevancy": {
+        "average": 0.8666666666666667,
+        "median": 0.8666666666666667,
+        "minimum": 0.8666666666666667,
+        "maximum": 0.8666666666666667,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Answer Relevancy": [
+                "The score is 0.87 because the response provides relevant examples of movies based on video games, but it includes some incorrect and irrelevant statements about certain films and games, which lowers the overall accuracy and relevance."
+            ]
+        }
+    }
+}

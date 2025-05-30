@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 16.240999460220337,
+    "Faithfulness": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Faithfulness": [
+                "The score is 0.90 because the actual output introduces a mask-wearing killer and an hourglass symbolizing the cycle of events, which are not supported by the retrieval context that only mentions wendigos and a time loop mechanic."
+            ]
+        }
+    }
+}

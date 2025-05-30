@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 285.3397228717804,
+    "Clarity (GEval)": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts. It lists films with concise descriptions that highlight their action-comedy blend without repetition. Each entry is distinct and informative, meeting all evaluation criteria effectively"
+            ]
+        }
+    }
+}

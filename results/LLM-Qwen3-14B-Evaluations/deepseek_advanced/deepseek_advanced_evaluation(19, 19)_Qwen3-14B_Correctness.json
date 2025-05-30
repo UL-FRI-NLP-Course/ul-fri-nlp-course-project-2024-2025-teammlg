@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 9.635977506637573,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Correctness (GEval)": [
+                "The actual output discusses Steven Spielberg's age and birthday, which contradicts the expected output about Superman movies."
+            ]
+        }
+    }
+}

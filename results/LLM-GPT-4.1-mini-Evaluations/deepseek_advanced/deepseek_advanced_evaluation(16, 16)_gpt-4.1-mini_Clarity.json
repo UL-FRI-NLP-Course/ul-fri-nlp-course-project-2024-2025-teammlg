@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.755000114440918,
+    "Clarity (GEval)": {
+        "average": 0.8075858173231169,
+        "median": 0.8075858173231169,
+        "minimum": 0.8075858173231169,
+        "maximum": 0.8075858173231169,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with well-structured descriptions. However, 'The Girl in the Bunker' inaccurately describes Coco Chanel's story, causing confusion. There is minor repetition in mentioning Paris multiple times, but it does not significantly reduce clarity."
+            ]
+        }
+    }
+}

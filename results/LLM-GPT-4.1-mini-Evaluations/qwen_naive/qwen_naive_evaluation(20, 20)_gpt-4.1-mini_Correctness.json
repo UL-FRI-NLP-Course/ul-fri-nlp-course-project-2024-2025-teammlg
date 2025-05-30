@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.8050010204315186,
+    "Correctness (GEval)": {
+        "average": 0.6902784148317369,
+        "median": 0.6902784148317369,
+        "minimum": 0.6902784148317369,
+        "maximum": 0.6902784148317369,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output correctly states Spielberg's birthdate but provides his age as 76 in 2023, which is outdated compared to the expected output's 78 years as of May 2025. No contradictions, but the age is not current."
+            ]
+        }
+    }
+}

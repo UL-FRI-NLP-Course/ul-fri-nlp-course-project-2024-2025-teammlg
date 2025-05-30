@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 31.62235140800476,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant, as it provides no information about Superman movies or any films from the 1950s to today. The lack of relevant nodes prevents any meaningful ranking of relevant over irrelevant nodes, resulting in a precision score of zero. The reason for this node's irrelevance is explicitly stated as 'The retrieval context is an empty list, providing no information about Superman movies or any films from the 1950s to today. Therefore, it cannot be used to answer the question.'"
+            ]
+        }
+    }
+}

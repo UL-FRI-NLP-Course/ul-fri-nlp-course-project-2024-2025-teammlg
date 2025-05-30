@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 36.48079323768616,
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Contextual Precision": [
+                "The score is 1.00 because the only node in the retrieval contexts directly and accurately answers the question about who played Steve Jobs in the movie 'Jobs', with the relevant information ranked first and no irrelevant nodes present to interfere with the precision score. The context's reason explicitly states that Ashton Kutcher played the role, which is the correct and sole answer needed for the question, ensuring a perfect contextual precision score without any lower-ranked nodes contradicting or overshadowing the correct information. This high score is achieved as the relevant node is both accurate and positioned at the top of the ranking, effectively meeting the requirement that relevant nodes are prioritized over irrelevant ones, and since there are no irrelevant nodes in this case, the precision score is maximized at 1.00, reflecting an optimal retrieval context setup for the given query about the actor who portrayed Steve Jobs in the film 'Jobs'."
+            ]
+        }
+    }
+}

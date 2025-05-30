@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.158000469207764,
+    "Contextual Recall": {
+        "average": 0.3157894736842105,
+        "median": 0.3157894736842105,
+        "minimum": 0.3157894736842105,
+        "maximum": 0.3157894736842105,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Recall": [
+                "The score is 0.32 because while the retrieval context (node 1) supports details about 'The Man with the Bag' including Schwarzenegger's role as Santa Claus, co-stars, plot, release date, and connection to 'Jingle All the Way', it lacks any information on the other projects ('FUBAR' and 'Secret Level') and specific details like the director Adam Shankman or Schwarzenegger's New York appearance. This partial overlap results in a moderate recall score."
+            ]
+        }
+    }
+}

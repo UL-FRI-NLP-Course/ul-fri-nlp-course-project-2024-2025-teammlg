@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 18.219997882843018,
+    "Answer Relevancy": {
+        "average": 0.5769230769230769,
+        "median": 0.5769230769230769,
+        "minimum": 0.5769230769230769,
+        "maximum": 0.5769230769230769,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Answer Relevancy": [
+                "The score is 0.58 because the response includes some relevant information about movies, but it is weighed down by multiple irrelevant details such as director and actor names, older movies, TV series seasons, and aspects unrelated to current popularity like source material and streaming availability. These irrelevant elements prevent a higher score, though the inclusion of some movie titles keeps the score above average."
+            ]
+        }
+    }
+}

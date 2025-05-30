@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.718998908996582,
+    "Answer Relevancy": {
+        "average": 0.375,
+        "median": 0.375,
+        "minimum": 0.375,
+        "maximum": 0.375,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Answer Relevancy": [
+                "The score is 0.38 because the response includes outdated and irrelevant information about a 2017 Minecraft film and general digital platform access in Slovenia, which do not address the current or upcoming Minecraft Movie release or streaming dates. However, it still partially relates to the topic of Minecraft movies, preventing a lower score."
+            ]
+        }
+    }
+}

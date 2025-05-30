@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 42.62399983406067,
+    "Contextual Relevancy": {
+        "average": 0.21951219512195122,
+        "median": 0.21951219512195122,
+        "minimum": 0.21951219512195122,
+        "maximum": 0.21951219512195122,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Relevancy": [
+                "The score is 0.22 because while the retrieval context includes some relevant statements about violent and supernatural events, such as 'Irish-immigrant vampire Remmick flees... and violently turns a married Klansmen couple into vampires' and 'Smoke arrives and stakes him,' it largely lacks explicit information about gore and blood content. Most statements are plot details unrelated to gore or blood, as noted in the reasons for irrelevancy."
+            ]
+        }
+    }
+}

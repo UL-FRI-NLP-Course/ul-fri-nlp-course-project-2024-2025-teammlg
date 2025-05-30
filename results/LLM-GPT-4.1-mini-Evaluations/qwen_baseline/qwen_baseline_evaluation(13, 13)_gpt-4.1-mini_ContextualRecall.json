@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.642035007476807,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context available to support the sentence about the Slovene title for the film Blades of Glory (2007), making it impossible to attribute this information to any node in the retrieval context."
+            ]
+        }
+    }
+}

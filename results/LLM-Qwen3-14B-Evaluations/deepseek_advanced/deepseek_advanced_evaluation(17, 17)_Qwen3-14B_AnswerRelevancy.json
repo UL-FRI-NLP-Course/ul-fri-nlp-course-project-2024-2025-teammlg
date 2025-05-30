@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 44.717164039611816,
+    "Answer Relevancy": {
+        "average": 0.16666666666666666,
+        "median": 0.16666666666666666,
+        "minimum": 0.16666666666666666,
+        "maximum": 0.16666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Answer Relevancy": [
+                "The score is 0.17 because the actual output contains statements that are unrelated to current movie popularity, such as discussing directors, budgets, release dates, and streaming platforms, rather than providing relevant data like movie titles or box office information needed to answer the query about this week's popular movies."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 14.774000406265259,
+    "Faithfulness": {
+        "average": 0.7857142857142857,
+        "median": 0.7857142857142857,
+        "minimum": 0.7857142857142857,
+        "maximum": 0.7857142857142857,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Faithfulness": [
+                "The score is 0.79 because the actual output incorrectly states that \"Treasure Planet\" was released in late 2011, which is not supported by the retrieval context, misattributes Gore Verbinski as the director, and wrongly claims Johnny Depp starred as Jack Sparrow in \"Treasure Planet,\" a character actually from \"Pirates of the Caribbean.\" These inaccuracies reduce the faithfulness of the output."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.9999992847442627,
+    "Correctness (GEval)": {
+        "average": 0.222270012850746,
+        "median": 0.222270012850746,
+        "minimum": 0.222270012850746,
+        "maximum": 0.222270012850746,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output states a global release date of September 8, 2023, which contradicts the expected output's specific Slovenia premiere date of April 2, 2025. The actual output omits the confirmed Slovenia release and U.S. release dates, providing only a general advisory."
+            ]
+        }
+    }
+}

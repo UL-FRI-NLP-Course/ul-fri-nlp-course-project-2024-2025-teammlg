@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.201727628707886,
+    "Correctness (GEval)": {
+        "average": 0.3580938091097328,
+        "median": 0.3580938091097328,
+        "minimum": 0.3580938091097328,
+        "maximum": 0.3580938091097328,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output includes some dramedies set in Paris but introduces titles like 'Emily in Paris' and 'Curb Your Enthesisasm' that are not in the expected output, and omits many key films such as 'Am\u00e9lie,' 'The 400 Blows,' and 'Paris, Je T'Aime.' It also contains a factual error in the misspelling of 'Curb Your Enthusiasm.'"
+            ]
+        }
+    }
+}

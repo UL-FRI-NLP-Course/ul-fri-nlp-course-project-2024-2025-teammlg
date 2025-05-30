@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.186000347137451,
+    "Correctness (GEval)": {
+        "average": 0.2377540661794489,
+        "median": 0.2377540661794489,
+        "minimum": 0.2377540661794489,
+        "maximum": 0.2377540661794489,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Correctness (GEval)": [
+                "The actual output mentions only a 2014 film, The Expendables 3, which contradicts the expected output's focus on recent and upcoming projects from 2023 to 2025, including The Man with the Bag, FUBAR, and Secret Level."
+            ]
+        }
+    }
+}

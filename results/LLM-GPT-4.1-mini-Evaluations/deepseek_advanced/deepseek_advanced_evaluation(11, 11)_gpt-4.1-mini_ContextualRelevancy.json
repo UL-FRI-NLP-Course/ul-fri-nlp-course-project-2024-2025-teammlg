@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 22.021000862121582,
+    "Contextual Relevancy": {
+        "average": 0.8181818181818182,
+        "median": 0.8181818181818182,
+        "minimum": 0.8181818181818182,
+        "maximum": 0.8181818181818182,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Relevancy": [
+                "The score is 0.82 because while some retrieval context statements like 'Arnold Schwarzenegger has been involved in recent films such as Terminator Genisys (2015) and Terminator: Dark Fate (2019)' are relevant to the input about his recent film work, other statements about wrestling events and unrelated documentaries ('WWE Hall of Fame 2015', 'Enron: The Smartest Guys in the Room') reduce overall relevancy."
+            ]
+        }
+    }
+}

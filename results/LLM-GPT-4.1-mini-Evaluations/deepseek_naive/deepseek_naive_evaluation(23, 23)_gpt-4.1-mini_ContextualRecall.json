@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.379999160766602,
+    "Contextual Recall": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Contextual Recall": [
+                "The score is 0.50 because the expected output correctly reflects that the film offers a new storyline and characters while maintaining connections to the game's universe, as supported by node 1 in the retrieval context. However, the claim that the film is an adaptation of the 2015 PlayStation video game is not directly supported by any node, leading to a partial match with the retrieval context."
+            ]
+        }
+    }
+}

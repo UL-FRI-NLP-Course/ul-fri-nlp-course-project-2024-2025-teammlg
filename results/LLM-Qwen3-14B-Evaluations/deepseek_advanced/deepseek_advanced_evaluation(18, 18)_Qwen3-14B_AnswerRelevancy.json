@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 124.15897250175476,
+    "Answer Relevancy": {
+        "average": 0.631578947368421,
+        "median": 0.631578947368421,
+        "minimum": 0.631578947368421,
+        "maximum": 0.631578947368421,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Answer Relevancy": [
+                "The score is 0.63 because the response included several irrelevant entries such as films from 1948 (pre-1950s) and movies that feature Superman in various media or crossovers but are not direct Superman films, which do not fully address the query for Superman movies from the 1950s onwards. However, some entries were correctly identified as related to Superman despite being animated or part of larger franchises, which contributed to the moderate score."
+            ]
+        }
+    }
+}

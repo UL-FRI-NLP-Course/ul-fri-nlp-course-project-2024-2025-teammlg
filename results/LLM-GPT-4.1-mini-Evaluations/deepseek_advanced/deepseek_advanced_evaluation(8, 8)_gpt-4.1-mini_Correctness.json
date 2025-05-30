@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.026001214981079,
+    "Correctness (GEval)": {
+        "average": 0.1562176500885798,
+        "median": 0.1562176500885798,
+        "minimum": 0.1562176500885798,
+        "maximum": 0.1562176500885798,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states there is no official movie adaptation, contradicting the expected output which clearly identifies Serenity (2005) as the movie based on Firefly. The actual output omits all details about the movie's director, cast, plot, tone, and reception."
+            ]
+        }
+    }
+}

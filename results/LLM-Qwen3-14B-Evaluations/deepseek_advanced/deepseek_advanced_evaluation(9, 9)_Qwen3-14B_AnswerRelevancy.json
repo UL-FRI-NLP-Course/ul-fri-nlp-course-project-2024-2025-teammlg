@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 61.497955083847046,
+    "Answer Relevancy": {
+        "average": 0.625,
+        "median": 0.625,
+        "minimum": 0.625,
+        "maximum": 0.625,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Answer Relevancy": [
+                "The score is 0.62 because the response included irrelevant statements about the response format rather than focusing on providing relevant spooky sci-fi movie recommendations. While some recommendations were given, the inclusion of format-related comments lowered the relevancy score. The response should have focused solely on addressing the movie request without mentioning the required format or example JSON structure."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.328000783920288,
+    "Faithfulness": {
+        "average": 0.8571428571428571,
+        "median": 0.8571428571428571,
+        "minimum": 0.8571428571428571,
+        "maximum": 0.8571428571428571,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Faithfulness": [
+                "The score is 0.86 because the actual output incorrectly includes 'X-Men: Apocalypse (2016)' as a Marvel Studios theatrical release, which contradicts the retrieval context stating it is not part of the Marvel Cinematic Universe or produced by Marvel Studios."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 14.170000553131104,
+    "Answer Relevancy": {
+        "average": 0.7777777777777778,
+        "median": 0.7777777777777778,
+        "minimum": 0.7777777777777778,
+        "maximum": 0.7777777777777778,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 0.78 because the response provides some relevant information about 'Mickey 17' and general opinions, but it includes several incorrect and irrelevant details about the film's release date, director, and cast, which detracts from its accuracy and relevance."
+            ]
+        }
+    }
+}

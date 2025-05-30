@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 15.265955686569214,
+    "Correctness (GEval)": {
+        "average": 0.7,
+        "median": 0.7,
+        "minimum": 0.7,
+        "maximum": 0.7,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Correctness (GEval)": [
+                "Actual output mentions mixed reviews and comparisons to Bong Joon-ho's *Parasite*, which aligns with expected output. However, it omits specific critical scores (e.g., Rotten Tomatoes 77%, Metacritic 72) and audience metrics (e.g., CinemaScore 'B'), which are detailed in the expected output. Omitted details are acceptable but reduce score."
+            ]
+        }
+    }
+}

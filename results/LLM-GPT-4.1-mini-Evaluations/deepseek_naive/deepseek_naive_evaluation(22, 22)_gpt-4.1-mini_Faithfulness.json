@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 39.23300075531006,
+    "Faithfulness": {
+        "average": 0.5714285714285714,
+        "median": 0.5714285714285714,
+        "minimum": 0.5714285714285714,
+        "maximum": 0.5714285714285714,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Faithfulness": [
+                "The score is 0.57 because the actual output incorrectly attributes the director of 'Sinners' to Bret Easton Ellis instead of Ryan Coogler, introduces an Ouija board experiment not mentioned in the retrieval context, and describes settings like an old mansion and religious environment that contradict the actual 1932 Mississippi Delta juke joint setting."
+            ]
+        }
+    }
+}

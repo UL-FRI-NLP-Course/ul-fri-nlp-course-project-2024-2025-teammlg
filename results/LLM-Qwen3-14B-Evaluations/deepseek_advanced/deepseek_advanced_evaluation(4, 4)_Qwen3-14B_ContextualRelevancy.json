@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 28.887476444244385,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no relevant statements in the retrieval context to answer the question about the title of the next Marvel film after Captain America 3. The reasons for irrelevancy are not provided, but the absence of relevant information indicates that the context does not address the query at all, making it completely irrelevant to the input question about upcoming Marvel movies and their release order after Captain America 3, which is a specific query about the next film in the Marvel Cinematic Universe (MCU) following Captain America: Civil War (2016), which is a specific query about the next film in the Marvel Cinematic Universe (MCU) following Captain America: Civil War (2016)."
+            ]
+        }
+    }
+}

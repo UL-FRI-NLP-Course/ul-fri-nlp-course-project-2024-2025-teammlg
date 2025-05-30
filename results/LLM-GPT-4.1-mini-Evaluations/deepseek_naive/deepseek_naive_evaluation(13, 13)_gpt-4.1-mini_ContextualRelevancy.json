@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 12.871001720428467,
+    "Contextual Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the retrieval context provides detailed information about the film 'Blades of Glory', including its original title, language, release year, and plot, it does not explicitly provide the Slovene title, which is the specific information requested. Additionally, much of the context is irrelevant, focusing on a different film 'Slovene' and unrelated details like cast and streaming availability."
+            ]
+        }
+    }
+}

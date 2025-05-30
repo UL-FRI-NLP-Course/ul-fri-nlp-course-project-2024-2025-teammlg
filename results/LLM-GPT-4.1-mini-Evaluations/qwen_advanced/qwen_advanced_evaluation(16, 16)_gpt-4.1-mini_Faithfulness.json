@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.430000305175781,
+    "Faithfulness": {
+        "average": 0.875,
+        "median": 0.875,
+        "minimum": 0.875,
+        "maximum": 0.875,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Faithfulness": [
+                "The score is 0.88 because the actual output incorrectly states that Brad Bird directed The Da Vinci Code (2006), which contradicts the retrieval context and known facts, lowering faithfulness slightly."
+            ]
+        }
+    }
+}

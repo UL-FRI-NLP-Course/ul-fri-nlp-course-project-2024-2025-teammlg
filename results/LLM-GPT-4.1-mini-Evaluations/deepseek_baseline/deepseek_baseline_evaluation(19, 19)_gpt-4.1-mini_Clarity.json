@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.320000171661377,
+    "Clarity (GEval)": {
+        "average": 0.6320821300824606,
+        "median": 0.6320821300824606,
+        "minimum": 0.6320821300824606,
+        "maximum": 0.6320821300824606,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Clarity (GEval)": [
+                "The list uses mostly clear language but includes confusing errors like attributing Batman v Superman (2006) to Alan Moore and listing Wonder Woman and The Flash, which are not primarily Superman films, causing vagueness and unnecessary information."
+            ]
+        }
+    }
+}

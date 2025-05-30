@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.405998468399048,
+    "Answer Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Answer Relevancy": [
+                "The score is 0.50 because the response includes the phrase 'Obli\u010devati Vsi,' which is unrelated to the Slovene title for 'Blades of Glory' and does not directly answer the question. However, it partially addresses the topic by attempting to provide a Slovene phrase, just not the correct title."
+            ]
+        }
+    }
+}

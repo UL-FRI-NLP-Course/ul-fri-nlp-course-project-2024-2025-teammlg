@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 11.988496541976929,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by stating Schwarzenegger has not starred in any newly released films since 2019, while the expected output lists The Man with the Bag (2025) and other recent projects."
+            ]
+        }
+    }
+}

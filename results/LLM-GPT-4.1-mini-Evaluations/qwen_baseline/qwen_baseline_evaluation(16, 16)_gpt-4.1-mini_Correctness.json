@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.8580000400543213,
+    "Correctness (GEval)": {
+        "average": 0.4849044806428348,
+        "median": 0.4849044806428348,
+        "minimum": 0.4849044806428348,
+        "maximum": 0.4849044806428348,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output recommends only one dramedy, 'Am\u00e9lie,' which matches the expected output but omits the broader list of six other Paris-set dramedies and detailed descriptions. There are no factual contradictions, but the response lacks the variety and depth present in the expected output."
+            ]
+        }
+    }
+}

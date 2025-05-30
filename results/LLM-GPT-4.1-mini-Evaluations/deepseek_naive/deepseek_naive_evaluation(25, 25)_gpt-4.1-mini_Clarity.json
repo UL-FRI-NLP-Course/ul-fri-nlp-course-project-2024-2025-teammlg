@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.0829997062683105,
+    "Clarity (GEval)": {
+        "average": 0.3747824954236949,
+        "median": 0.3747824954236949,
+        "minimum": 0.3747824954236949,
+        "maximum": 0.3747824954236949,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but includes confusing and inaccurate entries like 'Planet of the Apes,' 'Deadpool,' 'Wonder Woman,' and 'Ferris Bueller's Day Off' that are not part of the MCU, reducing clarity. There is some repetition with 'Captain America' titles appearing in multiple categories, and the inclusion of TV series under films adds to confusion."
+            ]
+        }
+    }
+}

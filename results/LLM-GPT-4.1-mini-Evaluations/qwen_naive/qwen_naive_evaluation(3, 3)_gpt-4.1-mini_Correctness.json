@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.688000679016113,
+    "Correctness (GEval)": {
+        "average": 0.25621765008857983,
+        "median": 0.25621765008857983,
+        "minimum": 0.25621765008857983,
+        "maximum": 0.25621765008857983,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output lacks the specific release date of 2 April 2025 in Slovenia and the detailed streaming timeline including digital purchase around 19 May 2025 and Max streaming between mid-June and early August 2025, which are clearly stated in the expected output."
+            ]
+        }
+    }
+}

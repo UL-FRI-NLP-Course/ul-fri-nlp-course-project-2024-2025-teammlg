@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 37.34722304344177,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in the retrieval contexts is irrelevant to the input. The node's reason states it lists past films and documentaries but does not mention recent projects like 'The Man with the Bag' (2025) or 'Secret Level' (2024), which are relevant to the query about recent films by Arnold Schwarzenegger. Since there are no relevant nodes ranked higher, the contextual precision score is zero."
+            ]
+        }
+    }
+}

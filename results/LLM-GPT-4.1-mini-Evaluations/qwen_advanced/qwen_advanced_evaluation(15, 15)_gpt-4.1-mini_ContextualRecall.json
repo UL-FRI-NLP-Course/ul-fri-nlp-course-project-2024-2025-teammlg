@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.4800000190734863,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be linked to any node in the retrieval context, as no retrieval context was provided to support the information about Treasure Planet's box office gross, visual style, budget, or performance."
+            ]
+        }
+    }
+}

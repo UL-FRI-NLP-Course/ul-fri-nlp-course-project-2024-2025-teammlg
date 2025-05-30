@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.7619972229003906,
+    "Correctness (GEval)": {
+        "average": 0.20179862136139204,
+        "median": 0.20179862136139204,
+        "minimum": 0.20179862136139204,
+        "maximum": 0.20179862136139204,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Correctness (GEval)": [
+                "The actual output provides no factual movie details or performance data found in the expected output, only stating lack of real-time data access. It does not contradict but omits nearly all specific information about movies, directors, genres, box office numbers, and critical acclaim."
+            ]
+        }
+    }
+}

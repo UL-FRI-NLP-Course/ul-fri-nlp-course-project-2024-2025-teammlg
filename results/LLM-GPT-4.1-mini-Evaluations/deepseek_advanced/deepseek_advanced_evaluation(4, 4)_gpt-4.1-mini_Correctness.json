@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.6549999713897705,
+    "Correctness (GEval)": {
+        "average": 0.2,
+        "median": 0.2,
+        "minimum": 0.2,
+        "maximum": 0.2,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the next Marvel movie after Avengers: Endgame is Avengers: Infinity War (2018), which contradicts the expected output's timeline starting from Captain America: Civil War (2016) and Doctor Strange (2016). The actual output also omits key details about Doctor Strange's introduction and character, which are present in the expected output."
+            ]
+        }
+    }
+}

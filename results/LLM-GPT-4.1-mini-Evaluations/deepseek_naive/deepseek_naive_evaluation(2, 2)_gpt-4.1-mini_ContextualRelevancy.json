@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 17.569000244140625,
+    "Contextual Relevancy": {
+        "average": 0.5,
+        "median": 0.5,
+        "minimum": 0.5,
+        "maximum": 0.5,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the input asks for a summary of the main themes of The Dark Knight, many retrieval context statements are irrelevant, such as those listing cast and crew or discussing streaming availability. However, relevant statements do mention themes like \"Batman raises the stakes in his war on crime,\" \"a reign of chaos unleashed by the Joker,\" and reviews highlighting \"moral ambiguity, sacrifice, the fragile line between order and chaos, heroism,\" which partially address the input."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 41.38946557044983,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant, as it does not provide information about the Minecraft movie's release date in Slovenia. The node mentions a date but lacks country-specific details, making it impossible to determine the answer to the input question, which requires knowledge of the release date in Slovenia specifically. The node's content is insufficient for the required information and is not ranked higher than other irrelevant nodes, as there are none, resulting in a precision score of 0.00 due to no relevant nodes being retrieved."
+            ]
+        }
+    }
+}

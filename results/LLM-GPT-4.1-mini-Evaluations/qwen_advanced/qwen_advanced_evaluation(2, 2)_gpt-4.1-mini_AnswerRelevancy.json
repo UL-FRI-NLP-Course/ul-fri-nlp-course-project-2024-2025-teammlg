@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 12.121999979019165,
+    "Answer Relevancy": {
+        "average": 0.8888888888888888,
+        "median": 0.8888888888888888,
+        "minimum": 0.8888888888888888,
+        "maximum": 0.8888888888888888,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Answer Relevancy": [
+                "The score is 0.89 because the response effectively summarizes the main themes of The Dark Knight, providing relevant insights. However, it includes some irrelevant statements about the director and opinions on the film's quality, which do not directly address the thematic summary, preventing a higher score."
+            ]
+        }
+    }
+}

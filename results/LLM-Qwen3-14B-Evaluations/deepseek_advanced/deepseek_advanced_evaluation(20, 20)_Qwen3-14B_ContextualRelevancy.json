@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 240.70237946510315,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because the retrieval context exclusively provides fictional plot details, production information, and critical reception data about the film Challengers, none of which address whether the film is based on real events. For example, the context includes 'Challengers is a 2024 American romantic sports film...' and plot summaries like 'In 2006, best friends Patrick Zweig and Art Donaldson win the boys' junior doubles title at the US Open...' which are irrelevant to the question of the film's basis in reality. No relevant information was found to answer the input directly, resulting in a score of 0.00."
+            ]
+        }
+    }
+}

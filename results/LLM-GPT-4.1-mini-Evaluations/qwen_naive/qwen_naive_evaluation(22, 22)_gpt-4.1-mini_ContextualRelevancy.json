@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 45.30400061607361,
+    "Contextual Relevancy": {
+        "average": 0.2682926829268293,
+        "median": 0.2682926829268293,
+        "minimum": 0.2682926829268293,
+        "maximum": 0.2682926829268293,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Relevancy": [
+                "The score is 0.27 because most reasons for irrelevancy indicate that the retrieval context lacks information about gore or blood, such as 'The statement about the cast does not provide information about gore or blood content in the film.' However, some relevant statements mention violent and bloody actions, like 'she seduces and kills Stack by drinking his blood' and 'Smoke fights and defeats Stack,' which relate to gore and blood, but these are sparse and not comprehensive enough to fully address the input question."
+            ]
+        }
+    }
+}

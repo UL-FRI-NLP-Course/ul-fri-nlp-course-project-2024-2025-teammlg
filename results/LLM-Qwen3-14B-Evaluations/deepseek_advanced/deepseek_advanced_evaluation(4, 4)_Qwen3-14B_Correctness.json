@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 21.054628133773804,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Correctness (GEval)": [
+                "The actual output states that the next Marvel movie after 'Avengers: Endgame' (2019) is 'Avengers: Infinity War' (2018), which is factually incorrect as 'Infinity War' was released before 'Endgame'. Additionally, the expected output discusses 'Captain America: Civil War' (2016) and 'Doctor Strange' (2016), which are unrelated to the actual output's content about post-'Endgame' movies. The actual output contains multiple contradictions and irrelevant information compared to the expected output's specific details about the timeline and film details following 'Civil War'."
+            ]
+        }
+    }
+}

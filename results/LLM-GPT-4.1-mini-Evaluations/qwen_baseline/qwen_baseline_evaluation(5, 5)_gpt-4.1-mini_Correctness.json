@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.300999164581299,
+    "Correctness (GEval)": {
+        "average": 0.5312046240412621,
+        "median": 0.5312046240412621,
+        "minimum": 0.5312046240412621,
+        "maximum": 0.5312046240412621,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Correctness (GEval)": [
+                "The actual output recommends stop-motion animations related to Flow's director and style, but it omits the emphasis on Flow's atmospheric, dialogue-free nature and emotional themes highlighted in the expected output. It also lacks the variety of hand-drawn and minimalist shorts and features focused on nature and emotion."
+            ]
+        }
+    }
+}

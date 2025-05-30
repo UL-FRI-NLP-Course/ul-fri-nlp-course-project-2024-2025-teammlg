@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 290.3489451408386,
+    "Clarity (GEval)": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts. There is no unnecessary repetition, and each theme is presented concisely and distinctly, covering all evaluation criteria effectively without redundancy or ambiguity"
+            ]
+        }
+    }
+}

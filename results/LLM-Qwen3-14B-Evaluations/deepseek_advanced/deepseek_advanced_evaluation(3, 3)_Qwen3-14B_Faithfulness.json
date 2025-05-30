@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 51.9012188911438,
+    "Faithfulness": {
+        "average": 0.6666666666666666,
+        "median": 0.6666666666666666,
+        "minimum": 0.6666666666666666,
+        "maximum": 0.6666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Faithfulness": [
+                "The score is 0.67 because the actual output incorrectly states the Minecraft movie's release date as September 8, 2023, while the retrieval context specifies March 31, 2025."
+            ]
+        }
+    }
+}

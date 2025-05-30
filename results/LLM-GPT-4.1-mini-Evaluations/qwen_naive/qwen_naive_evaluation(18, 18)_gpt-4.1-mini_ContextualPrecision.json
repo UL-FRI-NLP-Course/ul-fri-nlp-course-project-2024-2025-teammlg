@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.047000885009766,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Contextual Precision": [
+                "The score is 0.00 because all nodes in retrieval contexts are irrelevant, with the first node describing a movie unrelated to popular movies this week, the second and third nodes containing reviews unrelated to the current popular movies, and the fourth and fifth nodes providing no relevant information. Since no relevant nodes are present to be ranked higher, the score cannot be higher."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 42.25300073623657,
+    "Faithfulness": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Faithfulness": [
+                "The score is 0.60 because the actual output incorrectly states that the movie is currently in production despite principal photography concluding in April 2024, mentions speculative release dates in 2023 or early 2024 contrary to the finalized 2025 release dates, and claims Netflix as a streaming platform which is not supported by the retrieval context listing Apple TV and Bookmyshow instead."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 32.37800097465515,
+    "Answer Relevancy": {
+        "average": 0.5409836065573771,
+        "median": 0.5409836065573771,
+        "minimum": 0.5409836065573771,
+        "maximum": 0.5409836065573771,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Answer Relevancy": [
+                "The score is 0.54 because while the output includes some relevant information about Superman movies, it is heavily diluted by numerous irrelevant details about TV series, production companies, cast, and other superhero films. This reduces the focus and clarity needed for a comprehensive list of Superman movies from the 1950s to today."
+            ]
+        }
+    }
+}

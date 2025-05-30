@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 179.79262781143188,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context contains no nodes to attribute any sentences to. The expected output lists films, actors, and descriptions, but the retrieval context provides no relevant information to support these claims, making it impossible to derive or verify the content from the given context. All sentences in the expected output lack corresponding nodes in the retrieval context, leading to a complete mismatch and a contextual recall score of 0.00"
+            ]
+        }
+    }
+}

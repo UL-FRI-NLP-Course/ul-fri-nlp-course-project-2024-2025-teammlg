@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 70.00651669502258,
+    "Faithfulness": {
+        "average": 0.8333333333333334,
+        "median": 0.8333333333333334,
+        "minimum": 0.8333333333333334,
+        "maximum": 0.8333333333333334,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Faithfulness": [
+                "The score is 0.83 because the actual output incorrectly states that The Expendables 3 (2014) is Arnold Schwarzenegger's most recent film, while the retrieval context lists later films like Iron Mask (2019) and Kung Fury 2, indicating a contradiction regarding the recency of his filmography."
+            ]
+        }
+    }
+}

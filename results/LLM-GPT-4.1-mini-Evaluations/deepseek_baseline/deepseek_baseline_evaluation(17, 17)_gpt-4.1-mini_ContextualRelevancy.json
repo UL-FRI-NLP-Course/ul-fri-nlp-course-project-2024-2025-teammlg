@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.615999937057495,
+    "Contextual Relevancy": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Contextual Relevancy": [
+                "The score is 0.60 because while the retrieval context includes relevant statements like 'Hans Zimmer is a composer known for writing soundtracks for films' and 'John Williams has composed music for many famous movies,' it also contains irrelevant information such as 'Hans Zimmer won several awards for his music' and 'Hans Zimmer was born in Germany,' which do not directly address the films they scored."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.659999132156372,
+    "Correctness (GEval)": {
+        "average": 0.36549232527778897,
+        "median": 0.36549232527778897,
+        "minimum": 0.36549232527778897,
+        "maximum": 0.36549232527778897,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output includes several fabricated or incorrect details such as Michaelangelo as Shrek in TMNT and JK Rowling starring in Bloodstone, which contradicts the expected output. It also omits many key movies like Detective Pikachu, Ready Player One, and Assassin's Creed, and misdates Sonic the Hedgehog as 2023 instead of 2020. However, some correct titles like Warcraft, Lara Croft, and Prince of Persia are mentioned."
+            ]
+        }
+    }
+}

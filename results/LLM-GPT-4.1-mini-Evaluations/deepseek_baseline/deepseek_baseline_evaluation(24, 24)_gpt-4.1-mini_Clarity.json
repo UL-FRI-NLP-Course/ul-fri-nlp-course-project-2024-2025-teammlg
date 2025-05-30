@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.359999895095825,
+    "Clarity (GEval)": {
+        "average": 0.7731058578630005,
+        "median": 0.7731058578630005,
+        "minimum": 0.7731058578630005,
+        "maximum": 0.7731058578630005,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but includes some unnecessary repetition, such as restating the film title and year in the final answer. There are no vague or confusing parts."
+            ]
+        }
+    }
+}

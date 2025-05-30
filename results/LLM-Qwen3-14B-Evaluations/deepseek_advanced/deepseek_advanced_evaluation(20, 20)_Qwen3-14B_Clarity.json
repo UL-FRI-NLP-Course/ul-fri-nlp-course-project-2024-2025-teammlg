@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 9.68035626411438,
+    "Clarity (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Clarity (GEval)": [
+                "The response is vague and lacks direct language, with unclear references to real-world elements without specifying which aspects are fictional or inspired."
+            ]
+        }
+    }
+}

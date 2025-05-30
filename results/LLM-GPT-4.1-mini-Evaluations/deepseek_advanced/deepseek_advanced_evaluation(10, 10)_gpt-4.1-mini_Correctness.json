@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.660001039505005,
+    "Correctness (GEval)": {
+        "average": 0.7030828720172261,
+        "median": 0.7030828720172261,
+        "minimum": 0.7030828720172261,
+        "maximum": 0.7030828720172261,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the film year as 2015 instead of 2013, but does not contradict the fact that Ashton Kutcher played Steve Jobs. Additional details about the director and Kutcher's performance are included but not frequent."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.5529985427856445,
+    "Correctness (GEval)": {
+        "average": 0.803732688520232,
+        "median": 0.803732688520232,
+        "minimum": 0.803732688520232,
+        "maximum": 0.803732688520232,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Correctness (GEval)": [
+                "The actual output correctly states that Challengers is not based on real events and is fictional, matching the expected output. However, it omits the detail that the film draws inspiration from real-life tennis events and personalities, which is mentioned in the expected output."
+            ]
+        }
+    }
+}

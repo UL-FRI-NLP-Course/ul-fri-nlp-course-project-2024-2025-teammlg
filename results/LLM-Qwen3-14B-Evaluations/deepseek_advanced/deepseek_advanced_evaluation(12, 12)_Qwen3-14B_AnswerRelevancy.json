@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 78.90690541267395,
+    "Answer Relevancy": {
+        "average": 0.8571428571428571,
+        "median": 0.8571428571428571,
+        "minimum": 0.8571428571428571,
+        "maximum": 0.8571428571428571,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Answer Relevancy": [
+                "The score is 0.86 because the response included some irrelevant information, such as incorrectly linking Journey to Portal and discussing gameplay mechanics instead of providing direct movie recommendations based on video-games."
+            ]
+        }
+    }
+}

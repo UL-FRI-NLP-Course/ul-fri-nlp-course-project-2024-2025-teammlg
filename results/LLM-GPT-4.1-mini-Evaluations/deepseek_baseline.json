@@ -1,0 +1,590 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 1311.5799524784088,
+    "averages": {
+        "Answer Relevancy": 0.617207709196419,
+        "Clarity (GEval)": 0.7492339886150967,
+        "Contextual Precision": 0.0,
+        "Contextual Recall": 0.0,
+        "Contextual Relevancy": 0.45,
+        "Correctness (GEval)": 0.3184503712125178,
+        "Faithfulness": 0.9496575481256332
+    },
+    "reasons": {
+        "test_case_1": {
+            "Answer Relevancy": [
+                "The score is 0.96 because the summary effectively covers the main themes of The Dark Knight, but it includes a statement about the director that is not directly related to the themes, preventing a perfect score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured thematic points. There is no unnecessary repetition, and the explanation is concise. Minor vagueness appears in the phrase 'Batman\u2019s methods may only temporarily alleviate rather than completely solve these problems,' which could be clearer."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string providing no information relevant to summarizing the main themes of The Dark Knight. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support or verify the information."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the input about summarizing the main themes of The Dark Knight."
+            ],
+            "Correctness (GEval)": [
+                "The actual output covers many themes like justice vs. chaos, moral ambiguity, and corruption similar to the expected output but omits key elements such as Harvey Dent's transformation, the nature of heroism, and the theme of fear. It also reverses the order of chaos vs. order and justice vs. vengeance, and lacks mention of Batman's self-sacrifice and the fragility of societal structures."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_2": {
+            "Answer Relevancy": [
+                "The score is 0.00 because the actual output discusses a novel by Graham Greene, which is completely unrelated to the film 'The Dark Knight' asked about in the input. None of the statements address the film's themes, resulting in zero relevancy."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but some phrases like 'choices made in extremis' may be confusing. There is no unnecessary repetition, and the description is concise and informative."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string providing no information relevant to summarizing the main themes of The Dark Knight. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support the information."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the input about summarizing the main themes of Dark Knight."
+            ],
+            "Correctness (GEval)": [
+                "The actual output describes a Cold War-era thriller by Graham Greene with CIA operatives, which directly contradicts the expected output about the 2008 film directed by Christopher Nolan focusing on themes like chaos vs. order and moral ambiguity. The facts about the story, characters, and themes do not align."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_3": {
+            "Answer Relevancy": [
+                "The score is 0.38 because the response includes outdated and irrelevant information about a 2017 Minecraft film and general digital platform access in Slovenia, which do not address the current or upcoming Minecraft Movie release or streaming dates. However, it still partially relates to the topic of Minecraft movies, preventing a lower score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points. There is no vague or confusing information, and no unnecessary repetition is present. The mention of regional availability and expected streaming timelines adds helpful detail without redundancy."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about the Minecraft Movie release dates or streaming availability. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context provided to support any of the sentences in the expected output, making it impossible to attribute the information to any node in the retrieval context."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.50 because while the retrieval context provides relevant information such as 'The Minecraft Movie is scheduled for release in 2025' and 'The movie will be available on streaming services six months after its theatrical release,' it also includes irrelevant details like 'Slovenia is a country in Central Europe' and the director's name, which do not address the specific release timing in Slovenia or streaming dates."
+            ],
+            "Correctness (GEval)": [
+                "The actual output incorrectly states a 2017 release and a 2024 prequel, contradicting the expected 2025 premiere dates in Slovenia and U.S. It also omits specific digital release dates and platforms like Apple TV and Max, which are detailed in the expected output."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_4": {
+            "Answer Relevancy": [
+                "The score is 0.17 because the response discusses the MCU timeline and themes related to the next phase but fails to directly provide the title of the next Marvel film after Captain America 3. While it offers relevant context, the absence of the specific film title limits its relevancy."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but phrases like 'is believed to be' introduce slight vagueness. There is no unnecessary repetition, and the explanation about the title and its significance is concise."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about the next Marvel film after Captain America 3. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context available to support any sentences in the expected output, making it impossible to attribute the information to any nodes."
+            ],
+            "Contextual Relevancy": [
+                "The score is 1.00 because the relevant statements 'Captain America 3 is a Marvel film.' and 'There is a next Marvel film after Captain America 3.' directly address the input question about the next Marvel film after Captain America 3, with no reasons for irrelevancy present."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by naming 'The Marvels' as the next film after 'Captain America: The First Avenger' instead of 'Doctor Strange' after 'Captain America: Civil War'. It also omits specific release dates and character details present in the expected output."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_5": {
+            "Answer Relevancy": [
+                "The score is 0.86 because the response provides relevant recommendations similar to 'Flow', but includes some less relevant meta-statements and clarifications that do not directly address the request, preventing a higher score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured recommendations. There is no unnecessary repetition, and the only minor vagueness is the brief mention of 'psychological elements' in 'Big O' without further explanation."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it provides no information relevant to recommending animated films similar to Flow. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support the information given."
+            ],
+            "Contextual Relevancy": [
+                "The score is 1.00 because the relevant statements 'Flow is a cartoon.' and 'Flow is enjoyable.' directly relate to the input about enjoying the cartoon Flow, making the retrieval context fully relevant."
+            ],
+            "Correctness (GEval)": [
+                "The actual output recommends mostly series with superhero and action themes, which contradicts the expected output's focus on dialogue-free, atmospheric animated shorts emphasizing emotion, nature, and visual storytelling. It omits key details like short films and the specific tone of 'Flow.'"
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_6": {
+            "Answer Relevancy": [
+                "The score is 0.04 because the response mostly discusses 'Mickey 7', a different movie, which is irrelevant to the user's query about 'Mickey 17'. However, the score is not zero as there is some minimal connection through the mention of a similarly named film, indicating a slight attempt to address the topic."
+            ],
+            "Clarity (GEval)": [
+                "The language is mostly clear and direct, but the description contains factual inaccuracies (e.g., 'Mickey 7' is not a 1998 Disney film starring Jim Carrey) that cause confusion. There is some repetition in emphasizing the film's emotional and humorous balance."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about 'Mickey 17' or its reception. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support the information presented."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the input about opinions on Mickey 17."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by presenting a different film title, director, lead actor, plot, and reception details, with no overlap in facts."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_7": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response fully addresses the user's request for a film recommendation with light entertainment, shooting, and humor, without including any irrelevant information."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but the description of 'Free Guy' incorrectly states Dwayne Johnson stars, which is misleading. There is minor repetition in emphasizing humor and action across all entries."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and does not provide any information relevant to recommending action-comedy films with shooting and funny one-liners. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as the retrieval context is empty and provides no supporting information for any of the listed films or descriptions."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the user's request for film recommendations with shooting and humor."
+            ],
+            "Correctness (GEval)": [
+                "Actual output includes Deadpool with correct actor but adds movies like Free Guy and Zombieland not in expected output, and omits key titles such as The Nice Guys, Kingsman, Bullet Train, Hot Fuzz, Tropic Thunder, and Shoot 'Em Up. No contradictions, but significant omissions reduce alignment."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_8": {
+            "Answer Relevancy": [
+                "The score is 0.88 because the response correctly addresses the question about the existence of a movie based on Firefly, providing relevant information. However, it includes some irrelevant details about fan-driven projects and a non-existent spin-off, which slightly detracts from the focus and prevents a higher score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but includes some vague phrases like 'alternate format' and 'special episode titled \"The Movie\"' which could confuse readers unfamiliar with the series. There is minor repetition regarding the movie adaptation and special episodes, slightly reducing conciseness."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it provides no information about a movie based on Firefly. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support or verify the information presented."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.75 because while the retrieval context includes relevant statements such as 'A movie titled Serenity was released in 2005 as a continuation of the Firefly series,' it also contains irrelevant information like 'The series has a dedicated fan base and has been praised for its writing and characters' which does not directly address the question about the movie."
+            ],
+            "Correctness (GEval)": [
+                "The actual output incorrectly states no standalone movie was made, contradicting the expected output which clearly identifies 'Serenity' (2005) as the movie continuation of Firefly. It omits key details about the movie's director, cast, plot, tone, and reception, providing instead inaccurate information about a special episode and an animated spin-off."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_9": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly addresses the request for a spooky sci-fi film with relevant suggestions, and there are no irrelevant statements present."
+            ],
+            "Clarity (GEval)": [
+                "The response mostly uses clear language but includes a confusing, untranslated Chinese segment in the fourth idea, disrupting understanding. There is minor repetition in describing twists, and the seventh idea is numbered despite the introduction stating six ideas."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and does not provide any information relevant to suggesting spooky sci-fi films. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as there is no retrieval context provided to support any part of the output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the request for a spooky sci-fi film."
+            ],
+            "Correctness (GEval)": [
+                "The actual output provides original sci-fi movie ideas rather than listing existing films with titles, years, and reasons to watch as in the expected output. There is no direct contradiction, but the formats and content focus differ significantly, with actual output omitting the recommended films and their details."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_10": {
+            "Answer Relevancy": [
+                "The score is 0.40 because the output includes irrelevant details such as the film's release year, genre, and director, which do not answer the question about the actors who played Steve Jobs and Wozniak. However, it likely contains some relevant information about the cast, justifying the partial score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but contains a minor confusing element by incorrectly naming James Gunn as Steve Wozniak, which may reduce understanding. There is no unnecessary repetition."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about the actors who played Steve Jobs or Wozniak in the movie Jobs. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context available to support any information about Steve Jobs, Ashton Kutcher, Josh Gad, or Steve Wozniak mentioned in sentences 1 and 2 of the expected output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.67 because while the relevant statements 'Ashton Kutcher played Steve Jobs in the movie Jobs.' and 'Josh Gad played Steve Wozniak in the movie Jobs.' directly answer the question, the presence of irrelevant information like 'The movie Jobs was released in 2013' lowers the overall relevancy."
+            ],
+            "Correctness (GEval)": [
+                "The actual output incorrectly states James Gunn played Steve Wozniak, contradicting the expected output which names Josh Gad. The omission of Wozniak as co-founder is acceptable."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_11": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response fully addresses the questions about Arnold Schwarzenegger's recent films and the director of the last movie without including any irrelevant information."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but includes slight redundancy in mentioning Arnold's return to the Terminator role twice. There are no vague or confusing parts, and repetition is minimal but present."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and does not provide any information about Arnold Schwarzenegger's recent films or their directors. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support any of the information presented."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the retrieval context includes relevant statements such as 'His most recent film was released in 2023' and 'The last movie he filmed was directed by James Cameron,' it also contains irrelevant information like 'Arnold Schwarzenegger was also a former governor of California,' which does not pertain to the user's query about his recent films and their directors."
+            ],
+            "Correctness (GEval)": [
+                "The actual output mentions only the 2019 film 'Terminator: Dark Fate' and omits all recent projects listed in the expected output such as 'The Man with the Bag' (2025), 'FUBAR' (2023), and 'Secret Level' (2024). There is no contradiction, but the actual output lacks the breadth of recent roles and details provided."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_12": {
+            "Answer Relevancy": [
+                "The score is 0.70 because the response includes some relevant information about movies based on video games, addressing the user's query. However, it contains several irrelevant and factually incorrect statements, such as misidentifying characters and mentioning movies not based on video games, which lowers the overall relevancy."
+            ],
+            "Clarity (GEval)": [
+                "The language is mostly clear and direct, but the inclusion of incorrect or confusing details like 'Michaelangelo as Shrek' and 'JK Rowling' in a cast list reduces understanding. There is minor repetition in describing the films as action-packed or animated, which could be more concise."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string providing no information about cool movies based on video games or their cast. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support the information presented."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the irrelevant statement about the weather ('The weather today is sunny with a high of 75 degrees') does not pertain to video game movies, the relevant statements provide clear information about movies based on video games and their stars, such as 'The first movie in the Resident Evil series stars Milla Jovovich.' This partial relevance justifies a moderately high score."
+            ],
+            "Correctness (GEval)": [
+                "The actual output includes several fabricated or incorrect details such as Michaelangelo as Shrek in TMNT and JK Rowling starring in Bloodstone, which contradicts the expected output. It also omits many key movies like Detective Pikachu, Ready Player One, and Assassin's Creed, and misdates Sonic the Hedgehog as 2023 instead of 2020. However, some correct titles like Warcraft, Lara Croft, and Prince of Persia are mentioned."
+            ],
+            "Faithfulness": [
+                "The score is 0.64 because the actual output contains multiple inaccuracies: it incorrectly casts Michaelangelo as Shrek in TMNT (2003), wrongly states Antonio Banderas voices Blue Smurf in The Smurfs (2011), falsely claims Tom Hardy stars in Overkill (2009), mistakenly includes JK Rowling as cast in Bloodstone (2023), and inaccurately associates Jake Gyllenhaal with Prince of Persia: The Sands of Time, all of which contradict the retrieval context."
+            ]
+        },
+        "test_case_13": {
+            "Answer Relevancy": [
+                "The score is 0.20 because the output fails to provide the Slovene title for the film 'Blades of Glory,' which is the main request. Instead, it contains irrelevant commentary about the translation and incorrect explanations, which do not address the input directly."
+            ],
+            "Clarity (GEval)": [
+                "The translation 'Obleka slava' is inaccurate ('oblek' means 'clothing', not 'sharpness'), causing confusion. The explanation is somewhat repetitive and unclear about the meaning."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about the Slovene title for the film Blades of Glory. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no information in the retrieval context (which is empty) to support the expected output about the Slovene title for the film Blades of Glory (2007)."
+            ],
+            "Contextual Relevancy": [
+                "The score is 1.00 because the relevant statement 'The film Blades of Glory has a Slovene title.' directly addresses the input question about the Slovene title for the film Blades of Glory, with no reasons for irrelevancy present."
+            ],
+            "Correctness (GEval)": [
+                "The actual output provides a different Slovenian title 'Obleka slava' which contradicts the expected 'Drkajva skupaj'; however, the omission of the film's release year is acceptable."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_14": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly addresses the question by providing the original movie title corresponding to the Slovene translation, with no irrelevant information included."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but includes some vague phrases like 'may vary depending on the source or context' and 'closest matches suggest,' which reduce clarity. There is no unnecessary repetition."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information related to the Slovene translation 'Preden se stegneva' or the original movie title. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context is empty and contains no information to support the sentence 'The Bucket List.' in the expected output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 1.00 because the retrieval context directly includes the Slovene translation 'Preden se stegneva', which matches the input, and clearly states that the original title is not provided, making the context fully relevant and accurate."
+            ],
+            "Correctness (GEval)": [
+                "The actual output discusses a Slovenian phrase and possible film themes, which contradicts the expected output naming 'The Bucket List.'"
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_15": {
+            "Answer Relevancy": [
+                "The score is 0.50 because the response includes relevant background information about the film, which partially addresses the question, but it lacks specific data on the box-office gross. Irrelevant details such as the director's name, reviews, release date, internal challenges, and visual effects acclaim do not contribute to answering the question, preventing a higher score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language, but the phrase 'various reports indicating potential losses exceeding $100 million' is somewhat vague. There is minor repetition regarding the film's financial loss, mentioned both in the body and final answer."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string and provides no information about the box office gross of Treasure Planet. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be linked to any node in the retrieval context, as the retrieval context is empty and provides no information about 'Treasure Planet (2002)' or its box office performance."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the box-office gross of Treasure Planet at all."
+            ],
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output and correctly states the film's financial loss, but omits the specific worldwide gross of $109.6 million and the production budget of around $140 million mentioned in the expected output."
+            ],
+            "Faithfulness": [
+                "The score is 0.90 because the actual output claims Gore Verbinski directed \"Treasure Planet,\" but the retrieval context does not mention this, indicating a minor contradiction due to missing confirmation of the director's identity."
+            ]
+        },
+        "test_case_16": {
+            "Answer Relevancy": [
+                "The score is 0.41 because the response includes several irrelevant references to films and series that are not dramedies set in Paris, such as 'Call Me By Your Name' and 'Dexter: New Blood.' However, it still partially addresses the request by mentioning some dramedy elements, which justifies the moderate score rather than a lower one."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but includes vague or confusing details, such as 'a hidden erotic video' in 'Call Me By Your Name' and inaccurate Paris settings for 'Dexter: New Blood' and 'The Pursuit of Happyness.' There is minor repetition in describing humor and drama across entries."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string providing no information about dramedies set in Paris. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support or verify the information given."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the request for a dramedy set in Paris."
+            ],
+            "Correctness (GEval)": [
+                "The actual output includes titles not set in Paris or not fitting the dramedy genre (e.g., Dexter: New Blood, The Pursuit of Happyness) and omits key expected titles like Midnight in Paris, Am\u00e9lie, and Paris, Je T'Aime. Some Paris-related details are inaccurate or misleading, such as Dexter relocating to Paris and the hidden erotic video in Call Me By Your Name."
+            ],
+            "Faithfulness": [
+                "The score is 0.78 because the actual output incorrectly states that Dexter Morgan leaves Miami for Paris, which is not supported by the retrieval context, and it also wrongly claims that 'Sex and the City 2' was released in 2005 instead of the correct year 2010."
+            ]
+        },
+        "test_case_17": {
+            "Answer Relevancy": [
+                "The score is 0.68 because the response includes relevant information about Hans Zimmer's and John Williams' filmographies, but it also contains several statements that, while related to their music, do not directly address their specific filmography or soundtrack contributions. These irrelevant details prevent a higher score, but the inclusion of some pertinent information justifies the current rating."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points. There is minor vagueness in the mention of 'Time (2006)' as it is not a widely recognized Hans Zimmer work, which could confuse readers. No unnecessary repetition is present."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string providing no information about Hans Zimmer or John Williams' filmographies. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support any of the information presented."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.60 because while the retrieval context includes relevant statements like 'Hans Zimmer is a composer known for writing soundtracks for films' and 'John Williams has composed music for many famous movies,' it also contains irrelevant information such as 'Hans Zimmer won several awards for his music' and 'Hans Zimmer was born in Germany,' which do not directly address the films they scored."
+            ],
+            "Correctness (GEval)": [
+                "Actual output contains no direct contradictions but omits many key films listed in expected output such as The Lion King, Dunkirk, Interstellar, Pirates of the Caribbean, and others for Zimmer, and omits many Williams works like Jaws, E.T., Jurassic Park, Superman, and more. It also incorrectly states Zimmer contributed to Joker, which is primarily by Ludwig G\u00f6ransson, a minor factual inaccuracy."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output perfectly aligns with the retrieval context, demonstrating complete faithfulness."
+            ]
+        },
+        "test_case_18": {
+            "Answer Relevancy": [
+                "The score is 0.87 because the response provides relevant information about popular movies and public opinions, but it includes some general statements lacking specificity and contains factual inaccuracies regarding movie appearances, which lowers its precision and relevance."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with well-structured descriptions for each movie. However, some phrases like 'hoping to reignite nostalgia' and 'although reception varies' are slightly vague. There is minor repetition in mentioning actors and film themes, but it does not significantly reduce clarity."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it provides no information about popular movies or opinions, and there are no relevant nodes ranked higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support any of the information presented."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the input about popular movies or opinions on them."
+            ],
+            "Correctness (GEval)": [
+                "The actual output completely omits all movies listed in the expected output, including 'Sinners' and its detailed performance and critical acclaim, and instead lists unrelated films with no overlap, showing a total mismatch of facts."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_19": {
+            "Answer Relevancy": [
+                "The score is 0.27 because while the output includes some relevant information about Superman movies, it is heavily diluted by numerous irrelevant details such as directors, actors, incorrect dates, and unrelated films like Wonder Woman and The Flash. These irrelevant statements reduce the overall focus and usefulness of the response, preventing a higher score."
+            ],
+            "Clarity (GEval)": [
+                "The list uses mostly clear language but includes confusing errors like attributing Batman v Superman (2006) to Alan Moore and listing Wonder Woman and The Flash, which are not primarily Superman films, causing vagueness and unnecessary information."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about Superman movies or upcoming films. Since there are no relevant nodes ranked higher than irrelevant ones, the precision is at its lowest."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as the retrieval context is empty and provides no supporting information for any part of the output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.67 because while some statements like 'There have been multiple Superman movies released from the 1950s until today' and 'A new Superman movie is scheduled to be released soon' directly address the input, other parts such as the character's creation in 1938 and the 1948 film serial fall outside the requested timeframe, reducing overall relevancy."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contains factual errors such as listing 'Batman v Superman: Dawn of Justice' as a 2006 film directed by Alan Moore, contradicting the expected output's 2016 date and correct director. It also omits many key films from the 1950s to 2000s, including 'Superman and the Mole Men' and 'Superman Returns', and notable animated films. Some details like director names and release years are incorrect or missing, reducing accuracy."
+            ],
+            "Faithfulness": [
+                "The score is 0.89 because the actual output incorrectly states that Batman v Superman: Dawn of Justice was released in 2006 and directed by Alan Moore, which contradicts the retrieval context and known facts about the film's release date and director."
+            ]
+        },
+        "test_case_20": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the response directly and accurately answers the question about Steven Spielberg's age without including any irrelevant information."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with no vague or confusing parts and no unnecessary repetition, but the age calculation could be considered slightly redundant given the birth date."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and does not provide any information about Steven Spielberg's age or birthdate. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no information in the retrieval context about Steven Spielberg's birth date or age, so the expected output cannot be supported by any node in the context."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons provided for irrelevancy and no relevant statements in the retrieval context related to Steven Spielberg's age."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by providing a different birth date (December 4 vs. December 18) and age (77 in 2023 vs. 78 in May 2025)."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_21": {
+            "Answer Relevancy": [
+                "The score is 0.89 because the response mostly addresses whether the film 'Challengers' is based on real events, providing relevant information. However, it includes a statement about a different show, which detracts slightly from the focus and prevents a perfect score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points. There is no vague or confusing content, and no unnecessary repetition is present. The explanation about the film 'Challengers' versus the TV series 'The Challenge' is concise and informative."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about whether the film Challengers is based on real events. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context available to support any part of the expected output, making it impossible to verify the statements about the film's basis or inspiration."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.67 because while the retrieval context provides details about the film 'Challengers,' such as it being an upcoming romantic sports comedy-drama directed by Luca Guadagnino and its plot involving a tennis player, it lacks any information confirming if the film is based on real events. Additionally, reasons for irrelevancy note that production companies and release date do not address the real events aspect, supporting the moderate relevancy score."
+            ],
+            "Correctness (GEval)": [
+                "The actual output correctly states that 'Challengers' is fictional and not based on a true story, aligning with the expected output's denial of a true story basis. However, it omits the detail that the film draws inspiration from real-life tennis events and personalities, which is a key element in the expected output."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_22": {
+            "Answer Relevancy": [
+                "The score is 0.89 because the response addresses the question about gore and blood in the film but includes subjective comments about personal tolerance and perception, which are somewhat irrelevant. However, the core information about the film's gore content is still present, justifying the relatively high score."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language with well-structured points, but the concluding sentence is somewhat vague and the mention of 'personal tolerance' introduces subjective ambiguity. There is no unnecessary repetition."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and does not provide any information about the film Sinners or its content related to gore and blood. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context available to support any of the sentences in the expected output about 'Sinners' and its content."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.80 because while the retrieval context provides relevant information about the film Sinners, including that it contains scenes of violence and intense emotional moments, it does not specifically address the presence of gore and blood, as noted by the irrelevancy of the statement about mixed reviews."
+            ],
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output but fails to confirm the presence of significant gore and blood as stated in the expected output; it instead discusses factors influencing gore without specifying the film's content."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_23": {
+            "Answer Relevancy": [
+                "The score is 0.80 because the response provides relevant information about the film Until Dawn, but includes details about the director's name and the production being independent, which do not directly address the question of the film's originality. These irrelevant details prevent a higher score, though the core information remains mostly pertinent."
+            ],
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but includes some redundancy, such as repeating that the film is both based on and distinct from the Spanish original. There are no vague or confusing parts, but the explanation could be more concise."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and provides no information about the film Until Dawn or its originality. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because there is no retrieval context provided to support any sentences in the expected output, making it impossible to verify the information about the 2025 film Until Dawn and its relation to the 2015 PlayStation video game."
+            ],
+            "Contextual Relevancy": [
+                "The score is 1.00 because the relevant statements clearly indicate that 'Until Dawn' is a video game, not a film, making the question of it being an original film inapplicable. This directly addresses the input, ensuring full contextual relevancy."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by stating the film is based on a Spanish film rather than a PlayStation video game, which is a significant factual discrepancy."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, indicating perfect alignment and faithfulness."
+            ]
+        },
+        "test_case_24": {
+            "Answer Relevancy": [
+                "The score is 0.33 because the output includes some relevant information about Ben Affleck's films, but it mainly focuses on the style, content, and reception of a film rather than directly naming his most recent film. Additionally, it references earlier films instead of the latest one, which reduces its relevancy."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but includes some unnecessary repetition, such as restating the film title and year in the final answer. There are no vague or confusing parts."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is an empty string providing no information about Ben Affleck or his most recent film. Since there are no relevant nodes ranked higher than irrelevant ones, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be supported by any node in the retrieval context, as the retrieval context is empty and contains no information about Ben Affleck's film, The Accountant 2, its premiere date, director, or co-stars."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons provided for irrelevancy and no relevant statements in the retrieval context related to Ben Affleck's most recent film, indicating no connection to the input question."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by naming 'The Batman' (2022) as Affleck's most recent film instead of 'The Accountant 2' (2025). While some omitted details are acceptable, the key fact about the most recent film is incorrect."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions; the actual output fully aligns with the retrieval context, demonstrating perfect faithfulness."
+            ]
+        },
+        "test_case_25": {
+            "Answer Relevancy": [
+                "The score is 0.21 because while the output correctly identifies some Marvel Studios films, it includes many inaccurate and irrelevant titles such as non-MCU films, incorrect phases, and non-Marvel productions, which significantly reduces relevancy. However, the presence of some correct information prevents the score from being lower."
+            ],
+            "Clarity (GEval)": [
+                "The list contains many inaccuracies and confusing entries, such as non-MCU films like 'Aquaman', 'Shazam!', 'Barbie', and 'Blade Runner 2049', and misclassified titles like 'The Wolverine' and 'Wolverine: Logan'. There is unnecessary repetition with 'Iron Man' listed twice at the start, and vague grouping that mixes TV shows and unrelated films, reducing clarity."
+            ],
+            "Contextual Precision": [
+                "The score is 0.00 because the first node in retrieval contexts is irrelevant, as it is empty and does not provide any information about Marvel films. Since there are no relevant nodes ranked higher, the score cannot be higher."
+            ],
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node in the retrieval context, as no retrieval context was provided to support any part of the output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no reasons for irrelevancy or relevant statements provided, indicating the retrieval context does not address the question about Marvel films at all."
+            ],
+            "Correctness (GEval)": [
+                "The actual output contains numerous factual inaccuracies and non-MCU films incorrectly listed under MCU phases, such as 'The Wolverine,' 'Aquaman,' 'Shazam!,' 'Barbie,' 'Blade Runner 2049,' and 'Futurama Bender's Big Score.' It also misorders films and omits key MCU titles like 'Ant-Man and the Wasp' and 'Captain Marvel.' The expected output provides a clear, accurate phase-wise MCU list and correct non-MCU films, which the actual output fails to match."
+            ],
+            "Faithfulness": [
+                "The score is 0.53 because the actual output incorrectly assigns many films and series to MCU phases they do not belong to, such as including non-MCU films like The Wolverine (2013), Spider-Man: Into the Spider-Verse, Aquaman, Shazam!, and Barbie in MCU phases, misclassifying Phase Two and Three films like Iron Man 3, Thor: The Dark World, Captain America: The Winter Soldier, and Avengers: Age of Ultron as Phase One, and including non-MCU titles like Deadpool, X-Men films, Blade Runner 2049, and Futurama in Phase Three. These significant inaccuracies reduce faithfulness to the retrieval context."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 17.89299964904785,
+    "Contextual Recall": {
+        "average": 0.47619047619047616,
+        "median": 0.47619047619047616,
+        "minimum": 0.47619047619047616,
+        "maximum": 0.47619047619047616,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Recall": [
+                "The score is 0.48 because the expected output's details about 'The Man with the Bag' (2025), including Schwarzenegger's role as Santa Claus, co-stars, director Adam Shankman, and plot, are well supported by node 6 in the retrieval context. However, significant portions of the output, such as information about 'FUBAR' (2023), 'Secret Level' (2024), and Schwarzenegger's appearance in New York City, are not found in the retrieval context, lowering the overall recall score."
+            ]
+        }
+    }
+}

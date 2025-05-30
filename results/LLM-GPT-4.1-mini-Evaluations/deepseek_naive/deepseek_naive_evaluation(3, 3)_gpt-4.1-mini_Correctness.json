@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.683000326156616,
+    "Correctness (GEval)": {
+        "average": 0.2731058572770513,
+        "median": 0.2731058572770513,
+        "minimum": 0.2731058572770513,
+        "maximum": 0.2731058572770513,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output provides speculative and vague information about release dates and platforms, while the expected output gives specific confirmed dates and platforms for theatrical release, digital purchase, and streaming on Max. There is no direct contradiction, but the actual output omits many key details and specifics present in the expected output."
+            ]
+        }
+    }
+}

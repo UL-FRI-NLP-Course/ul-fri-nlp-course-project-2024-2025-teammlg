@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 6.4170002937316895,
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Contextual Recall": [
+                "The score is 1.00 because the sentence 'The Bucket List.' in the expected output directly matches the 'original_title' in node 2 of the retrieval context, showing perfect alignment and relevance."
+            ]
+        }
+    }
+}

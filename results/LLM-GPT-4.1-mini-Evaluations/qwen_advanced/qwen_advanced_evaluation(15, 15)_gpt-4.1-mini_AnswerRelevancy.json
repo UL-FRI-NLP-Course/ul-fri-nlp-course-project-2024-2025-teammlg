@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 7.699999809265137,
+    "Answer Relevancy": {
+        "average": 0.5714285714285714,
+        "median": 0.5714285714285714,
+        "minimum": 0.5714285714285714,
+        "maximum": 0.5714285714285714,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Answer Relevancy": [
+                "The score is 0.57 because the response includes some relevant information about the film but fails to directly address the box office gross, instead providing background, source material, and critical reception details that do not answer the specific question."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 22.18499994277954,
+    "Answer Relevancy": {
+        "average": 0.6785714285714286,
+        "median": 0.6785714285714286,
+        "minimum": 0.6785714285714286,
+        "maximum": 0.6785714285714286,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Answer Relevancy": [
+                "The score is 0.68 because the response includes relevant information about Hans Zimmer's and John Williams' filmographies, but it also contains several statements that, while related to their music, do not directly address their specific filmography or soundtrack contributions. These irrelevant details prevent a higher score, but the inclusion of some pertinent information justifies the current rating."
+            ]
+        }
+    }
+}

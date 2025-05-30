@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.1240005493164062,
+    "Correctness (GEval)": {
+        "average": 0.026894141551050292,
+        "median": 0.026894141551050292,
+        "minimum": 0.026894141551050292,
+        "maximum": 0.026894141551050292,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Correctness (GEval)": [
+                "The actual output provides an incorrect original title unrelated to the expected output 'The Bucket List', showing a clear factual contradiction."
+            ]
+        }
+    }
+}

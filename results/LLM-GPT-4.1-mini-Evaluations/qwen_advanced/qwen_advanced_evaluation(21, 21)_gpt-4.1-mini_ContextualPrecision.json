@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.6620001792907715,
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Precision": [
+                "The score is 1.00 because the first node in retrieval contexts is relevant and provides detailed information about the film 'Challengers', explaining that it is not based on a true story but inspired by real-life tennis events. There are no irrelevant nodes ranked higher, ensuring perfect contextual precision. Great job on ranking the relevant information at the top!"
+            ]
+        }
+    }
+}

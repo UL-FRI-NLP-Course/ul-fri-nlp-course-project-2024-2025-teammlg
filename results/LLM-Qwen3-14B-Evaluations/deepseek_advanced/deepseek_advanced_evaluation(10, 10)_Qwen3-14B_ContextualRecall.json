@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 22.61450457572937,
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Contextual Recall": [
+                "The score is 1.00 because the retrieval context directly mentions Ashton Kutcher playing Steve Jobs, aligning perfectly with the expected output."
+            ]
+        }
+    }
+}

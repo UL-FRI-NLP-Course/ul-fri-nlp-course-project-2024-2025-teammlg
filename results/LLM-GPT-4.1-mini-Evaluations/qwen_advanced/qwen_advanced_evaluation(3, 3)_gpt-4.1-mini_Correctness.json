@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.9609997272491455,
+    "Correctness (GEval)": {
+        "average": 0.31080627752591505,
+        "median": 0.31080627752591505,
+        "minimum": 0.31080627752591505,
+        "maximum": 0.31080627752591505,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by giving a different release date (March 31 vs. April 2) and omits the U.S. release date and source confirmation."
+            ]
+        }
+    }
+}

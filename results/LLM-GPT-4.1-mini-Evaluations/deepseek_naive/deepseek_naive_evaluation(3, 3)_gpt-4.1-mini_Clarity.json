@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.695708513259888,
+    "Clarity (GEval)": {
+        "average": 0.8017986210126589,
+        "median": 0.8017986210126589,
+        "minimum": 0.8017986210126589,
+        "maximum": 0.8017986210126589,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language but includes some speculative phrases like 'plausible' and 'potential options' that reduce certainty. There is minor repetition regarding distribution strategies, but overall the information is concise and understandable."
+            ]
+        }
+    }
+}

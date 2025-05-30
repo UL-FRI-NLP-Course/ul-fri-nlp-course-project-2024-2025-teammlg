@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.26300048828125,
+    "Correctness (GEval)": {
+        "average": 0.3320821307318384,
+        "median": 0.3320821307318384,
+        "minimum": 0.3320821307318384,
+        "maximum": 0.3320821307318384,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output lists different movies and series than the expected output, omitting key titles like Sonic the Hedgehog, Detective Pikachu, and Mortal Kombat, and includes incorrect casting such as Melissa McCarthy as Jill Valentine. It also includes non-movie entries like Cyberpunk: Edgerunners and Metroid Prime Hunters, which are not in the expected list."
+            ]
+        }
+    }
+}

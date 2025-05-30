@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 38.797600746154785,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context discusses 'Sinners' and contains no information about the film 'Challengers' or its basis in reality, making both sentences in the expected output unsupported. The retrieval context has 1 unrelated node, leading to a complete lack of alignment with the expected answer about 'Challengers.'"
+            ]
+        }
+    }
+}

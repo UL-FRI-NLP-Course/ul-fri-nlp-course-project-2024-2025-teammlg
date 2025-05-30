@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 37.94628047943115,
+    "Answer Relevancy": {
+        "average": 0.75,
+        "median": 0.75,
+        "minimum": 0.75,
+        "maximum": 0.75,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Answer Relevancy": [
+                "The score is 0.75 because the response included irrelevant information about the director's name, which does not address whether 'Until Dawn' is an original film or an adaptation."
+            ]
+        }
+    }
+}

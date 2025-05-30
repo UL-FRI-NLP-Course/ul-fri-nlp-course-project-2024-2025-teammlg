@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 12.818147420883179,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output discusses the fictional nature of 'Challengers' and its creative elements, while the expected output provides factual information about Steven Spielberg's birthdate and age. The actual output does not contradict the expected output but entirely deviates from it, failing to address the expected content."
+            ]
+        }
+    }
+}

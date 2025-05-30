@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 126.51568341255188,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context is empty, containing 0 nodes, which means none of the sentences in the expected output can be attributed to any node in the retrieval context. This lack of relevant information leads to the lowest possible contextual recall score of 0.00, as there are no supporting references available in the retrieval context to align with the expected output sentences, which are all about Superman movies and their details like release years, directors, and notable aspects of each film or series, including both live-action and animated versions, as well as upcoming projects like the 2025 reboot and the ongoing animated series 'My Adventures with Superman'."
+            ]
+        }
+    }
+}

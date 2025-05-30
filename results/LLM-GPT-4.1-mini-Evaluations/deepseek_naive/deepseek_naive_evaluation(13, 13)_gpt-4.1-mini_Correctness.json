@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3520007133483887,
+    "Correctness (GEval)": {
+        "average": 0.19525741320396142,
+        "median": 0.19525741320396142,
+        "minimum": 0.19525741320396142,
+        "maximum": 0.19525741320396142,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Correctness (GEval)": [
+                "The actual output provides a different Slovenian title 'Obglej\u0161i Slava' which contradicts the expected title 'Drkajva skupaj'. The year and film format are omitted but acceptable."
+            ]
+        }
+    }
+}

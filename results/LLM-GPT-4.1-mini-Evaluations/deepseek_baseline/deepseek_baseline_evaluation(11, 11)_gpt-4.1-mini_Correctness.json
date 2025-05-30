@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.329998731613159,
+    "Correctness (GEval)": {
+        "average": 0.25621765008857983,
+        "median": 0.25621765008857983,
+        "minimum": 0.25621765008857983,
+        "maximum": 0.25621765008857983,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Correctness (GEval)": [
+                "The actual output mentions only the 2019 film 'Terminator: Dark Fate' and omits all recent projects listed in the expected output such as 'The Man with the Bag' (2025), 'FUBAR' (2023), and 'Secret Level' (2024). There is no contradiction, but the actual output lacks the breadth of recent roles and details provided."
+            ]
+        }
+    }
+}

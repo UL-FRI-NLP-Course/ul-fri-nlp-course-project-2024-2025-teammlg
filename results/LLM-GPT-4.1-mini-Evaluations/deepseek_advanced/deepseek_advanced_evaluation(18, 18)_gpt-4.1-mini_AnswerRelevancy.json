@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 27.992000341415405,
+    "Answer Relevancy": {
+        "average": 0.4722222222222222,
+        "median": 0.4722222222222222,
+        "minimum": 0.4722222222222222,
+        "maximum": 0.4722222222222222,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Answer Relevancy": [
+                "The score is 0.47 because the response includes some relevant Superman movies from the 1950s onward, but it also contains many irrelevant details such as films before the 1950s, unrelated characters, plot summaries, and non-movie adaptations. These irrelevant elements dilute the focus on the requested list, preventing a higher score, yet the inclusion of actual Superman movies maintains a moderate level of relevance."
+            ]
+        }
+    }
+}

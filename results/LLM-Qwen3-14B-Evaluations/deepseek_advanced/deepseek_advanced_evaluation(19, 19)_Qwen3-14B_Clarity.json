@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 9.522753953933716,
+    "Clarity (GEval)": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but contains unnecessary repetition of Steven Spielberg's age, stating it twice with slight variations."
+            ]
+        }
+    }
+}

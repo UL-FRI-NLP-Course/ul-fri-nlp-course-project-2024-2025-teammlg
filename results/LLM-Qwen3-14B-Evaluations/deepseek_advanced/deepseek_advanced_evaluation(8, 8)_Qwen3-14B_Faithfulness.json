@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 35.193790435791016,
+    "Faithfulness": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions, indicating the actual output perfectly aligns with the retrieval context."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.46999979019165,
+    "Correctness (GEval)": {
+        "average": 0.8939913344145453,
+        "median": 0.8939913344145453,
+        "minimum": 0.8939913344145453,
+        "maximum": 0.8939913344145453,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "The actual output aligns well with the expected themes, covering morality vs. chaos, justice and corruption, heroism and sacrifice, psychology of crime, trust and betrayal, and media influence. It omits some details like the specific framing of chaos vs. order and fear as a weapon but does not contradict any facts."
+            ]
+        }
+    }
+}

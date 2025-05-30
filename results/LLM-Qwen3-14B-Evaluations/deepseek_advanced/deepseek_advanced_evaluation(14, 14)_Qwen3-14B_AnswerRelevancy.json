@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 42.90277886390686,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the answer correctly identified the original movie title as 'Before Sunrise' without any irrelevant statements. The response was accurate and directly addressed the query about the Slovene translation of the movie title, providing the correct English title without unnecessary information or tangents. The answer was concise and to the point, matching the expected response for the given input query, which is why the relevancy score is at the maximum of 1.00."
+            ]
+        }
+    }
+}

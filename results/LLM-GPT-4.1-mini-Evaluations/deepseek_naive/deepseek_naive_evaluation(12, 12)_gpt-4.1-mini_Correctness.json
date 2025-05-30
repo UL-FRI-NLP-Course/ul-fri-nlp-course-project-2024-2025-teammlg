@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.381999969482422,
+    "Correctness (GEval)": {
+        "average": 0.4043740264069968,
+        "median": 0.4043740264069968,
+        "minimum": 0.4043740264069968,
+        "maximum": 0.4043740264069968,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output includes some correct titles like Mortal Kombat (2021) and Lara Croft: Tomb Raider (2001) but omits many key movies from the expected output such as Sonic the Hedgehog (2020), Detective Pikachu (2019), and Ready Player One (2018). It also incorrectly lists Legend of Zelda: Breath of the Wild as a film, which contradicts the expected output that does not mention it as a movie. The actual output lacks detailed cast and reasons to watch, reducing completeness."
+            ]
+        }
+    }
+}

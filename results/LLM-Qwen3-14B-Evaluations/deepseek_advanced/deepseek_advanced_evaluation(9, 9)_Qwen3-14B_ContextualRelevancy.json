@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 16.143069744110107,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because there are no relevant statements in the retrieval context to address the request for spooky sci-fi film ideas."
+            ]
+        }
+    }
+}

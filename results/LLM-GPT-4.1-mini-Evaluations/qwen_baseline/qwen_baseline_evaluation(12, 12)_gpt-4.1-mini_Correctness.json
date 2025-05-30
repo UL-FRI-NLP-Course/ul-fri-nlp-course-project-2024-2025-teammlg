@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.887737512588501,
+    "Correctness (GEval)": {
+        "average": 0.3148047192393274,
+        "median": 0.3148047192393274,
+        "minimum": 0.3148047192393274,
+        "maximum": 0.3148047192393274,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output provides accurate information about the movie Uncharted and its lead actor but omits the extensive list of movies, cast details, and reasons to watch found in the expected output. There are no contradictions, but the coverage is minimal compared to the detailed expected response."
+            ]
+        }
+    }
+}

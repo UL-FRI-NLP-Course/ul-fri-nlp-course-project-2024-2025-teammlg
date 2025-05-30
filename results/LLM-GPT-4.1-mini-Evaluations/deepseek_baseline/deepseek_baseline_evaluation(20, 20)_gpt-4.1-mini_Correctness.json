@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.679998397827148,
+    "Correctness (GEval)": {
+        "average": 0.29112499598244324,
+        "median": 0.29112499598244324,
+        "minimum": 0.29112499598244324,
+        "maximum": 0.29112499598244324,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by providing a different birth date (December 4 vs. December 18) and age (77 in 2023 vs. 78 in May 2025)."
+            ]
+        }
+    }
+}

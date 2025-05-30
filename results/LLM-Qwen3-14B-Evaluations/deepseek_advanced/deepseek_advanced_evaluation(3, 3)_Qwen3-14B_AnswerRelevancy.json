@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 35.87984228134155,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the answer directly addresses the question about the Minecraft movie release date in Slovenia, providing a clear and relevant response without any extraneous information."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6830010414123535,
+    "Correctness (GEval)": {
+        "average": 0.18175744828610094,
+        "median": 0.18175744828610094,
+        "minimum": 0.18175744828610094,
+        "maximum": 0.18175744828610094,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by misidentifying the director as Vincent Monnet and the lead actor as Lambert Wilson, while the expected output names Bong Joon-ho and Robert Pattinson. The actual output also presents a different plot and reception, lacking any mention of critical scores or audience metrics found in the expected output."
+            ]
+        }
+    }
+}

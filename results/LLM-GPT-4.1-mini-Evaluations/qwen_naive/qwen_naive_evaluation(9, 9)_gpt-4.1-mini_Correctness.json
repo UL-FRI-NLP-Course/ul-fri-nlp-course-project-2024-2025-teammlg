@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6010007858276367,
+    "Correctness (GEval)": {
+        "average": 0.6037160585401462,
+        "median": 0.6037160585401462,
+        "minimum": 0.6037160585401462,
+        "maximum": 0.6037160585401462,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Correctness (GEval)": [
+                "The actual output suggests 'The Thing' with accurate details matching the expected output's 'Body Horror & Paranoia' section, but it omits the broader list of multiple films and categories present in the expected output."
+            ]
+        }
+    }
+}

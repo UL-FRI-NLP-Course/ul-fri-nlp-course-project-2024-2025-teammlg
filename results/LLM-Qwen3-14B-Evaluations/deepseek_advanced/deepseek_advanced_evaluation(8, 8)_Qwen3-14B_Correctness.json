@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 15.429571866989136,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by stating there is no confirmed Firefly movie, while the expected output confirms 'Serenity (2005)' as the movie. Actual output omits key details about Serenity's existence, director, cast, plot, and reception mentioned in the expected output, which are significant and not just omitted details but factual inaccuracies that are too frequent to be acceptable"
+            ]
+        }
+    }
+}

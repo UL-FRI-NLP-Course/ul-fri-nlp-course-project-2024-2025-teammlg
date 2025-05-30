@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.6319994926452637,
+    "Correctness (GEval)": {
+        "average": 0.18807970732843032,
+        "median": 0.18807970732843032,
+        "minimum": 0.18807970732843032,
+        "maximum": 0.18807970732843032,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Correctness (GEval)": [
+                "The actual output provides a Slovene title 'Koplji zahvala' that contradicts the expected title 'Drkajva skupaj'; the year (2007) is omitted but acceptable."
+            ]
+        }
+    }
+}

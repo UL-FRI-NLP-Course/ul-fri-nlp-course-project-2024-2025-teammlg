@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 39.070664405822754,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant to the input question about summarizing the main themes of The Dark Knight. The node provides plot and production details but lacks specific thematic analysis, as noted in its reason: 'it does not explicitly mention the main themes... and focuses on narrative events rather than thematic analysis.'"
+            ]
+        }
+    }
+}

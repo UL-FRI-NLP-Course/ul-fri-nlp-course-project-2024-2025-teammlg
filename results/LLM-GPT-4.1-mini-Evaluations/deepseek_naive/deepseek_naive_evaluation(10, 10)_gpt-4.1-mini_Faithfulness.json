@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 13.534000635147095,
+    "Faithfulness": {
+        "average": 0.3333333333333333,
+        "median": 0.3333333333333333,
+        "minimum": 0.3333333333333333,
+        "maximum": 0.3333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Faithfulness": [
+                "The score is 0.33 because the actual output incorrectly names Joe Berlinger as the director instead of Joshua Michael Stern, and wrongly states that J.J. Field portrays Steve Wozniak instead of Josh Gad, showing significant discrepancies with the retrieval context."
+            ]
+        }
+    }
+}

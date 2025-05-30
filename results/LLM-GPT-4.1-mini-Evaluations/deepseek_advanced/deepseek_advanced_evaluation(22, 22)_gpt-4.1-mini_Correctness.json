@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.316000461578369,
+    "Correctness (GEval)": {
+        "average": 0.11539364302445865,
+        "median": 0.11539364302445865,
+        "minimum": 0.11539364302445865,
+        "maximum": 0.11539364302445865,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Correctness (GEval)": [
+                "The actual output discusses 'Until Dawn' as a video game adaptation, which contradicts the expected output about the film 'Sinners' and its graphic content; the topics and facts do not align."
+            ]
+        }
+    }
+}

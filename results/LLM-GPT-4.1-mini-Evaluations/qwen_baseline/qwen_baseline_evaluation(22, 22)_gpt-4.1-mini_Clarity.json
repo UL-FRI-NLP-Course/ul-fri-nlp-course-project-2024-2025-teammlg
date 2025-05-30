@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.436892509460449,
+    "Clarity (GEval)": {
+        "average": 0.6880797079542409,
+        "median": 0.6880797079542409,
+        "minimum": 0.6880797079542409,
+        "maximum": 0.6880797079542409,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but includes unnecessary repetition with phrases like 'provided data' and 'given information,' which slightly reduces conciseness."
+            ]
+        }
+    }
+}

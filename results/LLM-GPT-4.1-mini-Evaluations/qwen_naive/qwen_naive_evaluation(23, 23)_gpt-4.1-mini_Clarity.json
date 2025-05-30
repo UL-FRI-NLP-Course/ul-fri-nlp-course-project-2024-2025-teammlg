@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.8389999866485596,
+    "Clarity (GEval)": {
+        "average": 0.5575017509028952,
+        "median": 0.5575017509028952,
+        "minimum": 0.5575017509028952,
+        "maximum": 0.5575017509028952,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear language but contains confusing information by calling Until Dawn a film and mentioning it was adapted into a movie in 2019, which is inaccurate. There is slight repetition in explaining the origin of the story."
+            ]
+        }
+    }
+}

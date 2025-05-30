@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 165.93341994285583,
+    "Faithfulness": {
+        "average": 0.3333333333333333,
+        "median": 0.3333333333333333,
+        "minimum": 0.3333333333333333,
+        "maximum": 0.3333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Faithfulness": [
+                "The score is 0.33 because the actual output incorrectly references a film titled 'The Accountant\u00b2' released in 2025, which is not mentioned in the retrieval context. The context only mentions 'The Town' from 2010 and does not provide any information about a 2025 release."
+            ]
+        }
+    }
+}

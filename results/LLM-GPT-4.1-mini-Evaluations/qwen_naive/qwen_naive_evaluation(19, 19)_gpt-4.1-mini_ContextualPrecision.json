@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.824999332427979,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Contextual Precision": [
+                "The score is 0.00 because all nodes in the retrieval contexts are irrelevant to the input. For example, the first node discusses a 2005 documentary about 1950s science fiction movies, which does not pertain to Superman films, and it is ranked first. Similarly, the third node, ranked third, mentions movies like The Matrix Reloaded and actors unrelated to Superman movies. Since no relevant nodes are present or ranked higher than irrelevant ones, the score cannot be higher."
+            ]
+        }
+    }
+}

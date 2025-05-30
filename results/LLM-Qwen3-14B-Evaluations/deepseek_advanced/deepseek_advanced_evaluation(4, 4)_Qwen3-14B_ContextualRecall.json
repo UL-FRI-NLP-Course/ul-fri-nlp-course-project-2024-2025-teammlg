@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 22.667593479156494,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context is empty, containing no nodes to attribute the sentences to, resulting in no supportive reasons being identified. This lack of relevant information in the retrieval context prevents any alignment with the expected output sentences, leading to a complete absence of contextual recall."
+            ]
+        }
+    }
+}

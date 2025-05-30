@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 13.816038846969604,
+    "Clarity (GEval)": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_12": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, but has some vague mentions like 'Potential future animated film' and 'Mentioned potential for Elden Ring or Dark Souls' which lack specificity. There is also some repetition in listing game titles without additional context."
+            ]
+        }
+    }
+}

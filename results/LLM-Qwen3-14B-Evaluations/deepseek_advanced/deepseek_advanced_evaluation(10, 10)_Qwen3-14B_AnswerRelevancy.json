@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 26.355677127838135,
+    "Answer Relevancy": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Answer Relevancy": [
+                "The score is 1.00 because the answer correctly identifies the actor who played Steve Jobs in the movie 'Jobs' without any irrelevant information."
+            ]
+        }
+    }
+}

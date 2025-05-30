@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 35.170984745025635,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant to the input question about the originality of 'Until Dawn.' The node's reason mentions unrelated details about gore and R rating, which do not address whether the film is original, leading to a failure in contextual precision as no relevant nodes are ranked higher than irrelevant ones."
+            ]
+        }
+    }
+}

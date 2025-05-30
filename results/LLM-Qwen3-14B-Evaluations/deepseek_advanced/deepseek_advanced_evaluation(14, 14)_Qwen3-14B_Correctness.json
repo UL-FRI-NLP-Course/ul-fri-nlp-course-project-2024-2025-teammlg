@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 11.260649919509888,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_14": {
+            "Correctness (GEval)": [
+                "The actual output provides alternative English translations of the movie title, while the expected output is a specific title 'The Bucket List,' indicating a direct translation rather than alternatives. The actual output does not match the expected output."
+            ]
+        }
+    }
+}

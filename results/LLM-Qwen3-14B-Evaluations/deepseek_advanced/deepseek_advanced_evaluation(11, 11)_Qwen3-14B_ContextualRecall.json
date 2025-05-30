@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 138.30555605888367,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_11": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the information in the expected output is supported by the retrieval context, as no nodes in the retrieval context mention Arnold Schwarzenegger's recent film projects, roles, co-stars, directors, plot details, or behind-the-scenes information related to The Man with the Bag (2025), FUBAR (2023), or Secret Level (2024)."
+            ]
+        }
+    }
+}

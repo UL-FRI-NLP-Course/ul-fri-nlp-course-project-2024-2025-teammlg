@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.425001382827759,
+    "Clarity (GEval)": {
+        "average": 0.8075858172708857,
+        "median": 0.8075858172708857,
+        "minimum": 0.8075858172708857,
+        "maximum": 0.8075858172708857,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with relevant film recommendations. However, the phrase 'I've already seen that one' is vague and the assistant's clarification could be more direct. There is minor repetition in explaining the genre and humor elements."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.283000230789185,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_19": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because all reasons indicate the retrieval context discusses unrelated films and actors, with no relevant information about Superman movies from the 1950s to today."
+            ]
+        }
+    }
+}

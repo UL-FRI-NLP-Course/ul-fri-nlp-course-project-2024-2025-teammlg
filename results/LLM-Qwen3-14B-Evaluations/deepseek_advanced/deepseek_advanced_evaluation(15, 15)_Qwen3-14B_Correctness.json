@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 15.569767951965332,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the release year as 2011 and claims it is a live-action/CGI film, while the expected output identifies it as an animated sci-fi adventure film released in 2002. Additionally, the actual output provides conflicting box office figures and inflation-adjusted numbers not mentioned in the expected output, which contradicts the expected information about its box office performance and budget"
+            ]
+        }
+    }
+}

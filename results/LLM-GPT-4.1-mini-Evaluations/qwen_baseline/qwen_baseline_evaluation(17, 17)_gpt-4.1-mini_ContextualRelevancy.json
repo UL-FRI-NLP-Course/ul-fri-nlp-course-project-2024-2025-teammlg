@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.310999631881714,
+    "Contextual Relevancy": {
+        "average": 0.6666666666666666,
+        "median": 0.6666666666666666,
+        "minimum": 0.6666666666666666,
+        "maximum": 0.6666666666666666,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Contextual Relevancy": [
+                "The score is 0.67 because while the retrieval context includes relevant statements such as 'Hans Zimmer composed the soundtrack for The Lion King, Gladiator, and Inception' and 'John Williams composed music for Star Wars, Jurassic Park, and Harry Potter,' it also contains irrelevant information like awards and biographical details that do not directly answer the question about their filmographies."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 45.36647582054138,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_3": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context only contains a release date of '2025-03-31' for the Minecraft Movie, which does not align with the specific dates (2 April 2025 for Slovenia, 4 April 2025 for the U.S.) or the mention of Cineplexx Slovenia confirming the premiere, as these details are not present in the retrieval context node(s)."
+            ]
+        }
+    }
+}

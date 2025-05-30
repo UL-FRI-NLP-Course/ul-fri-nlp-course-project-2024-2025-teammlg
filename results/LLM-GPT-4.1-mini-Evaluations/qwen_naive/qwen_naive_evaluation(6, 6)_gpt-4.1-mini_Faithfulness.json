@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 22.089001655578613,
+    "Faithfulness": {
+        "average": 0.7142857142857143,
+        "median": 0.7142857142857143,
+        "minimum": 0.7142857142857143,
+        "maximum": 0.7142857142857143,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Faithfulness": [
+                "The score is 0.71 because the actual output incorrectly identifies 'Mickey 17' as a 2013 French comedy-drama directed by Vincent Monnet, whereas the retrieval context states it is a 2025 science fiction black comedy directed by Bong Joon Ho. Additionally, the actual output mentions Lambert Wilson and a plot about a man named Michel accused of murder, which contradicts the retrieval context that features Robert Pattinson as Mickey Barnes in a science fiction film."
+            ]
+        }
+    }
+}

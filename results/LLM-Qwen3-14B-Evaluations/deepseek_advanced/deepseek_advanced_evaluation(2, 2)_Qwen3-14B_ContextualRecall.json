@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 24.09878706932068,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Contextual Recall": [
+                "The score is 0.00 because none of the sentences in the expected output can be attributed to any node(s) in retrieval context, indicating a complete lack of alignment between the retrieval context and the expected output content, possibly due to an absence of relevant information in the retrieval context or a mismatch in the topic entirely. The retrieval context does not provide any evidence or references to the themes, characters, or plot elements discussed in the expected output about The Dark Knight (2008)."
+            ]
+        }
+    }
+}

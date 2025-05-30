@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 54.72299933433533,
+    "Contextual Relevancy": {
+        "average": 0.022222222222222223,
+        "median": 0.022222222222222223,
+        "minimum": 0.022222222222222223,
+        "maximum": 0.022222222222222223,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Contextual Relevancy": [
+                "The score is 0.02 because the retrieval context mostly lists actors playing characters other than Steve Jobs, as indicated by numerous statements like 'Josh Gad played the character Steve Wozniak' and 'Lukas Haas played the character Daniel Kottke,' which are irrelevant. However, the relevant statement 'Ashton Kutcher played the character Steve Jobs in the movie Jobs' directly answers the input, but its impact is minimal compared to the many irrelevant statements, resulting in a low relevancy score."
+            ]
+        }
+    }
+}

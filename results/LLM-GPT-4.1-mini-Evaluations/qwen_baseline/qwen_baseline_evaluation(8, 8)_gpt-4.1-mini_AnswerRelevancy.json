@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 9.833000421524048,
+    "Answer Relevancy": {
+        "average": 0.5555555555555556,
+        "median": 0.5555555555555556,
+        "minimum": 0.5555555555555556,
+        "maximum": 0.5555555555555556,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_8": {
+            "Answer Relevancy": [
+                "The score is 0.56 because the response includes some relevant information about the Firefly series, but it also contains several irrelevant details such as the airing year, intended length, duration, ratings, and incorrect information about the film's release format. These irrelevant statements detract from directly answering the question about the existence of a movie based on the series, preventing a higher score."
+            ]
+        }
+    }
+}

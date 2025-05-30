@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 313.09466099739075,
+    "Contextual Relevancy": {
+        "average": 0.18181818181818182,
+        "median": 0.18181818181818182,
+        "minimum": 0.18181818181818182,
+        "maximum": 0.18181818181818182,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Contextual Relevancy": [
+                "The score is 0.18 because the retrieval context provided extensive plot details, production timelines, cast, and crew information, which are irrelevant to the question about the film's originality. However, two statements explicitly mention that the film is derived from a 2015 video game and features an original standalone story, directly addressing the input's query about originality. Despite these relevant points, the majority of the context was irrelevant, leading to a low relevancy score."
+            ]
+        }
+    }
+}

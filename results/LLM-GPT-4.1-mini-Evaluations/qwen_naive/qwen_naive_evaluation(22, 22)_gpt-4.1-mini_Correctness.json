@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.541999578475952,
+    "Correctness (GEval)": {
+        "average": 0.5904481528246469,
+        "median": 0.5904481528246469,
+        "minimum": 0.5904481528246469,
+        "maximum": 0.5904481528246469,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_22": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict the expected output but omits specific details about gore, blood, and violent scenes described in the expected output, resulting in a less informative response."
+            ]
+        }
+    }
+}

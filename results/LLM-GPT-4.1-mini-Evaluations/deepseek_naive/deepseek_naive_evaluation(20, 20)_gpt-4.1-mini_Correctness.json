@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.4999988079071045,
+    "Correctness (GEval)": {
+        "average": 0.35552860089517746,
+        "median": 0.35552860089517746,
+        "minimum": 0.35552860089517746,
+        "maximum": 0.35552860089517746,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output states Spielberg is 77 years old as of October 2023, while the expected output correctly calculates him as 78 years old as of May 2025, causing a factual contradiction."
+            ]
+        }
+    }
+}

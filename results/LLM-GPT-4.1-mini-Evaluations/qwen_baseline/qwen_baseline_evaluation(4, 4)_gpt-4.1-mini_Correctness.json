@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.600594997406006,
+    "Correctness (GEval)": {
+        "average": 0.36013242031109605,
+        "median": 0.36013242031109605,
+        "minimum": 0.36013242031109605,
+        "maximum": 0.36013242031109605,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_4": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the next Marvel film after Captain America: Civil War as Avengers: Infinity War (2018), while the expected output correctly identifies it as Doctor Strange (2016). The actual output omits details about Doctor Strange's introduction and release date but contradicts the timeline."
+            ]
+        }
+    }
+}

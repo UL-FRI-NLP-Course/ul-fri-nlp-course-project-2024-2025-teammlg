@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.2230002880096436,
+    "Correctness (GEval)": {
+        "average": 0.3734140357536332,
+        "median": 0.3734140357536332,
+        "minimum": 0.3734140357536332,
+        "maximum": 0.3734140357536332,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output includes titles not set in Paris or not fitting the dramedy genre (e.g., Dexter: New Blood, The Pursuit of Happyness) and omits key expected titles like Midnight in Paris, Am\u00e9lie, and Paris, Je T'Aime. Some Paris-related details are inaccurate or misleading, such as Dexter relocating to Paris and the hidden erotic video in Call Me By Your Name."
+            ]
+        }
+    }
+}

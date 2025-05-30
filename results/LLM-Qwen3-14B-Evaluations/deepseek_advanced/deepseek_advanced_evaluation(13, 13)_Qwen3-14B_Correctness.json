@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 11.026351690292358,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_13": {
+            "Correctness (GEval)": [
+                "The actual output provides a different Slovene title 'Oblekovi Vsi' which contradicts the expected output's 'Drkajva skupaj'."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 19.58600115776062,
+    "Answer Relevancy": {
+        "average": 0.6190476190476191,
+        "median": 0.6190476190476191,
+        "minimum": 0.6190476190476191,
+        "maximum": 0.6190476190476191,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Answer Relevancy": [
+                "The score is 0.62 because the recommendation includes comedic elements and light entertainment, which aligns with the request for funny one-liners. However, it lacks the significant shooting or action scenes the user asked for, making it less relevant overall."
+            ]
+        }
+    }
+}

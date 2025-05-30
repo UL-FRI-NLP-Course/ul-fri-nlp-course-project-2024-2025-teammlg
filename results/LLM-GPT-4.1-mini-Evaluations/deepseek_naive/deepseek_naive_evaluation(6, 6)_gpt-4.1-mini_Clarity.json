@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.8000006675720215,
+    "Clarity (GEval)": {
+        "average": 0.8017986213778417,
+        "median": 0.8017986213778417,
+        "minimum": 0.8017986213778417,
+        "maximum": 0.8017986213778417,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Clarity (GEval)": [
+                "The response uses mostly clear and direct language with well-structured key points, but some phrases like 'somewhat convoluted' and 'disjointed nature' introduce mild vagueness. There is minor repetition in describing the narrative's complexity and audience suitability."
+            ]
+        }
+    }
+}

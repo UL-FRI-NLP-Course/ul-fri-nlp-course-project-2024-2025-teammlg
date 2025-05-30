@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 8.879000186920166,
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Precision": [
+                "The score is 1.00 because all nodes in the retrieval contexts that are relevant to the input are ranked at the top, with no irrelevant nodes preceding them. The first node clearly states that the film is a fictional story with no indication of being based on real events, and the second node supports this by explaining the realistic depiction of tennis without being a true story. Since there are no irrelevant nodes ranked higher than these relevant ones, the contextual precision is perfect."
+            ]
+        }
+    }
+}

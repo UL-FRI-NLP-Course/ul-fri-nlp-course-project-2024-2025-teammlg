@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.2560009956359863,
+    "Correctness (GEval)": {
+        "average": 0.0060086652909082956,
+        "median": 0.0060086652909082956,
+        "minimum": 0.0060086652909082956,
+        "maximum": 0.0060086652909082956,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Correctness (GEval)": [
+                "The actual output describes a different film ('Mickey 7' as a 1993 Disney featurette directed by Steve Moore) with a different plot and reception, contradicting the expected output about 'Mickey 17' directed by Bong Joon-ho with specific critic and audience scores."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.708998441696167,
+    "Correctness (GEval)": {
+        "average": 0.19241418215456965,
+        "median": 0.19241418215456965,
+        "minimum": 0.19241418215456965,
+        "maximum": 0.19241418215456965,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Correctness (GEval)": [
+                "The actual output provides original sci-fi movie ideas rather than listing existing films with titles, years, and reasons to watch as in the expected output. There is no direct contradiction, but the formats and content focus differ significantly, with actual output omitting the recommended films and their details."
+            ]
+        }
+    }
+}

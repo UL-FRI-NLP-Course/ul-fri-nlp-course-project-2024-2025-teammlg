@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 110.37573289871216,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context is empty and contains no relevant information to attribute any of the sentences in the expected output to specific nodes. Without any nodes in the retrieval context, none of the listed films, directors, or details about Paris as a backdrop can be linked to the context, resulting in a complete lack of alignment between the expected output and the retrieval context nodes, which explains the zero score. All sentences, from the introduction to the film details, cannot be supported by the absence of any contextual data, leading to the lowest possible score of 0.00"
+            ]
+        }
+    }
+}

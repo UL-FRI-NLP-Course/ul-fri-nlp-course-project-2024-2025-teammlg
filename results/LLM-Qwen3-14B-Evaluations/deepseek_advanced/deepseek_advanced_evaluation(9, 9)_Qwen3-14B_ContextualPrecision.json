@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 24.403780937194824,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Contextual Precision": [
+                "The score is 0.00 because the first node is irrelevant and the retrieval context contains no information about spooky sci-fi films, as stated in its reason: 'The retrieval context is an empty list, so it contains no information that could be used to generate the expected output about spooky sci-fi films.'"
+            ]
+        }
+    }
+}

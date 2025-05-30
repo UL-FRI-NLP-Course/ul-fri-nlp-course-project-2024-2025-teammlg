@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.378000020980835,
+    "Clarity (GEval)": {
+        "average": 0.8536099274991564,
+        "median": 0.8536099274991564,
+        "minimum": 0.8536099274991564,
+        "maximum": 0.8536099274991564,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language and answers both questions without unnecessary repetition. However, the phrase 'Steve Wozniak' could be simplified to 'Wozniak' to match the question's wording more closely."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 33.93450593948364,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant to the input. The node fails to provide a relevant recommendation for a cartoon similar to Flow, as it does not mention any films with similar themes, styles, or visual storytelling as Flow, which was explicitly requested by the user. The reason provided in the retrieval context explains this lack of relevance, and since there are no other nodes, the contextual precision cannot be higher than 0.00 as there are no relevant nodes ranked above irrelevant ones."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 85.25538206100464,
+    "Answer Relevancy": {
+        "average": 0.3,
+        "median": 0.3,
+        "minimum": 0.3,
+        "maximum": 0.3,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Answer Relevancy": [
+                "The score is 0.30 because the actual output focused on irrelevant details like the movie's release date, runtime, director, budget, filming locations, soundtrack, and box office earnings, none of which directly address the suitability of the Minecraft Movie for children. These details do not provide information about the movie's content, themes, or age appropriateness, which are crucial for determining if it's suitable for kids. As a result, the response fails to answer the question effectively, leading to a low relevancy score."
+            ]
+        }
+    }
+}

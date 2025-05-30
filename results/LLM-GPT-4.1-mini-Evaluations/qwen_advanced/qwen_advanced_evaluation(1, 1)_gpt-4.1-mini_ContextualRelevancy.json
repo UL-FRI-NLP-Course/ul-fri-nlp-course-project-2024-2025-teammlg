@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 53.02700066566467,
+    "Contextual Relevancy": {
+        "average": 0.6470588235294118,
+        "median": 0.6470588235294118,
+        "minimum": 0.6470588235294118,
+        "maximum": 0.6470588235294118,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Contextual Relevancy": [
+                "The score is 0.65 because while many statements in the retrieval context focus on production details and plot points irrelevant to the main themes (e.g., 'The statement about the cast does not relate to the main themes' and 'Filming locations and budget are production details unrelated to the main themes'), there are several relevant statements that address the themes directly, such as 'The Dark Knight has been analyzed for its themes of terrorism and the limitations of morality and ethics' and the detailed plot summary highlighting the conflict between Batman, Joker, and Dent. This mix of relevant thematic content and unrelated production or plot details justifies a moderate relevancy score."
+            ]
+        }
+    }
+}

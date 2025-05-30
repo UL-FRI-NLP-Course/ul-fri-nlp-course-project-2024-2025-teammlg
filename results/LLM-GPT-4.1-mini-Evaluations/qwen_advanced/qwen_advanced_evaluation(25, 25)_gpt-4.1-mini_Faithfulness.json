@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 36.24399948120117,
+    "Faithfulness": {
+        "average": 0.9,
+        "median": 0.9,
+        "minimum": 0.9,
+        "maximum": 0.9,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Faithfulness": [
+                "The score is 0.90 because the actual output incorrectly titles the 2012 film as 'Avengers Assemble!' instead of 'The Avengers', and inaccurately includes Thanos as an antagonist in that film, which is not supported by the retrieval context. Additionally, the mention of 'Deadpool & Wolverine (2024)' directed by Shawn Levy is unverified in the retrieval context, contributing to the slight deduction in faithfulness."
+            ]
+        }
+    }
+}

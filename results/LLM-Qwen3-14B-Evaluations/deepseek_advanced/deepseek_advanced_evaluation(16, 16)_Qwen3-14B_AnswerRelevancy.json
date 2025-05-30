@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 28.289197206497192,
+    "Answer Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_16": {
+            "Answer Relevancy": [
+                "The score is 0.00 because the response did not address the request for dramedies set in Paris and instead provided irrelevant information."
+            ]
+        }
+    }
+}

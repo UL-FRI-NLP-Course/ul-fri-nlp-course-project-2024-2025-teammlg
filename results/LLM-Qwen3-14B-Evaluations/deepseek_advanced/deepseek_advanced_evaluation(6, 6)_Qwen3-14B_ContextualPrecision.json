@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 38.77322840690613,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant, as it provides fragmented review quotes without structured data on overall reception, scores, or ratings, which are necessary to answer the question about general opinions on Mickey 17 comprehensively. The context lacks aggregated data like critic scores or audience ratings, making it unusable for the task."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 12.205368280410767,
+    "Correctness (GEval)": {
+        "average": 0.8,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 0.8,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "Actual output includes themes like 'Psychological Depth' and 'Identity Duality' not in expected output, but no contradictions. Some details omitted, like 'Chaos vs. Order' from expected is rephrased as 'Chaos Theory' in actual."
+            ]
+        }
+    }
+}

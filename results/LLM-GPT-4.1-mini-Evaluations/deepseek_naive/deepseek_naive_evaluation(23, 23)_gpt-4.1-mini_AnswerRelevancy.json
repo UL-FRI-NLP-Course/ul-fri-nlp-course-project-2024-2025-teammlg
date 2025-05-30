@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.059999942779541,
+    "Answer Relevancy": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_23": {
+            "Answer Relevancy": [
+                "The score is 0.60 because the response partially addresses the originality of the film but includes irrelevant statements suggesting it draws inspiration from a novel, which contradicts the claim of it being original. This lowers the score, but the answer still somewhat relates to the question, justifying the moderate rating."
+            ]
+        }
+    }
+}

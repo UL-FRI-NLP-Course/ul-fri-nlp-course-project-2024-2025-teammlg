@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 10.59600043296814,
+    "Answer Relevancy": {
+        "average": 0.3,
+        "median": 0.3,
+        "minimum": 0.3,
+        "maximum": 0.3,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Answer Relevancy": [
+                "The score is 0.30 because the response provides detailed plot and thematic information about a specific film, which shows some relevance to the request for a spooky sci-fi film. However, it does not directly recommend the film or clearly state it as a suggestion, and much of the content focuses on background and plot details rather than explicitly addressing the user's request for film recommendations. This limits the relevancy of the answer."
+            ]
+        }
+    }
+}

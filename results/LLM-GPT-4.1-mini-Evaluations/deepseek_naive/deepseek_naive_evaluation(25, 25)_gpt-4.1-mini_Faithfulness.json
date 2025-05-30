@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 18.328999757766724,
+    "Faithfulness": {
+        "average": 0.5714285714285714,
+        "median": 0.5714285714285714,
+        "minimum": 0.5714285714285714,
+        "maximum": 0.5714285714285714,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Faithfulness": [
+                "The score is 0.57 because the actual output inaccurately includes several films and series such as 'Planet of the Apes: Rise of the Planet of the Apes', 'Deadpool', 'X-Men: Apocalypse', 'Suicide Squad: A Deadshot Holiday Special', and 'Ferris Bueller's Day Off' as part of the MCU, which the retrieval context does not support. Additionally, it misclassifies various titles like 'Daredevil (2008)', 'Elektra (2005)', and others as standalone MCU productions, despite them belonging to other Marvel properties or unrelated franchises, leading to significant contradictions."
+            ]
+        }
+    }
+}

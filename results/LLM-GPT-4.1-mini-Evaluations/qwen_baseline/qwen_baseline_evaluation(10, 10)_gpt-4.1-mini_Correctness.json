@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.3339998722076416,
+    "Correctness (GEval)": {
+        "average": 0.188079708736504,
+        "median": 0.188079708736504,
+        "minimum": 0.188079708736504,
+        "maximum": 0.188079708736504,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by naming Michael Fassbender and Seth Rogen instead of Ashton Kutcher and Josh Gad for the roles in the 2013 film Jobs."
+            ]
+        }
+    }
+}

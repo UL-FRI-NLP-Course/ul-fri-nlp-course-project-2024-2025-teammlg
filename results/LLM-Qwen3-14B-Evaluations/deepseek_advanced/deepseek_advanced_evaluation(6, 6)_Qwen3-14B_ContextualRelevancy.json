@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 186.49556231498718,
+    "Contextual Relevancy": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Relevancy": [
+                "The score is 0.00 because none of the retrieval context statements address people's general opinion of the movie Mickey 17. All provided statements are either unrelated, cryptic, personal reflections, or specific critiques that do not provide a general consensus or overview of the movie's reception. For example, the statement 'the anti trump film we deserve (and might desire) - goofy as fuck, just like our times. Mickey 17 is a sci-fi satire covered as blockbuster (or the other way round). it's so overly in your face that it'll alienate a lot of audiences that expect anything close to the tone of Bong's oscar enforcer. the Parasite follow up is by no means an arthouse flick, and therefore it's now easier to understand why it couldn't enter Cannes nor Venice\u2026' is irrelevant as it does not address people's general opinion of the movie Mickey 17, but rather a detailed critique of the film's tone and reception, which is not the same as general audience opinion. Other statements are also irrelevant for similar reasons, such as personal reflections, unrelated topics, or specific scene references that do not contribute to understanding the overall reception of the movie as requested in the input query. Therefore, the retrieval context does not provide any relevant information to answer the user's question about general opinions on Mickey 17, resulting in a score of 0.00"
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 15.762703895568848,
+    "Correctness (GEval)": {
+        "average": 0.6,
+        "median": 0.6,
+        "minimum": 0.6,
+        "maximum": 0.6,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Correctness (GEval)": [
+                "The actual output includes films not produced by Marvel Studios, such as X-Men: Apocalypse (2016), and omits several MCU films like Doctor Strange (2016), Spider-Man: No Way Home (2021), Black Panther: Wakanda Forever (2022), and upcoming titles like Ant-Man and the Wasp: Quantumania (2023)."
+            ]
+        }
+    }
+}

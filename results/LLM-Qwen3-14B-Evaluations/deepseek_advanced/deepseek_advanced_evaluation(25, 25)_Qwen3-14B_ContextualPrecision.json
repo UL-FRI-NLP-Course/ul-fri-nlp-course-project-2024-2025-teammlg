@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 32.73742985725403,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Precision": [
+                "The score is 0.00 because the only node in retrieval contexts is irrelevant, as it contains no information about the Minecraft Movie's suitability for kids or its rating, and thus cannot be ranked higher than other potentially relevant nodes that are not present here. The reason provided in the retrieval context explicitly states that it is empty and does not address the input query directly, which is why it is ranked lower than any relevant nodes that may have existed but are not included in the retrieval contexts provided here. However, since no such relevant nodes are present, the contextual precision score remains at 0.00 due to the absence of any useful information in the retrieval contexts that could answer the input question about the movie's suitability for children."
+            ]
+        }
+    }
+}

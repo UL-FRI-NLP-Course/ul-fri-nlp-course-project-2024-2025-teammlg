@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.5879993438720703,
+    "Correctness (GEval)": {
+        "average": 0.9119202918893066,
+        "median": 0.9119202918893066,
+        "minimum": 0.9119202918893066,
+        "maximum": 0.9119202918893066,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output correctly states Steven Spielberg's birthdate and age as of May 2025 without contradicting the expected output; the only minor difference is the specific date May 29, 2025, which is more precise but not contradictory."
+            ]
+        }
+    }
+}

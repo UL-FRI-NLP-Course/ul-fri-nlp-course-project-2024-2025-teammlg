@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 35.01137614250183,
+    "Contextual Relevancy": {
+        "average": 0.43243243243243246,
+        "median": 0.43243243243243246,
+        "minimum": 0.43243243243243246,
+        "maximum": 0.43243243243243246,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Contextual Relevancy": [
+                "The score is 0.43 because while most retrieval context statements do not address gore or blood content, several relevant statements describe violent vampire attacks and killings, such as 'Mary seduces and kills Stack by drinking his blood,' 'Grace kills Bo but dies in the process,' and 'Smoke fights and defeats Stack,' indicating some gore and blood presence in the film."
+            ]
+        }
+    }
+}

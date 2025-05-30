@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 39.10900068283081,
+    "Contextual Recall": {
+        "average": 0.022727272727272728,
+        "median": 0.022727272727272728,
+        "minimum": 0.022727272727272728,
+        "maximum": 0.022727272727272728,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Recall": [
+                "The score is 0.02 because only the mention of 'The Marvels (2023)' in Phase 5 (sentence 45) is supported by node 1 in the retrieval context, while the vast majority of the expected output, including detailed MCU phases, other films, and non-MCU Marvel films, is not reflected in the retrieval context."
+            ]
+        }
+    }
+}

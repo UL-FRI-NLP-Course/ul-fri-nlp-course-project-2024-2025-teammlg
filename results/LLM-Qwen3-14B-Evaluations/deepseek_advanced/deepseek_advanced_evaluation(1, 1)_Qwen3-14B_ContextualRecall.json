@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 69.24008345603943,
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_1": {
+            "Contextual Recall": [
+                "The score is 1.00 because all sentences in the expected output are directly supported by the 1st node in the retrieval context, covering the film's themes, characters, and director without any discrepancies or missing information. The node provides comprehensive coverage, aligning perfectly with the detailed analysis presented in the expected output, making the contextual recall complete and accurate. This perfect alignment ensures the score is at its maximum, reflecting a flawless match between the retrieved information and the expected content, which is both thorough and precise in its thematic exploration of The Dark Knight (2008)."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 13.182719469070435,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_5": {
+            "Correctness (GEval)": [
+                "The actual output contradicts the expected output by recommending unrelated films (e.g., The Happy Prince with Robin Williams) and includes genres not aligned with Flow\u2019s style, such as darker tales and LGBTQ+ romance, which are absent in the expected output\u2019s focus on dialogue-free, visually driven animation"
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 11.848514556884766,
+    "Correctness (GEval)": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_21": {
+            "Correctness (GEval)": [
+                "The actual output discusses 'Sinners' with gore and blood, while the expected output mentions 'Challengers' being inspired by real-life tennis events. The topics and titles are unrelated, indicating a contradiction."
+            ]
+        }
+    }
+}

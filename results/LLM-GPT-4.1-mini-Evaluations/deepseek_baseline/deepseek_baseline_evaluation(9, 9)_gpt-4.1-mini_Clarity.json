@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.6979992389678955,
+    "Clarity (GEval)": {
+        "average": 0.618242551713899,
+        "median": 0.618242551713899,
+        "minimum": 0.618242551713899,
+        "maximum": 0.618242551713899,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_9": {
+            "Clarity (GEval)": [
+                "The response mostly uses clear language but includes a confusing, untranslated Chinese segment in the fourth idea, disrupting understanding. There is minor repetition in describing twists, and the seventh idea is numbered despite the introduction stating six ideas."
+            ]
+        }
+    }
+}

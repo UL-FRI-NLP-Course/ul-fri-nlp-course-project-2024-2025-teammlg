@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 5.409001350402832,
+    "Contextual Precision": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_25": {
+            "Contextual Precision": [
+                "The score is 0.00 because all nodes in the retrieval contexts are irrelevant to the input question. For example, the first node, ranked 1st, only provides details about the movie 'The Marvels' but does not list films produced by Marvel Studios, which is not helpful. Similarly, the other nodes either contain unrelated reviews, mention services without film information, or are empty, all ranked higher than any relevant content that could answer the question."
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 603.6419999599457,
+    "Contextual Relevancy": {
+        "average": 0.3333333333333333,
+        "median": 0.3333333333333333,
+        "minimum": 0.3333333333333333,
+        "maximum": 0.3333333333333333,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Contextual Relevancy": [
+                "The score is 0.33 because while the retrieval context includes extensive lists of films Hans Zimmer and John Williams composed for, it also contains irrelevant information about concerts, documentaries, and collaborations, as noted in the reasons for irrelevancy. This mix reduces the overall relevancy despite the presence of directly relevant filmography data."
+            ]
+        }
+    }
+}

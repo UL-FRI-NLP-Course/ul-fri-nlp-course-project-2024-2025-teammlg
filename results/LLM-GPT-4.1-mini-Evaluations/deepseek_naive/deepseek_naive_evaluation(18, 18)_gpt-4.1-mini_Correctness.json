@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.742000102996826,
+    "Correctness (GEval)": {
+        "average": 0.1562176500885798,
+        "median": 0.1562176500885798,
+        "minimum": 0.1562176500885798,
+        "maximum": 0.1562176500885798,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_18": {
+            "Correctness (GEval)": [
+                "The actual output lists different movies (e.g., Barbie, Oppenheimer) unrelated to the expected output's focus on 'Sinners' and other specific titles with detailed box office data. There is no overlap or matching facts, indicating contradiction in content focus."
+            ]
+        }
+    }
+}

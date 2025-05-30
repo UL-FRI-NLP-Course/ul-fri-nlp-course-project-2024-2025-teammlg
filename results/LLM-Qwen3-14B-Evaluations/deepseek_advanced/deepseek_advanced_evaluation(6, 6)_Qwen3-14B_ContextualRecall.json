@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 443.3396785259247,
+    "Contextual Recall": {
+        "average": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.0,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_6": {
+            "Contextual Recall": [
+                "The score is 0.00 because the retrieval context does not provide explicit information about the director (Bong Joon-ho) or the cast (Robert Pattinson) of Mickey 17, making it impossible to attribute the first sentence of the expected output to the retrieval context, which is the 1st node in the retrieval context."
+            ]
+        }
+    }
+}

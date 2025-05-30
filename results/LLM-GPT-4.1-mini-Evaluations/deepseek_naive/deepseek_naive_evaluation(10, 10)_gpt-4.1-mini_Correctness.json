@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.38599967956543,
+    "Correctness (GEval)": {
+        "average": 0.33408692914285054,
+        "median": 0.33408692914285054,
+        "minimum": 0.33408692914285054,
+        "maximum": 0.33408692914285054,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Correctness (GEval)": [
+                "The actual output incorrectly states the movie title as 'Steve Jobs' directed by Joe Berlinger, while the expected output refers to the 2013 film 'Jobs'. It also incorrectly names J.J. Field as Steve Wozniak instead of Josh Gad."
+            ]
+        }
+    }
+}

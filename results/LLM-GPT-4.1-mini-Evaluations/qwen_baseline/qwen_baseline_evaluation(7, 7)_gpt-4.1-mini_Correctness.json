@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 2.450000286102295,
+    "Correctness (GEval)": {
+        "average": 0.4765617846854299,
+        "median": 0.4765617846854299,
+        "minimum": 0.4765617846854299,
+        "maximum": 0.4765617846854299,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_7": {
+            "Correctness (GEval)": [
+                "The actual output suggests one film, 'Austin Powers,' which fits the light, action-comedy theme but lacks the multiple detailed recommendations and specific film information (titles, years, actors, reasons) present in the expected output."
+            ]
+        }
+    }
+}

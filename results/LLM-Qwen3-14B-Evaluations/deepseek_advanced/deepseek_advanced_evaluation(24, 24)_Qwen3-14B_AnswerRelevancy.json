@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 93.10307240486145,
+    "Answer Relevancy": {
+        "average": 0.95,
+        "median": 0.95,
+        "minimum": 0.95,
+        "maximum": 0.95,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_24": {
+            "Answer Relevancy": [
+                "The score is 0.95 because the answer correctly identified that X-Men: Apocalypse is a 20th Century Fox film, not produced by Marvel Studios. However, the mention of it being part of the X-Men film series, separate from the MCU, slightly detracts from the relevance as the question specifically asks for films produced by Marvel, not just related series."
+            ]
+        }
+    }
+}

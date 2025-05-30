@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 3.0610010623931885,
+    "Clarity (GEval)": {
+        "average": 0.8095349458472393,
+        "median": 0.8095349458472393,
+        "minimum": 0.8095349458472393,
+        "maximum": 0.8095349458472393,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_10": {
+            "Clarity (GEval)": [
+                "The response uses clear and direct language but includes slight repetition by mentioning Steve Jobs twice in close proximity, which could be more concise."
+            ]
+        }
+    }
+}

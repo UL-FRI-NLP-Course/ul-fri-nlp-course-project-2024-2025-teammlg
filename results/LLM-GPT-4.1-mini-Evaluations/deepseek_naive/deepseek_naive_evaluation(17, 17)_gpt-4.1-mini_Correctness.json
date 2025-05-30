@@ -1,0 +1,18 @@
+{
+    "model_for_evaluation": "gpt-4.1-mini",
+    "evaluation_time_seconds": 4.564999103546143,
+    "Correctness (GEval)": {
+        "average": 0.4030621599167308,
+        "median": 0.4030621599167308,
+        "minimum": 0.4030621599167308,
+        "maximum": 0.4030621599167308,
+        "standard_deviation": 0.0
+    },
+    "reasons": {
+        "test_case_17": {
+            "Correctness (GEval)": [
+                "The actual output contains factual errors such as attributing 'Inception' and 'Star Trek' works to Hans Zimmer incorrectly, and omits many key films listed in the expected output like 'The Lion King', 'Interstellar', and 'Pirates of the Caribbean'. For John Williams, it misses major works like 'Jurassic Park' and 'Close Encounters of the Third Kind'. The actual output also incorrectly lists 'Star Trek: Inception' as a title, which contradicts the expected output."
+            ]
+        }
+    }
+}
