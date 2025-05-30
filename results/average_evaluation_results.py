@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import sys
 from collections import defaultdict
@@ -19,10 +20,17 @@ folders = ["deepseek_baseline",
 for folder in folders:
     path = os.path.join(directory, folder)
     file_paths = os.listdir(path)
+    """
+    with open(f"{folder}.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
 
+    contexts = dict()
+    for i, d in enumerate(data, start=1):
+        contexts[f"test_case_{i}"] = d["contexts"]
+    """
     counts = defaultdict(int)
     averages = defaultdict(float)
-    results = defaultdict(float)
+    evaluation_results = defaultdict(float)
     reasons = defaultdict(lambda: defaultdict(list))
 
     for file in file_paths:
@@ -34,11 +42,11 @@ for folder in folders:
                 if type(key) == str and type(value) == str:
                     # key: "model_for_evaluation"
                     # value: str
-                    results[key] = value
+                    evaluation_results[key] = value
                 if type(key) == str and type(value) == float:
                     # key: "evaluation_time"
                     # value: float
-                    results[key] += value
+                    evaluation_results[key] += value
                 if type(key) == str and type(value) == dict and key == "reasons":
                     # key: "reasons"
                     # value: dict <metric_name, list>
@@ -55,8 +63,8 @@ for folder in folders:
                         counts[key] += 1
                         averages[key] += value["average"]
 
-    results["averages"] = {key: avg/counts[key] for key, avg in averages.items()}
-    results["reasons"] = dict(sorted(reasons.items(), key=lambda item: int(item[0].split("_")[2])))
+    evaluation_results["averages"] = {key: avg/counts[key] for key, avg in averages.items()}
+    evaluation_results["reasons"] = dict(sorted(reasons.items(), key=lambda item: int(item[0].split("_")[2])))
     
     with open(os.path.join(directory, folder + f".json"), "w") as file:
-        json.dump(results, file, indent=4)
+        json.dump(evaluation_results, file, indent=4)

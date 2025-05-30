@@ -1,0 +1,170 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 2316.1275108571082,
+    "Correctness (GEval)": {
+        "average": 0.17,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.8,
+        "standard_deviation": 0.16
+    },
+    "Clarity (GEval)": {
+        "average": 0.91,
+        "median": 0.8,
+        "minimum": 0.6,
+        "maximum": 1.0,
+        "standard_deviation": 0.1
+    },
+    "Answer Relevancy": {
+        "average": 0.9339999999999999,
+        "median": 1.0,
+        "minimum": 0.67,
+        "maximum": 1.0,
+        "standard_deviation": 0.132
+    },
+    "Faithfulness": {
+        "average": 0.9,
+        "median": 1.0,
+        "minimum": 0.5,
+        "maximum": 1.0,
+        "standard_deviation": 0.2
+    },
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "Contextual Recall": {
+        "average": 0.8799999999999999,
+        "median": 1.0,
+        "minimum": 0.6,
+        "maximum": 1.0,
+        "standard_deviation": 0.16
+    },
+    "Contextual Relevancy": {
+        "average": 0.378,
+        "median": 0.5,
+        "minimum": 0.1,
+        "maximum": 0.67,
+        "standard_deviation": 0.22754340245324628
+    },
+    "reasons": {
+        "test_case_1": {
+            "Correctness (GEval)": [
+                "The text provides a comprehensive summary of the main themes in The Dark Knight, aligning with the expected output."
+            ],
+            "Clarity (GEval)": [
+                "The response provides a clear and direct summary of the main themes in The Dark Knight, with minimal repetition and no vague or confusing parts."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output. The response is fully relevant to the input question."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the first node in the retrieval context provides a direct summary of the main themes in The Dark Knight, while the other nodes are irrelevant to the input."
+            ],
+            "Contextual Recall": [
+                "The contextual recall score of 1.00 is excellent because all sentences in the expected output are directly supported by information in the retrieval context. There are no unsupportive reasons listed, indicating a high level of relevance and recall. The supportive reasons provided demonstrate a clear connection between the expected output and the nodes in the retrieval context, particularly the 'info' node, which covers the themes, and the 'cast' node, which lists the main actors. This alignment suggests that the information retrieved is highly relevant and comprehensive, leading to a perfect contextual recall score."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.50 because the provided statements focus on the film's production, impact, and the sequel, rather than summarizing the main themes of The Dark Knight."
+            ]
+        },
+        "test_case_2": {
+            "Correctness (GEval)": [
+                "The text follows the evaluation steps provided, with minor omissions in the 'actual output' that do not significantly impact the overall thematic analysis."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, with minimal repetition and no vague or confusing parts."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output. The output is relevant to the input, and the summary provided addresses the main themes of 'The Dark Knight'."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the only relevant node, which provides a clear summary of the main themes, is ranked first, and there are no irrelevant nodes present."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because the node(s) in the retrieval context align perfectly with the supportive reasons provided, demonstrating a clear and direct correlation between the expected output and the retrieval context."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.67 because the provided input is highly relevant to the statements provided, with a clear focus on summarizing the main themes of the movie 'The Dark Knight'. The irrelevant part of the statement ('There was a cat.') does not detract from the overall relevance of the context to the input."
+            ]
+        },
+        "test_case_3": {
+            "Correctness (GEval)": [
+                "The actual output does not provide specific release dates for Slovenia, nor does it confirm streaming availability."
+            ],
+            "Clarity (GEval)": [
+                "The response is clear and direct, with minimal repetition and no vague or confusing parts."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.67 because the statement provides no specific release date for Slovenia."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant nodes (those with 'yes' verdicts) are ranked higher than the irrelevant nodes (such as the one discussing the cast and crew), ensuring that the most pertinent information is presented first."
+            ],
+            "Contextual Recall": [
+                "The contextual recall score of 1.00 is excellent, indicating a perfect match between the expected output and the retrieval context. Each sentence in the expected output can be attributed to the'release_date' node, which provides consistent and accurate information throughout. This suggests that the model has effectively retrieved relevant data from the context, resulting in a high-quality response."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.10 because only one statement provides the release date of the Minecraft Movie, while the rest of the context is irrelevant to the input question."
+            ]
+        },
+        "test_case_4": {
+            "Correctness (GEval)": [
+                "The text does not follow the evaluation steps provided."
+            ],
+            "Clarity (GEval)": [
+                "The response is clear and direct, with no vague or confusing parts, and no unnecessary repetition."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output."
+            ],
+            "Faithfulness": [
+                "The score is 0.5 because the actual output mentions Spider-Man: Homecoming as the next Marvel film after Captain America: Civil War, which is not supported by the information provided in the retrieval context."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (first in ranking) provides the title of the next Marvel film, 'The Marvels', while all other nodes (ranked 2-19) are irrelevant to the input question."
+            ],
+            "Contextual Recall": [
+                "The score is 0.80 because the supportive reasons align with the information provided in the retrieval context, while the unsupportive reason is not significant enough to affect the overall contextual recall."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.12 because the context provides minimal relevant information, specifically the title of the next Marvel film after Captain America 3, but lacks details about the release date or other relevant information."
+            ]
+        },
+        "test_case_5": {
+            "Correctness (GEval)": [
+                "The text does not follow the evaluation steps provided."
+            ],
+            "Clarity (GEval)": [
+                "The response provides clear and direct language, with no vague or confusing parts, and no unnecessary repetition of information."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant nodes (those with 'yes' verdicts) are ranked higher than the irrelevant nodes (the 'no' verdict), indicating a precise contextual understanding."
+            ],
+            "Contextual Recall": [
+                "The score is 0.60 because the supportive reasons account for the majority of the recommendations, with only a few unsupportive reasons. The supportive reasons demonstrate a clear understanding of the retrieval context and its relevance to the expected output, while the unsupportive reasons indicate a need for further expansion of the context to cover a broader range of recommendations."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.50 because the retrieval context contains information about a cat, which is irrelevant to the input, but also includes a relevant statement about Flow's Nobel Prize for the photoelectric effect."
+            ]
+        }
+    }
+}

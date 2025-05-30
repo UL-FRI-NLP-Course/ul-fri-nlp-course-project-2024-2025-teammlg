@@ -1,0 +1,170 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 2412.372683256754,
+    "Correctness (GEval)": {
+        "average": 0.37,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.7,
+        "standard_deviation": 0.1671245642452
+    },
+    "Clarity (GEval)": {
+        "average": 0.86,
+        "median": 0.7,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.39
+    },
+    "Answer Relevancy": {
+        "average": 0.8099999999999999,
+        "median": 1.0,
+        "minimum": 0.5,
+        "maximum": 1.0,
+        "standard_deviation": 0.233238075793812
+    },
+    "Faithfulness": {
+        "average": 0.882,
+        "median": 1.0,
+        "minimum": 0.5,
+        "maximum": 1.0,
+        "standard_deviation": 0.19415457759218555
+    },
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "Contextual Recall": {
+        "average": 0.9,
+        "median": 1.0,
+        "minimum": 0.5,
+        "maximum": 1.0,
+        "standard_deviation": 0.2
+    },
+    "Contextual Relevancy": {
+        "average": 0.32399999999999995,
+        "median": 0.25,
+        "minimum": 0.15,
+        "maximum": 0.5,
+        "standard_deviation": 0.14732277488562318
+    },
+    "reasons": {
+        "test_case_16": {
+            "Correctness (GEval)": [
+                "The actual output provides a recommendation that aligns with the expected output, with minor omissions in detail."
+            ],
+            "Clarity (GEval)": [
+                "The text does not follow the evaluation steps provided."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.50 because 'The Da Vinci Code' is mentioned as a thriller, not a dramedy, and while it features Parisian settings, it does not fulfill the request for a good dramedy."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node ('Miraculous World: Paris, Tales of Shadybug and Claw Noir') is ranked first and its description aligns with the input's request for a dramedy set in Paris. There are no 'no' verdicts to compare against."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because all statements in the expected output can be attributed to the nodes in the retrieval context, with no unsupportive reasons provided."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.15 because only 3 out of 17 statements in the retrieval context are relevant to the request for a good dramedy set in Paris, and the rest are unrelated."
+            ]
+        },
+        "test_case_17": {
+            "Correctness (GEval)": [
+                "The actual output lists some of Hans Zimmer's and John Williams' notable works, but it does not specifically address the films mentioned in the expected output."
+            ],
+            "Clarity (GEval)": [
+                "The response provides clear and direct information about the filmography of Hans Zimmer and John Williams."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output. The input was clearly understood and directly answered with relevant information."
+            ],
+            "Faithfulness": [
+                "The score is 0.50 because the actual output contains contradictions with the retrieval context, such as inaccuracies in the attribution of soundtracks to Hans Zimmer and John Williams' filmography."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the first node in the retrieval context provides a direct answer to the question, with no irrelevant nodes ranked higher."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because all supportive reasons are directly linked to the nodes in the retrieval context, and there are no unsupportive reasons. Hans Zimmer's and John Williams' iconic film scores are well-represented in the expected output, with no contradictions or unsupported claims."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.25 because the relevant statements provide general information about Hans Zimmer's work, but do not directly answer the input question about specific films he has scored."
+            ]
+        },
+        "test_case_18": {
+            "Correctness (GEval)": [
+                "The actual output does not provide specific movie titles or box office data, nor does it discuss audience or critical reception."
+            ],
+            "Clarity (GEval)": [
+                "The text does not provide specific information about popular movies or audience opinions."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output. The response is fully relevant to the input question."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (first ranked) provides information about the box office performance of 'Sinners', which directly answers the question about popular movies, while the subsequent nodes (ranked 2-5) do not provide any relevant information about the popularity or people's thoughts on the mentioned movies."
+            ],
+            "Contextual Recall": [
+                "The score is 0.50 because the expected output is partially supported by the supportive reasons, but there are significant gaps in the retrieval context that prevent full attribution to the unsupportive reasons."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.22 because the retrieval context provided little relevant information about the most popular movies this week or people's opinions of them."
+            ]
+        },
+        "test_case_19": {
+            "Correctness (GEval)": [
+                "The text does not follow the evaluation steps provided."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, with no vague or confusing parts, and no unnecessary repetition of information."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.55 because the actual output contains several statements that refer to Superman movies released outside the requested time frame (1950s until today). Additionally, one statement mentions a movie that features Superman but is not a standalone Superman movie."
+            ],
+            "Faithfulness": [
+                "The score is 0.91 because there is only one contradiction regarding the role of Kevin Costner in 'Batman & Robin', which is easily identifiable and does not significantly impact the overall faithfulness of the actual output to the retrieval context."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because all relevant nodes (such as the documentary about science fiction movies in the 1950s) are ranked higher than irrelevant nodes (such as 'Love Today' and the lack of information about new Superman movies)."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because the expected output is fully supported by the nodes in the retrieval context, with no unsupportive reasons provided."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.50 because the relevant statements in the retrieval context are limited to two specific movies, 'The Matrix Reloaded' and 'The Matrix Revolutions', which do not address the broader request for all Superman movies from the 1950s until today, nor do they provide any information about a new Superman movie."
+            ]
+        },
+        "test_case_20": {
+            "Correctness (GEval)": [
+                "The actual output does not provide an age for Steven Spielberg that matches the expected output."
+            ],
+            "Clarity (GEval)": [
+                "The response uses clear and direct language, with minimal repetition of information."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (Steven Spielberg's age) is ranked first and provides accurate, direct information, while there are no irrelevant nodes in the retrieval contexts."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because all sentences in the expected output are fully supported by the nodes in the retrieval context."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.50 because the retrieval context contains relevant information about Steven Spielberg's career and achievements, but also includes several statements that are not directly related to the input question about his age."
+            ]
+        }
+    }
+}

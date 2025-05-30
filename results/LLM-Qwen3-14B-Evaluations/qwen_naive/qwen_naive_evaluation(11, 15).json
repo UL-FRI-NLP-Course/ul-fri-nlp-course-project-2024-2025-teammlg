@@ -1,0 +1,170 @@
+{
+    "model_for_evaluation": "Qwen/Qwen3-14B",
+    "evaluation_time_seconds": 2345.578032025721,
+    "Correctness (GEval)": {
+        "average": 0.11,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.7,
+        "standard_deviation": 0.18
+    },
+    "Clarity (GEval)": {
+        "average": 0.78,
+        "median": 0.8,
+        "minimum": 0.8,
+        "maximum": 1.0,
+        "standard_deviation": 0.12
+    },
+    "Answer Relevancy": {
+        "average": 0.82,
+        "median": 1.0,
+        "minimum": 0.5,
+        "maximum": 1.0,
+        "standard_deviation": 0.22271057451320087
+    },
+    "Faithfulness": {
+        "average": 0.82,
+        "median": 1.0,
+        "minimum": 0.1,
+        "maximum": 1.0,
+        "standard_deviation": 0.36
+    },
+    "Contextual Precision": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "Contextual Recall": {
+        "average": 1.0,
+        "median": 1.0,
+        "minimum": 1.0,
+        "maximum": 1.0,
+        "standard_deviation": 0.0
+    },
+    "Contextual Relevancy": {
+        "average": 0.246,
+        "median": 0.1,
+        "minimum": 0.0,
+        "maximum": 0.75,
+        "standard_deviation": 0.2761593742750733
+    },
+    "reasons": {
+        "test_case_11": {
+            "Correctness (GEval)": [
+                "The actual output does not match the expected output. It does not provide information about Arnold Schwarzenegger's recent films or directorship, as outlined in the expected output."
+            ],
+            "Clarity (GEval)": [
+                "The response does not provide a clear score or reason."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.50 because the statements clarify that Arnold Schwarzenegger has not directed any major motion pictures since the 1980s and confirms there are no announced upcoming movies where he would direct or star in a new release. These are relevant to the questions about his directing credits and recent films."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because all relevant nodes (films) are ranked higher than irrelevant nodes (director information). The first three nodes, which are ranked 1, 2, and 3, respectively, all provide information about recent or upcoming films by Arnold Schwarzenegger, while the fourth node, ranked 4, does not provide the requested information about the director."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because all supportive reasons are directly linked to nodes in the retrieval context, and there are no unsupportive reasons. This indicates a perfect contextual recall."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.10 because the input question about Arnold Schwarzenegger's recent films and his action hero persona is not directly addressed in the provided context, which primarily focuses on his past filmography and a documentary about his career."
+            ]
+        },
+        "test_case_12": {
+            "Correctness (GEval)": [
+                "The actual output does not contradict any facts in the expected output, but there is no clear reference to the first movie requested."
+            ],
+            "Clarity (GEval)": [
+                "The response does not provide a clear answer or follow the evaluation steps."
+            ],
+            "Answer Relevancy": [
+                "The score is 0.60 because the actual output contains irrelevant statements about purchase benefits and services, rather than features of the laptop."
+            ],
+            "Faithfulness": [
+                "The score is 0.10 because the actual output contains multiple contradictions with the retrieval context, specifically regarding the star of the first movie based on a video game."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the first node, which is relevant to the input, is ranked higher than the second node, which is irrelevant."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because the node(s) in the retrieval context align perfectly with the expected output, providing supportive reasons for each statement in the expected output."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.00 because the input is about video games and movies based on them, but the retrieval context provides no relevant information or statements that match this topic."
+            ]
+        },
+        "test_case_13": {
+            "Correctness (GEval)": [
+                "The actual output does not match the expected output, and the facts provided contradict each other."
+            ],
+            "Clarity (GEval)": [
+                "The response provides clear and direct information with no unnecessary repetition."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output. The output is directly relevant to the input question."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node with the correct answer ('Drkajva skupaj') is ranked first, and there are no irrelevant nodes in the retrieval context."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because the sentence in the expected output can be attributed to the 'Blades of Glory' node in the retrieval context."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.05 because the statement provides information about the plot of the film 'Blades of Glory', which is relevant to the input question about the Slovene title of the film."
+            ]
+        },
+        "test_case_14": {
+            "Correctness (GEval)": [
+                "The actual output does not provide a translation for 'The Bucket List' as requested in the expected output."
+            ],
+            "Clarity (GEval)": [
+                "The response is clear and direct, with no vague or confusing parts. It provides the requested information without unnecessary repetition."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output. The provided input received a direct and relevant response."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (the first one) with the original title is ranked higher than any irrelevant nodes."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because all the information in the expected output is attributed to the 2nd node in the retrieval context, demonstrating a perfect contextual recall."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.75 because the input question is about the original title of a movie, while the context provided is about the movie's plot and characters, which are only marginally relevant to the input."
+            ]
+        },
+        "test_case_15": {
+            "Correctness (GEval)": [
+                "The actual output gross of Treasure Planet is $216 million, which contradicts the expected output of $109.6 million."
+            ],
+            "Clarity (GEval)": [
+                "The response provides clear and direct language with no unnecessary repetition."
+            ],
+            "Answer Relevancy": [
+                "The score is 1.00 because there are no irrelevant statements in the actual output."
+            ],
+            "Faithfulness": [
+                "The score is 1.00 because there are no contradictions in the actual output."
+            ],
+            "Contextual Precision": [
+                "The score is 1.00 because the relevant node (first node) with detailed information about 'Treasure Planet's' box office performance is ranked higher than irrelevant nodes."
+            ],
+            "Contextual Recall": [
+                "The score is 1.00 because the expected output is fully supported by the information provided in the 'info' node of the retrieval context. There are no unsupportive reasons."
+            ],
+            "Contextual Relevancy": [
+                "The score is 0.33 because the retrieval context provided irrelevant information about Einstein winning the Nobel Prize for his discovery of the photoelectric effect in 1968 and mentioned a cat, which had nothing to do with the box-office gross of 'Treasure Planet'. However, the statement 'Treasure Planet grossed $109,730,759 at the box-office' is directly relevant to the input question."
+            ]
+        }
+    }
+}
