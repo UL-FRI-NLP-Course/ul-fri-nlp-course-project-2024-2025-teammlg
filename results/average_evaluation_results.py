@@ -48,8 +48,12 @@ for folder in folders:
                 elif type(key) == str and type(value) == dict:
                     # key: str (metric name)
                     # value: dict <str, float>
-                    counts[key] += 1
-                    averages[key] += value["average"]
+                    if key in ["Faithfulness", "ContextualPrecision", "ContextualRecall", "ContextualRelevancy"] and value["average"] > 0:
+                        counts[key] += 1
+                        averages[key] += value["average"]
+                    else:
+                        counts[key] += 1
+                        averages[key] += value["average"]
 
     results["averages"] = {key: avg/counts[key] for key, avg in averages.items()}
     results["reasons"] = dict(sorted(reasons.items(), key=lambda item: int(item[0].split("_")[2])))
