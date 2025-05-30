@@ -80,6 +80,11 @@
 	long=The Movie Database
 }
 
+\DeclareAcronym{fifo}{
+	short=FIFO,
+	long=First-In-First-Out
+}
+
 \newcommand{\etal}{\textit{et al}., }
 \newcommand{\ie}{\textit{i}.\textit{e}., }
 \newcommand{\eg}{\textit{e}.\textit{g}.\ }
@@ -197,10 +202,16 @@ Our system prompt was:
 	\begin{tcolorbox}
 		You are an AI chatbot, assisting user with anything related to movies. [Today's date is \verb|{date}|.] You may only use information provided to you inside the \verb|<data>| tags.
 	\end{tcolorbox}
-	\caption{Out prompt for \ac{rag} usage. The text in square brackets was only used in advanced \ac{rag}.}
+	\caption{Out prompt for \ac{rag} usage. The text in square brackets was only used in advanced \ac{rag}, and the text in braces represents variables.}
 \end{figure}
 
 Our user prompt first presented the user's initial query, followed by the retrieved information enclosed in \verb|<data>| tags.
+
+\subsection*{Memory}
+
+Because we designed our agent as a chatbot, we also implemented a simple answer caching mechanism to provide the chatbot with immediate history of the conversation. We stored last $n$ user questions and chatbot replies with the \ac{fifo} method, and fed them to the \ac{llm} as part of the prompt. The $n$ in our observations had to be relatively small due to limitations on the amount of input tokens.
+
+% In advanced \ac{rag}, we observed that the memory mechanism prevented the chatbot from being confused about queries referencing previous ones, managing to remember crucial data for function calling. Sometimes, the \ac{llm} even decided against retrieving information in queries where it otherwise would, because previous questions and answers provided enough information or context to formulate a sufficient response.
 
 \section*{Results}
 
