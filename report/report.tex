@@ -100,7 +100,8 @@ inputencoding=utf8/latin1
 %----------------------------------------------------------------------------------------
 
 \Abstract{
-Develop a conversational agent that enhances the quality and accuracy of its responses by dynamically retrieving and integrating relevant external documents from the web. Unlike traditional chatbots that rely solely on pre-trained knowledge, this system will perform real-time information retrieval, ensuring up-to-date answers. Potential applications include customer support, academic research assistance and general knowledge queries. The project will involve natural language processing, web scraping, and retrieval-augmented generation techniques to optimize answer quality.
+
+In this report, we developed a set of RAG solutions and performed a thorough evaluation. We used two LLMs, DeepSeek and Qwen3, to compare the behavior of RAG with and without reasoning, respectively. We built two methods for information retrieval and injection, one based on prompt analysis and nondiscriminative prompt injection, and one based on function calling at the LLM's discretion. To perform a more robust testing, we evaluated all variations of our RAG systems on a prepared question set, using two different-sized LLMs-as-judge -- GPT-4.1.-mini and 14-billion-parameter Qwen model -- and our own subjective observations. We found that both judges performed similarly in some metrics, with GPT-4.1.-mini performing better on others. The results show that Qwen with function-calling RAG system outperforms all other variants.
 }
 
 %----------------------------------------------------------------------------------------
@@ -131,6 +132,7 @@ For document summarization, \acp{llm}, statistical models, graph-based models an
 In this paper, we focus on \ac{rag} methods and their use in chatbots. To that end, we design a conversational agent operating on knowledge about different art and media. Specifically, the agent is to suggest and converse about films and other related media based on the user’s prompts and preferences. Our contributions are:
 
 \begin{itemize}
+\setlength\itemsep{-0.3em}
 	\item Implementation of a conversational agent using two different pretrained models: DeepSeek-R1~\cite{deepseek3} and Qwen 3~\cite{qwen3}.
 	\item Implementation of two \ac{rag} techniques, a primitive and advanced one, with capabilities of retrieving data from various film-related databases and web sources.
 	\item Evaluation of conversational agents with respect to the model used and the \ac{rag} technique. Agents are evaluated against the baseline \ac{rag}-less chatbots. Human and \ac{llm} judges are used to score responses, and different metrics are analyzed.
@@ -170,6 +172,7 @@ In function calling, the model is presented with the user prompt and structured 
 To provide a sufficient level of information related to movies and similar media, we selected the following sources:
 
 \begin{itemize}
+ \setlength\itemsep{-0.3em}
 	\item \textbf{\ac{tmdb}.} This is an open database of movies, TV-shows, and people associated with them. They provide a free-to-use API for various types of requests -- release dates, cast, crew, similar films ...
 	\item \textbf{Letterboxd.} This is a movie-themed social network to log watched films, provide reviews, and engage in movie-related discussions. We chose to include it to give the model a better understanding of how people percieve certain media.
 	\item \textbf{JustWatch.} This website tracks the availability of media on digital and streaming platforms.
@@ -194,18 +197,19 @@ With function calling, we also had to thoroughly describe all available function
 
 We structured our prompts to consist of three roles: system, user, and assistant. We put system prompt first, followed by the user prompt, and finally by assistant tag to signal the \ac{llm} to generate the answer, not to continue the user prompt.
 
-Our system prompt was:
+
 
 \begin{figure}[h!]
 	\begin{tcolorbox}
 		You are an AI chatbot, assisting user with anything related to movies. [Today's date is \verb|{date}|.] You may only use information provided to you inside the \verb|<data>| tags.
 	\end{tcolorbox}
 	\caption{Out prompt for \ac{rag} usage. The text in square brackets was only used in advanced \ac{rag}, and the text in braces represents variables.}
+	\label{fig:prompt}
 \end{figure}
 
-Our user prompt first presented the user's initial query, followed by the retrieved information enclosed in \verb|<data>| tags.
+Our system prompt is shown in fig. \ref{fig:prompt}. The user prompt consists of the user's initial query and the retrieved information, enclosed in \verb|<data>| tags, in that order.
 
-A key challenge during this stage was ensuring that the LLM relied solely on the provided information and avoided generating unsupported content. Despite clear instructions, it was often difficult to prevent the model from hallucinating or making assumptions beyond the data enclosed in the <data> tags.
+A key challenge during this stage was ensuring that the LLM relied solely on the provided information and avoided generating unsupported content. Despite clear instructions, it was often difficult to prevent the model from hallucinating or making assumptions beyond the data enclosed in the \verb|<data>| tags.
 
 \subsection*{Memory and chat}
 
@@ -221,6 +225,7 @@ Since we are working with relatively open-ended questions, there is a lack of ob
 Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test set, because they penalize diverse answers, which could still be correct in the context of open-ended questions. To bypass this limitation, we employ the DeepEval framework \cite{deepeval} in order to obtain more relevant metrics based on context, query and response:
 
 \begin{itemize}
+\setlength\itemsep{-0.3em}
 	\item \textbf{Correctness}: Measures how accurate the response is compared to the ground truth.
 
 	\item \textbf{Clarity}: Evaluates how clear and understandable the response is for the user. (we do not expect to improve this metric with \ac{rag}, we only utilize it to ensure that our modifications do not degrade the original model's inherent capabilities),
@@ -280,6 +285,7 @@ Since we were limited by hardware capabilities during our research, we focused o
 
 Both models were 8-billion-parameters versions. We chose DeepSeek as it is a novel set of models with positive benchmarking results~\cite{deepseek3}. For each of these, we run experiments on three different sets of parameters:
 \begin{itemize}
+\setlength\itemsep{-0.3em}
 	\item without \ac{rag} - out-of-the-box model with no modifications (baseline)
 	\item with naive \ac{rag} - all documents are retrieved and appended to the context with no consideration for token limitation (data is truncated)
 	\item advanced \ac{rag} - documents are selectively retrieved and processed before being appended to the context
@@ -321,7 +327,7 @@ Notably, Qwen with advanced RAG system performs best in most metrics. Specifical
 
 Our advanced RAG system shows that our retrieved data is mostly aligned with what is expected, although we sometimes present the \ac{llm} with irrelevant information. This can be attributed due to the fact that our retrieval does not perform granular information extraction, instead relying on function-calling model to pick specific (short) documents of information to retrieve.
 
-Baseline Qwen returns more relevant answer, which we could attribute to the fact that it has the most freedom to when answering, not tied to the context which could lead the answer to not directly align with what the query is asking, or cause the \ac{llm} to populate the answer with uncessesary details.
+Baseline Qwen returns more relevant answer, which we could attribute to the fact that it has the most freedom to when answering, not tied to the context which could lead the answer to not directly align with what the query is asking, or cause the \ac{llm} to populate the answer with unnecessary details.
 
 In addition to evaluating RAG methods, we also explored how large a model needs to be to effectively serve as an \ac{llm}-as-judge for smaller models. We compared the performance of Qwen3-14B and GPT-4.1-mini as judges. Based on both metric results and manual inspection of model outputs against ground truth answers, we observed that GPT-4.1-mini was better at fairly and accurately evaluating responses. Qwen3-14B often failed to do so reliably, which is why we place more trust in GPT-based evaluations. Our results also confirm that the advanced RAG approach consistently outperforms the naive one across models. Qwen with advanced RAG performs better than DeepSeek with advanced RAG. DeepSeek's reasoning capabilities may sometimes interfere with faithfully following retrieved context, leading to incorrect assumptions. In contrast, Qwen tends to adhere more closely to the provided input, which may contribute to its stronger performance in this setting.
 
@@ -336,42 +342,10 @@ In addition to evaluating RAG methods, we also explored how large a model needs 
 \begin{appendix}
 
 \section*{Appendix}
-\label{append}
-
-\subsection*{Qwen conversation example}
-
-\begin{figure}
-\begin{tcolorbox}
-User: How many films did Chuck Jones make?
-
-Qwen: Based on the data provided:
-
-	**Total Number of Films:**  
-	Chuck Jones directed **over 100 films**, spanning multiple genres and formats.
-
-	\#\#\# Breakdown:
-	- **Feature-Length Films**: 
-    		- *The Bugs Bunny/Road Runner Movie* (1979)
-	    - *The Phantom Tollbooth* (1970)
-	    - *The Grinch Stole Christmas!* (1966)
-
-	- **Shorts and Documentaries**:
-	    - Approximately **100+ short cartoons**
-	        - Many of these are Looney Tunes/Merry Melodies cartoons.
-	        - Includes iconic titles such as *What's Opera, Doc?*, *Duck Amuck*, etc.
-    
-	    - **Documentaries**: Around **dozens**, e.g.,
-	    	    - *The Magical World of Chuck Jones*
-	        - *Chuck Jones: Memories of Childhood*
-
-	\#\#\# Summary:
-	Chuck Jones made approximately \textbf{more than 100 films}, primarily consisting of **\green{animated short cartoons}**, a handful of **\green{feature-length compilations}**, and several **\red{documentaries}**.
-\end{tcolorbox}
-\caption{Conversation with Qwen}
 \label{qwenconvo}
-\end{figure}
 
 \begin{tcolorbox}[breakable,float*,width=\textwidth,title=Conversation Example with Advanced Qwen]
+
 
 \textbf{What is the movie Until Dawn about?}
 
