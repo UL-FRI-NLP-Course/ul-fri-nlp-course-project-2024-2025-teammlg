@@ -25,15 +25,18 @@
 \usepackage{acro}
 \graphicspath{{fig/}}
 \usepackage{xcolor}
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
 \usepackage{subcaption}
 \usepackage{cleveref}
+\usepackage{changepage}
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
 
 \lstset{
 frame=none,
+extendedchars=false,
+inputencoding=utf8/latin1
 }
 
 %----------------------------------------------------------------------------------------
@@ -90,6 +93,7 @@ frame=none,
 \newcommand{\etal}{\textit{et al}., }
 \newcommand{\ie}{\textit{i}.\textit{e}., }
 \newcommand{\eg}{\textit{e}.\textit{g}.\ }
+
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT
@@ -243,8 +247,8 @@ Standard evaluation metrics such as BLEU and ROUGE are ill-adjusted to our test 
 \hline
 model & correctness & clarity & answer relevancy & faithfulness & contextual precision & contextual recall & contextual relevancy \\ \hline
 deepseek-baseline  & 0.19 & 0.7725 & 0.76846 & / & / & / & / \\
-deepseek-naive  & 0.152 & 0.82800 & 0.78138 & 0.93233 & 0.24000 & 0.61771 & \textbf{0.40468}   \\
-deepseek-advanced  & & 0.69166 & 0.80550 & & & &   \\
+deepseek-naive  & 0.152 & 0.82800 & 0.78138 & 0.93233 & 0.24000 & 0.61771 & 0.40468   \\
+deepseek-advanced  & 0.244 & 0.69167 & 0.8055 & 0.93972 & 1.0 & 1.0 & \textbf{0.55796}  \\
 qwen-baseline  & \textbf{0.30962} & \textbf{0.86888} & 0.74805 & / & / & / & /  \\
 qwen-naive  & 0.23111 & 0.65888 & \textbf{0.84670} & 0.88345 & \textbf{0.88345} & \textbf{0.76333} & 0.37029  \\
 qwen-advanced  &  & & &  &  & &    \\
@@ -354,41 +358,163 @@ Qwen: Based on the data provided:
 \label{qwenconvo}
 \end{figure}
 
-\begin{figure*}
-\begin{tcolorbox}
-\begin{lstlisting}[escapechar=\%]Add commentMore actions
-User: How many films did Chuck Jones make?
+\begin{tcolorbox}[breakable,float*,width=\textwidth]
 
-Qwen: Based on the data provided:
+\textbf{What is the movie Until Dawn about?}
 
-	**Total Number of Films:**  
-	Chuck Jones directed **over 100 films**, spanning multiple genres and formats.
+\begin{adjustwidth}{20pt}{0pt}
 
-	### Breakdown:
-	- **Feature-Length Films**: 
-    		- *The Bugs Bunny/Road Runner Movie* (1979)
-	    - *The Phantom Tollbooth* (1970)
-	    - *The Grinch Stole Christmas!* (1966)
+\emph{Until Dawn} is a 2025 American \textbf{survival horror film}
+directed by \textbf{David F. Sandberg} and written by \textbf{Gary
+Dauberman} and \textbf{Blair Butler}. Based on the \textbf{2015 video
+game} \emph{Until Dawn} developed by \textbf{Supermassive Games} for
+PlayStation, the film adapts the game's eerie atmosphere and gameplay
+mechanics---such as the \textbf{time-loop structure} and
+\textbf{branching narratives}---into a \textbf{standalone storyline}
+within the same fictional universe.
 
-	- **Shorts and Documentaries**:
-	    - Approximately **100+ short cartoons**
-	        - Many of these are Looney Tunes/Merry Melodies cartoons.
-	        - Includes iconic titles such as *What's Opera, Doc?*, *Duck Amuck*, etc.
+\subsubsection*{Key Details About Until Dawn}
 
-	    - **Documentaries**: Around **dozens**, e.g.,
-	    	    - *The Magical World of Chuck Jones*
-	        - *Chuck Jones: Memories of Childhood*
+\paragraph{Plot Summary:}
 
+The film centers on a group of teenagers --- \textbf{Clover, her
+ex-boyfriend Max, her friends Nina and Megan, and Nina's boyfriend Abe}
+--- who travel to the remote mountain town of \textbf{Glore Valley} to
+investigate the disappearance of Clover's older sister,
+\textbf{Melanie}.
 
-	Chuck Jones made approximately **more than 100 films**, primarily consisting of **%\green{animated short cartoons}%**, a handful of **%\green{feature-length compilations}%**, and several **%\red{documentaries}%**.
-\end{lstlisting}
+They stop at a gas station where they meet \textbf{Hill}, a cryptic
+stranger who warns them about strange occurrences near Glore Valley.
+When severe weather traps them inside the local \textbf{visitor center},
+they discover that someone is hunting them --- and every time anyone
+dies, the night resets, forcing them to relive the same day with
+different threats and outcomes.
+
+This creates a \textbf{time-loop mechanism}, where characters must
+navigate multiple iterations of the evening, facing escalating dangers
+and psychological tension. With only \textbf{13 possible lives} before
+they ``disappear,'' the group struggles against \textbf{supernatural
+entities known as wendigos}, a masked killer, and haunting revelations
+about past traumas and family secrets.
+
+\paragraph{Emotional Core:}
+
+At its heart, \emph{Until Dawn} explores deep emotional issues such as
+grief, guilt, betrayal, and self-destruction. Characters grapple with
+personal demons and relationships that fracture under pressure, making
+the horror feel deeply human rather than purely fantastical.
+
+Key moments include: - Clover's unresolved feelings toward her estranged
+sister, \textbf{Melanie}, whose fate forms the central mystery. - The
+discovery that Hill, a former therapist, orchestrated parts of the
+nightmare as a form of experimental therapy. - The revelation that many
+victims of Glore Valley became wendigos because of traumatic memories
+stored in the environment.
+
+\paragraph{Visual \& Thematic Style:}
+
+Inspired by the \textbf{video game adaptation}, \emph{Until Dawn} blends
+\textbf{realistic settings} with \textbf{eerie supernatural elements},
+creating a tense and immersive experience. Its visual style emphasizes
+mood and isolation, mirroring the claustrophobic atmosphere of the game.
+
+The narrative leans heavily on \textbf{character-driven storytelling},
+ensuring that audience choices influence outcomes --- even when watching
+the final cut of the film.
+
+\paragraph{Box Office Performance:}
+
+Although receiving \textbf{mixed critical reception}, \emph{Until Dawn}
+managed to draw audiences thanks to its strong marketing campaign and
+tie-in with the beloved video game series. Globally, it earned
+approximately \textbf{\$51 million}, indicating moderate commercial
+success despite polarizing opinions.
+
+If you're interested, I'd love to break down specific scenes, character
+arcs, or compare it to the original game! Would you like that too? \\
+
+\end{adjustwidth}
+
+\textbf{Who directed that movie?}
+
+\begin{adjustwidth}{20pt}{0pt}
+
+The movie \textbf{Until Dawn (2025)} was directed by \textbf{David F.
+Sandberg}, a Swedish filmmaker best known for his work on the
+\emph{Annabelle} and \emph{Lights Out} franchises. He brought his
+signature style of suspenseful horror and atmospheric tension to this
+adaptation of the popular video game \emph{Until Dawn}.
+
+Sandberg previously worked closely with writer Gary Dauberman,
+co-writing some of the \emph{Annabelle} films, which helped shape the
+tone and direction of \emph{Until Dawn}. His involvement ensured that
+the film maintained a consistent vision of dread and psychological
+unease throughout.
+
+Let me know if you want more details about David F. Sandberg or other
+directors working in the horror genre! \\
+
+\end{adjustwidth}
+
+\textbf{Who are the main actors?}
+
+\begin{adjustwidth}{20pt}{0pt}
+
+Here are the \textbf{main cast members} of \emph{Until Dawn (2025)}
+along with their roles:
+
+\subsubsection*{Main Cast:}
+
+\begin{tabular}{ l l }
+	Actor Name & Role \\
+	\textbf{Ella Rubin} & \textbf{Clover Paul} \\
+	\textbf{Michael Cimino} & \textbf{Max} \\
+	\textbf{Odessa A'zion} & \textbf{Nina Riley} \\
+	\textbf{Ji-young Yoo} & \textbf{Megan} \\
+	\textbf{Belmont Cameli} & \textbf{Abe} \\
+	\textbf{Maia Mitchell} & \textbf{Melanie Paul} \\
+	\textbf{Peter Stormare} & \textbf{Dr.~Alan Hill} \\
+\end{tabular}
+
+These actors portray the core group of teenagers trapped in the haunted
+town of Glore Valley, experiencing terrifying events through a looping
+timeline filled with supernatural forces.
+
+\subsubsection*{Supporting Roles:}\label{supporting-roles}
+
+Some key supporting performers include:
+
+\begin{tabular}{ l l }
+	Actor Name & Role\\
+	\textbf{Zsófia Temesvári} & \textbf{Wendigo Melanie Paul} \\
+	\textbf{Lotta Losten} & Reporter \\
+	\textbf{Mariann Hermányi} & Gløre Witch \\
+	\textbf{Willem van der Vegt} & Pleading Man \\
+	\textbf{Ádám Bot} & Wendigo \\
+	\textbf{Adrienn Mész} & Wendigo \\
+	\textbf{Boglárka Heim} & Wendigo \\
+	\textbf{Ádám Zambryzcki} & Wendigo \\
+\end{tabular}
+
+Note: Some of the additional actors listed were involved in smaller
+roles or had limited screen time.
+
+\subsubsection*{Notable Mention:}
+
+\begin{itemize}
+\item
+  \textbf{David F. Sandberg} also appeared briefly as a voice actor
+  (``Missing Person'').
+\end{itemize}
+
+Would you like information about any particular actor or role from the
+film?
+
+\end{adjustwidth}
+
 \end{tcolorbox}
-\caption{Conversation with Qwen}
-\label{qwenconvo}
-\end{figure*}
-
-
- 
+%\caption{Conversation with Qwen}
+%\label{qwenconvo}
 
 
 \end{appendix}
